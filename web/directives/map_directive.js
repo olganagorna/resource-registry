@@ -83,38 +83,26 @@
 				}
 			};
 
-			$scope.$watch('options.updateMap', function (val) {
-				if (val) {
-					$scope.options.latlngs = angular.fromJson($scope.options.latlngs);
-					$scope.updateMapView($scope.options.latlngs[0], $scope.options.zoom);
-					$scope.options.updateMap = false;
-					if ($scope.geoJsonLayer)
-						$scope.map.removeLayer($scope.geoJsonLayer);
-					$scope.geoJsonLayer = L.geoJson(L.polygon($scope.options.latlngs).toGeoJSON(), {
-						style: style,
-						onEachFeature: infoOnEachFeature
-					}).addTo($scope.map);
-				}
-			});
+			$scope.$watch('options.showPolygonOnMap.showPolygon', function (val) {
+				if ($scope.mapCreated && val) {
+					$scope.options.showPolygonOnMap.latlngs = angular.fromJson($scope.options.showPolygonOnMap.latlngs);
+					var polygon = L.polygon($scope.options.showPolygonOnMap.latlngs);
+					$scope.map.fitBounds(polygon.getBounds());
 
-			$scope.$watch('options.coordsToMap', function (val) {
-				if (val) {
-					console.log($scope.options);
 					if ($scope.geoJsonLayer)
 						$scope.map.removeLayer($scope.geoJsonLayer);
-					$scope.options.coordsToMap = false;
-					$scope.geoJsonLayer = L.geoJson($scope.options.showOnMapLatlngs.toGeoJSON(), {
+					$scope.geoJsonLayer = L.geoJson(L.polygon($scope.options.showPolygonOnMap.latlngs).toGeoJSON(), {
 						style: style,
 						onEachFeature: infoOnEachFeature
 					}).addTo($scope.map);
 				}
+				$scope.options.showPolygonOnMap.showPolygon = false;
 			});
 
 			$scope.$watch('options.toggleMap', function (val) {
 				if (val) {
 					$scope.toggleMap();
 					$scope.options.toggleMap = false;
-					//$scope.$apply();
 				}
 			});
 
