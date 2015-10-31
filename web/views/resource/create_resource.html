@@ -1,0 +1,274 @@
+
+<div class="col-md-6 md-login jumbotron" ng-controller="MapCtrl">
+    <h3>Ресурс: додати ресурс</h3>
+    <br role="form" name="myForm">
+        <div class= "form-group" >
+            <label>Найменування об’єкту</label>
+            <div>
+                <input value="name" name="name" ng-model="resource.name" type= "text" class= "form-control" placeholder="Назва ресурсу"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Клас об’єкту</label>
+            <br> природний ресурс
+        </div>
+        <div class="form-group">
+            <label>Підклас об’єкту</label>
+            <select class="form-control" id="class"
+                    ng-init="resource.class_id = 1"
+                    ng-model="resource.class_id"
+                    ng-options="class.class_id as class.name for class in resource_classes">
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Власник об’єкту</label>
+            <br> народ України (Український народ)
+        </div>
+        <h4>Географічні координати кутів</h4>
+
+        <div class="col-md-12 md-coord-box">
+            <div class="form-group col-md-4" >
+                <label class="md-coord-label">Північна широта</label>
+                <span class="md-coord-span">
+                    <input  value="name" name="name" ng-model="lat.deg" type= "text" class= "form-control col-md-4" placeholder="градуси" />
+                    <input  value="name" name="name" ng-model="lat.min" type= "text" class= "form-control col-md-4" placeholder="хвилини" />
+                    <input  value="name" name="name" ng-model="lat.sec" type= "text" class= "form-control col-md-4" placeholder="секунди" />
+
+                </span>
+                <div class="clear"></div>
+            </div>
+            <div class="form-group col-md-4" >
+                <label class="md-coord-label">Східна довгота</label>
+                <span class="md-coord-span">
+                    <input  value="name" name="name" ng-model="lng.deg" type= "text" class= "form-control col-md-4" placeholder="градуси" />
+                    <input  value="name" name="name" ng-model="lng.min" type= "text" class= "form-control col-md-4" placeholder="хвилини" />
+                    <input  value="name" name="name" ng-model="lng.sec" type= "text" class= "form-control col-md-4" placeholder="секунди" />
+                </span>
+            </div>
+            <div class="md-coords">
+                <a href="#" class="btn-sm btn-primary" ng-click="createCoords(lat, lng); coordsToMap(coords);">
+                    <span ng-show="coordId === null">Додати</span><span ng-show="coordId || coordId===0">Змінити</span>
+                </a>
+                <a href="#" class="btn-sm btn-material-deep-orange-700" ng-click="deleteCoords(); coordsToMap(coords);" ng-show="coordId || coordId===0">
+                    Видалити
+                </a>
+
+                <div class="togglebutton" >
+                    <label class="md-toggle" >
+                        Показати карту
+                        <input type="checkbox" ng-click="toggleMap();" ><span class="toggle"></span>
+                    </label>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group" >
+            <leaflet_map height="60vh" width="100%" coordinates="true" info="false" interactivity="true" add="true" bind="newCoords" update="options"></leaflet_map>
+        </div>
+        <hr class="devider">
+        <div class="form-group">
+            <ul class="tags">
+                <li ng-repeat="coord in coords track by $index" ng-click="changeCoords(coord, $index);">
+                    <a href="#" class="tag" ng-class="{tagactive: $index === coordId}">{{formatCoords(coord.lat)}}/{{formatCoords(coord.lng)}}</a>
+                </li>
+            </ul>
+        </div>
+        <!-- <div class="form-group" ng-show="!isShowMap">
+            <ul class="tags">
+                <li ng-repeat="coord in coords track by $index" ng-click="changeCoords(coord, $index);">
+                    <a href="#" class="tag" ng-class="{tagactive: $index === coordId}">{{formatCoords(coord.lat)}}/{{formatCoords(coord.lng)}}</a>
+                </li>
+            </ul>
+        </div> -->
+
+        <div class="panel panel-primary">
+            <button class="col-md-12 panel-heading" type="button" data-toggle="collapse" data-target="#collapseParams" aria-expanded="false" aria-controls="collapseExample">
+                <h3 class="panel-title">Параметри</h3>
+            </button>
+            <div class="collapse panel-body" id="collapseParams">
+                <div class="form-group">
+                    <label>Довжина об'єкту, м</label>
+                    <div>
+                        <input name="Довжина об'єкту" ng-model="params[0].value" type= "text" class= "form-control" placeholder="Довжина об'єкту"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Ширина об'єкту, м</label>
+                    <div>
+                        <input name="Ширина об'єкту" ng-model="params[1].value" type= "text" class= "form-control" placeholder="Ширина об'єкту"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Висота об'єкту, м</label>
+                    <div>
+                        <input name="Висота об'єкту" ng-model="params[2].value" type= "text" class= "form-control" placeholder="Висота об'єкту"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Загальна площа об’єкту, га</label>
+                    <div>
+                        <input name="Площа об'єкту" ng-init="params[3].value = 0" ng-model="params[3].value " type= "text" class= "form-control" placeholder="Площа об'єкту"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Маса (вага), кг</label>
+                    <div>
+                        <input name="Маса (вага) об'єкту" ng-model="params[5].value" type= "text" class= "form-control" placeholder="Маса (вага) об'єкту"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Периметр об'єкту, м</label>
+                    <div>
+                        <input name="Периметр об'єкту" ng-init="params[6].value = 0" ng-model="params[6].value" type= "text" class= "form-control" placeholder="Периметр об'єкту"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Об'єм об'єкту, м&sup3</label>
+                    <div>
+                        <input name="Об'єм об'єкту" ng-model="params[4].value" type= "text" class= "form-control" placeholder="Об'єм об'єкту"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-devider form-group">&nbsp;</div>
+            <h4>Підстава для внесення відомостей до Реєстру</h4>
+            <div class= "col-xs-5 ">паспорт громадянина України,</div>
+            <div class="col-xs-2 ">
+                <label for="passport_series">Серія</label>
+                <div>
+                    <input  name="owner.passport_series" type="text" class= "form-control" id="passport_series" placeholder="напр. ME" ng-model="owner.passport_series"/>
+                </div>
+            </div>
+            <div class= "col-xs-5" >
+                <label for="passport_num" >Номер</label>
+                <div>
+                    <input  name="owner.passport_number" type="text" class= "form-control" id="passport_num" placeholder="напр. 55555" ng-model="owner.passport_number"/>
+                </div>
+            </div>
+            <div class="col-xs-12">виданий на ім’я ,</div>
+            <div class="col-xs-4" >
+                <label for="passport_last_name" >Прізвище</label>
+                <div>
+                    <input  name="owner.last_name" type="text" class= "form-control" id="passport_last_name" placeholder="напр. Коваль" ng-model="owner.last_name"/>
+                </div>
+            </div>
+            <div class= " col-xs-4" >
+                <label for="passport.first_name" >Ім'я</label>
+                <div>
+                    <input  name="owner.first_name" type="text" class= "form-control" id="passport.first_name" placeholder="напр. Петро" ng-model="owner.first_name"/>
+                </div>
+            </div>
+            <div class= " col-xs-4" >
+                <label for="passport_middle_name" >По батькові</label>
+                <div>
+                    <input  name="owner.middle_name" type="text" class= "form-control" id="passport_middle_name" placeholder="напр. Петрович" ng-model="owner.middle_name"/>
+                </div>
+            </div>
+            <div class="col-xs-12"></div>
+            <div class=" col-xs-12" >ким видано
+                <label for="reason_passport_department" ></label>
+                <div>
+                    <input  name="reason.passport.department" type="text" class= "form-control" id="reason_passport_department" placeholder="напр. Хмельницьким МВ УМВС України в Хмельницький області" ng-model="reason.passport.department"/>
+                </div>
+            </div>
+            <div class="form-group col-xs-12" >коли видано
+                <div>
+                    <p class="input-group">
+                        <input type="text" class="form-control"
+                               uib-datepicker-popup="{{format}}"
+                               ng-model="reason.passport.date"
+                               is-open="reasonPassportDateStatus.opened"
+                               min-date="reasonPassportMinDate"
+                               max-date="reasonPassportMaxDate"
+                               datepicker-options="dateOptions"
+                               ng-required="false"
+                               clear-text="Очистити"
+                               close-text="Закрити"
+                               current-text="Сьогодні"
+                                />
+                      <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="openReasonPassportDate($event)">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                      </span>
+                    </p>
+                    <pre>Вибрана дата: <em>{{reason.passport.date | date:'fullDate' }}</em></pre>
+                </div>
+            </div>
+            <div class= "col-xs-12" >
+                <label for="owner_address" >Адреса</label>
+                <div>
+                    <input  name="owner.address" type="text" class= "form-control" id="owner_address" placeholder="напрю м.Львів, вул Шевченка 63" ng-model="owner.address"/>
+                </div>
+            </div>
+            <div class="col-xs-12"></div>
+            <label for="textAreaPassportDoc"></label>
+            <textarea class="col-md-12" rows="3" id="textAreaPassportDoc" ng-model="reason.text">{{reason.text}}</textarea>
+
+        <div class="form-group col-xs-12" >
+        </div>
+        <div class="col-xs-12">&nbsp;</div>
+        <h4>ПІБ та поштова адреса народного реєстратора</h4>
+        <div class= "form-group col-xs-4" >
+            <label>Прізвище</label>
+            <div>
+                {{personal_data.last_name}}
+            </div>
+        </div>
+        <div class= "form-group col-xs-4" >
+            <label>Ім'я</label>
+            <div>
+                {{personal_data.first_name}}
+            </div>
+        </div>
+        <div class= "form-group col-xs-4" >
+            <label>По-батькові </label>
+            <div>
+                {{personal_data.middle_name}}
+            </div>
+        </div>
+
+        <div class= "form-group col-xs-12" >
+            <label>Поштова адреса</label>
+            <div>
+                {{personal_data.address}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Реєстраційний номер об'єкту</label>
+                <div>
+                    <input name="Реєстраційний номер об'єкту" ng-init="resource.registration_number = 0" ng-model="resource.registration_number" type= "text" class= "form-control" placeholder="напр. 804:23:17:026:0001"/>
+                </div>
+            {{registration_number}}
+        </div>
+        <div class="form-group">
+            <label>Дата створення об'єкту</label>
+            <div>
+                  <p class="input-group">
+                        <input type="text" class="form-control"
+                               uib-datepicker-popup="{{format}}"
+                               ng-model="datePicker.date"
+                               is-open="status.opened"
+                               min-date="minDate"
+                               max-date="maxDate"
+                               datepicker-options="dateOptions"
+                               ng-required="false"
+                               clear-text="Очистити"
+                               close-text="Закрити"
+                               current-text="Сьогодні"
+                        />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                  </span>
+                    </p>
+                  <pre>Вибрана дата: <em>{{datePicker.date | date:'fullDate' }}</em></pre>
+            </div>
+        </div>
+        <a href="resource/index" class="btn btn-material-deep-orange-700">Скасувати</a>
+        <button ng-click="createResource(resource, owner, params);"
+                type="submit" class="btn btn-primary">Додати</button>
+    </form>
+</div>

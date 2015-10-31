@@ -1,0 +1,79 @@
+CREATE TRIGGER `resource_log_UPDATE` AFTER UPDATE ON `resource`
+ FOR EACH ROW BEGIN
+
+DECLARE param_output TEXT DEFAULT '';
+
+DECLARE res_type_name VARCHAR(40) DEFAULT '';
+DECLARE res_type_newname VARCHAR(40) DEFAULT '';
+
+DECLARE res_owner VARCHAR(40) DEFAULT '';
+DECLARE res_owner_new VARCHAR(40) DEFAULT '';
+
+DECLARE res_owner_ln VARCHAR(40) DEFAULT '';
+DECLARE res_owner_fn VARCHAR(40) DEFAULT '';
+DECLARE res_owner_mn VARCHAR(40) DEFAULT '';
+DECLARE res_owner_ln_new VARCHAR(40) DEFAULT '';
+DECLARE res_owner_fn_new VARCHAR(40) DEFAULT '';
+DECLARE res_owner_mn_new VARCHAR(40) DEFAULT '';
+
+
+IF OLD.name != NEW.name THEN	
+	SET param_output = CONCAT('назва ресурсу: ', OLD.name,'->', NEW.name,'|');	
+END IF;
+
+IF OLD.class_id != NEW.class_id THEN
+    SELECT name INTO res_type_name
+	FROM resource_class WHERE resource_class.class_id = OLD.class_id;
+
+	SELECT name INTO res_type_newname
+	FROM resource_class
+    WHERE resource_class.class_id = NEW.class_id;
+
+	SET param_output = CONCAT(param_output, 'підклас : ', res_type_name,'->', res_type_newname,'|');	
+END IF;
+
+IF OLD.owner_data_id != NEW.owner_data_id THEN
+
+
+
+    SELECT last_name INTO res_owner_ln
+	FROM personal_data
+    WHERE personal_data.personal_data_id = OLD.owner_data_id;
+	
+	SELECT first_name INTO res_owner_fn
+	FROM personal_data
+    WHERE personal_data.personal_data_id = OLD.owner_data_id;
+
+	SELECT middle_name INTO res_owner_mn
+	FROM personal_data
+    WHERE personal_data.personal_data_id = OLD.owner_data_id;
+
+	SELECT last_name INTO res_owner_ln_new
+	FROM personal_data
+    WHERE personal_data.personal_data_id = NEW.owner_data_id;
+	
+	SELECT first_name INTO res_owner_fn_new
+	FROM personal_data
+    WHERE personal_data.personal_data_id = NEW.owner_data_id;
+
+	SELECT middle_name INTO res_owner_mn_new
+	FROM personal_data
+    WHERE personal_data.personal_data_id = NEW.owner_data_id;
+
+	SET res_owner = CONCAT(res_owner_ln,' ', res_owner_fn,' ', res_owner_mn);
+    SET res_owner_new = CONCAT(res_owner_ln_new,' ', res_owner_fn_new,' ', res_owner_mn_new);
+
+	SET param_output = CONCAT(param_output,'користувач : ', res_owner,' -> ', res_owner_new,'|');	
+END IF;
+
+IF OLD.coordinates != NEW.coordinates THEN   
+	SET param_output = CONCAT(param_output, 'координати : ', OLD.coordinates,' -> ', NEW.coordinates,'|');	
+END IF;
+
+IF OLD.date != NEW.date THEN   
+	SET param_output = CONCAT(param_output, 'дата створення : ', OLD.date,' -> ', NEW.date,'|');	
+END IF;
+
+INSERT INTO `operation`(`date`, `type_id`, `resource_id`, `user_id`,  `before_change`)
+VALUES (now(), 2, OLD.resource_id, NULL, param_output);
+END
