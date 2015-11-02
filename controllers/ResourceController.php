@@ -55,10 +55,27 @@ class ResourceController extends ActiveController
 
 	public function actionExport($id)
 	{
-		$filepath = dirname(__FILE__) . '/../runtime/result.docx';
+		$templateFilepath = dirname(__FILE__) . '/../runtime/templates/Template.docx';
+		$source = dirname(__FILE__) . '/../runtime/temp.docx';
 
 		\PhpOffice\PhpWord\Autoloader::register();
-		$phpWord = new \PhpOffice\PhpWord\PhpWord();
+
+		$templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor($templateFilepath);
+
+		$months = ['Січня', 'Лютого', 'Березня', 'Квітня',
+			'Травня', 'Червня', 'Липня', 'Серпня', 'Вересня',
+			'Жовтня', 'Листопада', 'Грудня'];
+		$date = getdate();
+
+		$currentDate = $date['mday'] . ' ' . $months[$date['mon'] - 1] . ' ' . $date['year'] . ' року';
+
+		$extractNumber = '№' . $date['mday'] . ($date['mon'] - 1) . substr($date['year'], -2);
+		$templateProcessor->setValue('date', $currentDate);
+		$templateProcessor->setValue('number', $extractNumber);
+		$templateProcessor->saveAs($source);
+
+		$phpWord = \PhpOffice\PhpWord\IOFactory::load($source);
+		//$phpWord = new \PhpOffice\PhpWord\PhpWord();
 
 		$phpWord->setDefaultFontName('Times New Roman');
 		$phpWord->setDefaultFontSize(11);
@@ -113,12 +130,12 @@ class ResourceController extends ActiveController
 		$resource_subclass = ResourceClass::findOne($resource->class_id)->name;
 		$creation_date = $resource->date;
 
-		 $registrar = PersonalData::findOne($resource->registrar_data_id);
-		 $registrar_info = $registrar->last_name . ' ' .
-		     $registrar->first_name . ' ' . $registrar->middle_name. ' ' .
-		     $registrar->address;
-		 $registrar_shortname = $registrar->last_name .
-		     $registrar->first_name[0] . '. ' . $registrar->middle_name[0]. '.';
+		$registrar = PersonalData::findOne($resource->registrar_data_id);
+		$registrar_info = $registrar->last_name . ' ' .
+		    $registrar->first_name . ' ' . $registrar->middle_name. ' ' .
+		    $registrar->address;
+		$registrar_shortname = $registrar->last_name .
+		    $registrar->first_name[0] . '. ' . $registrar->middle_name[0]. '.';
 
 		$parameters = Parameter::find()
 			->where(['resource_id' => $id])
@@ -259,16 +276,16 @@ class ResourceController extends ActiveController
 
 		$section->addTextBreak(2);
 		$section->addText('Народний реєстратор', $boldFontStyle);
-		$section->addText($registrar_shortname);
+		$section->addText(htmlspecialchars($registrar_shortname, ENT_COMPAT, 'UTF-8'));
 
-		// Saving the document as OOXML file...
-		$objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
-		$objWriter->save($filepath);
-
-		if(file_exists($filepath))
-		{
-			return \Yii::$app->response->sendFile($filepath, $filename, ['inline' => false])->send();
-		}
+		header("Content-Description: File Transfer");
+		header('Content-Disposition: attachment; filename="' . $filename . '"');
+		header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+		header('Content-Transfer-Encoding: binary');
+		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+		header('Expires: 0');
+		$xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+		$xmlWriter->save("php://output");
 	}
 
 
