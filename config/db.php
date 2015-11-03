@@ -3,7 +3,7 @@
 return [
     'class' => 'yii\db\Connection',
     'dsn' => 'mysql:host=127.9.23.2;dbname=resource_registry',
-    'username' => 'adminXvheCjv ',
+    'username' => 'adminXvheCjv',
     'password' => 'tkhcjD_x4VX3',
     'charset' => 'utf8',
 ];
