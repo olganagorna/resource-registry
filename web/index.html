@@ -45,16 +45,16 @@
                 <li><a href="resource/search">ПОШУК</a></li>
             </ul>
 
-            <div class="nav navbar-nav navbar-right md-my-room" >
+            <div class="nav navbar-nav navbar-right md-my-room " >
                 <ul class="nav navbar-nav ng-navbar-nav">
                     <li class="md-login-sign" ng-if="currentUser.isLogined">
-                        <a href="site/home" class="ng-home">
-                            <span class="glyphicon glyphicon glyphicon-log-in" aria-hidden="true" ></span> {{currentUser.username}}
+                        <a href="site/home" class="ng-home"  >
+                            <span class="glyphicon glyphicon glyphicon-log-in btn-mater" aria-hidden="true" ></span> {{currentUser.username}}
                         </a>
                     </li>
                     <li> <span><a class="col-md-6" ng-controller="LoginController">
-                        <a href="site/login"><button ng-if="!currentUser.isLogined" class="btn btn-material-amber-700"  >УВІЙТИ</button></a>
-                        <button ng-if="currentUser.isLogined" class="btn btn-material-amber-700" ng-click="logout()">ВИЙТИ</button>
+                        <a href="site/login"><button ng-if="!currentUser.isLogined" class="btn btn-material-amber-400"  >УВІЙТИ</button></a>
+                        <button ng-if="currentUser.isLogined" class="btn btn-material-grey-200" ng-click="logout()">ВИЙТИ</button>
                     </a></span>
                     </li>
                 </ul>

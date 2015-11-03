@@ -31,11 +31,12 @@ class Operation extends \yii\db\ActiveRecord
     {
     	return [
 				'operation_id',
-				'date',
+				'date_log',
 				'type' => function ($model) {
-							return $model->typeName->name;
+							    return $model->typeName->name;
     			},
-				'user_id',
+                'user_id'
+                ,
 				'resource_name' => function ($model) {
 										return $model->getResourceName($model->resource_id);
     			},
@@ -48,8 +49,8 @@ class Operation extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['date', 'type_id', 'resource_id'], 'required'],
-            [['date'], 'safe'],
+            [['date_log', 'type_id', 'resource_id'], 'required'],
+            [['date_log'], 'safe'],
             [['type_id', 'user_id', 'resource_id'], 'integer'],
             [['before_change'], 'string']
         ];
@@ -62,12 +63,13 @@ class Operation extends \yii\db\ActiveRecord
 		return Resource::find()
 		->where(['resource_id' => $id])
 		->asArray()->one()['name'];
-	} 
+	}
+
     public function attributeLabels()
     {
         return [
             'operation_id' => 'Operation ID',
-            'date' => 'Date',
+            'date_log' => 'Date',
             'type_id' => 'Type ID',
             'user_id' => 'User ID',
             'resource_id' => 'Resource ID',
