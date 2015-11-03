@@ -114,6 +114,7 @@
 				initCoordinatesElement();
 				initInteractivity();
 				initAdding();
+				initSearch();
 				initGeojson();
 
 				function initCssProperties () {
@@ -250,6 +251,26 @@
 							$scope.$apply();
 						});
 					}
+				}
+
+				function initSearch () {
+					
+					$scope.map.addControl( new L.Control.Search({
+						url: 'http://nominatim.openstreetmap.org/search?format=json&q={s}',
+						jsonpParam: 'json_callback',
+						propertyName: 'display_name',
+						propertyLoc: ['lat','lon'],
+						textPlaceholder: 'Шукати...',
+						textCancel: 'Відмінити',
+						textErr: 'Не знайдено',
+						circleLocation: false,
+						markerLocation: true,			
+						autoType: false,
+						autoCollapse: true,
+						minLength: 2,
+						zoom:10
+					}) );
+
 				}
 
 				function initGeojson () {
