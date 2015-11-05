@@ -70,6 +70,7 @@ class ResourceController extends ActiveController
 		$currentDate = $date['mday'] . ' ' . $months[$date['mon'] - 1] . ' ' . $date['year'] . ' року';
 
 		$extractNumber = '№' . $date['mday'] . ($date['mon'] - 1) . substr($date['year'], -2);
+
 		$templateProcessor->setValue('date', $currentDate);
 		$templateProcessor->setValue('number', $extractNumber);
 		$templateProcessor->saveAs($source);
@@ -194,7 +195,7 @@ class ResourceController extends ActiveController
 			'Власник об’єкту' => $owner_name,
 			'Географічні координати кутів (вершин) об’єкту у форматі ГГ°ММ\'СС,СС". ' => $coordinates,
 			'Лінійні розміри об’єкту, Д:Ш:В, м' => $attributes['linear_size'],
-			'Загальна площа об’єкту, га' => $attributes['square'],
+			'Загальна площа об’єкту, га' => $attributes['square'] / 10000,
 			'Маса (вага) об’єкту, кг' => $attributes['weight'],
 			'Периметр об’єкту, м' => $attributes['perimeter'],
 			'Об’єм об’єкту, м3' => $attributes['volume'],
@@ -208,7 +209,8 @@ class ResourceController extends ActiveController
 			'Власник об’єкту'
 		];
 
-		$section = $phpWord->addSection($sectionStyle);
+		$sections = $phpWord->getSections();
+		$section = $sections[0];
 
 		$phpWord->addTableStyle('Resource Table', $tableStyle);
 		$table = $section->addTable('Resource Table');

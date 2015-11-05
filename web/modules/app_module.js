@@ -64,9 +64,8 @@
             controllerAs: 'vm'
         })
         .when('/site/home', {
-            controller: 'IndexCtrl',
-            templateUrl: 'views/site/personal_page.html',
-            controllerAs: 'pp'
+            controller: 'index',
+            templateUrl: 'views/site/home.html'
         })
         .when('/site/restorepassword', {
             controller: 'LoginController',
@@ -88,6 +87,7 @@
             /*if (!test) {
              $location.path('/site/login');
              }*/
+            console.log('change');
         });
     }
 

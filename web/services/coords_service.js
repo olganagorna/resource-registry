@@ -13,13 +13,14 @@
 
 
         obj.convertDDToDMS =  function (deg) {
+
             deg = parseFloat(deg);
-            deg = deg.toFixed(4);
+            deg = deg.toFixed(8);
             var d = Math.floor (deg);
             var minfloat = (deg-d)*60;
             var m = Math.floor(minfloat);
             var secfloat = (minfloat-m)*60;
-            var s = Math.round(secfloat);
+            var s = secfloat.toFixed(2);
             if (s==60) {
                 m++;
                 s=0;
@@ -42,7 +43,7 @@
 
         obj.geotypeToCoords = function(coords){
             var newCoords = [];
-            console.log(coords);
+            //console.log(coords);
             coords = JSON.parse(coords);
             var i;
             for (i in coords) {
@@ -77,6 +78,7 @@
                 }else{
                     newCoords.push({lat: coord.lat, lng: coord.lng});
                 }
+                newCoords.changed = (newCoords.changed) ? true : false ;
             }
 
             return coordId;

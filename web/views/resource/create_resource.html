@@ -44,7 +44,7 @@
                 </span>
             </div>
             <div class="md-coords">
-                <a href="#" class="btn-sm btn-primary" ng-click="createCoords(lat, lng); coordsToMap(coords);">
+                <a href="#" class="btn-sm btn-primary" ng-click="createCoords(lat, lng); showPolygonOnMap(coords);">
                     <span ng-show="coordId === null">Додати</span><span ng-show="coordId || coordId===0">Змінити</span>
                 </a>
                 <a href="#" class="btn-sm btn-material-deep-orange-700" ng-click="deleteCoords(); coordsToMap(coords);" ng-show="coordId || coordId===0">
@@ -54,7 +54,7 @@
                 <div class="togglebutton" >
                     <label class="md-toggle" >
                         Показати карту
-                        <input type="checkbox" ng-click="toggleMap();" ><span class="toggle"></span>
+                        <input type="checkbox" ng-click="toggleMap(); showPolygonOnMap(coords)" ><span class="toggle"></span>
                     </label>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                 <div class="form-group">
                     <label>Загальна площа об’єкту, га</label>
                     <div>
-                        <input name="Площа об'єкту" ng-init="params[3].value = 0" ng-model="params[3].value " type= "text" class= "form-control" placeholder="Площа об'єкту"/>
+                        <input name="Площа об'єкту" ng-init="params[3].value = 0" ng-model="params[3].value | hectare" type= "text" class= "form-control" placeholder="Площа об'єкту"/>
                     </div>
                 </div>
                 <div class="form-group">

@@ -25,11 +25,16 @@
 
             //Coord start
             $rootScope.coords = [];
+            $rootScope.coords.changed = false;
 
             $scope.coordId = null;
             $scope.coord = {};
             $scope.lat = {};
             $scope.lng = {};
+            $scope.params = [];
+
+            $scope.resource = {};
+            getRegistrationNumber($rootScope.currentUser.userDataID);
 
             $scope.isShowMap = false;
             $scope.showMap = function (){
@@ -40,12 +45,12 @@
                 return  CoordsService.formatCoords (coords);
             };
 
-            $scope.params = [];
 
             $rootScope.$watch('coords', function(coords) {
                // console.log(coords);
-
+               console.log(coords);
                 if (Object.keys(coords).length!==0) {
+                    console.log(coords);
                     $scope.params[3].value = getArea(coords).toFixed(4);
                     $scope.params[6].value = getPerimeter(coords).toFixed(4);
                 }
@@ -53,8 +58,8 @@
             });
 
             $scope.createCoords = function(lat, lng){
-                var lat = CoordsService.convertDMSToDD(lat.deg,lat.min, lat.sec).toFixed(4);
-                var lng = CoordsService.convertDMSToDD(lng.deg,lng.min, lng.sec).toFixed(4);
+                var lat = CoordsService.convertDMSToDD(lat.deg,lat.min, lat.sec).toFixed(8);
+                var lng = CoordsService.convertDMSToDD(lng.deg,lng.min, lng.sec).toFixed(8);
                 var coord = {lat: lat, lng: lng};
                 if(!CoordsService.createCoords(coord, $rootScope.coords, $scope.coordId)){
                     $scope.coordId = null;
@@ -386,13 +391,14 @@
                 RestService.getData(constant.resourcesQuery + '/getregisterkey?registrar_data_id=' + id)
                     .then(function(data){
                         if (data.data.items.length){
-                            $scope.resource.registration_number = data.data.items[0].registration_number;
+                            $scope.resource.registration_number = nextRegistrationKey(data.data.items[0].registration_number);
                         }else{
                             RestService.getData('personal_datas/' + id)
                                 .then(function(data){
-                                    if (data.data)
+                                    if (data.data){
                                         $scope.resource.registration_number = nextRegistrationKey(data.data.registrar_key);
-                                });
+                                }
+                            });
                         }
                     });
 
