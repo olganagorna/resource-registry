@@ -55,7 +55,7 @@ class ResourceController extends ActiveController
 
 	public function actionExport($id)
 	{
-		$templateFilepath = dirname(__FILE__) . '/../runtime/templates/Template.docx';
+		$templateFilepath = dirname(__FILE__) . '/../runtime/templates/Template2.docx';
 		$source = dirname(__FILE__) . '/../runtime/temp.docx';
 
 		\PhpOffice\PhpWord\Autoloader::register();
@@ -93,8 +93,8 @@ class ResourceController extends ActiveController
 		];
 		$boldFontStyle = ['bold' => true];
 		$italicFontStyle = ['italic' => true];
-		$styleCell = array('valign' => 'center');
-		$styleCellBTLR = array('valign' => 'center', 'textDirection' => \PhpOffice\PhpWord\Style\Cell::TEXT_DIR_BTLR);
+		$styleCell = ['valign' => 'center'];
+		$styleCellBTLR = ['valign' => 'center', 'textDirection' => \PhpOffice\PhpWord\Style\Cell::TEXT_DIR_BTLR];
 		$innerTableCellStyle = [
 			'borderRightSize' => 6,
 			'borderRightColor' => '000',

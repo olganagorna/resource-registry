@@ -89,19 +89,17 @@
                 .then(function(data){
                     $scope.resources = data.data;
                 });
-
-
-            // console.log($rootScope.currentUser);
-            // console.log($rootScope.isLogined);
-
-
+            //Load resource class
+            RestService.getData(constant.resource_classesQuery)
+                .then(function(data){
+                    $scope.resource_classes = data.data;
+                });
             //MAIN HASH REQUEST FOR RESOURCE
-
 
             $scope.resource = {
                 reason:{
                     passport:{
-                        department:'',
+                        department:'1',
                         date:'',
                     },
                     text:'',
@@ -167,15 +165,7 @@
                 var todayUTC = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
                 return todayUTC.toISOString().slice(constant.DAY_CHAR_START, constant.DAY_CHAR_END).replace(/-/g, '-');
             };
-            /*
-            //Get date creation end
-           $scope.resource.registration_number;
-            //START Get personal date
-           $scope.$watch("resource.registration_number", function(num) {
-                $scope.resource.registration_number = num ;
-           });
 
-*/
             if ($rootScope.currentUser !== null) {
                 RestService.getDataById($rootScope.currentUser.userDataID , constant.personal_datasQuery)
                     .then(function(data){
@@ -184,12 +174,6 @@
                        // console.log($scope.personal_data);
 
                     })
-                    /*
-                    .then(function(){
-                        $scope.registration_number = getRegistrationNumber($scope.personal_data.personal_data_id, $scope.personal_data.registrar_key) ;
-                        $scope.$apply();
-                    })
-                    */
             };
 
             //END Get personal date
@@ -233,6 +217,7 @@
                          ' '+$scope.owner.passport_number+
                          ' ,'+constant.MSG_REASON_DOC_DEPARTMENT+
                          ' '+$scope.owner.last_name +
+                         ' '+$scope.owner.first_name +
                          ' '+$scope.owner.middle_name +
                          ' '+$scope.reason.passport.department +
                          ' '+$scope.reason_date.date;
@@ -260,94 +245,127 @@
 
                if(confirm(constant.MSG_DELATE_RESOURCE) == true && resourceID >0){
                    RestService.deleteData(resourceID, constant.resourcesQuery)
-                       .then(function(respond){
+                       .then(function(){
+                           $route.reload();
+                           $location.path('resource/index');
                    });
-                   if (ownerId){
-                       RestService.deleteData(ownerId , 'personal_datas');
-                   }
-                    $route.reload();
-                    $location.path('resource/index');
+
                 }
             };
 
-
-
-             function getRegistrationNumber(id, regitration_key){
-             //   console.log(regitration_key);
-                var key;
-                RestService.getData(constant.resourcesQuery + '/getregisterkey?registrar_data_id=' + id)
-                    .then(function(data){
-                        if (data.data.items.length) {
-                            key = data.data.items[0].registration_number;
-
-                     //       console.log(nextRegistrationKey(key));
-                    //        alert(nextRegistrationKey(key));
-                        } else {
-                            key = regitration_key;
-                       //     console.log(key,2);
-                       //     console.log(nextRegistrationKey(key));
-                        //    alert(nextRegistrationKey(key));
-                        }
-
-                        function nextRegistrationKey(key) {
-                            var parts = key.split(':');
-                            parts[parts.length - 1] = ('000' + (Number(parts[parts.length - 1]) + 1)).slice(-4);
-                            return parts.join(':');
-                        }
-                    });
-
-                return key;
-            };
-
-
-
-            $scope.createResource = function(resource, owner, params) {
-
-                if ($rootScope.coords.length)
-                    resource.coordinates = CoordsService.coordsToGeotype($rootScope.coords);
-                else
-                    resource.coordinates = [];
-                var createParameters = function(params, resourceId){
-                    var i;
-                    for (i in params) {
-                        if(params[i]){
-                            params[i].resource_id = resourceId;
-                            params[i].attribute_id = parseInt(i)+1;
-
-                            RestService.createData(params[i], constant.parametersQuery)
-                        }
-                    }
+            // for backup data
+            var oldOwnerData = {};
+                $scope.search = {
+                    owner:{}
                 };
 
-                if(!owner || Object.keys(owner).length < constant.paramsNumber || !isDataForObject(owner)){
-
-                    RestService.createData(resource, constant.resourcesQuery)
-                        .then(function(response){
-                            createParameters(params, response.data.resource_id);
-                        })
-                        .then(function(response){
-                            $location.path('resource/index');
-                        });
-
-                }else{
-                    RestService.createData(owner, constant.personal_datasQuery)
-                        .then(function (response) {
-                            resource.owner_data_id = response.data.personal_data_id;
-                            return RestService.createData(resource, constant.resourcesQuery);
-                        })
-                        .then(function(response){
-                            createParameters(params, response.data.resource_id);
-                        })
-                        .then(function(response){
-                            $location.path('resource/index');
-                        });
-                }
-
+            // empty default data
+            var clearOwnerData = {
+                address: '',
+                first_name: '',
+                last_name: '',
+                middle_name: '',
+                passport_number: '',
+                passport_series: '',
+                personal_data_id: '',
+                registrar_key: ''
             };
 
-            function isDataForObject (Obj){
-                for (var key in Obj){
-                    return (Obj[key].length===0)?false:true;
+
+            $scope.searchOwnerId = function(dataSearch) {
+
+                //  http://web/rest.php/personal_datas/search?personal_data_id=41&first_name=value
+
+                if(dataSearch!=null&&Object.keys(dataSearch).length>=constant.DEFAULT_MIN_SEARCH_OWNER_DATA_CREATE){
+                    console.log(true, 'IS_CLICKED');
+                    RestService.getData(constant.personal_datasQuery + '/search?'+buildQuery(dataSearch))
+                        .then(function (result) {
+                            $scope.show_search_result=true;
+                            $scope.owner_data = result.data;
+                        })
+                }else{
+                    alert(constant.MSG_SEARCH_OWNER_MIN_REQ +' : '+ constant.DEFAULT_MIN_SEARCH_OWNER_DATA_CREATE);
+                }
+                // clean search field
+                $scope.search.owner = {};
+            };
+
+
+            $scope.cancelSearch = function(data){
+                    // restore previous fields
+                    angular.copy(clearOwnerData, $scope.owner);
+                    $scope.ownerUpdate = false;
+                    $scope.show_owner_search = true;
+                    $scope.show_search_result = false;
+
+                    console.log('no DATA', 'CANCEL SEARCH','backupData', oldOwnerData);
+            };
+
+            $scope.confirmOwner = function(data){
+
+                if(confirm(constant.MSG_LOAD_USER)){
+                    angular.copy(data,$scope.owner);
+                    $scope.ownerUpdate = true;
+                    $scope.show_search_result = false;
+                }
+            };
+
+        $scope.ownerUpdate = false;
+
+        $scope.createResource = function(resource, owner, params) {
+
+            console.log('CREATE RESOURCE TRIGGERED');//,resource, owner, params);
+
+            resource.coordinates = ($rootScope.coords.length)? CoordsService.coordsToGeotype($rootScope.coords): resource.coordinates = [];
+
+            if (!owner || Object.keys(owner).length < constant.paramsNumber || !isDataForObject(owner)) {
+                    console.log('Create Resource without owner');
+
+                    RestService.createData(resource, constant.resourcesQuery)
+                         .then(function(response){
+                             createParameters(params, response.data.resource_id);
+                         });
+
+                } else if ($scope.ownerUpdate) {
+
+                    //Create with actual  owner - owner ID
+                    console.log('Create resource with owner id', owner.personal_data_id);
+
+                            resource.owner_data_id = owner.personal_data_id;
+
+                            RestService.createData(resource, constant.resourcesQuery)
+                                .then(function(response){
+                                    createParameters(params, response.data.resource_id);
+                                })
+
+                }else{
+                    //create owner AND RESOURCE
+                    console.log('CREATE OWNER AND RESOURCE');
+
+                       RestService.createData(owner, constant.personal_datasQuery)
+                           .then(function (response) {
+                               resource.owner_data_id = response.data.personal_data_id;
+                               return RestService.createData(resource, constant.resourcesQuery);
+                           })
+                           .then(function(response){
+                               createParameters(params, response.data.resource_id);
+                           })
+                }
+                    $route.reload();
+                    $location.path('resource/index');
+            };
+
+
+
+            function createParameters  (params, resourceId) {
+
+                for (var i in params) {
+
+                    if (params[i]) {
+                        params[i].resource_id = resourceId;
+                        params[i].attribute_id = parseInt(i) + 1;
+                        RestService.createData(params[i], constant.parametersQuery)
+                    }
                 }
             };
 
@@ -361,7 +379,31 @@
                 var zonearea = google.maps.geometry.spherical.computeArea(currzonecoords);
                 //alert('area: ' + zonearea);
                 return zonearea;
-            }
+            };
+
+            function getRegistrationNumber(id){
+                //get last registration number
+                RestService.getData(constant.resourcesQuery + '/getregisterkey?registrar_data_id=' + id)
+                    .then(function(data){
+                        if (data.data.items.length){
+                            $scope.resource.registration_number = data.data.items[0].registration_number;
+                        }else{
+                            RestService.getData('personal_datas/' + id)
+                                .then(function(data){
+                                    if (data.data)
+                                        $scope.resource.registration_number = nextRegistrationKey(data.data.registrar_key);
+                                });
+                        }
+                    });
+
+                function nextRegistrationKey(key) {
+                    var parts = key.split(':');
+                    parts[parts.length - 1] = ('000' + (Number(parts[parts.length - 1]) + 1)).slice(-4);
+                    return parts.join(':');
+                }
+            };
+
+
             function getPerimeter(zones) {
                 var perimeter = 0;
 
@@ -378,7 +420,34 @@
 
                 //alert('perimeter: ' + perimeter);
                 return perimeter;
-            }
+            };
+
+
+            function requestToChangeData(newObj, oldObj){
+
+                if (Object.keys(newObj).length>0) {
+                    var newDataRequest = {};
+                    for (var key in oldObj) {
+                        if (oldObj[key] != newObj[key]) newDataRequest[key] = newObj[key];
+                    }
+                }
+                return newDataRequest || false;
+            };
+
+            function buildQuery(res) {
+                var requestData = res,
+                    str = '';
+                for (var key in requestData){
+                    str += key + '=' + requestData[key] + '&';
+                }
+                return str.slice(0, - 1);
+            };
+
+            function isDataForObject (Obj){
+                for (var key in Obj){
+                    return (Obj[key].length===0)?false:true;
+                }
+            };
 
         }
 

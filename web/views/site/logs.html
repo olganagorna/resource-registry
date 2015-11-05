@@ -1,4 +1,4 @@
-<div class="container-fluid resource-log" ng-controller="resourceLogCtrl">
+<div class="container-fluid resource-log" ng-controller="resourceLogCtrl" ng-if="currentUser.role === 'registrar'" >
 
     <form role="form" name="log_form">
         <div class="col-md-5 text-center"><h4>Виберіть тип операції</h4>
@@ -20,7 +20,7 @@
                                     <span class="checkbox-material"><span class="check"></span></span>  <b>Редагування</b>
                                 </label>
                         </span>
-                <a href="resource/index" class="btn btn-material-deep-orange-700">Скасувати</a>
+                <a href="resource/index" class="btn btn-material-grey-300">Скасувати</a>
             </div>
             <div class="col-md-4">
                         <span class="checkbox">
@@ -119,15 +119,17 @@
                         <div class="row" >
                             <div class="col-md-1 text-center"><h4 class="md-h4-type">Тип</h4></div>
                             <div class="col-md-2 text-center"><h4>Назва ресурсу</h4></div>
+                            <div class="col-md-2 text-center"><h4>Реестратор</h4></div>
                             <div class="col-md-2 text-center"><h4>Час</h4></div>
-                            <div class="col-md-7  text-center"><h4>Опис</h4></div>
+                            <div class="col-md-5 text-center"><h4>Опис</h4></div>
                         </div>
                     </li>
                     <li class="list-group-item shadow-z-1 md-list row pagination-log" ng-repeat="data in operation_log.items">
                         <div class="col-md-1 ">{{data.type}}</div>
                         <div class="col-md-2 ">{{data.resource_name}}</div>
-                        <div class="col-md-2 text-center">{{data.date}}</div>
-                        <div class="col-md-7 text-left"><textarea autoheight-adjust="true" ng-trim="false" readonly="true" required cols="80" class="text-left">{{data.before_change | newLine}}
+                        <div class="col-md-2 ">{{data.user_id| newLine}}</div>
+                        <div class="col-md-2 ">{{data.date_log}}</div>
+                        <div class="col-md-5 text-left"><textarea autoheight-adjust="true" ng-trim="false" readonly="true" required cols="80" class="text-left">{{data.before_change | newLine}}
                             </textarea>
                         </div>
                     </li>

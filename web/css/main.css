@@ -479,7 +479,22 @@ td.form-group{
     float: right;
 }
 .column {
-    margin-left: 5px;
+    margin-left: 10px;
+}
+.thin {
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 15px;
+    line-height: 24px;
+}
+.lab_g {
+    color: gray;
+}
+.lab_b {
+    font-weight: bold;
+}
+.lab_r {
+    padding: 0px 10px;
 }
 .list-group .pag {
     margin-left: 10px;
@@ -490,6 +505,11 @@ td.form-group{
 .text-align-left {
     text-align: left !important;
 }
+.search_result_edit{
+    margin-bottom: -10px;
+    margin-top: 0px;
+    display: table;
+}
 /* MAIN RESOURCE PAGE */
 
 .main-resource-class-btn {
@@ -499,8 +519,8 @@ td.form-group{
 
 .main-resource-class-map-position {
     position: absolute;
-    height: 57%;
-    top: 41%;
+    height: 51%;
+    top: 47%;
 }
 
 .navigation-search {
@@ -520,31 +540,58 @@ td.form-group{
 }
 
 /* START resource page show class blocks */
+
 .class-id-show {
     width: 100%;
-    height: 45px;
     white-space: normal;
-    padding: 3px;
-    margin: 0px;
+    margin: 0;
+    padding: 15px 0;
 }
+
 .blink {
     background-color: white;
 }
+
 .highlight {
     background-color: white;
 }
+
 .class-div-highlight {
     padding: 0px;
 }
+
 .class-div-highlight-margin {
-    margin: 7px;
+    margin: 2px;
 }
+.class-div-highlight-allight{
+    display: table-cell;
+    vertical-align: middle;
+    height: 74px;
+    width:1%;
+}
+
 .alight-trigger-map {
     padding-bottom: 15px
 }
 /* END resource page show class blocks */
 
 /* END MAIN RESOURCE PAGE */
+
+/* CREATE RESOURCE START */
+.coords-labels {
+    margin-bottom: -30px;
+}
+
+.coords-lapels-fields{
+    padding: 0;
+    margin: 0 5px 5px
+}
+
+/* CREATE RESOURCE END */
+
+/* UPDATE RESOURCE START */
+
+/* UPDATE RESOURCE END */
 
 
 /* START LOG-RESOURCE-PAGE*/

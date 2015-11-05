@@ -70,7 +70,6 @@ class UserController extends ActiveController
             $personalDataModel->passport_series = $post['passport_series'];
             $personalDataModel->passport_number = $post['passport_number'];
             $personalDataModel->address = $post['address'];
-            $personalDataModel->registrar_key = $post['registrar_key'];
             if (!$personalDataModel->save()){
                 foreach($personalDataModel->errors as $key){
                     $errorMessage .= $key[0];

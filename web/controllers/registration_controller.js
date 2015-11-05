@@ -19,8 +19,7 @@
             middle_name: '',
             passport_series: '',
             passport_number: '',
-            address: '',
-            registrar_key:''
+            address: ''
         };
 
         vm.registration = function(){
@@ -35,7 +34,6 @@
             vm.user.passport_series =  vm.passport_series;
             vm.user.passport_number = vm.passport_number;
             vm.user.address = vm.address;
-            vm.user.registrar_key = vm.registrar_key;
 
             vm.send = function () {
                 return $http.post('rest.php/users/adduser', vm.user)

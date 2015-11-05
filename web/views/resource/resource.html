@@ -63,17 +63,16 @@
                                     <a class="btn btn-danger btn-material-grey-200 text-center"
                                        title="Видалити"
                                        ng-if="currentUser.role === 'registrar' && currentUser.isLogined"
-                                       ng-click="deleteResource(data.resource_id, data.owner.personal_data_id)">
+                                       ng-click="deleteResource(data.resource_id)">
                                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                     </a>
-                                    <a class="btn btn-primary btn-material-grey-200" title="Показати на карті" href="" ng-click="showPolygonOnMap(data.coordinates)">
+                                    <a class="btn btn-primary btn-material-grey-200" title="Показати на карті" href="" ng-click="updateMapView(data.coordinates, 17)">
                                         <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
                                     </a>
                                 </div>
                             </li>
                         </ul>
                     </div>
-
                 </div>
             </div>
         </div>

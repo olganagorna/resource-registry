@@ -41,9 +41,9 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="/">ГОЛОВНА</a></li>
-                <li><a href="resource/index">РЕСУРСИ</a></li>
-                <li><a href="site/logs">ЖУРНАЛ</a></li>
-                <li><a href="resource/search">ПОШУК</a></li>
+                <li ng-if="currentUser.role !== 'null' "><a href="resource/index">РЕСУРСИ</a></li>
+                <li ng-if="currentUser.role !== 'null'"><a href="site/logs">ЖУРНАЛ</a></li>
+                <li ng-if="currentUser.role !== 'null' "><a href="resource/search">ПОШУК</a></li>
             </ul>
 
             <div class="nav navbar-nav navbar-right md-my-room " >
@@ -102,8 +102,8 @@
         <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script><script src="vendor/bower/angular-simple-logger/dist/index.js"></script>
         <script src="vendor/bower/angular-leaflet-directive/dist/angular-leaflet-directive.min.js"></script>
         <script src="vendor/bower/angular-leaflet-directive/dist/leaflet.draw.js"></script>
-        <script src="vendor/bower/leaflet-search/leaflet-search.min.js"></script>
         <script src="vendor/bower/angular-sanitize/angular-sanitize.js"></script>
+        <script src="vendor/bower/leaflet-search/leaflet-search.min.js"></script>
         <script src="vendor/bower/angular-i18n/angular-locale_uk-ua.js"></script>
         <script src="vendor/bower/angular-i18n/angular-locale_uk.js"></script>
         <script src="vendor/bower/angular-cookies/angular-cookies.min.js"></script>

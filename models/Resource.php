@@ -61,8 +61,8 @@ class Resource extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'class_id', 'coordinates', 'reason', 'registrar_data_id',
-                'date', 'registration_number'], 'required'],
+            /* [['name', 'class_id', 'coordinates', 'reason', 'registrar_data_id',
+                'date', 'registration_number'], 'required'], */
             [['class_id', 'owner_data_id', 'registrar_data_id'], 'integer'],
             [['coordinates'], 'string'],
             [['reason'], 'string'],

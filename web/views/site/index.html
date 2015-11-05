@@ -1,0 +1,89 @@
+<div ng-controller="IndexCtrl">
+    <div ng-controller="MapCtrl">
+
+        <leaflet center="ukraine" width="100%" height="480px" >
+
+        </leaflet>
+        <div class="jumbotron col-md-6 md-login">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="col-md-6">
+                    <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                        <legend>Login</legend>
+                    </a>
+                </li>
+                <li role="presentation" class="col-md-6">
+                    <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" class="text-right">
+                        <legend>Sign Up</legend>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <form class="form-horizontal">
+                        <fieldset>
+                            <legend>Login</legend>
+                            <div class="form-group">
+                                <label for="inputEmail" class="col-lg-2 control-label">Login</label>
+                                <div class="col-lg-10">
+                                    <input type="email" class="form-control" id="inputEmail" placeholder="Login or Email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+                                <div class="col-lg-10">
+                                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-10 col-lg-offset-2">
+                                    <button type="submit" class="btn btn-primary">Login</button><br>
+                                    <button type="submit" class="btn btn-material-light-blue-700">Login with Facebook</button><br>
+                                    <button type="submit" class="btn btn-material-deep-orange-700">Login with Google</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="profile">
+                    <form class="form-horizontal">
+                        <fieldset>
+                            <legend>Sign up</legend>
+                            <div class="form-group">
+                                <label for="inputEmail" class="col-lg-2 control-label">Full Name</label>
+                                <div class="col-lg-10">
+                                    <input type="email" class="form-control" placeholder="Surname Firstname Secondname">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail" class="col-lg-2 control-label">Birth date</label>
+                                <div class="col-lg-10">
+                                    <input type="email" class="form-control" placeholder="Year, month, day">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword" class="col-lg-2 control-label">Address</label>
+                                <div class="col-lg-10">
+                                    <input type="password" class="form-control"  placeholder="City, address, zip code">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword" class="col-lg-2 control-label">Passport</label>
+                                <div class="col-lg-10">
+                                    <input type="password" class="form-control"  placeholder="When, ID">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-10 col-lg-offset-2">
+                                    <button type="submit" class="btn btn-primary">Submit</button><br>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

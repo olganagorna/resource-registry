@@ -42,13 +42,16 @@ class SearchController extends ActiveController
 			'query' => $query,
 			'pagination' => [
 				'pageSize' => 4,
-				//'pageParam' => 'page',
+				  'pageParam' => 'page',
 			],
 		]);
 		$query->andFilterWhere([
 			'and',
 			['like', 'name', $request['resource']['name']],
 			['class_id' => $request['resource']['class_id']],
+			['like', 'reason', explode(' ', $request['resource']['reason'])],
+			['like', 'registration_number', $request['resource']['registration_number']],
+					
 		]);
 
 		$parameters = ( $request['parameter'] )? $this->subQueryParameter($request['parameter']) : '';
