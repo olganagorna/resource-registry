@@ -33,7 +33,7 @@
 					$rootScope.coords.push({lat: $scope.options.newCoords[i].lat, lng: $scope.options.newCoords[i].lng});
 				}
 				$scope.options.created = false;
-				console.log($rootScope.coords);
+				$rootScope.mapOptions.created = true;
 			}
 
 		});

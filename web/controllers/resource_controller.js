@@ -25,7 +25,7 @@
 
             //Coord start
             $rootScope.coords = [];
-            $rootScope.coords.changed = false;
+            $rootScope.mapOptions = {};
 
             $scope.coordId = null;
             $scope.coord = {};
@@ -46,13 +46,11 @@
             };
 
 
-            $rootScope.$watch('coords', function(coords) {
-               // console.log(coords);
-               console.log(coords);
-                if (Object.keys(coords).length!==0) {
-                    console.log(coords);
-                    $scope.params[3].value = getArea(coords).toFixed(4);
-                    $scope.params[6].value = getPerimeter(coords).toFixed(4);
+            $rootScope.$watch('mapOptions.created', function(val) {
+                if (val) {
+                    $scope.params[3].value = getArea($rootScope.coords).toFixed(4);
+                    $scope.params[6].value = getPerimeter($rootScope.coords).toFixed(4);
+                    $rootScope.mapOptions.created = false;
                 }
 
             });
@@ -67,6 +65,7 @@
                 $scope.lat = {};
                 $scope.lng = {};
                 $scope.coord = {};
+                $rootScope.mapOptions.created = true;
             };
             $scope.changeCoords = function(coord, coordId){
                 var newCoords = CoordsService.changeCoords(coord, coordId);
@@ -76,6 +75,7 @@
                 $scope.lat = {deg: newLat.deg, min: newLat.min, sec: newLat.sec};
                 $scope.lng = {deg: newLng.deg, min: newLng.min, sec: newLng.sec};
                 $scope.coordId = newCoords.coordId;
+                $rootScope.mapOptions.created = true;
             };
 
             $scope.deleteCoords = function(){
@@ -84,6 +84,7 @@
                 $scope.coord = {};
                 $scope.lat = {};
                 $scope.lng = {};
+                $rootScope.mapOptions.created = true;
 
             };
 

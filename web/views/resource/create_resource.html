@@ -47,7 +47,7 @@
                 <a href="#" class="btn-sm btn-primary" ng-click="createCoords(lat, lng); showPolygonOnMap(coords);">
                     <span ng-show="coordId === null">Додати</span><span ng-show="coordId || coordId===0">Змінити</span>
                 </a>
-                <a href="#" class="btn-sm btn-material-deep-orange-700" ng-click="deleteCoords(); coordsToMap(coords);" ng-show="coordId || coordId===0">
+                <a href="#" class="btn-sm btn-material-deep-orange-700" ng-click="deleteCoords(); showPolygonOnMap(coords);" ng-show="coordId || coordId===0">
                     Видалити
                 </a>
 
