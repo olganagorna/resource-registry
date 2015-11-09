@@ -2,6 +2,6 @@
 
     'use strict';
 
-    angular.module('restApp.map', ['leaflet-directive']);
+    angular.module('restApp.map', []);
 
 })();

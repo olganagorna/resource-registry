@@ -34,7 +34,7 @@
             $scope.params = [];
 
             $scope.resource = {};
-            getRegistrationNumber($rootScope.currentUser.userDataID);
+            
 
             $scope.isShowMap = false;
             $scope.showMap = function (){
@@ -48,9 +48,10 @@
 
             $rootScope.$watch('mapOptions.created', function(val) {
                 if (val) {
-                    $scope.params[3].value = getArea($rootScope.coords).toFixed(4);
-                    $scope.params[6].value = getPerimeter($rootScope.coords).toFixed(4);
+                    $scope.params[3] = (getArea($rootScope.coords) / 10000).toFixed(4);
+                    $scope.params[6] = getPerimeter($rootScope.coords).toFixed(4);
                     $rootScope.mapOptions.created = false;
+                    console.log($scope.params[3]);
                 }
 
             });
@@ -177,6 +178,7 @@
                     .then(function(data){
                         $scope.personal_data = data.data;
                         $scope.resource.registrar_data_id = data.data.personal_data_id;
+                        getRegistrationNumber($rootScope.currentUser.userDataID);
                        // console.log($scope.personal_data);
 
                     })
