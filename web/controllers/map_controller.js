@@ -7,11 +7,26 @@
 			zoom: 6
 		};
 
+		$scope.objects = [
+			{
+				name: 'Піскові Озера Старі',
+				latlngs: [[49.7848,24.1025],[49.7883,24.1402],[49.7697,24.1334],[49.7799,24.1011]]
+			},
+			{
+				name: 'Шевченківський гай',
+				latlngs: [[49.8247,24.1069],[49.816,24.1235],[49.8309,24.1247],[49.8328,24.0957]]
+			}
+		];
+
 		$scope.options = {
 			toggleMap: false,
 			showPolygonOnMap: {
 				showPolygon: false,
 				latlngs: []
+			},
+			resources: {
+				showResources: false,
+				objects: []
 			}
 		};
 
@@ -22,6 +37,11 @@
 
 		$scope.toggleMap = function () {
 			$scope.options.toggleMap = true;
+		}
+
+		$scope.showResourcesOnMap = function (objects) {
+			$scope.options.resources.objects = objects;
+			$scope.options.resources.showResources = true;
 		}
 
 		$scope.$watch('options.created', function(val){
