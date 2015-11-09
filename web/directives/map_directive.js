@@ -17,6 +17,7 @@
 			};
 
 			$scope.mapCreated = false;
+			$scope.resourcesGeoJsonOn = false;
 
 			// Map init
 
@@ -44,7 +45,7 @@
 
 					$scope.updateMapView($scope.center, $scope.center.zoom);
 
-					if ("geolocation" in navigator) {
+					if (attrs.noupdate !== "true" && "geolocation" in navigator) {
 						navigator.geolocation.getCurrentPosition(function (position) {
 							$scope.geolocation = {
 								lat: position.coords.latitude,
@@ -106,27 +107,49 @@
 				}
 			});
 
+			$scope.$watch('options.resources.showResources', function (val) {
+				if (val) {
+
+					if ($scope.resourcesGeoJsonOn == true) {
+						for (var i = 0; i < $scope.resourcesGeoJson.length; i++) {
+							$scope.map.removeLayer($scope.resourcesGeoJson[i]);
+						}
+						$scope.resourcesGeoJsonOn = false;
+					}
+					$scope.resourcesGeoJson = [];
+					for (var i = 0; i < $scope.options.resources.objects.length; i++) {
+						var geojson = L.polygon($scope.options.resources.objects[i].latlngs).toGeoJSON();
+						geojson.properties.name = $scope.options.resources.objects[i].name;
+						var resource = L.geoJson(geojson, {
+							style: styleResource,
+							onEachFeature: resourceOnEachFeature
+						});
+						resource.addTo($scope.map);
+						$scope.resourcesGeoJson.push(resource);
+					}
+					$scope.resourcesGeoJsonOn = true;
+					$scope.options.resources.showResources = false;
+				}
+			});
+
 
 			function initMapElements() {
 
 				initCssProperties();
-				initInfoElement();
 				initCoordinatesElement();
 				initInteractivity();
 				initAdding();
 				initSearch();
 				initGeojson();
 
+				L.easyButton('glyphicon-star', 
+	              function () {
+	              	
+	              }, '').addTo($scope.map);
+
 				function initCssProperties () {
 					$('#map').css({ 'height': attrs.height || defaults.height });
 					$('#map').css({ 'width': attrs.width || defaults.width });
-				}
-
-				function initInfoElement () {
-					if (attrs.info === 'true') {
-						$scope.info = L.control.info();
-						$scope.info.addTo($scope.map);
-					}
 				}
 
 				function initCoordinatesElement () {
@@ -220,11 +243,10 @@
 							$scope.options.created = true;
 							var i;
 							for (i in $scope.bind) {
-								$scope.bind[i].lat = parseFloat($scope.bind[i].lat.toFixed(4));
-								$scope.bind[i].lng= parseFloat($scope.bind[i].lng.toFixed(4));
+								$scope.bind[i].lat = parseFloat($scope.bind[i].lat);
+								$scope.bind[i].lng= parseFloat($scope.bind[i].lng);
 							}
 							$scope.options.newCoords = $scope.bind;
-							console.log($scope.options.newCoords);
 							if ($scope.geoJsonLayer)
 								$scope.map.removeLayer($scope.geoJsonLayer);
 							$scope.geoJsonLayer = L.geoJson($scope.drawnItem.toGeoJSON(), {
@@ -293,6 +315,17 @@
 				};
 			}
 
+			function styleResource(feature) {
+				return {
+					fillColor: '#FD8D5C',
+					weight: 2,
+					opacity: 1,
+					color: 'white',
+					dashArray: '3',
+					fillOpacity: 0.7
+				};
+			}
+
 			function infoHighlightFeature(e) {
 				var layer = e.target;
 
@@ -302,12 +335,10 @@
 					dashArray: '',
 					fillOpacity: 0.7
 				});
-				//$scope.geoJsonLayer.update(layer.feature.properties);
 			}
 
 			function infoResetHighlight(e) {
 				$scope.geoJsonLayer.resetStyle(e.target);
-				//$scope.geoJsonLayer.update();
 			}
 
 			function infoZoomToFeature(e) {
@@ -320,6 +351,10 @@
 					mouseout: infoResetHighlight,
 					click: infoZoomToFeature
 				});
+			}
+
+			function resourceOnEachFeature(feature, layer) {
+				layer.bindPopup(feature.properties.name);
 			}
 
 			// GeoJson functions
@@ -355,7 +390,7 @@
 			controller: 'MapCtrl',
 			scope: {
 				bind: '=bind',
-				options: '=update',
+				options: '=update'
 			},
 			link: link
 		};
