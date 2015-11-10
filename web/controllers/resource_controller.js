@@ -48,10 +48,10 @@
 
             $rootScope.$watch('mapOptions.created', function(val) {
                 if (val) {
-                    $scope.params[3] = (getArea($rootScope.coords) / 10000).toFixed(4);
-                    $scope.params[6] = getPerimeter($rootScope.coords).toFixed(4);
+                    $scope.params[3].value = (getArea($rootScope.coords) / 10000).toFixed(4);
+                    $scope.params[6].value = getPerimeter($rootScope.coords).toFixed(4);
                     $rootScope.mapOptions.created = false;
-                    console.log($scope.params[3]);
+                    console.log($scope.params[3], $scope.params[6]);
                 }
 
             });
