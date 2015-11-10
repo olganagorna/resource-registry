@@ -17,8 +17,9 @@
             });
      angular.module('restApp')
             .filter('hectare', function ($filter) {
-                return function (input) {
-                    return (input / 10000).toFixed(4);
-                };
+                 return function (input) {
+                     return (input / 10000).toFixed(5);
+                 };
+
             });
 })();

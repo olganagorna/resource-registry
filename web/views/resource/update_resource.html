@@ -4,7 +4,7 @@
         <div class= "form-group" >
             <label>Найменування об’єкту</label>
             <div>
-                <input name="name" ng-model="resource.name" type= "text" class= "form-control" placeholder="Назва ресурсу" required/>
+                <input name="name" ng-model="resource.name" type= "text" class= "form-control" placeholder="пр. Озеро" required/>
             </div>
         </div>
         <div class="form-group">
@@ -160,7 +160,7 @@
 
         <div class="panel panel-primary">
             <button class="col-md-12 panel-heading" type="button" data-toggle="collapse" data-target="#collapseResourceUser" aria-expanded="true" aria-controls="collapseExample">
-                <h3 class="panel-title">Паспортні дані користувача ресурса</h3>
+                <h3 class="panel-title">Паспортні дані громадянина</h3>
             </button>
             <div class="collapse panel-body" id="collapseResourceUser">
                 <div class="col-xs-5">
@@ -204,7 +204,7 @@
                 <div  class="col-md-12" ng-show="owner_search">
                     <div class="btn-group">
                         <a ng-click="searchOwnerId(resource.owner);"
-                           type="submit" class="btn btn-material-amber-400">Пошук існуючих користувачів</a>
+                           type="submit" class="btn btn-material-amber-400">Пошук особи</a>
                         <a ng-click="cancelSearch();"
                            type="submit" class="btn btn-default">Скасувати
                         </a>
@@ -221,7 +221,7 @@
                 <div  class="col-md-12" ng-show="!owner_search">
                     <div class="btn-group">
                         <a ng-click="deleteOwnerId(resource.owner);"
-                           type="submit" class="btn btn-default">Вилучити з ресурсу користувача</a>
+                           type="submit" class="btn btn-default"> Скасувати паспортні дані громадянина</a>
                     </div>
                 </div>
             </div>
@@ -269,7 +269,7 @@
         <br>
         <br>
 
-        <h4>Дата створення об'єкту</h4>
+        <h4>Дата створення запису</h4>
         <div class="form-group">
             <div>
                 <p class="input-group">

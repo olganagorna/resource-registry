@@ -80,6 +80,8 @@
                 formatYear: 'yy'
             };
 
+            $scope.format = 'yyyy.MM.dd';
+
             $scope.today = function() {
                 $scope.datePicker.date = new Date();
             };
@@ -114,19 +116,10 @@
             function toDateFormatUTC(time) {
                 var now = new Date(time);
                 var todayUTC = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
-                return todayUTC.toISOString().slice(constant.DAY_CHAR_START, constant.DAY_CHAR_END).replace(/-/g, '-');
+                return todayUTC.toISOString().slice(constant.DAY_CHAR_START, constant.DAY_CHAR_END).replace(/-/g, '.');
             };
 
-            function modifyProperty(ObjSource){
-                var Obj = {};
-                 if(Object.keys(ObjSource).length>0){
-                        angular.copy(ObjSource, Obj);
-                        for (var key in Obj){
-                            if (key==='owner'||key==='parameters')delete Obj[key];
-                        }
-                        return Obj;
-                    }
-            };
+
 
             //Get date creation end
 
@@ -139,8 +132,7 @@
                 }
             };
             // for backup data or/and check difference
-            var oldResourceData = {},
-                oldOwnerData = {},
+            var oldOwnerData = {},
                 oldRegistrarData = {};
             // important condition create or update resource
             $scope.wnerId = false;
@@ -152,8 +144,6 @@
                     $scope.resource = data.data;
                     // IMPORTANT ==null, check in null or undefined
                     $scope.owner_search = ($scope.resource.owner == null) ? true : false;
-                    console.log($scope.owner_search, 'ownerData', $scope.resource.owner);
-                    angular.copy($scope.resource, oldResourceData);
 
                     $rootScope.coords = CoordsService.geotypeToCoords($scope.resource.coordinates);
                     //Get resource date
@@ -186,6 +176,9 @@
                             $scope.params = {};
                             var i;
                             for (i in params){
+                                if (params[i]['attribute_id']===constant.SQUARE_ID){
+                                    params[i]['value'] = toHectare(params[i]['value']);
+                                }
                                 $scope.params[params[i].attribute_id-1] = params[i];
                             }
                         });
@@ -219,15 +212,14 @@
                                     $scope.ownerId = false;
                                 });
                     }
-                    console.log('deleteResourceOwner IS DATA RESOURCE', resourceId );
-                    //console.log(resource.owner_data_id, resourceId, constant.resourcesQuery, 'deleteResourceOwner' );
-                }else{
+                        //'deleteResourceOwner ';
+                  }else{
                     $scope.owner_search = true;
                 }
             };
 
             $scope.searchOwnerId = function(dataSearch){
-                console.log('SEARCH OWNER');
+                //'SEARCH OWNER';
                 //  http://web/rest.php/personal_datas/search?personal_data_id=41&first_name=value
                 if(dataSearch!=null&&Object.keys(dataSearch).length>=constant.DEFAULT_MIN_SEARCH_OWNER_DATA){
 
@@ -243,14 +235,12 @@
             };
 
             $scope.cancelSearch = function(){
-                    console.log('cancelSearch');
+
                     $scope.resource.owner = {};
-                    //angular.copy(oldOwnerData, $scope.resource.owner);
                     $scope.show_search_result=false;
             };
 
             $scope.confirmOwner = function(data){
-                console.log('ConfirmOwner');
 
                 if(confirm(constant.MSG_LOAD_USER)){
                     angular.copy(data,$scope.resource.owner);
@@ -258,9 +248,7 @@
                     $scope.show_search_result=false;
                     $scope.ownerId = true;
                 }
-
             };
-
 
 
             //Get resource parameters
@@ -277,16 +265,27 @@
                 for (var j in $scope.newParams) {
                             $scope.newParams[j].resource_id = resourceId;
                             $scope.newParams[j].attribute_id = parseInt(j)+1;
+
+                            if (params[j]['attribute_id']===constant.SQUARE_ID){
+                                params[j]['value'] = toSquareMeters(params[j]['value']);
+                            }
+
                             RestService.createData($scope.newParams[j], constant.parametersQuery);
                     }
                 for (var i in params) {
+
+                            if (params[i]['attribute_id']===constant.SQUARE_ID){
+                                params[i]['value'] = toSquareMeters(params[i]['value']);
+                            }
+
                             RestService.updateData(params[i], params[i].parameter_id, constant.parametersQuery);
                 };
 
                // resource.owner_data_id != null    !!!important not === we check is null and undefined
 
                 if (resource.owner_data_id == null && resource.owner != null && Object.keys(resource.owner).length>=constant.ownerDataFields) {
-                    console.log('NEW OWNER  RESOURCE', resource.owner);
+
+                    // 'NEW OWNER  RESOURCE'
 
                     RestService.createData(resource.owner, constant.personal_datasQuery)
                         .then(function (response) {
@@ -294,31 +293,38 @@
                             RestService.updateData(resource.owner_data_id, resourceId, constant.resourcesQuery);
                         })
                         .then(function () {
-                            updateResource(resource, oldResourceData);
+                            updateResourceTable(resource);
                         })
 
                 } else if (resource.owner_data_id != null && $scope.ownerId === true ) {
 
-                    console.log('UPDATE OWNER RESOURCE',  resource.owner_data_id);
+                    // UPDATE OWNER RESOURCE
+
+                    if (!angular.equals(oldOwnerData, resource.owner)) {
+
+                        var ownerDataRequest = requestToChangeData(resource.owner, oldOwnerData);
+                        RestService.updateData(ownerDataRequest, resource.owner.personal_data_id, constant.personal_datasQuery)
+                            .then(function () {
+                                updateResourceTable(resource);
+                            })
+                    } else {
+                        updateResourceTable(resource);
+                    }
 
                      if (!angular.equals(oldOwnerData, resource.owner)) {
 
                          var ownerDataRequest = requestToChangeData(resource.owner, oldOwnerData);
-                             if (!! ownerDataRequest ) {
+                             if (!! ownerDataRequest || $scope.ownerId === true ) {
                                  RestService.updateData(ownerDataRequest, resource.owner.personal_data_id, constant.personal_datasQuery)
                                      .then(function () {
-                                         updateResource(resource, oldResourceData);
+                                         updateResourceTable(resource);
                                      })
-                             } else {
-                                 alert(constant.MSG_REQUEST_UPDATE_OWNER_DATA_ERROR);
                              }
                          }
 
                 } else if ($scope.ownerId !== true ) {
-                    console.log('DELETE OWNER FROM RESOURCE',  resource.owner_data_id, resource.owner_data_id);
-
-                         updateResource(resource, oldResourceData);
-
+                    //'DELETE OWNER FROM RESOURCE';
+                         updateResourceTable(resource);
                 };
 
                 $location.path('resource/index');
@@ -326,18 +332,27 @@
 
             };
 
-            function updateResource(newResource, oldResourceData){
+            function updateResourceTable(newResource){
                 var resourceData = modifyProperty(newResource);
                 if (!!resourceData) {
-                    if (!angular.equals(modifyProperty(oldResourceData), resourceData)) {
-                        RestService.updateData(resourceData, resourceId, constant.resourcesQuery);
+                     RestService.updateData(resourceData, resourceId, constant.resourcesQuery);
+               }
+            };
+
+            function modifyProperty(ObjSource){
+                var Obj = {};
+                if(Object.keys(ObjSource).length>0){
+                    angular.copy(ObjSource, Obj);
+                    for (var key in Obj){
+                        if (key==='owner'||key==='parameters')delete Obj[key];
                     }
+                    return Obj;
                 }
             };
 
             function requestToChangeData(newObj, oldObj){
 
-                if (Object.keys(newObj).length>0) {
+                if (Object.keys(newObj).length> constant.MIN_KEYS_IN_OBJECT) {
                     var newDataRequest = {};
                     for (var key in oldObj) {
                         if (oldObj[key] != newObj[key]) newDataRequest[key] = newObj[key];
@@ -355,14 +370,15 @@
                 return str.slice(0, - 1);
             };
 
+            function toSquareMeters(val) {
+                return (val*constant.METERS_IN_HECTARE).toString();
+            };
+
+            function toHectare(val) {
+                return (val/constant.METERS_IN_HECTARE).toString();
+            };
+
         }
 
 })();
 
-
-/*
- //registrar data !!!
- if (!angular.equals(oldRegistrarData, $scope.personal_data)) {
- RestService.updateData(personal_data, personal_data.personal_data_id, constant.personal_datasQuery);
- };
- */
