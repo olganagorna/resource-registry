@@ -109,7 +109,6 @@
 
 			$scope.$watch('options.resources.showResources', function (val) {
 				if (val) {
-
 					if ($scope.resourcesGeoJsonOn == true) {
 						for (var i = 0; i < $scope.resourcesGeoJson.length; i++) {
 							$scope.map.removeLayer($scope.resourcesGeoJson[i]);
@@ -128,7 +127,18 @@
 						$scope.resourcesGeoJson.push(resource);
 					}
 					$scope.resourcesGeoJsonOn = true;
-					$scope.options.resources.showResources = false;
+					// $scope.options.resources.showResources = false;
+				}
+			});
+
+			$scope.$watch('options.resources.hideResources', function (val) {
+				if (val) {
+					if ($scope.resourcesGeoJsonOn == true) {
+						for (var i = 0; i < $scope.resourcesGeoJson.length; i++) {
+							$scope.map.removeLayer($scope.resourcesGeoJson[i]);
+						}
+						$scope.resourcesGeoJsonOn = false;
+					}
 				}
 			});
 
@@ -141,11 +151,6 @@
 				initAdding();
 				initSearch();
 				initGeojson();
-
-				L.easyButton('glyphicon-star', 
-	              function () {
-	              	
-	              }, '').addTo($scope.map);
 
 				function initCssProperties () {
 					$('#map').css({ 'height': attrs.height || defaults.height });
@@ -381,6 +386,10 @@
 				}
 				geojson['features'].push(newFeature);
 				return geojson;
+			}
+
+			function toggleResources () {
+				$scope.options.resources.showResources = true;
 			}
 		};
 

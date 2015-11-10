@@ -39,9 +39,15 @@
 			$scope.options.toggleMap = true;
 		}
 
-		$scope.showResourcesOnMap = function (objects) {
+		$scope.toggleResourcesOnMap = function (objects) {
+			if ($scope.options.resources.showResources) {
+				$scope.options.resources.hideResources = true;
+				$scope.options.resources.showResources = false;
+			} else {
+				$scope.options.resources.showResources = true;
+				$scope.options.resources.hideResources = false;
+			}
 			$scope.options.resources.objects = objects;
-			$scope.options.resources.showResources = true;
 		}
 
 		$scope.$watch('options.created', function(val){

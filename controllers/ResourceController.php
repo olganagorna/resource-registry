@@ -135,8 +135,8 @@ class ResourceController extends ActiveController
 		$registrar_info = $registrar->last_name . ' ' .
 		    $registrar->first_name . ' ' . $registrar->middle_name. ' ' .
 		    $registrar->address;
-		$registrar_shortname = $registrar->last_name .
-		    $registrar->first_name[0] . '. ' . $registrar->middle_name[0]. '.';
+		$registrar_shortname =  $registrar->last_name . ' ' .
+		    $registrar->first_name . ' ' . $registrar->middle_name. ' ';
 
 		$parameters = Parameter::find()
 			->where(['resource_id' => $id])
@@ -202,7 +202,7 @@ class ResourceController extends ActiveController
 			'Підстава для внесення відомостей до Реєстру' =>  $reason,
 			'ПІБ та поштова адреса народного реєстратора' => $registrar_info,
 			'Реєстраційний номер об’єкту' => $registration_number,
-			'Дата створення запису' => $creation_date
+			'Дата створення запису' => str_replace('-', '.', $creation_date),
 		];
 		$tableUnitalicFields = [
 			'Клас об’єкту',
