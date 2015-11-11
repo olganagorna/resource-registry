@@ -27,8 +27,6 @@ class SearchController extends ActiveController
   $lat = $get['center_lat'];
   $lng = $get['center_lng'];
   $radius = $get['radius'];
-  /* echo "<pre>";
-   print_r($get); */
  
   $model = new $this->modelClass;
   $query = $model::find();
@@ -42,15 +40,12 @@ class SearchController extends ActiveController
   ]);
  
   $query->andFilterWhere(['<=', "distance(coords_center_lat, coords_center_lng, $lat, $lng)", $radius]);
-  //echo $query->createCommand()->getRawSql();
   return $dataProvider;
  }
  public function actionSearch()
  {
   $get = \Yii::$app->request->get();
   $request = Array();
-  //echo "<pre>";
-  //print_r($get);
   $request['resource'] = $this->getSearchRequestFor('resource', $get);
   $request['owner'] = $this->getSearchRequestFor('owner', $get);
   $request['parameter'] = $this->getSearchRequestFor('parameter', $get);
@@ -78,8 +73,6 @@ class SearchController extends ActiveController
      
   ]);
   
-  /* echo "<pre>";
-  print_r($request); */
   $parameters = ( $request['parameter'] )? $this->subQueryParameter($request['parameter']) : '';
   $owners = ( $request['owner'] )? $this->subQueryOwners($request['owner']) : '';
 
@@ -87,7 +80,6 @@ class SearchController extends ActiveController
    'owner_data_id' => $owners,
    'resource_id' => $parameters,
   ]);
-  //echo $query->createCommand()->getRawSql();
   return $dataProvider;
  }
  private function subQueryOwners($request){

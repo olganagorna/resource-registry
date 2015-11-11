@@ -243,8 +243,8 @@
 							},
 							edit: {
 								featureGroup: $scope.drawnItems,
-								edit: true,
-								remove: true
+								edit: false,
+								remove: false
 							}
 						});
 						$scope.map.addControl($scope.drawControl);

@@ -11,7 +11,7 @@ angular.module('restApp')
     };
 
     obj.search = function(str){
-        return $http.get(serviceBase + 'searches' + '/search?' + str ); // '&per-page=' + constant.perPage
+        return $http.get(serviceBase + 'searches' + '/search?' + str );
     };
     
     obj.searchResources = function(str){
@@ -20,7 +20,7 @@ angular.module('restApp')
     };  
 
     obj.getResourceByCoordinates = function(str) {
-        return $http.get(serviceBase + 'searches' + '/getresourcebycoordinate?center_lat=' + str.lat + '&center_lng=' + str.lng + '&radius=10'); // '&per-page=' + constant.perPage
+        return $http.get(serviceBase + 'searches' + '/getresourcebycoordinate?center_lat=' + str.lat + '&center_lng=' + str.lng + '&radius=5');
     };
       
     return obj;
