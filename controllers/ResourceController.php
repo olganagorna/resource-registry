@@ -25,7 +25,6 @@ class ResourceController extends ActiveController
 			'query' => $query,
 			'pagination' => [
 				'pageSize' => 4,
-				//'pageParam' => 'page',
 			],
 		]);
 
@@ -41,12 +40,10 @@ class ResourceController extends ActiveController
 		$query->andFilterWhere(['registrar_data_id' => $get['registrar_data_id']]);
 		$query->orderBy('registration_number DESC')->one();
 
-		//echo $query->createCommand()->getRawSql();
 		$dataProvider = new ActiveDataProvider([
 			'query' => $query,
 			'pagination' => [
 				'pageSize' => 1,
-				//'pageParam' => 'page',
 			],
 		]);
 
@@ -55,7 +52,7 @@ class ResourceController extends ActiveController
 
 	public function actionExport($id)
 	{
-		$templateFilepath = dirname(__FILE__) . '/../runtime/templates/Template2.docx';
+		$templateFilepath = dirname(__FILE__) . '/../runtime/templates/Template.docx';
 		$source = dirname(__FILE__) . '/../runtime/temp.docx';
 
 		\PhpOffice\PhpWord\Autoloader::register();
@@ -76,7 +73,6 @@ class ResourceController extends ActiveController
 		$templateProcessor->saveAs($source);
 
 		$phpWord = \PhpOffice\PhpWord\IOFactory::load($source);
-		//$phpWord = new \PhpOffice\PhpWord\PhpWord();
 
 		$phpWord->setDefaultFontName('Times New Roman');
 		$phpWord->setDefaultFontSize(11);
@@ -117,8 +113,6 @@ class ResourceController extends ActiveController
 			'align' => 'center'
 		];
 
-		// Get resource data
-
 		$resource = Resource::findOne($id);
 
 		$filename = $resource->name. '.docx';
@@ -137,6 +131,7 @@ class ResourceController extends ActiveController
 		    $registrar->address;
 		$registrar_shortname =  $registrar->last_name . ' ' .
 		    $registrar->first_name . ' ' . $registrar->middle_name. ' ';
+		$registration_number = $resource->registration_number;
 
 		$parameters = Parameter::find()
 			->where(['resource_id' => $id])
@@ -194,15 +189,15 @@ class ResourceController extends ActiveController
 			'Підклас об’єкту' => $resource_subclass,
 			'Власник об’єкту' => $owner_name,
 			'Географічні координати кутів (вершин) об’єкту у форматі ГГ°ММ\'СС,СС". ' => $coordinates,
-			'Лінійні розміри об’єкту, Д:Ш:В, м' => $attributes['linear_size'],
-			'Загальна площа об’єкту, га' => $attributes['square'] / 10000,
-			'Маса (вага) об’єкту, кг' => $attributes['weight'],
-			'Периметр об’єкту, м' => $attributes['perimeter'],
-			'Об’єм об’єкту, м3' => $attributes['volume'],
+			'Лінійні розміри об’єкту, Д:Ш:В, м' => $attributes['linear_size'] ? $attributes['linear_size'] . ' м' : '',
+			'Загальна площа об’єкту, га' => $attributes['square'] ? ($attributes['square'] / 10000) . ' га' : '',
+			'Маса (вага) об’єкту, кг' => $attributes['weight'] ? ($attributes['weight'] . ' кг') : '',
+			'Периметр об’єкту, м' => $attributes['perimeter'] ? $attributes['perimeter'] . ' м' : '',
+			'Об’єм об’єкту, м3' => $attributes['volume'] ? $attributes['volume'] . ' м³' : '',
 			'Підстава для внесення відомостей до Реєстру' =>  $reason,
 			'ПІБ та поштова адреса народного реєстратора' => $registrar_info,
 			'Реєстраційний номер об’єкту' => $registration_number,
-			'Дата створення запису' => str_replace('-', '.', $creation_date),
+			'Дата створення запису' => $creation_date ? str_replace('-', '.', $creation_date) . ' року' : '',
 		];
 		$tableUnitalicFields = [
 			'Клас об’єкту',
@@ -294,13 +289,5 @@ class ResourceController extends ActiveController
 	public function checkAccess($action, $model = null, $params = [])
 	{
 		\Yii::$app->authcomponent->checkPermissions($action,\Yii::$app->authcomponent->write);
-		//\Yii::$app->authcomponent->checkPermissionsPrivateData($action,\Yii::$app->authcomponent->read);
-		/*  exit('es');
-          exit($action);
-          if ($action == 'create' || $action == 'update' || $action || 'delete'){
-              if(!(\Yii::$app->session->get('role') == 'register')) {
-                  exit('1');
-              }
-          }*/
 	}
 }

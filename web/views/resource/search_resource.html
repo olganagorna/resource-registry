@@ -7,7 +7,7 @@
 <label>Інформація про ресурс</label>
 <div class="form-group">
   <div class="col-xs-8">
-    <input type="text" class="form-control" placeholder="назва ресурсу" ng-model="request.resource.name">
+    <input type="text" class="form-control" placeholder="найменування об'єкту" ng-model="request.resource.name">
   </div>
 </div>
 <br>
@@ -31,8 +31,12 @@
     <input type="text" class="form-control" placeholder="частина номеру ресурсу" ng-model="request.resource.registration_number">
   </div>
 </div>
-<br>
-
+<br><br>
+<div class="panel panel-primary">
+            <button class="col-md-12 panel-heading" type="button" data-toggle="collapse" data-target="#collapseRegister" aria-expanded="false" aria-controls="collapseExample">
+                <h3 class="panel-title">Реєстратор</h3>
+            </button>
+            <div class="collapse panel-body" id="collapseRegister">
 <label>Інформація про реєстратора</label>
 <div class="form-group">
   <div class="col-xs-8">
@@ -50,9 +54,10 @@
   <div class="col-xs-8">
     <input type="text" class="form-control" placeholder="по-батькові реєстратора" ng-model="request.owner.middle_name">
   </div>
-</div>                                    
-<br><br>
-
+</div>   
+</div>
+                </div>    
+<br>                                             
 <div class="panel panel-primary">
             <button class="col-md-12 panel-heading" type="button" data-toggle="collapse" data-target="#collapseParams" aria-expanded="false" aria-controls="collapseExample">
                 <h3 class="panel-title">Параметри</h3>
@@ -132,7 +137,7 @@
     </div>
                </div>
                 </div>
-<br>            <center>
+<br>           <center>
         <button class="btn btn-material-amber-400" ng-click="search()">ШУКАТИ</button>
         </center>
       </div>
@@ -165,7 +170,7 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="list-group-item shadow-z-1 md-list row " ng-repeat="data in resources.items" ng-if="resources.items">
+                        <li class="list-group-item shadow-z-1 md-list row " ng-repeat="data in resources.items" ng-if="resources">
                             <div class="btn-group search_result_edit" ng-controller="index">
                                   <a class="btn btn-primary" href="resource/update/{{data.resource_id}}"
                                       target="_blank"
@@ -182,10 +187,10 @@
                             <div class="col-md-6 res_vert_allight_list thin">
                                             <span class="lab_g">ресурс</span><br>
                                             <div class="column">
-                                            <div ng-if="data.name"><span class="lab_b">назва:</span> {{data.name}}<br></div>
+                                            <div ng-if="data.name"><span class="lab_b">найменування об'єкту:</span> {{data.name}}<br></div>
                                             <div ng-if="data.class"><span class="lab_b">підклас:</span> {{data.class}}<br></div>
                                             <div ng-if="data.reason"><span class="lab_b">піддстава:</span><div class="lab_r"> {{data.reason}}</div></div>
-                                            <div ng-if="data.registration_number"><span class="lab_b">номер:</span> {{data.registration_number}}<br></div>
+                                            <div ng-if="data.registration_number"><span class="lab_b">реестраційний номер об'єкту:</span> {{data.registration_number}}<br></div>
                                             </div>
                             </div>
                             <div class="col-md-3 res_vert_allight_list thin" ng-if="data.owner">
@@ -195,14 +200,14 @@
                                             <div ng-if="data.owner.last_name"><span class="lab_b">ім'я:</span> {{data.owner.last_name}}<br></div>
                                             <div ng-if="data.owner.middle_name"><span class="lab_b">по-батькові:</span> {{data.owner.middle_name}}<br></div>
                                             </div>
-                            <div ng-if="data.owner">
+                            <!-- <div ng-if="data.owner">
                                             <div><span class="lab_g">(власник)</span><br></div>
                                             <div class="column">
                                             <div ng-if="data.owner.first_name"><span class="lab_b">прізвище:</span> Гора<br></div>
                                             <div ng-if="data.owner.last_name"><span class="lab_b">ім'я:</span> Іван<br></div>
                                             <div ng-if="data.owner.middle_name"><span class="lab_b">по-батькові:</span> Петрович<br></div>
                                             </div>
-                            </div>
+                            </div> -->
                             </div>
                             <div class="col-md-3 res_vert_allight_list thin" ng-if="data.parameters">
                                             <div><span class="lab_g">параметри</span><br></div>
@@ -210,7 +215,7 @@
                                             <div ng-if="data.parameters.length"><span class="lab_b">довжина, м:</span> {{data.parameters.length}}<br></div>
                                             <div ng-if="data.parameters.width"><span class="lab_b">ширина, м:</span> {{data.parameters.width}}<br></div>
                                             <div ng-if="data.parameters.height"><span class="lab_b">висота, м:</span> {{data.parameters.height}}<br></div>
-                                            <div ng-if="data.parameters.square"><span class="lab_b">площа, га:</span> {{data.parameters.square}}<br></div>
+                                            <div ng-if="data.parameters.square"><span class="lab_b">площа, га:</span> {{data.parameters.square | hectare }}<br></div>
                                             <div ng-if="data.parameters.weight"><span class="lab_b">маса, кг:</span> {{data.parameters.weight}}<br></div>
                                             <div ng-if="data.parameters.perimeter"><span class="lab_b">периметр, м:</span> {{data.parameters.perimeter}}<br></div>
                                             <div ng-if="data.parameters.volume"><span class="lab_b">об'єм, м³:</span> {{data.parameters.volume}}<br></div>

@@ -22,6 +22,8 @@
             DEFAULT_MIN_SEARCH_OWNER_DATA_CREATE:1,
             DAY_CHAR_START:0,
             DAY_CHAR_END:10,
+            SQUARE_ID:4,
+            METERS_IN_HECTARE:10000,
             MSG_TO_FILL_TYPE_OPERATION : 'Виберіть будь ласка хоча б один тип операцій для перегляду подій',
             MSG_LOAD_USER:'Ви дійсно бажаєте вибрати дану особу як користувача ресурсу ?',
             MSG_SEARCH_OWNER_MIN_REQ:'Виберіть для пошуку щонайменше полів',

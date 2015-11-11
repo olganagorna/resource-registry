@@ -17,7 +17,12 @@ angular.module('restApp')
     obj.searchResources = function(str){
     	console.log(serviceBase + 'resources' + '/search?' + str);
         return $http.get(serviceBase + 'resources' + '/search?' + str);
-    };    
+    };  
+
+    obj.getResourceByCoordinates = function(str) {
+        return $http.get(serviceBase + 'searches' + '/getresourcebycoordinate?center_lat=' + str.lat + '&center_lng=' + str.lng + '&radius=10'); // '&per-page=' + constant.perPage
+    };
+      
     return obj;
 
 

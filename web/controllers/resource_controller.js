@@ -19,11 +19,6 @@
 
             $rootScope.currentUser = angular.fromJson(sessionStorage.getItem('user'));
 
-            //Dialog start
-
-            //Dialog end
-
-            //Coord start
             $rootScope.coords = [];
             $rootScope.mapOptions = {};
 
@@ -31,11 +26,16 @@
             $scope.coord = {};
             $scope.lat = {};
             $scope.lng = {};
-            $scope.params = [];
+            $scope.coord_center = {};
+
+            $scope.params = {
+                                3:{value:constant.DEFAULT_SQUAERE_VAL},
+                                6:{value:constant.DEFAULT_PERIM_VAL}
+                            };
+
 
             $scope.resource = {};
             
-
             $scope.isShowMap = false;
             $scope.showMap = function (){
                 $scope.isShowMap = !$scope.isShowMap;
@@ -48,10 +48,14 @@
 
             $rootScope.$watch('mapOptions.created', function(val) {
                 if (val) {
-                    $scope.params[3].value = (getArea($rootScope.coords) / 10000).toFixed(4);
-                    $scope.params[6].value = getPerimeter($rootScope.coords).toFixed(4);
+                    var center = L.polygon($rootScope.coords).getBounds().getCenter();
+                    $scope.params[3].value = (getArea($rootScope.coords).toFixed(5));
+                    $scope.params[6].value = getPerimeter($rootScope.coords).toFixed(0);
                     $rootScope.mapOptions.created = false;
-                    console.log($scope.params[3], $scope.params[6]);
+                    $scope.coord_center.lat = center.lat.toFixed(4);
+                    $scope.coord_center.lng = center.lng.toFixed(4);
+                    console.log($scope.coord_center.lng);
+            console.log($scope.coord_center.lat);
                 }
 
             });
@@ -68,6 +72,7 @@
                 $scope.coord = {};
                 $rootScope.mapOptions.created = true;
             };
+
             $scope.changeCoords = function(coord, coordId){
                 var newCoords = CoordsService.changeCoords(coord, coordId);
                 $scope.coord = newCoords.coord;
@@ -89,7 +94,6 @@
 
             };
 
-            //Coord end
 
             //Load resources per page
             RestService.getData(constant.resourcesQuery + '?&per-page=' + constant.perPage)
@@ -101,6 +105,7 @@
                 .then(function(data){
                     $scope.resource_classes = data.data;
                 });
+            
             //MAIN HASH REQUEST FOR RESOURCE
 
             $scope.resource = {
@@ -136,6 +141,8 @@
                 formatYear: 'yy'
             };
 
+            $scope.format = 'yyyy.MM.dd';
+
             $scope.today = function() {
                 $scope.datePicker.date = new Date();
             };
@@ -167,19 +174,12 @@
 
             });
 
-            function toDateFormatUTC(time) {
-                var now = new Date(time);
-                var todayUTC = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
-                return todayUTC.toISOString().slice(constant.DAY_CHAR_START, constant.DAY_CHAR_END).replace(/-/g, '-');
-            };
-
             if ($rootScope.currentUser !== null) {
                 RestService.getDataById($rootScope.currentUser.userDataID , constant.personal_datasQuery)
                     .then(function(data){
                         $scope.personal_data = data.data;
                         $scope.resource.registrar_data_id = data.data.personal_data_id;
                         getRegistrationNumber($rootScope.currentUser.userDataID);
-                       // console.log($scope.personal_data);
 
                     })
             };
@@ -233,7 +233,6 @@
             });
 
 
-
             $scope.$watch("reason.text", function(text) {
                 $scope.resource.reason = text;
             });
@@ -242,12 +241,11 @@
             function toDateFormatUTC(time) {
                 var now = new Date(time);
                 var todayUTC = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
-                return todayUTC.toISOString().slice(constant.DAY_CHAR_START, constant.DAY_CHAR_END).replace(/-/g, '-');
+                return todayUTC.toISOString().slice(constant.DAY_CHAR_START, constant.DAY_CHAR_END).replace(/-/g, '.');
             };
 
 
             //END Get personal date
-
 
             $scope.deleteResource = function(resourceID, ownerId) {
 
@@ -263,6 +261,7 @@
 
             // for backup data
             var oldOwnerData = {};
+
                 $scope.search = {
                     owner:{}
                 };
@@ -282,19 +281,14 @@
 
             $scope.searchOwnerId = function(dataSearch) {
 
-                //  http://web/rest.php/personal_datas/search?personal_data_id=41&first_name=value
-
                 if(dataSearch!=null&&Object.keys(dataSearch).length>=constant.DEFAULT_MIN_SEARCH_OWNER_DATA_CREATE){
-                    console.log(true, 'IS_CLICKED');
+                    
                     RestService.getData(constant.personal_datasQuery + '/search?'+buildQuery(dataSearch))
                         .then(function (result) {
                             $scope.show_search_result=true;
                             $scope.owner_data = result.data;
                         })
-                }else{
-                    alert(constant.MSG_SEARCH_OWNER_MIN_REQ +' : '+ constant.DEFAULT_MIN_SEARCH_OWNER_DATA_CREATE);
                 }
-                // clean search field
                 $scope.search.owner = {};
             };
 
@@ -305,8 +299,6 @@
                     $scope.ownerUpdate = false;
                     $scope.show_owner_search = true;
                     $scope.show_search_result = false;
-
-                    console.log('no DATA', 'CANCEL SEARCH','backupData', oldOwnerData);
             };
 
             $scope.confirmOwner = function(data){
@@ -322,12 +314,18 @@
 
         $scope.createResource = function(resource, owner, params) {
 
-            console.log('CREATE RESOURCE TRIGGERED');//,resource, owner, params);
+            //CREATE RESOURCE
 
             resource.coordinates = ($rootScope.coords.length)? CoordsService.coordsToGeotype($rootScope.coords): resource.coordinates = [];
 
+            resource.coords_center_lat = $scope.coord_center.lat;
+            resource.coords_center_lng = $scope.coord_center.lng;
+
+            console.log($scope.coord_center.lng);
+            console.log($scope.coord_center.lat);
+
             if (!owner || Object.keys(owner).length < constant.paramsNumber || !isDataForObject(owner)) {
-                    console.log('Create Resource without owner');
+                    //'Create Resource without owner'
 
                     RestService.createData(resource, constant.resourcesQuery)
                          .then(function(response){
@@ -335,9 +333,7 @@
                          });
 
                 } else if ($scope.ownerUpdate) {
-
-                    //Create with actual  owner - owner ID
-                    console.log('Create resource with owner id', owner.personal_data_id);
+                            //Create with actual  owner - owner ID
 
                             resource.owner_data_id = owner.personal_data_id;
 
@@ -347,8 +343,7 @@
                                 })
 
                 }else{
-                    //create owner AND RESOURCE
-                    console.log('CREATE OWNER AND RESOURCE');
+                       //create owner AND RESOURCE
 
                        RestService.createData(owner, constant.personal_datasQuery)
                            .then(function (response) {
@@ -364,7 +359,6 @@
             };
 
 
-
             function createParameters  (params, resourceId) {
 
                 for (var i in params) {
@@ -372,6 +366,9 @@
                     if (params[i]) {
                         params[i].resource_id = resourceId;
                         params[i].attribute_id = parseInt(i) + 1;
+                        if (params[i]['attribute_id']===constant.SQUARE_ID){
+                            params[i]['value'] = toSquareMeters(params[i]['value']);
+                        }
                         RestService.createData(params[i], constant.parametersQuery)
                     }
                 }
@@ -385,7 +382,6 @@
                     currzonecoords.push(currentcoord);
                 }
                 var zonearea = google.maps.geometry.spherical.computeArea(currzonecoords);
-                //alert('area: ' + zonearea);
                 return zonearea;
             };
 
@@ -412,6 +408,10 @@
                 }
             };
 
+            function toSquareMeters(val) {
+               return (val).toString();
+            };
+
 
             function getPerimeter(zones) {
                 var perimeter = 0;
@@ -427,7 +427,6 @@
 
                 perimeter += google.maps.geometry.spherical.computeDistanceBetween(p1, p2);
 
-                //alert('perimeter: ' + perimeter);
                 return perimeter;
             };
 

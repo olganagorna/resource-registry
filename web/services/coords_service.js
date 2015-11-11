@@ -78,7 +78,6 @@
                 }else{
                     newCoords.push({lat: coord.lat, lng: coord.lng});
                 }
-                newCoords.changed = (newCoords.changed) ? true : false ;
             }
 
             return coordId;

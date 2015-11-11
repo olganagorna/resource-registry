@@ -42,10 +42,11 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="/">ГОЛОВНА</a></li>
-                <li ng-if="currentUser.role !== 'null' "><a href="resource/index">РЕСУРСИ</a></li>
-                <li ng-if="currentUser.role !== 'null'"><a href="site/logs">ЖУРНАЛ</a></li>
-                <li ng-if="currentUser.role !== 'null' "><a href="resource/search">ПОШУК</a></li>
-            </ul>
+                <li ng-if="currentUser.role === 'registrar' "><a href="resource/index">РЕСУРСИ</a></li>
+                <li ng-if="currentUser.role === 'registrar'"><a href="site/logs">ЖУРНАЛ</a></li>
+                <li ng-if="currentUser.role === 'registrar' "><a href="resource/search">ПОШУК</a></li>
+
+            </ul> 
 
             <div class="nav navbar-nav navbar-right md-my-room " >
                 <ul class="nav navbar-nav ng-navbar-nav">

@@ -51,7 +51,9 @@ class Resource extends \yii\db\ActiveRecord
     				return $model->ownerData;
     			},
                 'date',
-                'registrar_data_id',
+                'registrar' => function ($model) {
+                    return $model->regData;
+                },
                 'registration_number'
     	];
     }
@@ -65,6 +67,8 @@ class Resource extends \yii\db\ActiveRecord
                 'date', 'registration_number'], 'required'], */
             [['class_id', 'owner_data_id', 'registrar_data_id'], 'integer'],
             [['coordinates'], 'string'],
+            [['coords_center_lat'], 'number'],
+            [['coords_center_lng'], 'number'],
             [['reason'], 'string'],
             [['name'], 'string', 'max' => 100],
             [['registration_number'], 'string', 'max' => 30],
@@ -111,6 +115,11 @@ class Resource extends \yii\db\ActiveRecord
     public function getOwnerData()
     {
         return $this->hasOne(PersonalData::className(), ['personal_data_id' => 'owner_data_id']);
+    }
+
+    public function getRegData()
+    {
+        return $this->hasOne(PersonalData::className(), ['personal_data_id' => 'registrar_data_id']);
     }
 
     /**

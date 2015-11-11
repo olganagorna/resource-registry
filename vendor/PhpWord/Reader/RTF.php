@@ -31,7 +31,9 @@ class RTF extends AbstractReader implements ReaderInterface
      * Loads PhpWord from file
      *
      * @param string $docFile
+     *
      * @throws \Exception
+     *
      * @return \PhpOffice\PhpWord\PhpWord
      */
     public function load($docFile)

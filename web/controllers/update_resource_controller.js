@@ -46,16 +46,18 @@
             };
 
             $scope.changeCoords = function(coord, coordId){
+
                 var newCoords = CoordsService.changeCoords(coord, coordId);
-                $scope.coord = newCoords.coord;
+                    $scope.coord = newCoords.coord;
                 var newLat = CoordsService.convertDDToDMS($scope.coord.lat);
                 var newLng = CoordsService.convertDDToDMS($scope.coord.lng);
-                $scope.lat = {deg: newLat.deg, min: newLat.min, sec: newLat.sec};
-                $scope.lng = {deg: newLng.deg, min: newLng.min, sec: newLng.sec};
-                $scope.coordId = newCoords.coordId;
+                    $scope.lat = {deg: newLat.deg, min: newLat.min, sec: newLat.sec};
+                    $scope.lng = {deg: newLng.deg, min: newLng.min, sec: newLng.sec};
+                    $scope.coordId = newCoords.coordId;
             };
 
             $scope.deleteCoords = function(){
+
                 CoordsService.deleteCoords($rootScope.coords, $scope.coordId);
                 $scope.coordId = null;
                 $scope.coord = {};
@@ -83,8 +85,10 @@
             $scope.format = 'yyyy.MM.dd';
 
             $scope.today = function() {
+
                 $scope.datePicker.date = new Date();
             };
+
             $scope.today();
 
             $scope.minDate =  null;
@@ -119,8 +123,6 @@
                 return todayUTC.toISOString().slice(constant.DAY_CHAR_START, constant.DAY_CHAR_END).replace(/-/g, '.');
             };
 
-
-
             //Get date creation end
 
             $scope.deleteResource = function(resourceID, ownerId) {
@@ -131,18 +133,18 @@
                             $location.path('resource/index');
                 }
             };
-            // for backup data or/and check difference
+            
             var oldOwnerData = {},
                 oldRegistrarData = {};
             // important condition create or update resource
-            $scope.wnerId = false;
+            $scope.ownerId = false;
 
             RestService.getDataById(resourceId, constant.resourcesQuery)
 
                 .then(function(data){
 
                     $scope.resource = data.data;
-                    // IMPORTANT ==null, check in null or undefined
+                    
                     $scope.owner_search = ($scope.resource.owner == null) ? true : false;
 
                     $rootScope.coords = CoordsService.geotypeToCoords($scope.resource.coordinates);
@@ -212,15 +214,14 @@
                                     $scope.ownerId = false;
                                 });
                     }
-                        //'deleteResourceOwner ';
+                        //deleteResourceOwner;
                   }else{
                     $scope.owner_search = true;
                 }
             };
 
             $scope.searchOwnerId = function(dataSearch){
-                //'SEARCH OWNER';
-                //  http://web/rest.php/personal_datas/search?personal_data_id=41&first_name=value
+                //'SEARCH OWNER'
                 if(dataSearch!=null&&Object.keys(dataSearch).length>=constant.DEFAULT_MIN_SEARCH_OWNER_DATA){
 
                     RestService.getData(constant.personal_datasQuery + '/search?'+buildQuery(dataSearch))
@@ -255,7 +256,6 @@
 
             $scope.updateResource= function(resource, personal_data, params) {
 
-                // important for create new parameters
                 $scope.newParams = {};
 
                 resource.coordinates = (CoordsService.coordsToGeotype($rootScope.coords)||null);
@@ -281,7 +281,6 @@
                             RestService.updateData(params[i], params[i].parameter_id, constant.parametersQuery);
                 };
 
-               // resource.owner_data_id != null    !!!important not === we check is null and undefined
 
                 if (resource.owner_data_id == null && resource.owner != null && Object.keys(resource.owner).length>=constant.ownerDataFields) {
 
@@ -323,7 +322,7 @@
                          }
 
                 } else if ($scope.ownerId !== true ) {
-                    //'DELETE OWNER FROM RESOURCE';
+                         //'DELETE OWNER FROM RESOURCE';
                          updateResourceTable(resource);
                 };
 

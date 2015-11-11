@@ -64,8 +64,9 @@
             controllerAs: 'vm'
         })
         .when('/site/home', {
-            controller: 'index',
-            templateUrl: 'views/site/home.html'
+            controller: 'IndexCtrl',
+            controllerAs: 'pp',
+            templateUrl: 'views/site/personal_page.html'
         })
         .when('/site/restorepassword', {
             controller: 'LoginController',
@@ -73,7 +74,7 @@
             controllerAs: 'vm'
         })
         .otherwise({
-            redirectTo: '/resource/index'
+            redirectTo: '/site/login'
         });
 
         $locationProvider.html5Mode(true).hashPrefix('!');

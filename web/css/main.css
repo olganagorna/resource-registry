@@ -148,9 +148,9 @@ textarea {
 /* IMPORTANT */
 .md-sidebar{
     padding: 15px;
-    top: 65px;
+    top: 100px;
     bottom:0;
-    position:fixed;
+    //position:fixed;
     overflow-y:scroll;
     overflow-x:hidden;
     direction:rtl;
@@ -519,8 +519,8 @@ td.form-group{
 
 .main-resource-class-map-position {
     position: absolute;
-    height: 51%;
-    top: 47%;
+    height: 65%;
+    top: 31%;
 }
 
 .navigation-search {
@@ -531,7 +531,8 @@ td.form-group{
     padding-top: 15px;
 }
 .navigation-search .nav-search-ctrl {
-    padding:15px;
+    padding: 6px;
+    //background-color: rgba(158, 158, 158, 0.32) !important;
 }
 
 .alight-trigger-map {
@@ -566,7 +567,7 @@ td.form-group{
 .class-div-highlight-allight{
     display: table-cell;
     vertical-align: middle;
-    height: 74px;
+    height: 50px;
     width:1%;
 }
 
@@ -626,12 +627,23 @@ td.form-group{
 
 /* END LOG-RESOURCE-PAGE*/
 
-/*
-
-http://paletton.com/#uid=73f0z0kw0ujkcBBpDx6z1n+EGiK
-
-*/
-
+.normal_btn {
+	height: 40px;
+    padding: 12px 0;
+    font-size: 12px;
+    background-color: rgb(224, 224, 224) !important;
+}
+.margin_bottom {
+	top: 15px;
+}
+.btn_mg {
+	top: -7px;
+    padding: 0 !important;
+    background-color: transparent !important;
+}
+.result {
+	min-height: 390px;
+}
 
 
 

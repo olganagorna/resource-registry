@@ -21,10 +21,6 @@
 
 			// Map init
 
-			if (attrs.toggledon === 'true') {
-				$scope.toggleMap();
-			}
-
 			$scope.updateMapView = function (position, zoom) {
 				position = angular.fromJson(position);
 				$scope.map.setView(position, zoom);
@@ -84,7 +80,12 @@
 				}
 			};
 
+			if (attrs.toggledon === 'true') {
+				$scope.createMap();
+			}
+
 			$scope.$watch('options.showPolygonOnMap.showPolygon', function (val) {
+				console.log(val);
 				if ($scope.mapCreated && val) {
 					$scope.options.showPolygonOnMap.latlngs = angular.fromJson($scope.options.showPolygonOnMap.latlngs);
 					var polygon = L.polygon($scope.options.showPolygonOnMap.latlngs);
@@ -96,8 +97,8 @@
 						style: style,
 						onEachFeature: infoOnEachFeature
 					}).addTo($scope.map);
+					$scope.options.showPolygonOnMap.showPolygon = false;
 				}
-				$scope.options.showPolygonOnMap.showPolygon = false;
 			});
 
 			$scope.$watch('options.toggleMap', function (val) {
@@ -117,7 +118,8 @@
 					}
 					$scope.resourcesGeoJson = [];
 					for (var i = 0; i < $scope.options.resources.objects.length; i++) {
-						var geojson = L.polygon($scope.options.resources.objects[i].latlngs).toGeoJSON();
+						console.log($scope.options.resources.objects);
+						var geojson = L.polygon(JSON.parse($scope.options.resources.objects[i].coordinates)).toGeoJSON();
 						geojson.properties.name = $scope.options.resources.objects[i].name;
 						var resource = L.geoJson(geojson, {
 							style: styleResource,
@@ -151,6 +153,14 @@
 				initAdding();
 				initSearch();
 				initGeojson();
+
+				L.easyButton('glyphicon-star', 
+	              function () {
+	              	$scope.options.resources.center = $scope.map.getCenter();
+	              	$scope.options.resources.getResources = true;
+	              	console.log($scope.options.resources);
+	              	$scope.$apply();
+	              }, '').addTo($scope.map);
 
 				function initCssProperties () {
 					$('#map').css({ 'height': attrs.height || defaults.height });
@@ -301,7 +311,7 @@
 				}
 
 				function initGeojson () {
-					if ($scope.geojson !== undefined) {
+					if ($scope.geojson) {
 						$scope.geoJsonLayer.addData($scope.geojson);
 					}
 				}
@@ -322,7 +332,7 @@
 
 			function styleResource(feature) {
 				return {
-					fillColor: '#FD8D5C',
+					fillColor: '#008000',
 					weight: 2,
 					opacity: 1,
 					color: 'white',

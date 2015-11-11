@@ -81,11 +81,10 @@
                 alert(constant.MSG_TO_FILL_TYPE_OPERATION);
                 return;
             }
-            console.log('operations/search?' + $scope.queryData);
+
             RestService.getData('operations/search?' + $scope.queryData)
                 .then(function(data){
                     $scope.operation_log = data.data;
-                    console.log($scope.operation_log);
                 });
         };
 
@@ -98,8 +97,6 @@
             return  dateInISO;
         };
 
-//type=1,2,3&name=myname&date=2015-11-06 12:08:46to2016-11-06 12:08:46
-
         function buildQuery(res) {
 
             var requestData = toRequestFormatQuery(res),
@@ -110,7 +107,6 @@
             }
             return str.slice(0, - 1);
         };
-
 
         function toRequestFormatQuery(query) {
 
