@@ -1,5 +1,3 @@
-
-
 Resource-registry project
 ============================
 
