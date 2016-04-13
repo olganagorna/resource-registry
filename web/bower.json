@@ -1,0 +1,31 @@
+{
+  "name": "register",
+  "version": "0.0.0",
+  "authors": [
+    "Vitashev <vitashev@bk.ru>"
+  ],
+  "description": "rest api",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.5",
+    "angular-i18n": "~1.4.5",
+    "angular-leaflet-directive": "~0.8.8",
+    "angular-route": "1.3.x",
+    "angular-sanitize": "~1.4.5",
+    "angular-ui-router": "~0.2.15",
+    "animate.css": "~3.4.0",
+    "bootstrap": "~3.3.5",
+    "bootstrap-material-design": "~0.3.0",
+    "normalize-css": "normalize.css#~3.0.3"
+  },
+  "resolutions": {
+    "angular": "1.4.5"
+  }
+}
