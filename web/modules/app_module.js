@@ -78,6 +78,11 @@
             templateUrl: 'views/site/community.html',
             controllerAs: 'usersCtrl'
         })
+        .when('/community/update/:communityId', {
+            controller: 'CommissionerCtrl',
+            templateUrl: 'views/site/set_commissioner.html',
+            controllerAs: 'commissCtrl'
+        })
         .otherwise({
             redirectTo: '/site/login'
         });

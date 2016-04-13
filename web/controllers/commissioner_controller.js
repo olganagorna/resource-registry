@@ -3,19 +3,19 @@
 
    angular
        .module('restApp')
-       .controller('UsersCommunity', UsersCommunity);
+       .controller('CommissionerCtrl', CommissionerCtrl);
 
-   UsersCommunity.$inject = ['$scope', '$http'];
-   function UsersCommunity($scope, $http) {
-       var usersCtrl = this;
-       usersCtrl.users = [];
+   CommissionerCtrl.$inject = ['$scope', '$http'];
+   function CommissionerCtrl($scope, $http) {
+       var commissCtrl = this;
+       commissCtrl.users = [];
        (function(){
            return $http.get('rest.php/communities')
                .then(successHandler)
                .catch(errorHandler);
            function successHandler(result) {
                console.log(result);
-               usersCtrl.users = result.data;
+               commissCtrl.users = result.data;
            }
            function errorHandler(result){
                alert(result.data[0].message);

@@ -1,4 +1,4 @@
-<div ng-controller="UsersCommunity" class="community-container">
+<div ng-controller="CommissionerCtrl" class="community-container">
 	
 
 <style>
@@ -28,10 +28,10 @@
 						<div class="col-lg-2">Дії</div>
 					</div>
 				</li>
-				<li class="list-group-item" ng-repeat="item in usersCtrl.users">
+				<li class="list-group-item" ng-repeat="itm in commissCtrl.users">
 					<div class="row">
-						<div class="col-lg-5">{{item.name}}</div>
-						<div class="col-lg-5">{{item.prefix}}</div>
+						<div class="col-lg-5">{{itm.name}}</div>
+						<div class="col-lg-5">{{itm.prefix}}</div>
 						<div class="col-lg-2">
 							<div class="btn-group">
 
