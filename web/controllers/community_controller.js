@@ -6,7 +6,9 @@
        .controller('UsersCommunity', UsersCommunity);
 
    UsersCommunity.$inject = ['$scope', '$http'];
+
    function UsersCommunity($scope, $http) {
+   
        var usersCtrl = this;
        usersCtrl.users = [];
        (function(){
