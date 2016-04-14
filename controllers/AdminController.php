@@ -14,7 +14,7 @@ class AdminController extends ActiveController {
 		$request= \Yii::$app->request->get();
 
 		$admin = GetPersonalData::find()
-		->select(['user_id','username', 'last_name','first_name','name'])
+		->select(['username', 'last_name','first_name','name'])
 		->innerJoinWith('personalData')->innerJoinWith('role')
 		->andFilterWhere(['like', $request['field'], $request['value']])
 		->orderBy($request['column'])
@@ -23,7 +23,7 @@ class AdminController extends ActiveController {
 		$dataProvider = new ActiveDataProvider([
 			'query' => $admin,
 			'pagination' => [
-				'pageSize' => 20,
+				'pageSize' => 4,
 				//'pageParam' => $get['page'],
 			],
 		]);

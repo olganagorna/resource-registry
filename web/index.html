@@ -45,8 +45,12 @@
                 <li ng-if="currentUser.role === 'registrar' "><a href="resource/index">РЕСУРСИ</a></li>
                 <li ng-if="currentUser.role === 'registrar'"><a href="site/logs">ЖУРНАЛ</a></li>
                 <li ng-if="currentUser.role === 'registrar' "><a href="resource/search">ПОШУК</a></li>
-               <li ng-if="currentUser.role === 'registrar' "><a href="site/users">СПИСОК ЮЗЕРІВ</a></li>
+<<<<<<< HEAD
+                <li ng-if="currentUser.role === 'registrar' "><a href="site/users">СПИСОК ЮЗЕРІВ</a></li>
+=======
                 <li ng-if="currentUser.role === 'registrar' "><a href="resource/community">ГРОМАДИ</a></li>
+
+>>>>>>> c20e1886c99be27ba3a327a207cb260719beb28c
             </ul> 
 
             <div class="nav navbar-nav navbar-right md-my-room " >
@@ -89,7 +93,9 @@
         <script src="vendor/bower/angular-ui-router/release/angular-ui-router.min.js"></script>
         <script src="vendor/bower/angular-bootstrap/ui-bootstrap.min.js"></script>
         <script src="vendor/bower/bootstrap/dist/js/bootstrap.min.js"></script>
+
         <script src="vendor/bower/angular"></script>
+
         <script src="vendor/bower/bootstrap-material-design/dist/js/ripples.min.js"></script>
         <script src="vendor/bower/bootstrap-material-design/dist/js/material.min.js"></script>
         <script>
@@ -120,13 +126,17 @@
         <script src="modules/app_module.js"></script>
         <script src="modules/map_module.js"></script>
         <script src="modules/calendar_module.js"></script>
+
         <script src="modules/date_picker_module.js"></script>
+
         <script src="models/rest_model.js"></script>
         <script src="models/resource_log_filter.js"></script>
         <script src="services/search_service.js"></script>
         <script src="services/pagination_service.js"></script>
         <script src="services/constant_service.js"></script>
         <script src="services/coords_service.js"></script>
+
+
         <script src="controllers/search_controller.js"></script>
         <script src="controllers/resource_controller.js"></script>
         <script src="controllers/update_resource_controller.js"></script>
@@ -139,11 +149,20 @@
         <script src="controllers/registration_controller.js"></script>
         <script src="controllers/resource_log_controller.js"></script>
         <script src="controllers/extended_search_controller.js"></script>
+<<<<<<< HEAD
         <script src="controllers/users_controller.js"></script>
+
+
+
+=======
         <script src="controllers/community_controller.js"></script>
         <script src="controllers/commissioner_controller.js"></script>
         <script src="controllers/communityadd_controller.js"></script>
+        
+        
+>>>>>>> c20e1886c99be27ba3a327a207cb260719beb28c
         <script src="classes/map_coordinates_div_class.js"></script>
+
         <script src="directives/map_directive.js"></script>
         <script src="directives/datetimepicker_directive.js"></script>
     </body>
