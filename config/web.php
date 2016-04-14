@@ -29,10 +29,11 @@ $config = [
             'rules' => [
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' => ['user', 'resource', 'admin','user_role_view',
+                    'controller' => ['user', 'resource', 'user_role_view',
                         'resource_class', 'resource_attribute',
                         'personal_data', 'parameter',
-                        'operation_type', 'operation', 'attribute_class_view', 'search'
+                        'operation_type', 'operation', 'attribute_class_view', 'search',
+                        'community', 'admin'
                     ], 'extraPatterns' => [
                     'GET search' => 'search',
                     'POST login' => 'login',
@@ -40,10 +41,12 @@ $config = [
                     'POST restorepass' => 'restorepass',
                     'POST changepass' => 'changepass',
                     'GET logout' => 'logout',
+                    'GET show' => 'show',
                     'GET {id}/export' => 'export',
                     'GET getregisterkey' => 'getregisterkey',
                     'GET getresourcebycoordinate' => 'getresourcebycoordinate',
-                    'GET get_personal_data' => 'get_personal_data'
+                    'POST getuser' => 'getuser',
+                    'GET admin' => 'admin'
                     ],
                 ],
             ],

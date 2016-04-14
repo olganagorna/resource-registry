@@ -3,7 +3,7 @@ namespace app\models;
 
  use yii\db\ActiveRecord;
 
- class GetPersonalData extends ActiveRecord {
+ class Admin extends ActiveRecord {
 
  	public static function tableName() {
 

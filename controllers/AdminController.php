@@ -3,17 +3,17 @@ namespace app\controllers;
 
 use yii\rest\ActiveController;
 use yii\data\ActiveDataProvider;
-use app\models\GetPersonalData;
+use app\models\Admin;
 
 class AdminController extends ActiveController {
 
-	public $modelClass = 'app\models\GetPersonalData';
+	public $modelClass = 'app\models\Admin';
 	
-	public function actionGet_personal_data() {
+	public function actionAdmin() {
 
 		$request= \Yii::$app->request->get();
 
-		$admin = GetPersonalData::find()
+		$admin = Admin::find()
 		->select(['username', 'last_name','first_name','name'])
 		->innerJoinWith('personalData')->innerJoinWith('role')
 		->andFilterWhere(['like', $request['field'], $request['value']])
@@ -23,7 +23,7 @@ class AdminController extends ActiveController {
 		$dataProvider = new ActiveDataProvider([
 			'query' => $admin,
 			'pagination' => [
-				'pageSize' => 4,
+				'pageSize' => 20,
 				//'pageParam' => $get['page'],
 			],
 		]);
