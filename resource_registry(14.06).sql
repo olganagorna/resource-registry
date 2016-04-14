@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Час створення: Квт 11 2016 р., 23:03
+-- Час створення: Квт 14 2016 р., 12:50
 -- Версія сервера: 5.5.47-0ubuntu0.14.04.1
 -- Версія PHP: 5.5.9-1ubuntu4.14
 
@@ -78,38 +78,19 @@ CREATE TABLE IF NOT EXISTS `community` (
   `name` varchar(50) DEFAULT NULL,
   `prefix` varchar(50) DEFAULT NULL,
   `commissioner_id` int(11) NOT NULL,
+  `notes` text,
   PRIMARY KEY (`community_id`),
-  KEY `fk_community_user` (`commissioner_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  KEY `fk_commissioner_user` (`commissioner_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Дамп даних таблиці `community`
 --
 
-INSERT INTO `community` (`community_id`, `name`, `prefix`, `commissioner_id`) VALUES
-(1, 'first_community', '10002:001', 31),
-(2, 'second_community', '10003:001', 38);
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `membership`
---
-
-CREATE TABLE IF NOT EXISTS `membership` (
-  `community_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  KEY `fk_membership_community` (`community_id`),
-  KEY `fk_membership_user` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп даних таблиці `membership`
---
-
-INSERT INTO `membership` (`community_id`, `user_id`) VALUES
-(1, 31),
-(2, 38);
+INSERT INTO `community` (`community_id`, `name`, `prefix`, `commissioner_id`, `notes`) VALUES
+(1, 'second_community', '10000254:001', 31, NULL),
+(2, 'first_community', '10000254:002', 38, NULL),
+(3, 'third_community', '10000255:001', 40, NULL);
 
 -- --------------------------------------------------------
 
@@ -435,42 +416,45 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(255) NOT NULL,
   `user_data_id` int(11) DEFAULT NULL,
   `role_id` int(11) NOT NULL,
+  `community_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   KEY `role_id` (`user_data_id`),
-  KEY `role_id_2` (`role_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
+  KEY `role_id_2` (`role_id`),
+  KEY `fk_user_community` (`community_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
 
 --
 -- Дамп даних таблиці `user`
 --
 
-INSERT INTO `user` (`user_id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `user_data_id`, `role_id`) VALUES
-(1, 'demo', 'mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY', '$2y$13$BlX7rTSKcUaluomULVXgRec/1H.y2yJG.K7jSXZArCq4OkzhJ9S/y', NULL, 'demo@mail.net', 1, 3),
-(3, 'mof', 'pdw6JM5azks9n-Fkx9EYmPLobHQJkMV7', '$2y$13$XSNOyLiil07pBhh5RnNsxuHsvr21cO3HoqGtMs9rPe4xGr2L.RdUu', 'F7NFSAPun1hooVGJGpUGgaUpPcJ4iEEu_1444824168', 'zhenyast@yandex.ru', 2, 2),
-(7, 'mof2', 'sBZlLkpEbikELmURWCopgN-lYiqU7UYu', '$2y$13$yLUJbUf98IMuPBuGO2lkwu87KYF0lJM.q0s8cA2wvNxOyPCT1p/92', NULL, 'zhenyast@yandex.ru', 1, 3),
-(8, 'mof23', 'LTrS-nd6GOp4NAuWsqLPMGRmTXyhnRoR', '$2y$13$Ttwe62ORjJUriGFQoT9jkeFwzaQjXlAMEmPtKiy7JYbbjEmCf09V2', NULL, 'test@gmail.com', 1, 1),
-(9, 'mof234', 'v0HLQsttxqamwDDszxTmGrio0KjVFASu', '$2y$13$sVfWSaKYBjCXRG.ipdGnBOG7IWZ5epKuRxcj43I.5TLlWaxU1Tfiq', NULL, 'test@gmail.com', 1, 1),
-(10, 'mof4', 'nzns3KZbmVNEERTeqbyWSmiA8iIsZCuy', '$2y$13$x4P0BcqVrFjVSE8tVfbaZuFEHpwX9Llt6MEDWtpT3H35m/35I7xhq', NULL, 'test@gmail.com', 1, 1),
-(11, 'mof5', 'D3Hwd61ihElNoSZqYdbm6tY7MiR9TKMN', '$2y$13$apiaxjG5M3k1MQ/IdxYM1ubbyaOglIdNoOymvuzkITKShbqhP.EW6', NULL, 'test@gmail.com', 1, 1),
-(12, 'mof6', 'FEdVtOX6YBUSBDkGwBmlkRs7MvKS1rNS', '$2y$13$UW1VZ9hHTX5Vhnzw.uoQ7OUMu/GInWxGUN8CKFqE11hHkyE0VQuxe', NULL, 'test@gmail.com', 1, 1),
-(14, 'mof9', 'CnJoAGaGgNUzWFs1douSRUhI-7nCQofg', '$2y$13$NGtRJrUMsGHIrqrKdWq2kercGlmyyjwOgpm8ZxYfSey6Y0Gk0Dtfu', NULL, 'test@gmail.com', 1, 1),
-(15, 'mof10', 'iWVndxR_sQaVRTNgvgKNsgLlJB1pNzDk', '$2y$13$GyFd0cLsWEqsoY31QSynBexJhzntmrB6yGu.Tk2kTsSsq09uybWwC', NULL, 'test@gmail.com', 2, 1),
-(16, 'mof11', 'J9pL0T5YDbPSK7mn0O0FRYndbFFxAgEX', '$2y$13$O4Hid6PLW2BGi.Y4IlX2c.XBVWk.SPul8pWrD6XgYxxQgRXtRHdpC', NULL, 'test@gmail.com', 2, 1),
-(17, 'mof12', '2b1-_u4Gb-BcDIlQTwwxOFSXypfeLuMP', '$2y$13$ffgOz/IhD8Jb2r0vX/Z44uA9u0QP2aRDlxdxokeVdK18z76yPo7RO', NULL, 'personalDataModel@ya.ru', 2, 1),
-(18, 'mof17', 'ecuUkIjIbI-a_JL3dk5clnLTBu6NMPxm', '$2y$13$Wqc8FH7coO.n/iyc/l4nHecWTJlQQujSFcnBeX1n7MhwmcsvPZ00m', NULL, 'test@mail.ru', 2, 1),
-(20, 'mof18', 'vLNM1wxWKgQN27Ggot6mt2i08QxEI1dk', '$2y$13$LcGAfRrqIZDUwtdECiOKreh5XUAL106odA5Zj89sd034r3WJxdvBe', NULL, 'vasya@ya.ru', 2, 1),
-(21, 'test36', 'ucDnNXLbL4cqo6EEezyEeUoC37NuU47n', '$2y$13$g00nLVE8.hcc1yAXCJeO.uzaTouLi4QxGh0YSDP8WMFnxKovaMEWO', NULL, 'test36@mail.ru', 94, 1),
-(22, 'test37', '0hRs_b4To10q9QejQ3wS0ATzNMUKmSHy', '$2y$13$27YSO6O3fFH62.S2hIPWHuwuYzVyMfLx1iVex.oB5oJKvrd2I.Gfa', NULL, 'test37@mail.ru', 97, 1),
-(23, 'test38', 'eJWSGRi2nyz9wPviMJw0lH1ixy5IrtMi', '$2y$13$54dopM1dbO6totckC8dtF.akY7Wr6XBWBx47KFU/rUm2cjt6HvmSO', NULL, 'vitashev@bk.ru', 98, 1),
-(24, 'test385', 'ODBf-XUPupYGk4iss935XhIECg-nbwok', '$2y$13$xaKAJKmtQveX.TAIYmBun.PY60neU.6v1cfKz2Ujq59B/Bne3ZE/G', NULL, 'rerse@ya.ri', 101, 1),
-(25, 'user4', 'VYNlikVL5ZSiCPZp3XL6NZ_nr4cl9Pr3', '$2y$13$ZXQ6T/TwSILVwPqTvPU3.uour0NolMMiVxE0jtuXAknR9hW7jieue', NULL, 'registerresource@gmail.com', 107, 2),
-(26, 'user5', 'AE5fW3PCbNY3D5jGAtAiAGXd0ezMdy-q', '$2y$13$KuiNKwLYUfFdmvzfDhrBiuhiPADovcohyE72peEoaven2EsohU2wK', NULL, 'registerresource@gmail.com', 108, 2),
-(27, 'grgrgrt', 'Fxl0xfdMGVrzpPj8c1_uNtAwAAf5t90T', '$2y$13$pddF4JoxuVGVm.gVWl.KJ.HpBYzvE4s4Fbwv9CUJUqHUzMgu3gF8.', NULL, 'gtrgrt@ya.ru', 109, 2),
-(28, 'username1', 'kq1OSpQweIhZ3kfF5f6fAM2_kM9H5h3E', '$2y$13$EDFwkXrlujw3YdzlOG708up.2piJ5aN8sduhaTKYF0tpeeFiQ2Iqu', NULL, 'registerresource@gmail.com', 112, 2),
-(29, 'registrar', 'nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', NULL, 'test69@mail.ru', 113, 2),
-(30, 'gith', 'r9ZSVEms7lozWO7Guo_K3ZiyaxRyQD3M', '$2y$13$/01guLVgaBoUExQTjJiCH.yOgoyIje7RWjsC3Iis1iQaevJxiEZMG', NULL, 'gith@gmail.com', 114, 2),
-(31, 'first_commissioner', 'mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY', '$2y$13$BlX7rTSKcUaluomULVXgRec/1H.y2yJG.K7jSXZArCq4OkzhJ9S/y', NULL, 'first_commissioner@mail.ru', 115, 4),
-(38, 'second_commissioner', 'mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY', '$2y$13$BlX7rTSKcUaluomULVXgRec/1H.y2yJG.K7jSXZArCq4OkzhJ9S/y', NULL, 'second_commissioner@mail.ru', 116, 4);
+INSERT INTO `user` (`user_id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `user_data_id`, `role_id`, `community_id`) VALUES
+(1, 'demo', 'mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY', '$2y$13$BlX7rTSKcUaluomULVXgRec/1H.y2yJG.K7jSXZArCq4OkzhJ9S/y', NULL, 'demo@mail.net', 1, 3, NULL),
+(3, 'mof', 'pdw6JM5azks9n-Fkx9EYmPLobHQJkMV7', '$2y$13$XSNOyLiil07pBhh5RnNsxuHsvr21cO3HoqGtMs9rPe4xGr2L.RdUu', 'F7NFSAPun1hooVGJGpUGgaUpPcJ4iEEu_1444824168', 'zhenyast@yandex.ru', 2, 2, NULL),
+(7, 'mof2', 'sBZlLkpEbikELmURWCopgN-lYiqU7UYu', '$2y$13$yLUJbUf98IMuPBuGO2lkwu87KYF0lJM.q0s8cA2wvNxOyPCT1p/92', NULL, 'zhenyast@yandex.ru', 1, 3, NULL),
+(8, 'mof23', 'LTrS-nd6GOp4NAuWsqLPMGRmTXyhnRoR', '$2y$13$Ttwe62ORjJUriGFQoT9jkeFwzaQjXlAMEmPtKiy7JYbbjEmCf09V2', NULL, 'test@gmail.com', 1, 1, NULL),
+(9, 'mof234', 'v0HLQsttxqamwDDszxTmGrio0KjVFASu', '$2y$13$sVfWSaKYBjCXRG.ipdGnBOG7IWZ5epKuRxcj43I.5TLlWaxU1Tfiq', NULL, 'test@gmail.com', 1, 1, NULL),
+(10, 'mof4', 'nzns3KZbmVNEERTeqbyWSmiA8iIsZCuy', '$2y$13$x4P0BcqVrFjVSE8tVfbaZuFEHpwX9Llt6MEDWtpT3H35m/35I7xhq', NULL, 'test@gmail.com', 1, 1, NULL),
+(11, 'mof5', 'D3Hwd61ihElNoSZqYdbm6tY7MiR9TKMN', '$2y$13$apiaxjG5M3k1MQ/IdxYM1ubbyaOglIdNoOymvuzkITKShbqhP.EW6', NULL, 'test@gmail.com', 1, 1, NULL),
+(12, 'mof6', 'FEdVtOX6YBUSBDkGwBmlkRs7MvKS1rNS', '$2y$13$UW1VZ9hHTX5Vhnzw.uoQ7OUMu/GInWxGUN8CKFqE11hHkyE0VQuxe', NULL, 'test@gmail.com', 1, 1, NULL),
+(14, 'mof9', 'CnJoAGaGgNUzWFs1douSRUhI-7nCQofg', '$2y$13$NGtRJrUMsGHIrqrKdWq2kercGlmyyjwOgpm8ZxYfSey6Y0Gk0Dtfu', NULL, 'test@gmail.com', 1, 1, NULL),
+(15, 'mof10', 'iWVndxR_sQaVRTNgvgKNsgLlJB1pNzDk', '$2y$13$GyFd0cLsWEqsoY31QSynBexJhzntmrB6yGu.Tk2kTsSsq09uybWwC', NULL, 'test@gmail.com', 2, 1, NULL),
+(16, 'mof11', 'J9pL0T5YDbPSK7mn0O0FRYndbFFxAgEX', '$2y$13$O4Hid6PLW2BGi.Y4IlX2c.XBVWk.SPul8pWrD6XgYxxQgRXtRHdpC', NULL, 'test@gmail.com', 2, 1, NULL),
+(17, 'mof12', '2b1-_u4Gb-BcDIlQTwwxOFSXypfeLuMP', '$2y$13$ffgOz/IhD8Jb2r0vX/Z44uA9u0QP2aRDlxdxokeVdK18z76yPo7RO', NULL, 'personalDataModel@ya.ru', 2, 1, NULL),
+(18, 'mof17', 'ecuUkIjIbI-a_JL3dk5clnLTBu6NMPxm', '$2y$13$Wqc8FH7coO.n/iyc/l4nHecWTJlQQujSFcnBeX1n7MhwmcsvPZ00m', NULL, 'test@mail.ru', 2, 1, NULL),
+(20, 'mof18', 'vLNM1wxWKgQN27Ggot6mt2i08QxEI1dk', '$2y$13$LcGAfRrqIZDUwtdECiOKreh5XUAL106odA5Zj89sd034r3WJxdvBe', NULL, 'vasya@ya.ru', 2, 1, NULL),
+(21, 'test36', 'ucDnNXLbL4cqo6EEezyEeUoC37NuU47n', '$2y$13$g00nLVE8.hcc1yAXCJeO.uzaTouLi4QxGh0YSDP8WMFnxKovaMEWO', NULL, 'test36@mail.ru', 94, 1, NULL),
+(22, 'test37', '0hRs_b4To10q9QejQ3wS0ATzNMUKmSHy', '$2y$13$27YSO6O3fFH62.S2hIPWHuwuYzVyMfLx1iVex.oB5oJKvrd2I.Gfa', NULL, 'test37@mail.ru', 97, 1, NULL),
+(23, 'test38', 'eJWSGRi2nyz9wPviMJw0lH1ixy5IrtMi', '$2y$13$54dopM1dbO6totckC8dtF.akY7Wr6XBWBx47KFU/rUm2cjt6HvmSO', NULL, 'vitashev@bk.ru', 98, 1, NULL),
+(24, 'test385', 'ODBf-XUPupYGk4iss935XhIECg-nbwok', '$2y$13$xaKAJKmtQveX.TAIYmBun.PY60neU.6v1cfKz2Ujq59B/Bne3ZE/G', NULL, 'rerse@ya.ri', 101, 1, NULL),
+(25, 'user4', 'VYNlikVL5ZSiCPZp3XL6NZ_nr4cl9Pr3', '$2y$13$ZXQ6T/TwSILVwPqTvPU3.uour0NolMMiVxE0jtuXAknR9hW7jieue', NULL, 'registerresource@gmail.com', 107, 2, NULL),
+(26, 'user5', 'AE5fW3PCbNY3D5jGAtAiAGXd0ezMdy-q', '$2y$13$KuiNKwLYUfFdmvzfDhrBiuhiPADovcohyE72peEoaven2EsohU2wK', NULL, 'registerresource@gmail.com', 108, 2, NULL),
+(27, 'grgrgrt', 'Fxl0xfdMGVrzpPj8c1_uNtAwAAf5t90T', '$2y$13$pddF4JoxuVGVm.gVWl.KJ.HpBYzvE4s4Fbwv9CUJUqHUzMgu3gF8.', NULL, 'gtrgrt@ya.ru', 109, 2, NULL),
+(28, 'username1', 'kq1OSpQweIhZ3kfF5f6fAM2_kM9H5h3E', '$2y$13$EDFwkXrlujw3YdzlOG708up.2piJ5aN8sduhaTKYF0tpeeFiQ2Iqu', NULL, 'registerresource@gmail.com', 112, 2, NULL),
+(29, 'registrar', 'nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', NULL, 'test69@mail.ru', 113, 2, NULL),
+(30, 'gith', 'r9ZSVEms7lozWO7Guo_K3ZiyaxRyQD3M', '$2y$13$/01guLVgaBoUExQTjJiCH.yOgoyIje7RWjsC3Iis1iQaevJxiEZMG', NULL, 'gith@gmail.com', 114, 2, NULL),
+(31, 'first_commissioner', 'mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY', '$2y$13$BlX7rTSKcUaluomULVXgRec/1H.y2yJG.K7jSXZArCq4OkzhJ9S/y', NULL, 'first_commissioner@mail.ru', 115, 4, 1),
+(38, 'second_commissioner', 'mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY', '$2y$13$BlX7rTSKcUaluomULVXgRec/1H.y2yJG.K7jSXZArCq4OkzhJ9S/y', NULL, 'second_commissioner@mail.ru', 116, 4, 2),
+(40, 'third_commissioner', 'mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY', '$2y$13$BlX7rTSKcUaluomULVXgRec/1H.y2yJG.K7jSXZArCq4OkzhJ9S/y', NULL, 'third_commissioner@mail.ru', 117, 4, 3);
 
 --
 -- Обмеження зовнішнього ключа збережених таблиць
@@ -487,14 +471,7 @@ ALTER TABLE `attribute_class_view`
 -- Обмеження зовнішнього ключа таблиці `community`
 --
 ALTER TABLE `community`
-  ADD CONSTRAINT `fk_community_user` FOREIGN KEY (`commissioner_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Обмеження зовнішнього ключа таблиці `membership`
---
-ALTER TABLE `membership`
-  ADD CONSTRAINT `fk_membership_community` FOREIGN KEY (`community_id`) REFERENCES `community` (`community_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_membership_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_commissioner_user` FOREIGN KEY (`commissioner_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Обмеження зовнішнього ключа таблиці `operation`
@@ -520,6 +497,7 @@ ALTER TABLE `resource`
 -- Обмеження зовнішнього ключа таблиці `user`
 --
 ALTER TABLE `user`
+  ADD CONSTRAINT `fk_user_community` FOREIGN KEY (`community_id`) REFERENCES `community` (`community_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`user_data_id`) REFERENCES `personal_data` (`personal_data_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 

@@ -41,6 +41,7 @@ $config = [
                     'POST restorepass' => 'restorepass',
                     'POST changepass' => 'changepass',
                     'GET logout' => 'logout',
+                    'GET show' => 'show',
                     'GET {id}/export' => 'export',
                     'GET getregisterkey' => 'getregisterkey',
                     'GET getresourcebycoordinate' => 'getresourcebycoordinate',
