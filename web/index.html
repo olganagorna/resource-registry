@@ -45,6 +45,7 @@
                 <li ng-if="currentUser.role === 'registrar' "><a href="resource/index">РЕСУРСИ</a></li>
                 <li ng-if="currentUser.role === 'registrar'"><a href="site/logs">ЖУРНАЛ</a></li>
                 <li ng-if="currentUser.role === 'registrar' "><a href="resource/search">ПОШУК</a></li>
+                <li ng-if="currentUser.role === 'registrar' "><a href="resource/community">ГРОМАДИ</a></li>
 
             </ul> 
 
@@ -144,8 +145,9 @@
         <script src="controllers/registration_controller.js"></script>
         <script src="controllers/resource_log_controller.js"></script>
         <script src="controllers/extended_search_controller.js"></script>
-
-
+        <script src="controllers/community_controller.js"></script>
+        <script src="controllers/commissioner_controller.js"></script>
+        
         <script src="classes/map_coordinates_div_class.js"></script>
 
         <script src="directives/map_directive.js"></script>
