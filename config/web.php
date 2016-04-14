@@ -29,9 +29,9 @@ $config = [
             'rules' => [
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' => ['user', 'resource', 'user_role_view',
+                    'controller' => ['user', 'resource', 'admin','user_role_view',
                         'resource_class', 'resource_attribute',
-                        'resource', 'personal_data', 'parameter',
+                        'personal_data', 'parameter',
                         'operation_type', 'operation', 'attribute_class_view', 'search'
                     ], 'extraPatterns' => [
                     'GET search' => 'search',
@@ -43,6 +43,7 @@ $config = [
                     'GET {id}/export' => 'export',
                     'GET getregisterkey' => 'getregisterkey',
                     'GET getresourcebycoordinate' => 'getresourcebycoordinate',
+                    'GET get_personal_data' => 'get_personal_data'
                     ],
                 ],
             ],
