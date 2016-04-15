@@ -1,4 +1,4 @@
-
+(function(){
     'use strict';
 
     angular
@@ -11,7 +11,7 @@
         $scope.list_users = [];
         
         (function (){
-            return $http.get('rest.php/personal_datas')
+            return $http.get('rest.php/admins/admin')
 
                 .then(successHandler)
                 .catch(errorHandler);
@@ -25,26 +25,18 @@
         })();
 
         $scope.sort = function(sort_param){
-            console.log($scope.list_users);
+            // console.log($scope.list_users);
 
             var orderBy = $filter('orderBy');
             $scope.order = function(predicate) {
-                console.log(predicate);
-                $scope.predicate = predicate;
+                // console.log(predicate);
+                // $scope.predicate = predicate;
                 $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : true;
                 $scope.list_users = orderBy($scope.list_users, predicate, $scope.reverse);
-                console.log("Sorted"+$scope.list_users);
+                // console.log("Sorted"+$scope.list_users);
             };
             $scope.order(sort_param, true);
         }
-        $scope.filter = function(filter_param){
-            var filterBy = $filter('filterBy');
-        }
-        
-
-
-
-
     }
 
-
+})();
