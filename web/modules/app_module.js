@@ -63,7 +63,12 @@
             templateUrl: 'views/site/registration.html',
             controllerAs: 'vm'
         })
-        .when('/site/home', {
+        .when('/site/community_add', {
+            controller: 'CommunityAddCtrl',
+            templateUrl: 'views/site/community_add.html',
+            controllerAs: 'vm'
+        })
+	.when('/site/home', {
             controller: 'IndexCtrl',
             controllerAs: 'pp',
             templateUrl: 'views/site/personal_page.html'
@@ -72,6 +77,21 @@
             controller: 'LoginController',
             templateUrl: 'views/site/restorepassword.html',
             controllerAs: 'vm'
+        })
+        .when('/resource/community', {
+            controller: 'UsersCommunity',
+            templateUrl: 'views/site/community.html',
+            controllerAs: 'usersCtrl'
+        })
+        .when('/community/update/:communityId', {
+            controller: 'CommissionerCtrl',
+            templateUrl: 'views/site/set_commissioner.html',
+            controllerAs: 'commissCtrl'
+        })
+        .when('/community/communityadd', {
+            controller: 'communityAddCtrl',
+            templateUrl: 'views/site/community_add.html',
+            controllerAs: 'comAdd'
         })
         .otherwise({
             redirectTo: '/site/login'
