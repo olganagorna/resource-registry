@@ -29,35 +29,28 @@
     };
 
     comAdd.addCommunity = function(){
-      var dataMain = {
-        community_name: "",
-        community_num: "",
-        commissioner_id: "",
-        community_additions: ""
-      }
+      var dataMain = new Object();
 
       dataMain.community_name = comAdd.community_name;
-      dataMain.community.community_num = comAdd.community_num;
-      dataMain.community.commissioner_id = comAdd.commissioner_id;
-      dataMain.community.community_additions = comAdd.community_additions;
+      dataMain.community_num = comAdd.community_num;
+      dataMain.commissioner_id = comAdd.commissioner_id;
+      dataMain.community_additions = comAdd.community_additions;
 
-      comAdd.send = function () {
-        var post2 = $http.post('rest.php/communities/addcomm', dataMain)
+      (function() {
+        var post = $http.post('rest.php/communities/addcomm', JSON.stringify(dataMain))
           .then(successHandler)
           .catch(errorHandler);
         function successHandler(result) {
           console.log(result);
-          // localStorage.setItem('username',comAdd.username);
-          alert('Реєстрація пройшла успішно!');
+          console.log('Реєстрація пройшла успішно!');
           $location.path('/resource/community');
 
         }
         function errorHandler(result){
-          alert(result.data.message);
-          console.log(result);
+          console.log("Error:"+result.data.message);
         }
-      };
-      comAdd.send();
+      })();
+      
     }
   }
 

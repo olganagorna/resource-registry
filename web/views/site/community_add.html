@@ -2,7 +2,7 @@
     <div class="jumbotron col-md-6 md-login">
 
         <h2>Реєстрація нової громади</h2>
-        <form name="form" role="form">
+        <form name="form" role="form" ng-submit="comAdd.addCommunity()">
             <div class="form-group" >
                 <label for="community_name">Назва громади</label>
                 <input type="text" name="community_name" id="community_name" class="form-control" ng-model="comAdd.community_name" required />
@@ -27,7 +27,7 @@
             </div>
 
             <div class="form-actions">
-                <button type="submit" ng-click="comAdd.addCommunity()" class="btn btn-primary">Зареєструвати</button>
+                <button type="submit"  class="btn btn-primary">Зареєструвати</button>
                 <a href="site/login" class="btn btn-link">Відмінити</a>
             </div>
         </form>
