@@ -2,9 +2,9 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=127.2.238.2:3306;dbname=resre',
-    'username' => 'adminXTUqZHe',
-    'password' => '3M98vFIeVJrU',
+    'dsn' => 'mysql:host=127.0.0.1;dbname=resre',
+    'username' => 'root',
+    'password' => '070411',
     'charset' => 'utf8',
 ];
 
