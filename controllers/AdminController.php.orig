@@ -1,6 +1,6 @@
 <?php
 namespace app\controllers;
-
+<<<<<<< HEAD
 use yii\rest\ActiveController;
 use yii\data\ActiveDataProvider;
 use app\models\User;
@@ -12,9 +12,29 @@ class AdminController extends ActiveController {
 		$request= \Yii::$app->request->get();
 		$admin = User::find()
 		->select(['username', 'last_name','first_name','name'])
+		->innerJoinWith('personalData')->innerJoinWith('someRole')
+		// ->andFilterWhere(['like', $request['field'], $request['value']])
+		// ->orderBy($request['column'])
+=======
+
+use yii\rest\ActiveController;
+use yii\data\ActiveDataProvider;
+use app\models\Admin;
+
+class AdminController extends ActiveController {
+
+	public $modelClass = 'app\models\Admin';
+	
+	public function actionAdmin() {
+
+		$request= \Yii::$app->request->get();
+
+		$admin = Admin::find()
+		->select(['username', 'last_name','first_name','name'])
 		->innerJoinWith('personalData')->innerJoinWith('role')
 		->andFilterWhere(['like', $request['field'], $request['value']])
 		->orderBy($request['column'])
+>>>>>>> 367cac48199d032e067d8f5a0a42301d0575b350
 		->asArray();
 		
 		$dataProvider = new ActiveDataProvider([
@@ -28,4 +48,8 @@ class AdminController extends ActiveController {
 		
 	}
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 367cac48199d032e067d8f5a0a42301d0575b350
 ?>

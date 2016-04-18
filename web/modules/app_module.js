@@ -73,6 +73,11 @@
             controllerAs: 'pp',
             templateUrl: 'views/site/personal_page.html'
         })
+        .when('/site/users', {
+            controller: 'UsersController',
+            controllerAs: 'list',
+            templateUrl: 'views/site/users.html'
+        })
         .when('/site/restorepassword', {
             controller: 'LoginController',
             templateUrl: 'views/site/restorepassword.html',

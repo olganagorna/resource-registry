@@ -123,18 +123,10 @@ class UserController extends ActiveController
         return true;
     }
     public function actionGetuser(){
+<<<<<<< HEAD
         // Get user from DB
-        if (!$post = \Yii::$app->getRequest()->getBodyParams()) {
-            throw new \yii\web\HttpException(400, 'Дані не отримані');
-        }
-        $model = User::getUserByUserName($post['username']);
-        if (!$model->username){
-            throw new \yii\web\HttpException(400, 'Даного користувача не існує');
-        }
-        $model-> save();
-        return $model;
-    }
-    public function actionGetuser(){
+=======
+>>>>>>> 367cac48199d032e067d8f5a0a42301d0575b350
         if (!$post = \Yii::$app->getRequest()->getBodyParams()) {
             throw new \yii\web\HttpException(400, 'Дані не отримані');
         }

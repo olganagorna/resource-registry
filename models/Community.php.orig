@@ -1,9 +1,9 @@
 <?php
+<<<<<<< HEAD
 
 namespace app\models;
 
 use Yii;
-use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "community".
@@ -65,7 +65,7 @@ class Community extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function findUsers()
+    public function getUsers()
     {
         return $this->hasMany(User::className(), ['community_id' => 'community_id']);
     }
@@ -74,8 +74,31 @@ class Community extends \yii\db\ActiveRecord
         //find Community in DB by Name
         return static::findOne(['name' => $community_name]);
     }
-    public function getUsers()
+}
+=======
+namespace app\models;
+
+use yii\db\ActiveRecord;
+
+class Community extends ActiveRecord
+{
+	public static function tableName()
+	{
+		return 'community';
+	}
+	public function attributeLabels()
+	{
+		return [
+			'community_id' => 'Community ID',
+			'name' => 'Name',
+			'prefix' => 'Prefix',
+			'commissioner_id' => 'Commissioner ID',
+			'notes' => 'Notes'
+		];
+	}
+	public function getUsers()
 	{
 		return $this->hasOne(User::className(), ['user_id' => 'commissioner_id']);
 	}
 }
+>>>>>>> 367cac48199d032e067d8f5a0a42301d0575b350
