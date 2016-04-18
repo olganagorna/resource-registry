@@ -24,15 +24,17 @@ class User extends ActiveRecord implements IdentityInterface
     public function fields(){
         return [
             'id',
-            'username'
+            'username',
+            'user_data_id'
         ];
     }
     public static function findIdentity($id)
     {
         return static::findOne(['id' => $id]);
     }
-     public static function findUserById($user_id)
+    public static function findUserById($user_id)
     {
+        // find user by id
         return static::findOne(['user_id' => $user_id]);
     }
     public static function findIdentityByAccessToken($token, $type = null)
@@ -66,10 +68,10 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->getPrimaryKey();
     }
-    public function getRole()
-    {
-        return $this->role_id;
-    }
+    // public function getRole()
+    // {
+    //     return $this->role_id;
+    // }
     public function getUserDataID()
     {
         return $this->user_data_id;
@@ -80,6 +82,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
     public static function getUserByUserName($username)
     {
+        // Get user by username
        return static::findOne(['username' => $username]);
     }
     public function validateAuthKey($authKey)
@@ -106,4 +109,10 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+    public function getSomeRole() {
+        return $this->hasOne(Role::className(), ['role_id' => 'role_id']);
+    }
+    public function getPersonalData() {
+        return $this->hasOne(PersonalData::className(), ['personal_data_id' => 'user_data_id']);
+    } 
 }

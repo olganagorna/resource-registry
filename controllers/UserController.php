@@ -17,12 +17,6 @@ class UserController extends ActiveController
     {
         $modelLoginFrom = new LoginForm();
 
-
-
-
-
-
-
         if ($modelLoginFrom->load(\Yii::$app->getRequest()->getBodyParams(), '') && $modelLoginFrom->login()) {
             $post = \Yii::$app->getRequest()->getBodyParams();
 
@@ -129,6 +123,7 @@ class UserController extends ActiveController
         return true;
     }
     public function actionGetuser(){
+        // Get user from DB
         if (!$post = \Yii::$app->getRequest()->getBodyParams()) {
             throw new \yii\web\HttpException(400, 'Дані не отримані');
         }

@@ -32,7 +32,7 @@ $config = [
                     'controller' => ['user', 'resource', 'user_role_view',
                         'resource_class', 'resource_attribute',
                         'resource', 'personal_data', 'parameter', 'community',
-                        'operation_type', 'operation', 'attribute_class_view', 'search'
+                        'operation_type', 'operation', 'attribute_class_view', 'search', 'admin'
                     ], 'extraPatterns' => [
                     'GET search' => 'search',
                     'POST login' => 'login',
@@ -44,7 +44,8 @@ $config = [
                     'GET getregisterkey' => 'getregisterkey',
                     'GET getresourcebycoordinate' => 'getresourcebycoordinate',
                     'POST getuser' => 'getuser',
-                    'POST addcomm' => 'addcomm'
+                    'POST addcomm' => 'addcomm',
+                    'GET admin' => 'admin'
                     ],
                 ],
             ],

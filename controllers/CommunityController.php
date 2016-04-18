@@ -32,6 +32,7 @@ class CommunityController extends ActiveController
 
 	public function actionAddcomm()
     {
+        // add Community controller
         if (!$post = \Yii::$app->getRequest()->getBodyParams()) {
             throw new \yii\web\HttpException(400, 'Дані не отримані');
         }
@@ -57,25 +58,9 @@ class CommunityController extends ActiveController
             $userModel->role_id = 4;
             $userModel->community_id = $communityModel->community_id;
             $userModel->save();
-            //$userModel->username = $post['username'];  
-            //$userModel->role_id = 4;
-            //$validator = new \yii\validators\StringValidator([
-            //     'min' => 3,
-            //     'max' => 12,
-            //     'tooShort' => 'Пароль повинен містити мінімум {min, number} символи',
-            //     'tooLong' => 'Пароль повинен містити не більше {max, number} символів'
-            // ]);
-            // if (!$validator->validate($password, $error)) {
-            //     throw new \yii\web\HttpException(422, $error);
-            // }
-            // if (!$userModel->save()){
-            //     foreach($userModel->errors as $key){
-            //         $errorMessage .= $key[0];
-            //     }
-            //     throw new \yii\web\HttpException(422,$errorMessage);
-            // }
-            $result = "true";
-            return $result;
+            // Add validation for data here
+    
+            return 'true';
             
         } catch (Exception $e) {
             $transaction->rollBack();

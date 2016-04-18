@@ -10,6 +10,7 @@
     var  comAdd = this;
 
     comAdd.getUserFromDb = function() {
+      // search user in database
       var data = {
       username: comAdd.username,
       };
@@ -17,8 +18,6 @@
         .then(successHandler)
         .catch(errorHandler);
       function successHandler(result) {
-        console.log(result.data.username);
-        console.log(result);
         comAdd.findUser = 'юзер "'+result.data.username+'" існує';
         comAdd.commissioner_id = result.data.id;
       }
@@ -29,6 +28,7 @@
     };
 
     comAdd.addCommunity = function(){
+      // add new community controller
       var dataMain = new Object();
 
       dataMain.community_name = comAdd.community_name;
@@ -41,13 +41,12 @@
           .then(successHandler)
           .catch(errorHandler);
         function successHandler(result) {
-          console.log(result);
           console.log('Реєстрація пройшла успішно!');
-          $location.path('/resource/community');
+          //window.location.href = '/'; //community list
 
         }
         function errorHandler(result){
-          console.log("Error:"+result.data.message);
+          console.log("Error:"+result);
         }
       })();
       

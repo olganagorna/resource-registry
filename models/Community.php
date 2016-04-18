@@ -70,6 +70,7 @@ class Community extends \yii\db\ActiveRecord
     }
     public static function findByCommunityName($community_name)
     {
+        //find Community in DB by Name
         return static::findOne(['name' => $community_name]);
     }
 }
