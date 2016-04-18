@@ -14,7 +14,7 @@ class AdminController extends ActiveController {
 		$request= \Yii::$app->request->get();
 
 		$admin = Admin::find()
-		->select(['username', 'last_name','first_name','name'])
+		->select(['user_id','username', 'last_name','first_name','name'])
 		->innerJoinWith('personalData')->innerJoinWith('role')
 		->andFilterWhere(['like', $request['field'], $request['value']])
 		->orderBy($request['column'])
