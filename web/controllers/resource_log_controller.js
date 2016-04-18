@@ -162,7 +162,6 @@
 
         $scope.getPages = function(pageCount) {
             return PaginationService.getPages(pageCount);
-            alert(pageCount);
         };
 
         $scope.switchPage = function(index){
