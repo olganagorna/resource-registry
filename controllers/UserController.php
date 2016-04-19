@@ -8,10 +8,13 @@ use app\models\LoginForm;
 use app\models\Role;
 use app\models\PersonalData;
 use yii\web\Session;
+use yii\data\ActiveDataProvider;
 
 class UserController extends ActiveController
 {
     public $modelClass = 'app\models\User';
+    //for pagination
+    public $serializer = [ 'class' => 'yii\rest\Serializer', 'collectionEnvelope' => 'items'];
 
     public function actionLogin()
     {
@@ -169,5 +172,26 @@ class UserController extends ActiveController
         \Yii::$app->session->get('role');
         \Yii::$app->session->destroy();
         return 'Вихід здійснено';
+    }
+    public function actionAssignrole() {
+
+        $request= \Yii::$app->request->get();
+
+        $getdata = User::find()
+        ->select(['user_id','username', 'last_name','first_name','name'])
+        ->innerJoinWith('personalData')->innerJoinWith('userRole')
+        ->andFilterWhere(['like', $request['field'], $request['value']])
+        ->orderBy($request['column'])
+        ->asArray();
+        
+        $dataProvider = new ActiveDataProvider([
+            'query' => $getdata,
+            'pagination' => [
+                'pageSize' => 4,
+                'pageParam' => 'page',
+            ],
+        ]);
+        return $dataProvider;
+        
     }
 }
