@@ -18,12 +18,12 @@
         .then(successHandler)
         .catch(errorHandler);
       function successHandler(result) {
-        comAdd.findUser = 'юзер "'+result.data.username+'" існує';
+        comAdd.findUser = 'користувач "'+result.data.username+'" існує';
         comAdd.commissioner_id = result.data.id;
       }
       function errorHandler(result){
         console.log("Error"+result);
-        comAdd.findUser = 'юзер "'+comAdd.username+'" відсутній у базі';
+        comAdd.findUser = 'користувач "'+comAdd.username+'" відсутній у базі';
       }
     };
 
