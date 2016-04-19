@@ -33,7 +33,7 @@ $config = [
                         'resource_class', 'resource_attribute',
                         'personal_data', 'parameter',
                         'operation_type', 'operation', 'attribute_class_view', 'search',
-                        'community', 'admin'
+                        'community'
                     ], 'extraPatterns' => [
                     'GET search' => 'search',
                     'POST login' => 'login',
