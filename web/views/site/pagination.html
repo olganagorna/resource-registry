@@ -1,0 +1,20 @@
+<ul class="pagination pagination-sm">
+    <li ng-if="list_users._links.first">
+        <a href="" ng-click="setPage(list_users._links.first.href, 'first')">&laquo;</a>
+    </li>
+    <li ng-if="list_users._links.prev">
+        <a href="" ng-click="setPage(list_users._links.prev.href, 'prev')" >‹</a>
+    </li>
+
+    <li ng-repeat="page in getPages(list_users._meta.pageCount) track by $index"
+        ng-click="switchPage(page)" ng-class="{active: page == currentPage}"
+        ng-if="page">
+        <span>{{page}}</span>
+    </li>
+    <li ng-if="list_users._links.next">
+        <a href="" ng-click="setPage(list_users._links.next.href, 'next')" >›</a>
+    </li>
+    <li ng-if="list_users._links.last">
+        <a href="" ng-click="setPage(list_users._links.last.href, 'last')">&raquo;</a>
+    </li>
+</ul>
