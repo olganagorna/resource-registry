@@ -12,6 +12,17 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return 'user';
     }
+
+    public function getUserRole() {
+
+        return $this->hasOne(Role::className(), ['role_id' => 'role_id']);
+    }
+
+    public function getPersonalData() {
+
+        return $this->hasOne(PersonalData::className(), ['personal_data_id' => 'user_data_id']);
+    }
+
     public function rules()
     {
         return [
@@ -27,6 +38,7 @@ class User extends ActiveRecord implements IdentityInterface
             'username'
         ];
     }
+
     public static function findIdentity($id)
     {
         return static::findOne(['id' => $id]);

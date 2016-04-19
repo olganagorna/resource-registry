@@ -9,7 +9,7 @@
             parametersQuery: 'parameters',
             operationsQuery: 'operations',
             personal_datasQuery: 'personal_datas',
-            usersQuery: 'admins/admin',
+            usersQuery: 'users/assignrole',
             paramsNumber: 6,
             perPage: 4,
             pageRange: 7,

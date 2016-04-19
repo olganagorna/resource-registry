@@ -11,7 +11,7 @@
         $scope.list_users = [];
         
         (function (){
-            return $http.get('rest.php/admins/admin')
+            return $http.get('rest.php/users/assignrole')
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
