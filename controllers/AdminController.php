@@ -8,7 +8,8 @@ use app\models\Admin;
 class AdminController extends ActiveController {
 
 	public $modelClass = 'app\models\Admin';
-	
+	//for pagination
+	public $serializer = [ 'class' => 'yii\rest\Serializer', 'collectionEnvelope' => 'items']; 
 	public function actionAdmin() {
 
 		$request= \Yii::$app->request->get();
@@ -23,8 +24,8 @@ class AdminController extends ActiveController {
 		$dataProvider = new ActiveDataProvider([
 			'query' => $admin,
 			'pagination' => [
-				'pageSize' => 20,
-				//'pageParam' => $get['page'],
+				'pageSize' => 4,
+				'pageParam' => 'page',
 			],
 		]);
 		return $dataProvider;
