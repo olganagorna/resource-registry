@@ -13,8 +13,8 @@ class AdminController extends ActiveController {
 		$admin = User::find()
 		->select(['username', 'last_name','first_name','name'])
 		->innerJoinWith('personalData')->innerJoinWith('role')
-		->andFilterWhere(['like', $request['field'], $request['value']])
-		->orderBy($request['column'])
+		// ->andFilterWhere(['like', $request['field'], $request['value']])
+		// ->orderBy($request['column'])
 		->asArray();
 		
 		$dataProvider = new ActiveDataProvider([
