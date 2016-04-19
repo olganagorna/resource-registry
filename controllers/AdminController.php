@@ -1,15 +1,13 @@
 <?php
 namespace app\controllers;
 
-use yii\rest\ActiveController;
+use app\controllers\AppController;
 use yii\data\ActiveDataProvider;
 use app\models\Admin;
 
-class AdminController extends ActiveController {
+class AdminController extends AppController {
 
 	public $modelClass = 'app\models\Admin';
-	//for pagination
-	public $serializer = [ 'class' => 'yii\rest\Serializer', 'collectionEnvelope' => 'items']; 
 	public function actionAdmin() {
 
 		$request= \Yii::$app->request->get();
