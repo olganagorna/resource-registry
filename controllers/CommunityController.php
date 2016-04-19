@@ -8,24 +8,32 @@ use app\models\Community;
 class CommunityController extends ActiveController
 {
 	public $modelClass = 'app\models\Community';
+	public $serializer = [ 'class' => 'yii\rest\Serializer', 'collectionEnvelope' => 'items'];
+	
 	public function actionShow()
 	{
 		$request= \Yii::$app->request->get();
-		//$community = Community::find()->all();
-		$community = Community::find()
-		->select(['name', 'prefix', 'username'])
-		->innerJoinWith('users')
-		->andFilterWhere(['like', $request['field'], $request['value']])
-		->orderBy($request['column'])
-		->asArray();
-		//->all();
-		//return $community;
+		$community = Community::find();
+		
+		if(isset($request['value'])){
+			$community->select(['name', 'prefix', 'username'])
+			->innerJoinWith('users')
+			->andFilterWhere(['like', 'name', $request['value']])
+			->asArray();	
+		}else{
+			$community->select(['name', 'prefix', 'username'])
+			->innerJoinWith('users')
+			->asArray();
+		}
+
 		$dataProvider = new ActiveDataProvider([
 			'query' => $community,
 			'pagination' => [
-				'pageSize' => 3,
+				'pageSize' => 20,
+				'pageParam' => 'page',
 			],
 		]);
+		
 		return $dataProvider;
 	}
 }
