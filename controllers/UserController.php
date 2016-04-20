@@ -170,7 +170,7 @@ class UserController extends AppController
         $request= \Yii::$app->request->get();
 
         $getdata = User::find()
-        ->select(['user_id','username','last_name','first_name','name'])
+        ->select(['user_id','username','last_name','first_name','name as role_name'])
         ->innerJoinWith('personalData')->innerJoinWith('userRole')
         ->andFilterWhere(['like', $request['field'], $request['value']])
         ->orderBy($request['column'])
