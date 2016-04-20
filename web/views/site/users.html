@@ -14,11 +14,12 @@
 		            		<button ng-click="sort('first_name')" class="glyphicon glyphicon-sort"></button>
 		            	</h4>
 		            </div>
-		            <select class="col-md-3 text-center">
-		            	<option ng-click="idFilter = {name: admin}">Адміністратор</option>
-		            	<option ng-click="idFilter = {name: registrar}">Реєстратор</option>
-		            	<option ng-click="idFilter = {name: user}">Користувач</option>
-		            	<option ng-click="idFilter = {name: commisioner}">Коміссіонер</option>
+		            <select ng-model="roleSearch" ng-change="searchRole(roleSearch)" class="col-md-3 text-center">
+						<option value="">Всі користувачі</option>
+		            	<option value="admin">Адміністратор</option>
+		            	<option value="registrar">Реєстратор</option>
+		            	<option value="user">Користувач</option>
+		            	<option value="comissioner">Коміссіонер</option>
 		            </select>
 		        </li>
 			    <li class="list-group-item shadow-z-1 md-list row" ng-repeat="data in list_users.items | filter:idFilter">

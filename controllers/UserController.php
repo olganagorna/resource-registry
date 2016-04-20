@@ -180,7 +180,7 @@ class UserController extends ActiveController
         $getdata = User::find()
         ->select(['user_id','username', 'last_name','first_name','name'])
         ->innerJoinWith('personalData')->innerJoinWith('userRole')
-        ->andFilterWhere(['like', $request['field'], $request['value']])
+        ->andFilterWhere(['like', 'name', $request['value']])
         ->orderBy($request['column'])
         ->asArray();
         

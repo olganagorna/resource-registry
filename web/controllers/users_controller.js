@@ -9,6 +9,8 @@
     function UsersController(RestService, $location, constant, $filter , $rootScope, $scope, $http, PaginationService) {
 
         $scope.list_users = [];
+        $scope.roleSearch;
+        $scope.searchingDone;
         
         (function (){
             return $http.get('rest.php/users/assignrole')
@@ -42,17 +44,31 @@
         };
 
         $scope.switchPage = function(index){
+            // console.log('req1 ' + request);
             if($scope.request){
                 PaginationService.switchPage(index, constant.usersQuery + '/search?' + buildQuery($scope.request)+ '&')
                     .then(function(data){
                         $scope.list_users = data.data;
                         $scope.currentPage = PaginationService.currentPage;
                 });
-            }else {
+            }  else if ($scope.searchingDone) {
+                console.log("first");
+                PaginationService.switchPage(index, 'users/assignrole?value=' + $scope.searchingDone)
+                    .then(function(data){
+                        $scope.list_users = data.data;
+                        $scope.currentPage = PaginationService.currentPage;
+
+
+                });
+            } else {
+ 
+                console.log("second");
                 PaginationService.switchPage(index, constant.usersQuery + '?')
                     .then(function(data){
                         $scope.list_users = data.data;
                         $scope.currentPage = PaginationService.currentPage;
+
+
                 });
             }
         };
@@ -80,6 +96,19 @@
             };
             $scope.order(sort_param, true);
         }
+
+        $scope.searchRole = function(role_name) {
+           $scope.searchingDone = role_name;
+            $http.get('http://rr.com/rest.php/users/assignrole?value='+ role_name)
+                .then(successHandler)
+                .catch(errorHandler);
+            function successHandler(data) {
+                $scope.list_users = data.data;
+            }
+            function errorHandler(data){
+                console.log("Can't reload list!");
+            }
+        };
     }
 
 })();
