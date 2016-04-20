@@ -2636,3 +2636,2308 @@ $_SERVER = [
     'REQUEST_TIME_FLOAT' => 1461095353.833
     'REQUEST_TIME' => 1461095353
 ]
+2016-04-20 15:21:38 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][error][yii\base\UnknownMethodException] exception 'yii\base\UnknownMethodException' with message 'Calling unknown method: app\models\User::getRole()' in /var/www/resource.io/vendor/yiisoft/yii2/base/Component.php:285
+Stack trace:
+#0 /var/www/resource.io/controllers/UserController.php(30): yii\base\Component->__call('getRole', Array)
+#1 /var/www/resource.io/controllers/UserController.php(30): app\models\User->getRole()
+#2 [internal function]: app\controllers\UserController->actionLogin()
+#3 /var/www/resource.io/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('login', Array)
+#6 /var/www/resource.io/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('user/login', Array)
+#7 /var/www/resource.io/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#8 /var/www/resource.io/web/rest.php(13): yii\base\Application->run()
+#9 {main}
+2016-04-20 15:21:36 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43432'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165696.829
+    'REQUEST_TIME' => 1461165696
+]
+2016-04-20 15:21:38 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
+
+in /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php:58
+
+Stack trace:
+#0 [internal function]: PDO->__sleep()
+#1 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
+#2 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
+#3 /var/www/resource.io/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
+#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\base\UnknownMethodException))
+#7 {main}
+2016-04-20 15:21:36 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43432'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165696.829
+    'REQUEST_TIME' => 1461165696
+]
+2016-04-20 15:21:42 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][error][yii\base\UnknownMethodException] exception 'yii\base\UnknownMethodException' with message 'Calling unknown method: app\models\User::getRole()' in /var/www/resource.io/vendor/yiisoft/yii2/base/Component.php:285
+Stack trace:
+#0 /var/www/resource.io/controllers/UserController.php(30): yii\base\Component->__call('getRole', Array)
+#1 /var/www/resource.io/controllers/UserController.php(30): app\models\User->getRole()
+#2 [internal function]: app\controllers\UserController->actionLogin()
+#3 /var/www/resource.io/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('login', Array)
+#6 /var/www/resource.io/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('user/login', Array)
+#7 /var/www/resource.io/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#8 /var/www/resource.io/web/rest.php(13): yii\base\Application->run()
+#9 {main}
+2016-04-20 15:21:42 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43436'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165702.161
+    'REQUEST_TIME' => 1461165702
+]
+2016-04-20 15:21:42 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
+
+in /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php:58
+
+Stack trace:
+#0 [internal function]: PDO->__sleep()
+#1 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
+#2 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
+#3 /var/www/resource.io/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
+#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\base\UnknownMethodException))
+#7 {main}
+2016-04-20 15:21:42 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43436'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165702.161
+    'REQUEST_TIME' => 1461165702
+]
+2016-04-20 15:22:29 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][error][yii\base\UnknownMethodException] exception 'yii\base\UnknownMethodException' with message 'Calling unknown method: app\models\User::getRole()' in /var/www/resource.io/vendor/yiisoft/yii2/base/Component.php:285
+Stack trace:
+#0 /var/www/resource.io/controllers/UserController.php(30): yii\base\Component->__call('getRole', Array)
+#1 /var/www/resource.io/controllers/UserController.php(30): app\models\User->getRole()
+#2 [internal function]: app\controllers\UserController->actionLogin()
+#3 /var/www/resource.io/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('login', Array)
+#6 /var/www/resource.io/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('user/login', Array)
+#7 /var/www/resource.io/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#8 /var/www/resource.io/web/rest.php(13): yii\base\Application->run()
+#9 {main}
+2016-04-20 15:22:29 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43446'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165749.276
+    'REQUEST_TIME' => 1461165749
+]
+2016-04-20 15:22:29 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
+
+in /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php:58
+
+Stack trace:
+#0 [internal function]: PDO->__sleep()
+#1 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
+#2 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
+#3 /var/www/resource.io/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
+#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\base\UnknownMethodException))
+#7 {main}
+2016-04-20 15:22:29 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43446'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165749.276
+    'REQUEST_TIME' => 1461165749
+]
+2016-04-20 15:22:30 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][error][yii\base\UnknownMethodException] exception 'yii\base\UnknownMethodException' with message 'Calling unknown method: app\models\User::getRole()' in /var/www/resource.io/vendor/yiisoft/yii2/base/Component.php:285
+Stack trace:
+#0 /var/www/resource.io/controllers/UserController.php(30): yii\base\Component->__call('getRole', Array)
+#1 /var/www/resource.io/controllers/UserController.php(30): app\models\User->getRole()
+#2 [internal function]: app\controllers\UserController->actionLogin()
+#3 /var/www/resource.io/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('login', Array)
+#6 /var/www/resource.io/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('user/login', Array)
+#7 /var/www/resource.io/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#8 /var/www/resource.io/web/rest.php(13): yii\base\Application->run()
+#9 {main}
+2016-04-20 15:22:30 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43450'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165750.036
+    'REQUEST_TIME' => 1461165750
+]
+2016-04-20 15:22:30 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
+
+in /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php:58
+
+Stack trace:
+#0 [internal function]: PDO->__sleep()
+#1 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
+#2 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
+#3 /var/www/resource.io/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
+#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\base\UnknownMethodException))
+#7 {main}
+2016-04-20 15:22:30 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43450'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165750.036
+    'REQUEST_TIME' => 1461165750
+]
+2016-04-20 15:22:31 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][error][yii\base\UnknownMethodException] exception 'yii\base\UnknownMethodException' with message 'Calling unknown method: app\models\User::getRole()' in /var/www/resource.io/vendor/yiisoft/yii2/base/Component.php:285
+Stack trace:
+#0 /var/www/resource.io/controllers/UserController.php(30): yii\base\Component->__call('getRole', Array)
+#1 /var/www/resource.io/controllers/UserController.php(30): app\models\User->getRole()
+#2 [internal function]: app\controllers\UserController->actionLogin()
+#3 /var/www/resource.io/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('login', Array)
+#6 /var/www/resource.io/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('user/login', Array)
+#7 /var/www/resource.io/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#8 /var/www/resource.io/web/rest.php(13): yii\base\Application->run()
+#9 {main}
+2016-04-20 15:22:30 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43454'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165750.237
+    'REQUEST_TIME' => 1461165750
+]
+2016-04-20 15:22:31 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
+
+in /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php:58
+
+Stack trace:
+#0 [internal function]: PDO->__sleep()
+#1 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
+#2 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
+#3 /var/www/resource.io/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
+#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\base\UnknownMethodException))
+#7 {main}
+2016-04-20 15:22:30 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43454'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165750.237
+    'REQUEST_TIME' => 1461165750
+]
+2016-04-20 15:23:11 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][error][yii\base\UnknownMethodException] exception 'yii\base\UnknownMethodException' with message 'Calling unknown method: app\models\User::getRole()' in /var/www/resource.io/vendor/yiisoft/yii2/base/Component.php:285
+Stack trace:
+#0 /var/www/resource.io/controllers/UserController.php(30): yii\base\Component->__call('getRole', Array)
+#1 /var/www/resource.io/controllers/UserController.php(30): app\models\User->getRole()
+#2 [internal function]: app\controllers\UserController->actionLogin()
+#3 /var/www/resource.io/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('login', Array)
+#6 /var/www/resource.io/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('user/login', Array)
+#7 /var/www/resource.io/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#8 /var/www/resource.io/web/rest.php(13): yii\base\Application->run()
+#9 {main}
+2016-04-20 15:23:10 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43474'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165790.71
+    'REQUEST_TIME' => 1461165790
+]
+2016-04-20 15:23:11 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
+
+in /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php:58
+
+Stack trace:
+#0 [internal function]: PDO->__sleep()
+#1 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
+#2 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
+#3 /var/www/resource.io/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
+#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\base\UnknownMethodException))
+#7 {main}
+2016-04-20 15:23:10 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43474'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165790.71
+    'REQUEST_TIME' => 1461165790
+]
+2016-04-20 15:23:12 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][error][yii\base\UnknownMethodException] exception 'yii\base\UnknownMethodException' with message 'Calling unknown method: app\models\User::getRole()' in /var/www/resource.io/vendor/yiisoft/yii2/base/Component.php:285
+Stack trace:
+#0 /var/www/resource.io/controllers/UserController.php(30): yii\base\Component->__call('getRole', Array)
+#1 /var/www/resource.io/controllers/UserController.php(30): app\models\User->getRole()
+#2 [internal function]: app\controllers\UserController->actionLogin()
+#3 /var/www/resource.io/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('login', Array)
+#6 /var/www/resource.io/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('user/login', Array)
+#7 /var/www/resource.io/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#8 /var/www/resource.io/web/rest.php(13): yii\base\Application->run()
+#9 {main}
+2016-04-20 15:23:11 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43478'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165791.584
+    'REQUEST_TIME' => 1461165791
+]
+2016-04-20 15:23:12 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
+
+in /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php:58
+
+Stack trace:
+#0 [internal function]: PDO->__sleep()
+#1 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
+#2 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
+#3 /var/www/resource.io/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
+#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\base\UnknownMethodException))
+#7 {main}
+2016-04-20 15:23:11 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43478'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165791.584
+    'REQUEST_TIME' => 1461165791
+]
+2016-04-20 15:23:13 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][error][yii\base\UnknownMethodException] exception 'yii\base\UnknownMethodException' with message 'Calling unknown method: app\models\User::getRole()' in /var/www/resource.io/vendor/yiisoft/yii2/base/Component.php:285
+Stack trace:
+#0 /var/www/resource.io/controllers/UserController.php(30): yii\base\Component->__call('getRole', Array)
+#1 /var/www/resource.io/controllers/UserController.php(30): app\models\User->getRole()
+#2 [internal function]: app\controllers\UserController->actionLogin()
+#3 /var/www/resource.io/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('login', Array)
+#6 /var/www/resource.io/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('user/login', Array)
+#7 /var/www/resource.io/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#8 /var/www/resource.io/web/rest.php(13): yii\base\Application->run()
+#9 {main}
+2016-04-20 15:23:11 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43482'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165791.791
+    'REQUEST_TIME' => 1461165791
+]
+2016-04-20 15:23:13 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
+
+in /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php:58
+
+Stack trace:
+#0 [internal function]: PDO->__sleep()
+#1 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
+#2 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
+#3 /var/www/resource.io/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
+#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\base\UnknownMethodException))
+#7 {main}
+2016-04-20 15:23:11 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43482'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165791.791
+    'REQUEST_TIME' => 1461165791
+]
+2016-04-20 15:23:14 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][error][yii\base\UnknownMethodException] exception 'yii\base\UnknownMethodException' with message 'Calling unknown method: app\models\User::getRole()' in /var/www/resource.io/vendor/yiisoft/yii2/base/Component.php:285
+Stack trace:
+#0 /var/www/resource.io/controllers/UserController.php(30): yii\base\Component->__call('getRole', Array)
+#1 /var/www/resource.io/controllers/UserController.php(30): app\models\User->getRole()
+#2 [internal function]: app\controllers\UserController->actionLogin()
+#3 /var/www/resource.io/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('login', Array)
+#6 /var/www/resource.io/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('user/login', Array)
+#7 /var/www/resource.io/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#8 /var/www/resource.io/web/rest.php(13): yii\base\Application->run()
+#9 {main}
+2016-04-20 15:23:11 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43486'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165791.977
+    'REQUEST_TIME' => 1461165791
+]
+2016-04-20 15:23:14 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
+
+in /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php:58
+
+Stack trace:
+#0 [internal function]: PDO->__sleep()
+#1 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
+#2 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
+#3 /var/www/resource.io/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
+#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\base\UnknownMethodException))
+#7 {main}
+2016-04-20 15:23:11 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43486'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165791.977
+    'REQUEST_TIME' => 1461165791
+]
+2016-04-20 15:23:14 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][error][yii\base\UnknownMethodException] exception 'yii\base\UnknownMethodException' with message 'Calling unknown method: app\models\User::getRole()' in /var/www/resource.io/vendor/yiisoft/yii2/base/Component.php:285
+Stack trace:
+#0 /var/www/resource.io/controllers/UserController.php(30): yii\base\Component->__call('getRole', Array)
+#1 /var/www/resource.io/controllers/UserController.php(30): app\models\User->getRole()
+#2 [internal function]: app\controllers\UserController->actionLogin()
+#3 /var/www/resource.io/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('login', Array)
+#6 /var/www/resource.io/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('user/login', Array)
+#7 /var/www/resource.io/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#8 /var/www/resource.io/web/rest.php(13): yii\base\Application->run()
+#9 {main}
+2016-04-20 15:23:12 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43490'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165792.174
+    'REQUEST_TIME' => 1461165792
+]
+2016-04-20 15:23:14 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
+
+in /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php:58
+
+Stack trace:
+#0 [internal function]: PDO->__sleep()
+#1 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
+#2 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
+#3 /var/www/resource.io/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
+#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\base\UnknownMethodException))
+#7 {main}
+2016-04-20 15:23:12 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43490'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165792.174
+    'REQUEST_TIME' => 1461165792
+]
+2016-04-20 15:23:14 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][error][yii\base\UnknownMethodException] exception 'yii\base\UnknownMethodException' with message 'Calling unknown method: app\models\User::getRole()' in /var/www/resource.io/vendor/yiisoft/yii2/base/Component.php:285
+Stack trace:
+#0 /var/www/resource.io/controllers/UserController.php(30): yii\base\Component->__call('getRole', Array)
+#1 /var/www/resource.io/controllers/UserController.php(30): app\models\User->getRole()
+#2 [internal function]: app\controllers\UserController->actionLogin()
+#3 /var/www/resource.io/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('login', Array)
+#6 /var/www/resource.io/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('user/login', Array)
+#7 /var/www/resource.io/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#8 /var/www/resource.io/web/rest.php(13): yii\base\Application->run()
+#9 {main}
+2016-04-20 15:23:12 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43494'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165792.386
+    'REQUEST_TIME' => 1461165792
+]
+2016-04-20 15:23:14 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
+
+in /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php:58
+
+Stack trace:
+#0 [internal function]: PDO->__sleep()
+#1 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
+#2 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
+#3 /var/www/resource.io/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
+#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\base\UnknownMethodException))
+#7 {main}
+2016-04-20 15:23:12 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43494'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165792.386
+    'REQUEST_TIME' => 1461165792
+]
+2016-04-20 15:23:14 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][error][yii\base\UnknownMethodException] exception 'yii\base\UnknownMethodException' with message 'Calling unknown method: app\models\User::getRole()' in /var/www/resource.io/vendor/yiisoft/yii2/base/Component.php:285
+Stack trace:
+#0 /var/www/resource.io/controllers/UserController.php(30): yii\base\Component->__call('getRole', Array)
+#1 /var/www/resource.io/controllers/UserController.php(30): app\models\User->getRole()
+#2 [internal function]: app\controllers\UserController->actionLogin()
+#3 /var/www/resource.io/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('login', Array)
+#6 /var/www/resource.io/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('user/login', Array)
+#7 /var/www/resource.io/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#8 /var/www/resource.io/web/rest.php(13): yii\base\Application->run()
+#9 {main}
+2016-04-20 15:23:12 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43498'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165792.579
+    'REQUEST_TIME' => 1461165792
+]
+2016-04-20 15:23:14 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
+
+in /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php:58
+
+Stack trace:
+#0 [internal function]: PDO->__sleep()
+#1 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
+#2 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
+#3 /var/www/resource.io/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
+#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\base\UnknownMethodException))
+#7 {main}
+2016-04-20 15:23:12 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43498'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165792.579
+    'REQUEST_TIME' => 1461165792
+]
+2016-04-20 15:23:14 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][error][yii\base\UnknownMethodException] exception 'yii\base\UnknownMethodException' with message 'Calling unknown method: app\models\User::getRole()' in /var/www/resource.io/vendor/yiisoft/yii2/base/Component.php:285
+Stack trace:
+#0 /var/www/resource.io/controllers/UserController.php(30): yii\base\Component->__call('getRole', Array)
+#1 /var/www/resource.io/controllers/UserController.php(30): app\models\User->getRole()
+#2 [internal function]: app\controllers\UserController->actionLogin()
+#3 /var/www/resource.io/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('login', Array)
+#6 /var/www/resource.io/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('user/login', Array)
+#7 /var/www/resource.io/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#8 /var/www/resource.io/web/rest.php(13): yii\base\Application->run()
+#9 {main}
+2016-04-20 15:23:12 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43502'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165792.762
+    'REQUEST_TIME' => 1461165792
+]
+2016-04-20 15:23:14 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
+
+in /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php:58
+
+Stack trace:
+#0 [internal function]: PDO->__sleep()
+#1 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
+#2 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
+#3 /var/www/resource.io/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
+#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\base\UnknownMethodException))
+#7 {main}
+2016-04-20 15:23:12 [127.0.0.1][29][da9mpdr4ptivm3dggn8l4892l3][info][application] $_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'CONTENT_TYPE' => 'application/json;charset=utf-8'
+    'HTTP_REFERER' => 'http://resource.io/site/login'
+    'CONTENT_LENGTH' => '57'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43502'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/users/login'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/users/login'
+    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
+    'PHP_SELF' => '/rest.php/users/login'
+    'REQUEST_TIME_FLOAT' => 1461165792.762
+    'REQUEST_TIME' => 1461165792
+]
+2016-04-20 15:26:11 [127.0.0.1][-][-][error][yii\base\ErrorException:8] exception 'yii\base\ErrorException' with message 'Undefined index: name' in /var/www/resource.io/controllers/ResourceController.php:22
+Stack trace:
+#0 /var/www/resource.io/controllers/ResourceController.php(22): yii\base\ErrorHandler->handleError(8, 'Undefined index...', '/var/www/resour...', 22, Array)
+#1 [internal function]: app\controllers\ResourceController->actionSearch()
+#2 /var/www/resource.io/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#3 /var/www/resource.io/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('search', Array)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('resource/search', Array)
+#6 /var/www/resource.io/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 /var/www/resource.io/web/rest.php(13): yii\base\Application->run()
+#8 {main}
+2016-04-20 15:26:10 [127.0.0.1][-][-][info][application] $_GET = [
+    'page' => '1'
+    'per-page' => '4'
+]
+
+$_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://resource.io/resource/index'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43564'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => '&page=1&per-page=4'
+    'REQUEST_URI' => '/rest.php/resources/search?&page=1&per-page=4'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/resources/search'
+    'PATH_TRANSLATED' => 'redirect:/#/resources/search/search'
+    'PHP_SELF' => '/rest.php/resources/search'
+    'REQUEST_TIME_FLOAT' => 1461165970.863
+    'REQUEST_TIME' => 1461165970
+]
+2016-04-20 15:26:11 [127.0.0.1][-][-][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'Exception' with message 'Serialization of 'Closure' is not allowed' 
+
+in /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php:58
+
+Stack trace:
+#0 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
+#1 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
+#2 /var/www/resource.io/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
+#3 /var/www/resource.io/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
+#5 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\base\ErrorException))
+#6 {main}
+2016-04-20 15:26:10 [127.0.0.1][-][-][info][application] $_GET = [
+    'page' => '1'
+    'per-page' => '4'
+]
+
+$_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://resource.io/resource/index'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43564'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => '&page=1&per-page=4'
+    'REQUEST_URI' => '/rest.php/resources/search?&page=1&per-page=4'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/resources/search'
+    'PATH_TRANSLATED' => 'redirect:/#/resources/search/search'
+    'PHP_SELF' => '/rest.php/resources/search'
+    'REQUEST_TIME_FLOAT' => 1461165970.863
+    'REQUEST_TIME' => 1461165970
+]
+2016-04-20 15:52:14 [127.0.0.1][-][-][error][yii\base\ErrorException:8] exception 'yii\base\ErrorException' with message 'Undefined index: name' in /var/www/resource.io/controllers/SearchController.php:69
+Stack trace:
+#0 /var/www/resource.io/controllers/SearchController.php(69): yii\base\ErrorHandler->handleError(8, 'Undefined index...', '/var/www/resour...', 69, Array)
+#1 /var/www/resource.io/controllers/SearchController.php(53): app\controllers\SearchController->getResponse(Array)
+#2 [internal function]: app\controllers\SearchController->actionSearch()
+#3 /var/www/resource.io/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('search', Array)
+#6 /var/www/resource.io/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('search/search', Array)
+#7 /var/www/resource.io/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#8 /var/www/resource.io/web/rest.php(13): yii\base\Application->run()
+#9 {main}
+2016-04-20 15:52:14 [127.0.0.1][-][-][info][application] $_GET = [
+    'page' => '1'
+    'per-page' => '4'
+]
+
+$_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://resource.io/resource/search'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43640'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => '&page=1&per-page=4'
+    'REQUEST_URI' => '/rest.php/searches/search?&page=1&per-page=4'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/searches/search'
+    'PATH_TRANSLATED' => 'redirect:/#/searches/search/search'
+    'PHP_SELF' => '/rest.php/searches/search'
+    'REQUEST_TIME_FLOAT' => 1461167534.105
+    'REQUEST_TIME' => 1461167534
+]
+2016-04-20 15:52:14 [127.0.0.1][-][-][error][yii\base\ErrorException:8] exception 'yii\base\ErrorException' with message 'Undefined index: name' in /var/www/resource.io/controllers/SearchController.php:69
+Stack trace:
+#0 /var/www/resource.io/controllers/SearchController.php(69): yii\base\ErrorHandler->handleError(8, 'Undefined index...', '/var/www/resour...', 69, Array)
+#1 /var/www/resource.io/controllers/SearchController.php(53): app\controllers\SearchController->getResponse(Array)
+#2 [internal function]: app\controllers\SearchController->actionSearch()
+#3 /var/www/resource.io/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('search', Array)
+#6 /var/www/resource.io/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('search/search', Array)
+#7 /var/www/resource.io/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#8 /var/www/resource.io/web/rest.php(13): yii\base\Application->run()
+#9 {main}
+2016-04-20 15:52:14 [127.0.0.1][-][-][info][application] $_GET = [
+    'page' => '1'
+    'per-page' => '4'
+]
+
+$_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://resource.io/resource/search'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43634'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => '&page=1&per-page=4'
+    'REQUEST_URI' => '/rest.php/searches/search?&page=1&per-page=4'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/searches/search'
+    'PATH_TRANSLATED' => 'redirect:/#/searches/search/search'
+    'PHP_SELF' => '/rest.php/searches/search'
+    'REQUEST_TIME_FLOAT' => 1461167534.095
+    'REQUEST_TIME' => 1461167534
+]
+2016-04-20 15:52:14 [127.0.0.1][-][-][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'Exception' with message 'Serialization of 'Closure' is not allowed' 
+
+in /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php:58
+
+Stack trace:
+#0 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
+#1 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
+#2 /var/www/resource.io/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
+#3 /var/www/resource.io/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
+#5 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\base\ErrorException))
+#6 {main}
+2016-04-20 15:52:14 [127.0.0.1][-][-][info][application] $_GET = [
+    'page' => '1'
+    'per-page' => '4'
+]
+
+$_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://resource.io/resource/search'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43634'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => '&page=1&per-page=4'
+    'REQUEST_URI' => '/rest.php/searches/search?&page=1&per-page=4'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/searches/search'
+    'PATH_TRANSLATED' => 'redirect:/#/searches/search/search'
+    'PHP_SELF' => '/rest.php/searches/search'
+    'REQUEST_TIME_FLOAT' => 1461167534.095
+    'REQUEST_TIME' => 1461167534
+]
+2016-04-20 15:52:14 [127.0.0.1][-][-][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'Exception' with message 'Serialization of 'Closure' is not allowed' 
+
+in /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php:58
+
+Stack trace:
+#0 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
+#1 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
+#2 /var/www/resource.io/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
+#3 /var/www/resource.io/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
+#5 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\base\ErrorException))
+#6 {main}
+2016-04-20 15:52:14 [127.0.0.1][-][-][info][application] $_GET = [
+    'page' => '1'
+    'per-page' => '4'
+]
+
+$_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://resource.io/resource/search'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43640'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => '&page=1&per-page=4'
+    'REQUEST_URI' => '/rest.php/searches/search?&page=1&per-page=4'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/searches/search'
+    'PATH_TRANSLATED' => 'redirect:/#/searches/search/search'
+    'PHP_SELF' => '/rest.php/searches/search'
+    'REQUEST_TIME_FLOAT' => 1461167534.105
+    'REQUEST_TIME' => 1461167534
+]
+2016-04-20 15:55:02 [127.0.0.1][-][-][error][yii\base\ErrorException:8] exception 'yii\base\ErrorException' with message 'Undefined index: name' in /var/www/resource.io/controllers/ResourceController.php:22
+Stack trace:
+#0 /var/www/resource.io/controllers/ResourceController.php(22): yii\base\ErrorHandler->handleError(8, 'Undefined index...', '/var/www/resour...', 22, Array)
+#1 [internal function]: app\controllers\ResourceController->actionSearch()
+#2 /var/www/resource.io/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#3 /var/www/resource.io/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('search', Array)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('resource/search', Array)
+#6 /var/www/resource.io/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 /var/www/resource.io/web/rest.php(13): yii\base\Application->run()
+#8 {main}
+2016-04-20 15:55:02 [127.0.0.1][-][-][info][application] $_GET = [
+    'page' => '1'
+    'per-page' => '4'
+]
+
+$_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://resource.io/resource/index'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43660'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => '&page=1&per-page=4'
+    'REQUEST_URI' => '/rest.php/resources/search?&page=1&per-page=4'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/resources/search'
+    'PATH_TRANSLATED' => 'redirect:/#/resources/search/search'
+    'PHP_SELF' => '/rest.php/resources/search'
+    'REQUEST_TIME_FLOAT' => 1461167702.733
+    'REQUEST_TIME' => 1461167702
+]
+2016-04-20 15:55:02 [127.0.0.1][-][-][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'Exception' with message 'Serialization of 'Closure' is not allowed' 
+
+in /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php:58
+
+Stack trace:
+#0 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
+#1 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
+#2 /var/www/resource.io/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
+#3 /var/www/resource.io/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
+#5 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\base\ErrorException))
+#6 {main}
+2016-04-20 15:55:02 [127.0.0.1][-][-][info][application] $_GET = [
+    'page' => '1'
+    'per-page' => '4'
+]
+
+$_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://resource.io/resource/index'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43660'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => '&page=1&per-page=4'
+    'REQUEST_URI' => '/rest.php/resources/search?&page=1&per-page=4'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/resources/search'
+    'PATH_TRANSLATED' => 'redirect:/#/resources/search/search'
+    'PHP_SELF' => '/rest.php/resources/search'
+    'REQUEST_TIME_FLOAT' => 1461167702.733
+    'REQUEST_TIME' => 1461167702
+]
+2016-04-20 16:08:23 [127.0.0.1][-][-][error][yii\base\ErrorException:8] exception 'yii\base\ErrorException' with message 'Undefined index: name' in /var/www/resource.io/controllers/SearchController.php:69
+Stack trace:
+#0 /var/www/resource.io/controllers/SearchController.php(69): yii\base\ErrorHandler->handleError(8, 'Undefined index...', '/var/www/resour...', 69, Array)
+#1 /var/www/resource.io/controllers/SearchController.php(53): app\controllers\SearchController->getResponse(Array)
+#2 [internal function]: app\controllers\SearchController->actionSearch()
+#3 /var/www/resource.io/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('search', Array)
+#6 /var/www/resource.io/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('search/search', Array)
+#7 /var/www/resource.io/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#8 /var/www/resource.io/web/rest.php(13): yii\base\Application->run()
+#9 {main}
+2016-04-20 16:08:23 [127.0.0.1][-][-][info][application] $_GET = [
+    'page' => '1'
+    'per-page' => '4'
+]
+
+$_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://resource.io/resource/search'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43756'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => '&page=1&per-page=4'
+    'REQUEST_URI' => '/rest.php/searches/search?&page=1&per-page=4'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/searches/search'
+    'PATH_TRANSLATED' => 'redirect:/#/searches/search/search'
+    'PHP_SELF' => '/rest.php/searches/search'
+    'REQUEST_TIME_FLOAT' => 1461168503.034
+    'REQUEST_TIME' => 1461168503
+]
+2016-04-20 16:08:23 [127.0.0.1][-][-][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'Exception' with message 'Serialization of 'Closure' is not allowed' 
+
+in /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php:58
+
+Stack trace:
+#0 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
+#1 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
+#2 /var/www/resource.io/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
+#3 /var/www/resource.io/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
+#5 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\base\ErrorException))
+#6 {main}
+2016-04-20 16:08:23 [127.0.0.1][-][-][info][application] $_GET = [
+    'page' => '1'
+    'per-page' => '4'
+]
+
+$_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://resource.io/resource/search'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43756'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => '&page=1&per-page=4'
+    'REQUEST_URI' => '/rest.php/searches/search?&page=1&per-page=4'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/searches/search'
+    'PATH_TRANSLATED' => 'redirect:/#/searches/search/search'
+    'PHP_SELF' => '/rest.php/searches/search'
+    'REQUEST_TIME_FLOAT' => 1461168503.034
+    'REQUEST_TIME' => 1461168503
+]
+2016-04-20 16:08:23 [127.0.0.1][-][-][error][yii\base\ErrorException:8] exception 'yii\base\ErrorException' with message 'Undefined index: name' in /var/www/resource.io/controllers/SearchController.php:69
+Stack trace:
+#0 /var/www/resource.io/controllers/SearchController.php(69): yii\base\ErrorHandler->handleError(8, 'Undefined index...', '/var/www/resour...', 69, Array)
+#1 /var/www/resource.io/controllers/SearchController.php(53): app\controllers\SearchController->getResponse(Array)
+#2 [internal function]: app\controllers\SearchController->actionSearch()
+#3 /var/www/resource.io/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#5 /var/www/resource.io/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('search', Array)
+#6 /var/www/resource.io/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('search/search', Array)
+#7 /var/www/resource.io/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#8 /var/www/resource.io/web/rest.php(13): yii\base\Application->run()
+#9 {main}
+2016-04-20 16:08:23 [127.0.0.1][-][-][info][application] $_GET = [
+    'page' => '1'
+    'per-page' => '4'
+]
+
+$_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://resource.io/resource/search'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43754'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => '&page=1&per-page=4'
+    'REQUEST_URI' => '/rest.php/searches/search?&page=1&per-page=4'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/searches/search'
+    'PATH_TRANSLATED' => 'redirect:/#/searches/search/search'
+    'PHP_SELF' => '/rest.php/searches/search'
+    'REQUEST_TIME_FLOAT' => 1461168503.17
+    'REQUEST_TIME' => 1461168503
+]
+2016-04-20 16:08:23 [127.0.0.1][-][-][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'Exception' with message 'Serialization of 'Closure' is not allowed' 
+
+in /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php:58
+
+Stack trace:
+#0 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
+#1 /var/www/resource.io/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
+#2 /var/www/resource.io/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
+#3 /var/www/resource.io/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
+#4 /var/www/resource.io/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
+#5 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\base\ErrorException))
+#6 {main}
+2016-04-20 16:08:23 [127.0.0.1][-][-][info][application] $_GET = [
+    'page' => '1'
+    'per-page' => '4'
+]
+
+$_COOKIE = [
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+    'PHPSESSID' => 'da9mpdr4ptivm3dggn8l4892l3'
+    '_csrf' => '3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL\";}'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'resource.io'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://resource.io/resource/search'
+    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=da9mpdr4ptivm3dggn8l4892l3; _csrf=3c009f645f506c611affa2a32ba3898766dc90e9d59905e4a3cb4d6a14b67610a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22d9AeIk1PesgA-99wG_OLY8eMdaEcFnFL%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'resource.io'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/resource.io/web'
+    'SERVER_ADMIN' => 'webmaster@resource.io'
+    'SCRIPT_FILENAME' => '/var/www/resource.io/web/rest.php'
+    'REMOTE_PORT' => '43754'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => '&page=1&per-page=4'
+    'REQUEST_URI' => '/rest.php/searches/search?&page=1&per-page=4'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/searches/search'
+    'PATH_TRANSLATED' => 'redirect:/#/searches/search/search'
+    'PHP_SELF' => '/rest.php/searches/search'
+    'REQUEST_TIME_FLOAT' => 1461168503.17
+    'REQUEST_TIME' => 1461168503
+]

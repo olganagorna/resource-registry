@@ -80,10 +80,10 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->getPrimaryKey();
     }
-    // public function getRole()
-    // {
-    //     return $this->role_id;
-    // }
+    public function getRole()
+    {
+        return $this->role_id;
+    }
     public function getUserDataID()
     {
         return $this->user_data_id;
