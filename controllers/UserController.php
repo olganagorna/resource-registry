@@ -124,6 +124,7 @@ class UserController extends AppController
         return true;
     }
     public function actionGetuser(){
+        // Get user from DB
         if (!$post = \Yii::$app->getRequest()->getBodyParams()) {
             throw new \yii\web\HttpException(400, 'Дані не отримані');
         }

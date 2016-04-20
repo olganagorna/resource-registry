@@ -46,6 +46,7 @@ $config = [
                     'GET getregisterkey' => 'getregisterkey',
                     'GET getresourcebycoordinate' => 'getresourcebycoordinate',
                     'POST getuser' => 'getuser',
+                    'POST addcomm' => 'addcomm',
                     'GET assignrole' => 'assignrole'
                     ],
                 ],

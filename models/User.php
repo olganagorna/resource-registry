@@ -35,13 +35,19 @@ class User extends ActiveRecord implements IdentityInterface
     public function fields(){
         return [
             'id',
-            'username'
+            'username',
+            'user_data_id'
         ];
     }
 
     public static function findIdentity($id)
     {
         return static::findOne(['id' => $id]);
+    }
+    public static function findUserById($user_id)
+    {
+        // find user by id
+        return static::findOne(['user_id' => $user_id]);
     }
     public static function findIdentityByAccessToken($token, $type = null)
     {
@@ -88,6 +94,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
     public static function getUserByUserName($username)
     {
+        // Get user by username
        return static::findOne(['username' => $username]);
     }
     public function validateAuthKey($authKey)
