@@ -72,6 +72,8 @@
                 });
             }
         };
+
+        
         $scope.switchPage($scope.currentPage);
         $scope.setPage = function(pageLink, pageType){
             PaginationService.setPage(pageLink, pageType, $scope.list_users._meta.pageCount)
