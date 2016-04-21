@@ -20,10 +20,12 @@ class CommunityController extends ActiveController
 			$community->select(['name', 'prefix', 'username'])
 			->innerJoinWith('users')
 			->andFilterWhere(['like', 'name', $request['value']])
+            ->orderBy('name')
 			->asArray();	
 		}else{
 			$community->select(['name', 'prefix', 'username'])
 			->innerJoinWith('users')
+            ->orderBy('name')
 			->asArray();
 		}
 
