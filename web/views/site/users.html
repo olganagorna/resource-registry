@@ -25,7 +25,7 @@
 			    <li class="list-group-item shadow-z-1 md-list row" ng-repeat="data in list_users.items | filter:idFilter">
 			        <div class="col-md-1 text-center res_vert_allight_list">{{data.user_id}}</div>
 			        <a class="col-md-4 text-center res_vert_allight_list">{{data.first_name}} {{data.last_name}}</a>
-			        <a class="col-md-3 text-center res_vert_allight_list">{{data.name}}</a>
+			        <a class="col-md-3 text-center res_vert_allight_list">{{data.role_name}}</a>
 				    <div class="btn-group">
 	                    <a class="btn btn-material-grey-200 text-center"
 	                       ng-click="user.del(user.user_id)">
