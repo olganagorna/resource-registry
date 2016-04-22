@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10.6
+-- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
--- Хост: 127.0.0.1:3306
--- Время создания: Ноя 11 2015 г., 18:30
--- Версия сервера: 5.5.41-log
--- Версия PHP: 5.4.35
+-- Хост: localhost
+-- Час створення: Квт 13 2016 р., 16:14
+-- Версія сервера: 5.5.47-0ubuntu0.14.04.1
+-- Версія PHP: 5.5.9-1ubuntu4.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,12 +17,12 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- База данных: `resource_registry`
+-- База даних: `resource_registry`
 --
 
 DELIMITER $$
 --
--- Функции
+-- Функції
 --
 CREATE DEFINER=`root`@`localhost` FUNCTION `distance`(lat1 FLOAT, lng1 FLOAT, lat2 FLOAT, lng2 FLOAT) RETURNS float
 BEGIN
@@ -55,7 +55,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `attribute_class_view`
+-- Структура таблиці `attribute_class_view`
 --
 
 CREATE TABLE IF NOT EXISTS `attribute_class_view` (
@@ -70,7 +70,31 @@ CREATE TABLE IF NOT EXISTS `attribute_class_view` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `operation`
+-- Структура таблиці `community`
+--
+
+CREATE TABLE IF NOT EXISTS `community` (
+  `community_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `prefix` varchar(50) DEFAULT NULL,
+  `commissioner_id` int(11) NOT NULL,
+  `notes` text,
+  PRIMARY KEY (`community_id`),
+  KEY `fk_community_user` (`commissioner_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Дамп даних таблиці `community`
+--
+
+INSERT INTO `community` (`community_id`, `name`, `prefix`, `commissioner_id`, `notes`) VALUES
+(1, 'first_community', '10002:001', 31, NULL),
+(2, 'second_community', '10003:001', 38, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `operation`
 --
 
 CREATE TABLE IF NOT EXISTS `operation` (
@@ -87,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `operation` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
--- Дамп данных таблицы `operation`
+-- Дамп даних таблиці `operation`
 --
 
 INSERT INTO `operation` (`operation_id`, `date_log`, `type_id`, `user_id`, `resource_id`, `before_change`) VALUES
@@ -102,7 +126,7 @@ INSERT INTO `operation` (`operation_id`, `date_log`, `type_id`, `user_id`, `reso
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `operation_type`
+-- Структура таблиці `operation_type`
 --
 
 CREATE TABLE IF NOT EXISTS `operation_type` (
@@ -112,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `operation_type` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп данных таблицы `operation_type`
+-- Дамп даних таблиці `operation_type`
 --
 
 INSERT INTO `operation_type` (`type_id`, `name`) VALUES
@@ -123,7 +147,7 @@ INSERT INTO `operation_type` (`type_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `parameter`
+-- Структура таблиці `parameter`
 --
 
 CREATE TABLE IF NOT EXISTS `parameter` (
@@ -137,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `parameter` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=243 ;
 
 --
--- Дамп данных таблицы `parameter`
+-- Дамп даних таблиці `parameter`
 --
 
 INSERT INTO `parameter` (`parameter_id`, `value`, `resource_id`, `attribute_id`) VALUES
@@ -151,7 +175,7 @@ INSERT INTO `parameter` (`parameter_id`, `value`, `resource_id`, `attribute_id`)
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `personal_data`
+-- Структура таблиці `personal_data`
 --
 
 CREATE TABLE IF NOT EXISTS `personal_data` (
@@ -164,10 +188,10 @@ CREATE TABLE IF NOT EXISTS `personal_data` (
   `address` varchar(100) NOT NULL,
   `registrar_key` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`personal_data_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=173 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=174 ;
 
 --
--- Дамп данных таблицы `personal_data`
+-- Дамп даних таблиці `personal_data`
 --
 
 INSERT INTO `personal_data` (`personal_data_id`, `last_name`, `first_name`, `middle_name`, `passport_series`, `passport_number`, `address`, `registrar_key`) VALUES
@@ -208,7 +232,8 @@ INSERT INTO `personal_data` (`personal_data_id`, `last_name`, `first_name`, `mid
 (112, 'Петров', 'Иван', 'Иванович', 'КС', '34536574', 'виговського 7', NULL),
 (113, 'Петренко', 'Петро', 'Петрович', 'EE', '123456', '29000, м. Хмельницький, вул. Героїв Майдану, 17, кв. 17', '804:23:17:026:'),
 (114, 'last', 'first', 'midl', 'ME', '55555', 'Lv', '804:23:17:026:'),
-(115, 'Koval', 'Ivan', 'Ivanovich', 'ME', '55555', 'Ukraine', NULL),
+(115, 'Ivanovych', 'Ivan', 'Ivanenko', 'FT', '6644', 'Lviv', NULL),
+(116, 'Petrovych', 'Petro', 'Petrenko', 'KK', '5555', 'Lviv', NULL),
 (117, 'Koval', 'P', 'P', 'KA', '77777', 'Addr', NULL),
 (118, 'P', 'P', 'E', 'DD', '33333', 's', NULL),
 (119, 'P', 'Psd', 'E', 'DD', '33333', 's', NULL),
@@ -264,12 +289,13 @@ INSERT INTO `personal_data` (`personal_data_id`, `last_name`, `first_name`, `mid
 (169, 'Коваль', 'Валерій', 'Петрович', 'МЕ', '12345', 'Львів., вул. Шевченка 56', NULL),
 (170, 'Іванов', 'Сергій', 'Миколайович', 'МЕ', '55555', 'Самбір ., вул. Шухевича 68', NULL),
 (171, 'Грабар', 'Роман', 'Іванович', 'МЕ', '6666', 'Львів', NULL),
-(172, 'Архилюк', 'Олесандр', 'Олександрович', 'КВ', '139406', 'м.Львів', NULL);
+(172, 'Архилюк', 'Олесандр', 'Олександрович', 'КВ', '139406', 'м.Львів', NULL),
+(173, 'Іванюк', 'Микола', 'Іванович', 'пп', '8888', 'м. Львів вул. Низинна', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `resource`
+-- Структура таблиці `resource`
 --
 
 CREATE TABLE IF NOT EXISTS `resource` (
@@ -291,7 +317,7 @@ CREATE TABLE IF NOT EXISTS `resource` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=209 ;
 
 --
--- Дамп данных таблицы `resource`
+-- Дамп даних таблиці `resource`
 --
 
 INSERT INTO `resource` (`resource_id`, `name`, `class_id`, `coordinates`, `coords_center_lat`, `coords_center_lng`, `owner_data_id`, `reason`, `date`, `registrar_data_id`, `registration_number`) VALUES
@@ -302,7 +328,7 @@ INSERT INTO `resource` (`resource_id`, `name`, `class_id`, `coordinates`, `coord
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `resource_attribute`
+-- Структура таблиці `resource_attribute`
 --
 
 CREATE TABLE IF NOT EXISTS `resource_attribute` (
@@ -312,7 +338,7 @@ CREATE TABLE IF NOT EXISTS `resource_attribute` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
--- Дамп данных таблицы `resource_attribute`
+-- Дамп даних таблиці `resource_attribute`
 --
 
 INSERT INTO `resource_attribute` (`attribute_id`, `name`) VALUES
@@ -327,7 +353,7 @@ INSERT INTO `resource_attribute` (`attribute_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `resource_class`
+-- Структура таблиці `resource_class`
 --
 
 CREATE TABLE IF NOT EXISTS `resource_class` (
@@ -337,7 +363,7 @@ CREATE TABLE IF NOT EXISTS `resource_class` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
--- Дамп данных таблицы `resource_class`
+-- Дамп даних таблиці `resource_class`
 --
 
 INSERT INTO `resource_class` (`class_id`, `name`) VALUES
@@ -355,28 +381,29 @@ INSERT INTO `resource_class` (`class_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `role`
+-- Структура таблиці `role`
 --
 
 CREATE TABLE IF NOT EXISTS `role` (
   `role_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Дамп данных таблицы `role`
+-- Дамп даних таблиці `role`
 --
 
 INSERT INTO `role` (`role_id`, `name`) VALUES
 (1, 'user'),
 (2, 'registrar'),
-(3, 'admin');
+(3, 'admin'),
+(4, 'commissioner');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `user`
+-- Структура таблиці `user`
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
@@ -388,74 +415,83 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(255) NOT NULL,
   `user_data_id` int(11) DEFAULT NULL,
   `role_id` int(11) NOT NULL,
+  `community_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   KEY `role_id` (`user_data_id`),
   KEY `role_id_2` (`role_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
 
 --
--- Дамп данных таблицы `user`
+-- Дамп даних таблиці `user`
 --
 
-INSERT INTO `user` (`user_id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `user_data_id`, `role_id`) VALUES
-(1, 'demo', 'mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY', '$2y$13$BlX7rTSKcUaluomULVXgRec/1H.y2yJG.K7jSXZArCq4OkzhJ9S/y', NULL, 'demo@mail.net', 1, 3),
-(3, 'mof', 'pdw6JM5azks9n-Fkx9EYmPLobHQJkMV7', '$2y$13$XSNOyLiil07pBhh5RnNsxuHsvr21cO3HoqGtMs9rPe4xGr2L.RdUu', 'F7NFSAPun1hooVGJGpUGgaUpPcJ4iEEu_1444824168', 'zhenyast@yandex.ru', 2, 2),
-(7, 'mof2', 'sBZlLkpEbikELmURWCopgN-lYiqU7UYu', '$2y$13$yLUJbUf98IMuPBuGO2lkwu87KYF0lJM.q0s8cA2wvNxOyPCT1p/92', NULL, 'zhenyast@yandex.ru', 1, 3),
-(8, 'mof23', 'LTrS-nd6GOp4NAuWsqLPMGRmTXyhnRoR', '$2y$13$Ttwe62ORjJUriGFQoT9jkeFwzaQjXlAMEmPtKiy7JYbbjEmCf09V2', NULL, 'test@gmail.com', 1, 1),
-(9, 'mof234', 'v0HLQsttxqamwDDszxTmGrio0KjVFASu', '$2y$13$sVfWSaKYBjCXRG.ipdGnBOG7IWZ5epKuRxcj43I.5TLlWaxU1Tfiq', NULL, 'test@gmail.com', 1, 1),
-(10, 'mof4', 'nzns3KZbmVNEERTeqbyWSmiA8iIsZCuy', '$2y$13$x4P0BcqVrFjVSE8tVfbaZuFEHpwX9Llt6MEDWtpT3H35m/35I7xhq', NULL, 'test@gmail.com', 1, 1),
-(11, 'mof5', 'D3Hwd61ihElNoSZqYdbm6tY7MiR9TKMN', '$2y$13$apiaxjG5M3k1MQ/IdxYM1ubbyaOglIdNoOymvuzkITKShbqhP.EW6', NULL, 'test@gmail.com', 1, 1),
-(12, 'mof6', 'FEdVtOX6YBUSBDkGwBmlkRs7MvKS1rNS', '$2y$13$UW1VZ9hHTX5Vhnzw.uoQ7OUMu/GInWxGUN8CKFqE11hHkyE0VQuxe', NULL, 'test@gmail.com', 1, 1),
-(14, 'mof9', 'CnJoAGaGgNUzWFs1douSRUhI-7nCQofg', '$2y$13$NGtRJrUMsGHIrqrKdWq2kercGlmyyjwOgpm8ZxYfSey6Y0Gk0Dtfu', NULL, 'test@gmail.com', 1, 1),
-(15, 'mof10', 'iWVndxR_sQaVRTNgvgKNsgLlJB1pNzDk', '$2y$13$GyFd0cLsWEqsoY31QSynBexJhzntmrB6yGu.Tk2kTsSsq09uybWwC', NULL, 'test@gmail.com', 2, 1),
-(16, 'mof11', 'J9pL0T5YDbPSK7mn0O0FRYndbFFxAgEX', '$2y$13$O4Hid6PLW2BGi.Y4IlX2c.XBVWk.SPul8pWrD6XgYxxQgRXtRHdpC', NULL, 'test@gmail.com', 2, 1),
-(17, 'mof12', '2b1-_u4Gb-BcDIlQTwwxOFSXypfeLuMP', '$2y$13$ffgOz/IhD8Jb2r0vX/Z44uA9u0QP2aRDlxdxokeVdK18z76yPo7RO', NULL, 'personalDataModel@ya.ru', 2, 1),
-(18, 'mof17', 'ecuUkIjIbI-a_JL3dk5clnLTBu6NMPxm', '$2y$13$Wqc8FH7coO.n/iyc/l4nHecWTJlQQujSFcnBeX1n7MhwmcsvPZ00m', NULL, 'test@mail.ru', 2, 1),
-(20, 'mof18', 'vLNM1wxWKgQN27Ggot6mt2i08QxEI1dk', '$2y$13$LcGAfRrqIZDUwtdECiOKreh5XUAL106odA5Zj89sd034r3WJxdvBe', NULL, 'vasya@ya.ru', 2, 1),
-(21, 'test36', 'ucDnNXLbL4cqo6EEezyEeUoC37NuU47n', '$2y$13$g00nLVE8.hcc1yAXCJeO.uzaTouLi4QxGh0YSDP8WMFnxKovaMEWO', NULL, 'test36@mail.ru', 94, 1),
-(22, 'test37', '0hRs_b4To10q9QejQ3wS0ATzNMUKmSHy', '$2y$13$27YSO6O3fFH62.S2hIPWHuwuYzVyMfLx1iVex.oB5oJKvrd2I.Gfa', NULL, 'test37@mail.ru', 97, 1),
-(23, 'test38', 'eJWSGRi2nyz9wPviMJw0lH1ixy5IrtMi', '$2y$13$54dopM1dbO6totckC8dtF.akY7Wr6XBWBx47KFU/rUm2cjt6HvmSO', NULL, 'vitashev@bk.ru', 98, 1),
-(24, 'test385', 'ODBf-XUPupYGk4iss935XhIECg-nbwok', '$2y$13$xaKAJKmtQveX.TAIYmBun.PY60neU.6v1cfKz2Ujq59B/Bne3ZE/G', NULL, 'rerse@ya.ri', 101, 1),
-(25, 'user4', 'VYNlikVL5ZSiCPZp3XL6NZ_nr4cl9Pr3', '$2y$13$ZXQ6T/TwSILVwPqTvPU3.uour0NolMMiVxE0jtuXAknR9hW7jieue', NULL, 'registerresource@gmail.com', 107, 2),
-(26, 'user5', 'AE5fW3PCbNY3D5jGAtAiAGXd0ezMdy-q', '$2y$13$KuiNKwLYUfFdmvzfDhrBiuhiPADovcohyE72peEoaven2EsohU2wK', NULL, 'registerresource@gmail.com', 108, 2),
-(27, 'grgrgrt', 'Fxl0xfdMGVrzpPj8c1_uNtAwAAf5t90T', '$2y$13$pddF4JoxuVGVm.gVWl.KJ.HpBYzvE4s4Fbwv9CUJUqHUzMgu3gF8.', NULL, 'gtrgrt@ya.ru', 109, 2),
-(28, 'username1', 'kq1OSpQweIhZ3kfF5f6fAM2_kM9H5h3E', '$2y$13$EDFwkXrlujw3YdzlOG708up.2piJ5aN8sduhaTKYF0tpeeFiQ2Iqu', NULL, 'registerresource@gmail.com', 112, 2),
-(29, 'registrar', 'nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', NULL, 'test69@mail.ru', 113, 2),
-(30, 'gith', 'r9ZSVEms7lozWO7Guo_K3ZiyaxRyQD3M', '$2y$13$/01guLVgaBoUExQTjJiCH.yOgoyIje7RWjsC3Iis1iQaevJxiEZMG', NULL, 'gith@gmail.com', 114, 2);
+INSERT INTO `user` (`user_id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `user_data_id`, `role_id`, `community_id`) VALUES
+(1, 'demo', 'mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY', '$2y$13$BlX7rTSKcUaluomULVXgRec/1H.y2yJG.K7jSXZArCq4OkzhJ9S/y', NULL, 'demo@mail.net', 1, 3, NULL),
+(3, 'mof', 'pdw6JM5azks9n-Fkx9EYmPLobHQJkMV7', '$2y$13$XSNOyLiil07pBhh5RnNsxuHsvr21cO3HoqGtMs9rPe4xGr2L.RdUu', 'F7NFSAPun1hooVGJGpUGgaUpPcJ4iEEu_1444824168', 'zhenyast@yandex.ru', 2, 2, NULL),
+(7, 'mof2', 'sBZlLkpEbikELmURWCopgN-lYiqU7UYu', '$2y$13$yLUJbUf98IMuPBuGO2lkwu87KYF0lJM.q0s8cA2wvNxOyPCT1p/92', NULL, 'zhenyast@yandex.ru', 1, 3, NULL),
+(8, 'mof23', 'LTrS-nd6GOp4NAuWsqLPMGRmTXyhnRoR', '$2y$13$Ttwe62ORjJUriGFQoT9jkeFwzaQjXlAMEmPtKiy7JYbbjEmCf09V2', NULL, 'test@gmail.com', 1, 1, NULL),
+(9, 'mof234', 'v0HLQsttxqamwDDszxTmGrio0KjVFASu', '$2y$13$sVfWSaKYBjCXRG.ipdGnBOG7IWZ5epKuRxcj43I.5TLlWaxU1Tfiq', NULL, 'test@gmail.com', 1, 1, NULL),
+(10, 'mof4', 'nzns3KZbmVNEERTeqbyWSmiA8iIsZCuy', '$2y$13$x4P0BcqVrFjVSE8tVfbaZuFEHpwX9Llt6MEDWtpT3H35m/35I7xhq', NULL, 'test@gmail.com', 1, 1, NULL),
+(11, 'mof5', 'D3Hwd61ihElNoSZqYdbm6tY7MiR9TKMN', '$2y$13$apiaxjG5M3k1MQ/IdxYM1ubbyaOglIdNoOymvuzkITKShbqhP.EW6', NULL, 'test@gmail.com', 1, 1, NULL),
+(12, 'mof6', 'FEdVtOX6YBUSBDkGwBmlkRs7MvKS1rNS', '$2y$13$UW1VZ9hHTX5Vhnzw.uoQ7OUMu/GInWxGUN8CKFqE11hHkyE0VQuxe', NULL, 'test@gmail.com', 1, 1, NULL),
+(14, 'mof9', 'CnJoAGaGgNUzWFs1douSRUhI-7nCQofg', '$2y$13$NGtRJrUMsGHIrqrKdWq2kercGlmyyjwOgpm8ZxYfSey6Y0Gk0Dtfu', NULL, 'test@gmail.com', 1, 1, NULL),
+(15, 'mof10', 'iWVndxR_sQaVRTNgvgKNsgLlJB1pNzDk', '$2y$13$GyFd0cLsWEqsoY31QSynBexJhzntmrB6yGu.Tk2kTsSsq09uybWwC', NULL, 'test@gmail.com', 2, 1, NULL),
+(16, 'mof11', 'J9pL0T5YDbPSK7mn0O0FRYndbFFxAgEX', '$2y$13$O4Hid6PLW2BGi.Y4IlX2c.XBVWk.SPul8pWrD6XgYxxQgRXtRHdpC', NULL, 'test@gmail.com', 2, 1, NULL),
+(17, 'mof12', '2b1-_u4Gb-BcDIlQTwwxOFSXypfeLuMP', '$2y$13$ffgOz/IhD8Jb2r0vX/Z44uA9u0QP2aRDlxdxokeVdK18z76yPo7RO', NULL, 'personalDataModel@ya.ru', 2, 1, NULL),
+(18, 'mof17', 'ecuUkIjIbI-a_JL3dk5clnLTBu6NMPxm', '$2y$13$Wqc8FH7coO.n/iyc/l4nHecWTJlQQujSFcnBeX1n7MhwmcsvPZ00m', NULL, 'test@mail.ru', 2, 1, NULL),
+(20, 'mof18', 'vLNM1wxWKgQN27Ggot6mt2i08QxEI1dk', '$2y$13$LcGAfRrqIZDUwtdECiOKreh5XUAL106odA5Zj89sd034r3WJxdvBe', NULL, 'vasya@ya.ru', 2, 1, NULL),
+(21, 'test36', 'ucDnNXLbL4cqo6EEezyEeUoC37NuU47n', '$2y$13$g00nLVE8.hcc1yAXCJeO.uzaTouLi4QxGh0YSDP8WMFnxKovaMEWO', NULL, 'test36@mail.ru', 94, 1, NULL),
+(22, 'test37', '0hRs_b4To10q9QejQ3wS0ATzNMUKmSHy', '$2y$13$27YSO6O3fFH62.S2hIPWHuwuYzVyMfLx1iVex.oB5oJKvrd2I.Gfa', NULL, 'test37@mail.ru', 97, 1, NULL),
+(23, 'test38', 'eJWSGRi2nyz9wPviMJw0lH1ixy5IrtMi', '$2y$13$54dopM1dbO6totckC8dtF.akY7Wr6XBWBx47KFU/rUm2cjt6HvmSO', NULL, 'vitashev@bk.ru', 98, 1, NULL),
+(24, 'test385', 'ODBf-XUPupYGk4iss935XhIECg-nbwok', '$2y$13$xaKAJKmtQveX.TAIYmBun.PY60neU.6v1cfKz2Ujq59B/Bne3ZE/G', NULL, 'rerse@ya.ri', 101, 1, NULL),
+(25, 'user4', 'VYNlikVL5ZSiCPZp3XL6NZ_nr4cl9Pr3', '$2y$13$ZXQ6T/TwSILVwPqTvPU3.uour0NolMMiVxE0jtuXAknR9hW7jieue', NULL, 'registerresource@gmail.com', 107, 2, NULL),
+(26, 'user5', 'AE5fW3PCbNY3D5jGAtAiAGXd0ezMdy-q', '$2y$13$KuiNKwLYUfFdmvzfDhrBiuhiPADovcohyE72peEoaven2EsohU2wK', NULL, 'registerresource@gmail.com', 108, 2, NULL),
+(27, 'grgrgrt', 'Fxl0xfdMGVrzpPj8c1_uNtAwAAf5t90T', '$2y$13$pddF4JoxuVGVm.gVWl.KJ.HpBYzvE4s4Fbwv9CUJUqHUzMgu3gF8.', NULL, 'gtrgrt@ya.ru', 109, 2, NULL),
+(28, 'username1', 'kq1OSpQweIhZ3kfF5f6fAM2_kM9H5h3E', '$2y$13$EDFwkXrlujw3YdzlOG708up.2piJ5aN8sduhaTKYF0tpeeFiQ2Iqu', NULL, 'registerresource@gmail.com', 112, 2, NULL),
+(29, 'registrar', 'nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', NULL, 'test69@mail.ru', 113, 2, NULL),
+(30, 'gith', 'r9ZSVEms7lozWO7Guo_K3ZiyaxRyQD3M', '$2y$13$/01guLVgaBoUExQTjJiCH.yOgoyIje7RWjsC3Iis1iQaevJxiEZMG', NULL, 'gith@gmail.com', 114, 2, NULL),
+(31, 'first_commissioner', 'mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY', '$2y$13$BlX7rTSKcUaluomULVXgRec/1H.y2yJG.K7jSXZArCq4OkzhJ9S/y', NULL, 'first_commissioner@mail.ru', 115, 4, NULL),
+(38, 'second_commissioner', 'mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY', '$2y$13$BlX7rTSKcUaluomULVXgRec/1H.y2yJG.K7jSXZArCq4OkzhJ9S/y', NULL, 'second_commissioner@mail.ru', 116, 4, NULL);
 
 --
--- Ограничения внешнего ключа сохраненных таблиц
+-- Обмеження зовнішнього ключа збережених таблиць
 --
 
 --
--- Ограничения внешнего ключа таблицы `attribute_class_view`
+-- Обмеження зовнішнього ключа таблиці `attribute_class_view`
 --
 ALTER TABLE `attribute_class_view`
   ADD CONSTRAINT `fk_attribute_class_view_resource_attribute1` FOREIGN KEY (`attribute_id`) REFERENCES `resource_attribute` (`attribute_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_attribute_class_view_resource_class1` FOREIGN KEY (`class_id`) REFERENCES `resource_class` (`class_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Ограничения внешнего ключа таблицы `operation`
+-- Обмеження зовнішнього ключа таблиці `community`
+--
+ALTER TABLE `community`
+  ADD CONSTRAINT `fk_community_user` FOREIGN KEY (`commissioner_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Обмеження зовнішнього ключа таблиці `operation`
 --
 ALTER TABLE `operation`
   ADD CONSTRAINT `fk_transactions_transaction_type1` FOREIGN KEY (`type_id`) REFERENCES `operation_type` (`type_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Ограничения внешнего ключа таблицы `parameter`
+-- Обмеження зовнішнього ключа таблиці `parameter`
 --
 ALTER TABLE `parameter`
   ADD CONSTRAINT `fk_stats_resources1` FOREIGN KEY (`resource_id`) REFERENCES `resource` (`resource_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_stats_resource_attributes1` FOREIGN KEY (`attribute_id`) REFERENCES `resource_attribute` (`attribute_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Ограничения внешнего ключа таблицы `resource`
+-- Обмеження зовнішнього ключа таблиці `resource`
 --
 ALTER TABLE `resource`
   ADD CONSTRAINT `fk_resource_personal_data1` FOREIGN KEY (`owner_data_id`) REFERENCES `personal_data` (`personal_data_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_resource_resource_class1` FOREIGN KEY (`class_id`) REFERENCES `resource_class` (`class_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Ограничения внешнего ключа таблицы `user`
+-- Обмеження зовнішнього ключа таблиці `user`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`user_data_id`) REFERENCES `personal_data` (`personal_data_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,

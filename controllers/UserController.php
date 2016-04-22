@@ -2,26 +2,21 @@
 namespace app\controllers;
 
 use yii\base\Exception;
-use yii\rest\ActiveController;
+//use yii\rest\ActiveController;
 use app\models\User;
 use app\models\LoginForm;
 use app\models\Role;
 use app\models\PersonalData;
 use yii\web\Session;
+use yii\data\ActiveDataProvider;
 
-class UserController extends ActiveController
+class UserController extends AppController
 {
     public $modelClass = 'app\models\User';
-
+    
     public function actionLogin()
     {
         $modelLoginFrom = new LoginForm();
-
-
-
-
-
-
 
         if ($modelLoginFrom->load(\Yii::$app->getRequest()->getBodyParams(), '') && $modelLoginFrom->login()) {
             $post = \Yii::$app->getRequest()->getBodyParams();
@@ -129,6 +124,7 @@ class UserController extends ActiveController
         return true;
     }
     public function actionGetuser(){
+        // Get user from DB
         if (!$post = \Yii::$app->getRequest()->getBodyParams()) {
             throw new \yii\web\HttpException(400, 'Дані не отримані');
         }
@@ -169,5 +165,26 @@ class UserController extends ActiveController
         \Yii::$app->session->get('role');
         \Yii::$app->session->destroy();
         return 'Вихід здійснено';
+    }
+    public function actionAssignrole() {
+
+        $request= \Yii::$app->request->get();
+
+        $getdata = User::find()
+        ->select(['user_id','username','last_name','first_name','name as role_name'])
+        ->innerJoinWith('personalData')->innerJoinWith('userRole')
+        ->andFilterWhere(['like', 'name', $request['value']])
+        ->orderBy($request['column'])
+        ->asArray();
+        
+        $dataProvider = new ActiveDataProvider([
+            'query' => $getdata,
+            'pagination' => [
+                'pageSize' => 4,
+                'pageParam' => 'page',
+            ],
+        ]);
+        return $dataProvider;
+        
     }
 }
