@@ -17,14 +17,12 @@ class CommunityController extends ActiveController
 		$community = Community::find();
 		
 		if(isset($request['value'])){
-			$community->select(['name', 'prefix', 'username'])
-			->innerJoinWith('users')
+			$community->select(['name', 'prefix', 'notes'])
 			->andFilterWhere(['like', 'name', $request['value']])
             ->orderBy('name')
 			->asArray();	
 		}else{
-			$community->select(['name', 'prefix', 'username'])
-			->innerJoinWith('users')
+			$community->select(['name', 'prefix', 'notes'])
             ->orderBy('name')
 			->asArray();
 		}
@@ -32,7 +30,7 @@ class CommunityController extends ActiveController
 		$dataProvider = new ActiveDataProvider([
 			'query' => $community,
 			'pagination' => [
-				'pageSize' => 20,
+				'pageSize' => 4,
 				'pageParam' => 'page',
 			],
 		]);
