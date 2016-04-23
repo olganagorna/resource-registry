@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Час створення: Квт 14 2016 р., 12:50
+-- Час створення: Квт 22 2016 р., 00:41
 -- Версія сервера: 5.5.47-0ubuntu0.14.04.1
 -- Версія PHP: 5.5.9-1ubuntu4.14
 
@@ -77,20 +77,18 @@ CREATE TABLE IF NOT EXISTS `community` (
   `community_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   `prefix` varchar(50) DEFAULT NULL,
-  `commissioner_id` int(11) NOT NULL,
   `notes` text,
-  PRIMARY KEY (`community_id`),
-  KEY `fk_commissioner_user` (`commissioner_id`)
+  PRIMARY KEY (`community_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Дамп даних таблиці `community`
 --
 
-INSERT INTO `community` (`community_id`, `name`, `prefix`, `commissioner_id`, `notes`) VALUES
-(1, 'second_community', '10000254:001', 31, NULL),
-(2, 'first_community', '10000254:002', 38, NULL),
-(3, 'third_community', '10000255:001', 40, NULL);
+INSERT INTO `community` (`community_id`, `name`, `prefix`, `notes`) VALUES
+(1, 'second_community', '10000254:001', 'Town of Lviv'),
+(2, 'first_community', '10000254:002', 'Town of Ivano-Frankivsk'),
+(3, 'third_community', '10000255:001', 'Town of Uzhhorod');
 
 -- --------------------------------------------------------
 
@@ -466,12 +464,6 @@ INSERT INTO `user` (`user_id`, `username`, `auth_key`, `password_hash`, `passwor
 ALTER TABLE `attribute_class_view`
   ADD CONSTRAINT `fk_attribute_class_view_resource_attribute1` FOREIGN KEY (`attribute_id`) REFERENCES `resource_attribute` (`attribute_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_attribute_class_view_resource_class1` FOREIGN KEY (`class_id`) REFERENCES `resource_class` (`class_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Обмеження зовнішнього ключа таблиці `community`
---
-ALTER TABLE `community`
-  ADD CONSTRAINT `fk_commissioner_user` FOREIGN KEY (`commissioner_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Обмеження зовнішнього ключа таблиці `operation`
