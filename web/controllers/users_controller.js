@@ -13,7 +13,7 @@
         $scope.searchingDone;
         
         (function (){
-            return $http.get('rest.php/users/assignrole')
+            return $http.get('rest.php/users/userdata')
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
@@ -53,7 +53,7 @@
                 });
             }  else if ($scope.searchingDone) {
                 console.log("first");
-                PaginationService.switchPage(index, 'users/assignrole?value=' + $scope.searchingDone)
+                PaginationService.switchPage(index, 'users/userdata?value=' + $scope.searchingDone)
                     .then(function(data){
                         $scope.list_users = data.data;
                         $scope.currentPage = PaginationService.currentPage;
@@ -100,8 +100,8 @@
         }
 
         $scope.searchRole = function(role_name) {
-           $scope.searchingDone = role_name;
-            $http.get('http://rr.com/rest.php/users/assignrole?value='+ role_name)
+            $scope.searchingDone = role_name;
+            $http.get('http://rr.com/rest.php/users/userdata?value='+ role_name)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
@@ -111,6 +111,25 @@
                 console.log("Can't reload list!");
             }
         };
+
+
+        $scope.changeRole = function (changeRoleId, thisUserId) {
+            var newRole = {};
+            newRole.role_id = changeRoleId;
+            (function(){
+                var post = $http.post('rest.php/users/'+ thisUserId + "/changerole", JSON.stringify({role_id: changeRoleId}))
+                    .then(successHandler)
+                    .catch(errorHandler);
+                function successHandler(data) {
+                    console.log("success");
+                    // $scope.list_users = data.data;
+                }
+                function errorHandler(data){
+                    console.log("Can't reload list!");
+                }
+            }());
+            
+        }
     }
 
 })();

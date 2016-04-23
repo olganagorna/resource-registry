@@ -166,17 +166,21 @@ class UserController extends AppController
         \Yii::$app->session->destroy();
         return 'Вихід здійснено';
     }
-    public function actionAssignrole() {
-
+    public function actionUserdata() 
+    {
         $request= \Yii::$app->request->get();
-
+        $sort = 'last_name ASC';  
+        if($request['sort']==1) 
+        {
+            $sort = 'last_name DESC';
+        }    
         $getdata = User::find()
-        ->select(['user_id','username','last_name','first_name','name as role_name'])
+        ->select(['username','last_name','first_name','name as role_name'])
         ->innerJoinWith('personalData')->innerJoinWith('userRole')
         ->andFilterWhere(['like', 'name', $request['value']])
-        ->orderBy($request['column'])
+        // ->andFilterWhere(['like', 'role_id', $request['value']])
+        ->orderBy($sort)
         ->asArray();
-        
         $dataProvider = new ActiveDataProvider([
             'query' => $getdata,
             'pagination' => [
@@ -184,7 +188,37 @@ class UserController extends AppController
                 'pageParam' => 'page',
             ],
         ]);
-        return $dataProvider;
-        
+        return $dataProvider; 
+    }
+
+    public function actionChangerole() 
+    {  
+        echo ("done");
+        //$putrequest= \Yii::$app->request->put();
+        // $transaction = \Yii::$app->db->beginTransaction();
+        // try {
+        //     $userModel = new User();
+        //     $userModel->role_id = $put['community_name'];
+        //     if (!$userModel->save()){
+        //         foreach($userModel->errors as $key){
+        //             $errorMessage .= $key[0];
+        //         }
+        //         throw new \yii\web\HttpException(422,$errorMessage);
+        //     }
+        //     $transaction->commit();
+        //     $userModel = User::findUserById($post['commissioner_id']);
+        //     $userModel->role_id = 4;
+        //     $userModel->community_id = $userModel->community_id;
+        //     $userModel->save();
+        //     // Add validation for data here
+    
+        //     return 'true';
+            
+        // } catch (Exception $e) {
+        //     $transaction->rollBack();
+        //     throw new \yii\web\HttpException(422,$errorMessage . $error);
+        //     return $errorMessage . $error;
+        // }
+        // exit('end');
     }
 }
