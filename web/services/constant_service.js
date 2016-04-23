@@ -9,7 +9,7 @@
             parametersQuery: 'parameters',
             operationsQuery: 'operations',
             personal_datasQuery: 'personal_datas',
-            usersQuery: 'users/assignrole',
+            usersQuery: 'users/userdata',
             communitiesQuery: 'communities',
             paramsNumber: 6,
             perPage: 4,

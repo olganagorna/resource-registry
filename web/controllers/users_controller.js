@@ -53,7 +53,7 @@
                 });
             }  else if ($scope.searchingDone) {
                 console.log("first");
-                PaginationService.switchPage(index, 'users/userdata?value=' + $scope.searchingDone)
+                PaginationService.switchPage(index, 'users/userdata?value=' + $scope.searchingDone + "&page=" + index + "&per-page=" + constant.perPage)
                     .then(function(data){
                         $scope.list_users = data.data;
                         $scope.currentPage = PaginationService.currentPage;
@@ -67,13 +67,11 @@
                     .then(function(data){
                         $scope.list_users = data.data;
                         $scope.currentPage = PaginationService.currentPage;
-
-
                 });
             }
         };
 
-        
+
         $scope.switchPage($scope.currentPage);
         $scope.setPage = function(pageLink, pageType){
             PaginationService.setPage(pageLink, pageType, $scope.list_users._meta.pageCount)
