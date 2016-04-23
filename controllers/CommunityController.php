@@ -32,7 +32,7 @@ class CommunityController extends ActiveController
 		$dataProvider = new ActiveDataProvider([
 			'query' => $community,
 			'pagination' => [
-				'pageSize' => 20,
+				'pageSize' => 4,
 				'pageParam' => 'page',
 			],
 		]);
