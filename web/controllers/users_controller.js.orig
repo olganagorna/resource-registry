@@ -53,7 +53,11 @@
                 });
             }  else if ($scope.searchingDone) {
                 console.log("first");
-                PaginationService.switchPage(index, 'users/userdata?value=' + $scope.searchingDone + "&page=" + index + "&per-page=" + constant.perPage)
+<<<<<<< HEAD
+                PaginationService.switchPage(index, 'users/assignrole?value=' + $scope.searchingDone + "&page=" + index + "&per-page=" + constant.perPage)
+=======
+                PaginationService.switchPage(index, 'users/userdata?value=' + $scope.searchingDone)
+>>>>>>> 57d6b8bd2c3ac1f2234fb258e574e5e5445b4cb7
                     .then(function(data){
                         $scope.list_users = data.data;
                         $scope.currentPage = PaginationService.currentPage;

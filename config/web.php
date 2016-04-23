@@ -47,7 +47,8 @@ $config = [
                     'GET getresourcebycoordinate' => 'getresourcebycoordinate',
                     'POST getuser' => 'getuser',
                     'POST addcomm' => 'addcomm',
-                    'GET assignrole' => 'assignrole'
+                    'GET userdata' => 'userdata',
+                    'POST {id}/changerole' => 'changerole'
                     ],
                 ],
             ],
