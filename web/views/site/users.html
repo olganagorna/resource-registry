@@ -19,11 +19,11 @@
 		            	</h4>
 		            </div>
 		            <select ng-model="roleSearch" ng-change="searchRole(roleSearch)" class="col-md-3 text-center">
-						<!-- <option value="">Всі користувачі</option> -->
+						<option value="">Всі користувачі</option>
 		            	<option value="admin">Адміністратор</option>
 		            	<option value="registrar">Реєстратор</option>
 		            	<option value="user">Користувач</option>
-		            	<option value="comissioner">Коміссіонер</option>
+		            	<option value="commissioner">Коміссіонер</option>
 		            </select>
 		        </li>
 			    <li class="list-group-item shadow-z-1 md-list row" ng-repeat="data in list_users.items | filter:idFilter">

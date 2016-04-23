@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Час створення: Квт 13 2016 р., 16:14
+-- Час створення: Квт 22 2016 р., 00:41
 -- Версія сервера: 5.5.47-0ubuntu0.14.04.1
 -- Версія PHP: 5.5.9-1ubuntu4.14
 
@@ -77,19 +77,18 @@ CREATE TABLE IF NOT EXISTS `community` (
   `community_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   `prefix` varchar(50) DEFAULT NULL,
-  `commissioner_id` int(11) NOT NULL,
   `notes` text,
-  PRIMARY KEY (`community_id`),
-  KEY `fk_community_user` (`commissioner_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  PRIMARY KEY (`community_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Дамп даних таблиці `community`
 --
 
-INSERT INTO `community` (`community_id`, `name`, `prefix`, `commissioner_id`, `notes`) VALUES
-(1, 'first_community', '10002:001', 31, NULL),
-(2, 'second_community', '10003:001', 38, NULL);
+INSERT INTO `community` (`community_id`, `name`, `prefix`, `notes`) VALUES
+(1, 'second_community', '10000254:001', 'Town of Lviv'),
+(2, 'first_community', '10000254:002', 'Town of Ivano-Frankivsk'),
+(3, 'third_community', '10000255:001', 'Town of Uzhhorod');
 
 -- --------------------------------------------------------
 
@@ -195,19 +194,102 @@ CREATE TABLE IF NOT EXISTS `personal_data` (
 --
 
 INSERT INTO `personal_data` (`personal_data_id`, `last_name`, `first_name`, `middle_name`, `passport_series`, `passport_number`, `address`, `registrar_key`) VALUES
-(1, 'Kohut', 'Ihor', 'Dmytrovych', 'SV', '456731', 'Lviv', '804:23:17:026:'),
-(2, 'Ugryn', 'Andriy', 'Vasyliovych', 'NM', '145177', 'Uzhhorod', '804:23:17:026:'),
-(3, 'Shakhzadov', 'Kostiantyn', 'Gennadiyiovych', 'PK', '223453', 'Ivano-Frankivsk', '804:23:17:026:'),
-(4, 'Nagorna', 'Olga', 'Mykhailivna', 'DV', '989876', 'Sumy', '804:23:17:026:'),
-(5, 'Pereimybida', 'Andriy', 'Andriyovych', 'SG', '556643', 'Zaporizzia', '804:23:17:026:'),
-(6, 'Teslenko', 'Yuriy', 'Stepanovych', 'RR', '101234', 'Rivne', '804:23:17:026:'),
-(7, 'Potypa', 'Yevgeniy', 'Viktorovych', 'DS', '332456', 'Ternopil', '804:23:17:026:'),
-(8, 'Zhovniriv', 'Nazariy', 'Oleksandrovych', 'DD', '112232', 'Vinnycia', '804:23:17:026:'),
-(9, 'Fedchuk', 'Andriy', 'Romanovych', 'DK', '878685', 'Kharkiv', '804:23:17:026:'),
-(10, 'Khrobak', 'Andriy', 'Oleksiyovych', 'SN', '654738', 'Kyiv', '804:23:17:026:');
-
-
-
+(1, 'Михайлів', 'Дмитро', 'Юрійович', 'NM', '123456', 'Львів', '804:23:17:026:'),
+(2, 'Крикун', 'Ірина', 'Василівна', 'NM2', '123451', 'Lvi2', '804:23:17:026:'),
+(41, 'Дяків', 'Богдан', 'Ростиславович', 'dd', '11111', 'd', NULL),
+(43, 'Чупринка', 'Іван', 'Васильович', 'AA', '111111', 'Aaaa', NULL),
+(44, 'Римар', 'Степан', 'Кирилович', 'AA', '111111', 'Aaaa', NULL),
+(45, 'Боднар', 'Володимир', 'Степанович', 'AA', '111111', 'Aaaa', NULL),
+(53, 'Чайка', 'Ганна', 'Іванівна', 'AA', '111111', 'Aaaa', NULL),
+(58, 'Костин', 'Андрій', 'Вікторович', 'AA', '111111', 'Aaaa', NULL),
+(60, 'Трембіта', 'Лариса', 'Любомирівна', 'AA', '111111', 'Aaaa', NULL),
+(61, 'Стойко', 'Роман', 'Гаврилович', 'AA', '111111', 'Aaaa', NULL),
+(64, 'Кличко', 'Сергій', 'Несторович', 'AA', '111111', 'Aaaa', NULL),
+(65, 'Сенсей', 'Світлана', 'Панасівна', 'AA', '111111', 'Aaaa', NULL),
+(67, 'Стартер', 'Віталій', 'Орестович', 'AA', '11111', 'Aaaa', NULL),
+(68, 'Красій', 'Кирило', 'Олексійович', 'AA', '111111', 'Aaaa', NULL),
+(69, 'Коровко', 'Алла', 'Михайлівна', 'AA', '111112', 'Bbbbb', NULL),
+(70, 'Сидір', 'Ганна', 'Ярославівна', 'AA', '77777', 'lviv', NULL),
+(71, 'Самсонова', 'Наталія', 'Володимирівна', 'CC', '222222', 'Aaaa', NULL),
+(72, 'Смірнова', 'Неля', 'Остафівна', 'DD', '333333', 'Bfff', NULL),
+(73, 'Сергієнко', 'Стефанія', 'Сидорівна', 'AA', '111111', 'Aaaa', NULL),
+(74, 'Редько', 'Валентина', 'Сергіївна', 'AA', '111111', 'Aaaa', NULL),
+(75, 'Стефанів', 'Ангелія', 'Борисівна', 'AA', '11111', 'Aaa123', NULL),
+(94, 'Шаламай', 'Ірина', 'Валеріївна', 'TE', '123456', 'test36', NULL),
+(97, 'Рибалко', 'Ігор', 'Несторович', 'TE', '56565', 'test37', NULL),
+(98, 'Жовнір', 'Григорій', 'Ростиславович', 'TE', '56565', 'test37', NULL),
+(101, 'Балагура', 'Нестор', 'Степанович', 'TE', '56565', 'test37', NULL),
+(102, 'Забадай', 'Іван', 'Іванович', 'kh', 'khkuh', 'kuhkuh', NULL),
+(103, 'Румун', 'Ростислав', 'Григорович', 'kh', 'khkuh', 'kuhkuh', NULL),
+(104, 'Армен', 'Василь', 'Арсенович', 'kh', 'khkuh', 'kuhkuh', NULL),
+(105, 'Секунда', 'Григорій', 'Романович', 'kh', 'khkuh', 'kuhkuh', NULL),
+(106, 'Василько', 'Нестор', 'Васильович', 'kh', 'khkuh', 'kuhkuh', NULL),
+(107, 'Петров', 'Петро', 'Петрович', 'КН', '374826374', 'Виговського 67', NULL),
+(108, 'Павлик', 'Василь', 'Вікторович', 'КН', '374826374', 'Виговського 67', NULL),
+(109, 'Ходарко', 'Анастасія', 'Андріївна', 'tg', 'bgbg', 'bgbg', NULL),
+(111, 'Шевчук', 'Віталій', 'Сергійович', 'КС', '123', 'Адреса', NULL),
+(112, 'Петренко', 'Олександр', 'Іванович', 'КС', '34536574', 'виговського 7', NULL),
+(113, 'Павелко', 'Андрій', 'Олександрович', 'EE', '123456', '29000, м. Хмельницький, вул. Героїв Майдану, 17, кв. 17', '804:23:17:026:'),
+(114, 'Лимар', 'Анатолій', 'Дмитрович', 'ME', '55555', 'Lv', '804:23:17:026:'),
+(115, 'Рибалко', 'Костянтин', 'Сергійович', 'FT', '6644', 'Lviv', NULL),
+(116, 'Петрів', 'Роман', 'Віталійович', 'KK', '5555', 'Lviv', NULL),
+(117, 'Коваль', 'Олександр', 'Гаврилович', 'KA', '77777', 'Addr', NULL),
+(118, 'Опар', 'Ярослав', 'Володимирович', 'DD', '33333', 's', NULL),
+(119, 'Крижанівський', 'Богдан', 'Борисович', 'DD', '33333', 's', NULL),
+(120, 'Андрійко', 'Василь', 'Васильович', 'DD', '33333', 's', NULL),
+(121, 'Богдан', 'Богдан', 'Опанасович', 'DD', '33333', 's', NULL),
+(122, 'Грабар', 'Роман', 'Іванович', 'МЕ', '11111', 'м.Самбір., Шухевича 53', NULL),
+(123, 'Васильєв', 'Володимир', 'Володимирович', 'МЕ', '1234', 'Дніпропетровськ вул, Червоний камінь., Україна', NULL),
+(124, 'Трутенко', 'Тетяна', 'Терентіївна', 'МЕ', '55555', 'Тест', NULL),
+(125, 'Вар''ят', 'Степан', 'Сергійович', 'ТЕСТ', 'ТЕСТ', 'ТЕСТ', NULL),
+(126, 'Середько', 'Федір', 'Мирославович', 'ЬУ', 'ЬК', 'ЬК', NULL),
+(127, 'Андрюшенко', 'Іван', 'Миколайович', 'МЕ', '55555', 'м.Київ., Україна', NULL),
+(128, 'Андрейко', 'Віктор', 'Мирославович', 'МЕ', '55555', 'м.Київ., Україна', NULL),
+(129, 'Андрейко', 'Ольга', 'Любомирівна', 'ИУ', '3333', 'ло', NULL),
+(130, 'Сачко', 'Сергій', 'Григорович', 'ТУ', '33333', 'фі', NULL),
+(131, 'Селезень', 'Назар', 'Ігорович', 'ТУ', '33333', 'фі', NULL),
+(132, 'Жадько', 'Євген', 'Любомирович', 'Му', '44444', 'ло', NULL),
+(133, 'Микита', 'Іван', 'Євгенійович', 'м', '77777', 'р', NULL),
+(134, 'Коваль', 'Павло', 'Панасійович', 'МЕ', '55555', 'м. Львів ., вул.,Смаль-Стоцького', NULL),
+(135, 'Ковальський', 'Володимир', 'Віталійович', 'МЕ', '55555', 'м. Львів ., вул.,Смаль-стоцького', NULL),
+(136, 'Староженко', 'Галина', 'Олексіївна', 'МЕ', '55555', 'р', NULL),
+(137, 'Назаренко', 'Василь', 'Васильович', 'МЕ', '5555', 'Львів', NULL),
+(138, 'Сікорська', 'Віра', 'Тарасівна', 'МЕ', '5555', 'Львів', NULL),
+(139, 'Голобородько', 'Тарас', 'Олексійович', 'МЕ', '12345', 'Львів', NULL),
+(140, 'Грабич', 'Олексій', 'Михайлович', 'МЕ', '55555', 'м., Київ', NULL),
+(141, 'Грабля', 'Валентина', 'Василівна', 'МЕ', '55555', 'м., Київ', NULL),
+(142, 'Контора', 'Кирило', 'Костянтинович', 'МЕ', '5555', 'м.Київ', NULL),
+(143, 'Кружка', 'Сергій', 'Олександрович', 'МЕ', '55555', 'м.Київ', NULL),
+(144, 'Камбала', 'Наталія', 'Петрівна', 'МЕ', '55555', 'м.Київ', NULL),
+(145, 'Юзик', 'Світлана', 'Андріївна', 'МЕ', '55555', 'м.Київ', NULL),
+(146, 'Король', 'Світлана', 'Арсеніївна', 'Ме', '55555', 'Петро', NULL),
+(147, 'Левон', 'Альберто', 'Насірович', 'ві', '55555', 'ра', NULL),
+(148, 'Яків', 'Альберт', 'Арсенович', 'МЕ', '66666', 'ОРЛР', NULL),
+(149, 'Федоришин', 'Оксана', 'Олегівна', 'МЕ', '66655', 'фів', NULL),
+(150, 'Соломко', 'Олег', 'Степанович', 'ММ', '55555', 'лорло', NULL),
+(151, 'Мазепа', 'Марина', 'Олександрівна', 'VR', '88888', 'kjh', NULL),
+(152, 'Крик', 'Назарій', 'Борисович', 'VR', '88888', 'kjh', NULL),
+(153, 'Баран', 'Олексій', 'Вікторович', 'ММ', '55555', 'лорло', NULL),
+(154, 'Крисюк', 'Віктор', 'Панасович', 'ZZ', '77777', 'kjhkj', NULL),
+(155, 'Коробка', 'Дмитро', 'Станіславович', 'BR', '88888', 'kjhkj', NULL),
+(156, 'Чуйко', 'Віталія', 'Дмитрівна', 'BR', '77774', 'jhjk', NULL),
+(157, 'Коптев', 'Степан', 'Михайлович', 'BBD', 'jlkjl', 'jkjlj', NULL),
+(158, 'Каряка', 'Григорій', 'Кирилович', 'ew', '88888', 'kjk', NULL),
+(159, 'Круглов', 'Сергій', 'Степанович', 'NN', '77777', 'kjhk', NULL),
+(160, 'Кружка', 'Борислав', 'Харитонович', 'BB', '77777', 'kjhk', NULL),
+(161, 'Забужко', 'Ігор', 'Олексійович', 'MM', '66666', 'jhgj', NULL),
+(162, 'Зайка', 'Ростислав', 'Станіславович', 'BB', '66666', 'h', NULL),
+(163, 'Пакля', 'Рахім', 'Чакхійович', 'vt', '2323', 'jkhjkhk', NULL),
+(164, 'Гора', 'Романа', 'Іванівна', 'МЕ', '23233', 'SAN FRANCISCO', NULL),
+(165, 'Цихмейструк', 'Софія', 'Сергіївна', 'VT', '66666', 'RRR', NULL),
+(166, 'Перебийніс', 'Василь', 'Іванович', 'МЕ', '55555', 'м.Самбір., Львівська обл.', NULL),
+(167, 'Калина', 'Іванна', 'Федорівна', 'МЕ', '55555', 'м.Самбір., Львівська обл.', NULL),
+(168, 'Лисикевич', 'Володимир', 'Володимирович', 'ME', '55555', 'Львів., Володимира Великого, 63', NULL),
+(169, 'Коваль', 'Валерій', 'Анатолійович', 'МЕ', '12345', 'Львів., вул. Шевченка 56', NULL),
+(170, 'Кириченко', 'Тетяна', 'Василівна', 'МЕ', '55555', 'Самбір ., вул. Шухевича 68', NULL),
+(171, 'Нікель', 'Василь', 'Євгенійович', 'МЕ', '6666', 'Львів', NULL),
+(172, 'Сердюк', 'Олександр', 'Олександрович', 'КВ', '139406', 'м.Львів', NULL),
+(173, 'Ваврик', 'Іван', 'Олексійович', 'пп', '8888', 'м. Львів вул. Низинна', NULL);
 
 -- --------------------------------------------------------
 
@@ -335,27 +417,42 @@ CREATE TABLE IF NOT EXISTS `user` (
   `community_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   KEY `role_id` (`user_data_id`),
-  KEY `role_id_2` (`role_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
+  KEY `role_id_2` (`role_id`),
+  KEY `fk_user_community` (`community_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
 
 --
 -- Дамп даних таблиці `user`
 --
 
 INSERT INTO `user` (`user_id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `user_data_id`, `role_id`, `community_id`) VALUES
-(1, 'commissioner', 'mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', NULL, 'commissioner@mail.ru', 1, 4, NULL),
-(2, 'user1', 'pdw6JM5azks9n-Fkx9EYmPLobHQJkMV7', '$2y$13$BlX7rTSKcUaluomULVXgRec/1H.y2yJG.K7jSXZArCq4OkzhJ9S/y', 'NULL', 'zhenyast@yandex.ru', 2, 1, NULL),
-(3, 'user2', 'CnJoAGaGgNUzWFs1douSRUhI-7nCQofg', '$2y$13$BlX7rTSKcUaluomULVXgRec/1H.y2yJG.K7jSXZArCq4OkzhJ9S/y', NULL, 'test@gmail.com', 3, 1, NULL),
-(4, 'user3', 'iWVndxR_sQaVRTNgvgKNsgLlJB1pNzDk', '$2y$13$BlX7rTSKcUaluomULVXgRec/1H.y2yJG.K7jSXZArCq4OkzhJ9S/y', NULL, 'test@gmail.com', 4, 1, NULL),
-(5, 'admin', 'nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', NULL, 'test69@mail.ru', 5, 3, NULL),
-(6, 'user4', '0hRs_b4To10q9QejQ3wS0ATzNMUKmSHy', '$2y$13$BlX7rTSKcUaluomULVXgRec/1H.y2yJG.K7jSXZArCq4OkzhJ9S/y', NULL, 'test37@mail.ru', 6, 1, NULL),
-(7, 'user5', 'eJWSGRi2nyz9wPviMJw0lH1ixy5IrtMi', '$2y$13$BlX7rTSKcUaluomULVXgRec/1H.y2yJG.K7jSXZArCq4OkzhJ9S/y', NULL, 'vitashev@bk.ru', 7, 1, NULL),
-(8, 'user6', 'ODBf-XUPupYGk4iss935XhIECg-nbwok', '$2y$13$BlX7rTSKcUaluomULVXgRec/1H.y2yJG.K7jSXZArCq4OkzhJ9S/y', NULL, 'rerse@ya.ri', 8, 1, NULL),
-(9, 'registrar', 'VYNlikVL5ZSiCPZp3XL6NZ_nr4cl9Pr3', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', NULL, 'registerresource@gmail.com', 9, 2, NULL),
-(10, 'demo', 'mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY', '$2y$13$BlX7rTSKcUaluomULVXgRec/1H.y2yJG.K7jSXZArCq4OkzhJ9S/y', NULL, 'demo@mail.net', 10, 1, NULL);
-
-
-
+(1, 'admin1', 'mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY', '$2y$13$BlX7rTSKcUaluomULVXgRec/1H.y2yJG.K7jSXZArCq4OkzhJ9S/y', NULL, 'demo@mail.net', 1, 3, NULL),
+(3, 'registrar1', 'pdw6JM5azks9n-Fkx9EYmPLobHQJkMV7', '$2y$13$XSNOyLiil07pBhh5RnNsxuHsvr21cO3HoqGtMs9rPe4xGr2L.RdUu', 'F7NFSAPun1hooVGJGpUGgaUpPcJ4iEEu_1444824168', 'zhenyast@yandex.ru', 2, 2, NULL),
+(7, 'admin2', 'sBZlLkpEbikELmURWCopgN-lYiqU7UYu', '$2y$13$BlX7rTSKcUaluomULVXgRec/1H.y2yJG.K7jSXZArCq4OkzhJ9S/y', NULL, 'zhenyast@yandex.ru', 170, 3, NULL),
+(8, 'user1', 'LTrS-nd6GOp4NAuWsqLPMGRmTXyhnRoR', '$2y$13$BlX7rTSKcUaluomULVXgRec/1H.y2yJG.K7jSXZArCq4OkzhJ9S/y', NULL, 'test@gmail.com', 65, 1, NULL),
+(9, 'user2', 'v0HLQsttxqamwDDszxTmGrio0KjVFASu', '$2y$13$sVfWSaKYBjCXRG.ipdGnBOG7IWZ5epKuRxcj43I.5TLlWaxU1Tfiq', NULL, 'test@gmail.com', 67, 1, NULL),
+(10, 'user3', 'nzns3KZbmVNEERTeqbyWSmiA8iIsZCuy', '$2y$13$x4P0BcqVrFjVSE8tVfbaZuFEHpwX9Llt6MEDWtpT3H35m/35I7xhq', NULL, 'test@gmail.com', 68, 1, NULL),
+(11, 'user4', 'D3Hwd61ihElNoSZqYdbm6tY7MiR9TKMN', '$2y$13$apiaxjG5M3k1MQ/IdxYM1ubbyaOglIdNoOymvuzkITKShbqhP.EW6', NULL, 'test@gmail.com', 69, 1, NULL),
+(12, 'user5', 'FEdVtOX6YBUSBDkGwBmlkRs7MvKS1rNS', '$2y$13$UW1VZ9hHTX5Vhnzw.uoQ7OUMu/GInWxGUN8CKFqE11hHkyE0VQuxe', NULL, 'test@gmail.com', 70, 1, NULL),
+(14, 'user6', 'CnJoAGaGgNUzWFs1douSRUhI-7nCQofg', '$2y$13$NGtRJrUMsGHIrqrKdWq2kercGlmyyjwOgpm8ZxYfSey6Y0Gk0Dtfu', NULL, 'test@gmail.com', 71, 1, NULL),
+(15, 'user7', 'iWVndxR_sQaVRTNgvgKNsgLlJB1pNzDk', '$2y$13$GyFd0cLsWEqsoY31QSynBexJhzntmrB6yGu.Tk2kTsSsq09uybWwC', NULL, 'test@gmail.com', 72, 1, NULL),
+(16, 'user8', 'J9pL0T5YDbPSK7mn0O0FRYndbFFxAgEX', '$2y$13$O4Hid6PLW2BGi.Y4IlX2c.XBVWk.SPul8pWrD6XgYxxQgRXtRHdpC', NULL, 'test@gmail.com', 73, 1, NULL),
+(17, 'user9', '2b1-_u4Gb-BcDIlQTwwxOFSXypfeLuMP', '$2y$13$ffgOz/IhD8Jb2r0vX/Z44uA9u0QP2aRDlxdxokeVdK18z76yPo7RO', NULL, 'personalDataModel@ya.ru', 74, 1, NULL),
+(18, 'user10', 'ecuUkIjIbI-a_JL3dk5clnLTBu6NMPxm', '$2y$13$Wqc8FH7coO.n/iyc/l4nHecWTJlQQujSFcnBeX1n7MhwmcsvPZ00m', NULL, 'test@mail.ru', 75, 1, NULL),
+(20, 'user11', 'vLNM1wxWKgQN27Ggot6mt2i08QxEI1dk', '$2y$13$LcGAfRrqIZDUwtdECiOKreh5XUAL106odA5Zj89sd034r3WJxdvBe', NULL, 'vasya@ya.ru', 131, 1, NULL),
+(21, 'user12', 'ucDnNXLbL4cqo6EEezyEeUoC37NuU47n', '$2y$13$g00nLVE8.hcc1yAXCJeO.uzaTouLi4QxGh0YSDP8WMFnxKovaMEWO', NULL, 'test36@mail.ru', 132, 1, NULL),
+(22, 'user13', '0hRs_b4To10q9QejQ3wS0ATzNMUKmSHy', '$2y$13$27YSO6O3fFH62.S2hIPWHuwuYzVyMfLx1iVex.oB5oJKvrd2I.Gfa', NULL, 'test37@mail.ru', 133, 1, NULL),
+(23, 'user14', 'eJWSGRi2nyz9wPviMJw0lH1ixy5IrtMi', '$2y$13$54dopM1dbO6totckC8dtF.akY7Wr6XBWBx47KFU/rUm2cjt6HvmSO', NULL, 'vitashev@bk.ru', 134, 1, NULL),
+(24, 'user15', 'ODBf-XUPupYGk4iss935XhIECg-nbwok', '$2y$13$xaKAJKmtQveX.TAIYmBun.PY60neU.6v1cfKz2Ujq59B/Bne3ZE/G', NULL, 'rerse@ya.ri', 135, 1, NULL),
+(25, 'registrar2', 'VYNlikVL5ZSiCPZp3XL6NZ_nr4cl9Pr3', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', NULL, 'registerresource@gmail.com', 107, 2, NULL),
+(26, 'registrar3', 'AE5fW3PCbNY3D5jGAtAiAGXd0ezMdy-q', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', NULL, 'registerresource@gmail.com', 108, 2, NULL),
+(27, 'registrar4', 'Fxl0xfdMGVrzpPj8c1_uNtAwAAf5t90T', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', NULL, 'gtrgrt@ya.ru', 109, 2, NULL),
+(28, 'registrar5', 'kq1OSpQweIhZ3kfF5f6fAM2_kM9H5h3E', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', NULL, 'registerresource@gmail.com', 167, 2, NULL),
+(29, 'registrar', 'nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', NULL, 'test69@mail.ru', 120, 2, NULL),
+(30, 'registrar6', 'r9ZSVEms7lozWO7Guo_K3ZiyaxRyQD3M', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', NULL, 'gith@gmail.com', 122, 2, NULL),
+(31, 'first_commissioner', 'mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY', '$2y$13$BlX7rTSKcUaluomULVXgRec/1H.y2yJG.K7jSXZArCq4OkzhJ9S/y', NULL, 'first_commissioner@mail.ru', 115, 4, 1),
+(38, 'second_commissioner', 'mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY', '$2y$13$BlX7rTSKcUaluomULVXgRec/1H.y2yJG.K7jSXZArCq4OkzhJ9S/y', NULL, 'second_commissioner@mail.ru', 116, 4, 2),
+(40, 'third_commissioner', 'mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY', '$2y$13$BlX7rTSKcUaluomULVXgRec/1H.y2yJG.K7jSXZArCq4OkzhJ9S/y', NULL, 'third_commissioner@mail.ru', 117, 4, 3);
 
 --
 -- Обмеження зовнішнього ключа збережених таблиць
@@ -367,12 +464,6 @@ INSERT INTO `user` (`user_id`, `username`, `auth_key`, `password_hash`, `passwor
 ALTER TABLE `attribute_class_view`
   ADD CONSTRAINT `fk_attribute_class_view_resource_attribute1` FOREIGN KEY (`attribute_id`) REFERENCES `resource_attribute` (`attribute_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_attribute_class_view_resource_class1` FOREIGN KEY (`class_id`) REFERENCES `resource_class` (`class_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Обмеження зовнішнього ключа таблиці `community`
---
-ALTER TABLE `community`
-  ADD CONSTRAINT `fk_community_user` FOREIGN KEY (`commissioner_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Обмеження зовнішнього ключа таблиці `operation`
@@ -398,6 +489,7 @@ ALTER TABLE `resource`
 -- Обмеження зовнішнього ключа таблиці `user`
 --
 ALTER TABLE `user`
+  ADD CONSTRAINT `fk_user_community` FOREIGN KEY (`community_id`) REFERENCES `community` (`community_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`user_data_id`) REFERENCES `personal_data` (`personal_data_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
