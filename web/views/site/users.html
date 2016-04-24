@@ -1,9 +1,17 @@
 <div ng-if="currentUser.role === 'registrar'">
-<style>
-	#user-role-selector option:nth-child(0) {
-	    _display: none !important;
-	}
-</style>
+	<div class="container well">
+		<div class="row">
+			<div class="col-lg-12">
+				<h4>Пошук</h4>
+				<ng-form>
+					<span>Пошук по імені користувача &nbsp</span>
+					<input type="text" class="community-search" ng-model="userSearch"/>
+					<input class="btn btn-primary" type="submit" value="Пошук" ng-click="searchUser(userSearch)"></input>
+					<input class="btn btn-primary" type="submit" value="Додати користувача" ng-click="addUser()"></input>
+				</ng-form>
+			</div>
+		</div>
+	</div>
 	<div class="col-md-12">
 		<div class="md-list-group">
 			<ul class="list-group">
@@ -18,12 +26,12 @@
 		             		<button ng-click="sort('last_name')">Прізвище та ім'я</button>
 		            	</h4>
 		            </div>
-		            <select ng-model="roleSearch" ng-change="searchRole(roleSearch)" class="col-md-3 text-center">
-						<!-- <option value="">Всі користувачі</option> -->
+		            <select ng-model="roleFilter" ng-change="filterRole(roleFilter)" class="col-md-3 text-center">
+						<option value="">Всі користувачі</option>
 		            	<option value="admin">Адміністратор</option>
 		            	<option value="registrar">Реєстратор</option>
 		            	<option value="user">Користувач</option>
-		            	<option value="comissioner">Коміссіонер</option>
+		            	<option value="commissioner">Коміссіонер</option>
 		            </select>
 		        </li>
 			    <li class="list-group-item shadow-z-1 md-list row" ng-repeat="data in list_users.items | filter:idFilter">

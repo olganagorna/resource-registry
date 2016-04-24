@@ -9,8 +9,11 @@
     function UsersController(RestService, $location, constant, $filter , $rootScope, $scope, $http, PaginationService) {
 
         $scope.list_users = [];
-        $scope.roleSearch;
+        $scope.roleFilter;
+        $scope.filteringDone;
+        $scope.userSearch;
         $scope.searchingDone;
+
         
         (function (){
             return $http.get('rest.php/users/userdata')
@@ -26,15 +29,6 @@
                 console.log(data.data[0].message);
             }
         })();
-        //Load resources per page
-        // RestService.getData(constant.usersQuery + '?&per-page=' + constant.perPage)
-        //     .then(function(data){
-        //         $scope.list_users = data.data;
-        //         console.log(data.data);
-        //     });
-        //     console.log(constant.usersQuery + '?&per-page=' + constant.perPage)
-
-        // console.log(constant.usersQuery); //returns admins/admin 
         
         //Pagination start
         $scope.currentPage = PaginationService.currentPage;
@@ -57,8 +51,6 @@
                     .then(function(data){
                         $scope.list_users = data.data;
                         $scope.currentPage = PaginationService.currentPage;
-
-
                 });
             } else {
  
@@ -71,7 +63,6 @@
             }
         };
 
-
         $scope.switchPage($scope.currentPage);
         $scope.setPage = function(pageLink, pageType){
             PaginationService.setPage(pageLink, pageType, $scope.list_users._meta.pageCount)
@@ -83,22 +74,8 @@
         };
         //Pagination end
 
-        $scope.sort = function(sort_param){
-            console.log($scope.list_users);
-
-            var orderBy = $filter('orderBy');
-            $scope.order = function(predicate) {
-                console.log(predicate);
-                $scope.predicate = predicate;
-                $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : true;
-                $scope.list_users = orderBy($scope.list_users, predicate, $scope.reverse);
-                console.log("Sorted"+$scope.list_users);
-            };
-            $scope.order(sort_param, true);
-        }
-
-        $scope.searchRole = function(role_name) {
-            $scope.searchingDone = role_name;
+        $scope.filterRole = function(role_name) {
+            $scope.filteringDone = role_name;
             $http.get('http://rr.com/rest.php/users/userdata?value='+ role_name)
                 .then(successHandler)
                 .catch(errorHandler);
@@ -109,7 +86,21 @@
                 console.log("Can't reload list!");
             }
         };
+        $scope.searchUser = function(search_query) {
 
+            $scope.searchingDone = search_query;
+            console.log($scope.searchingDone);
+            $http.get('http://rr.com/rest.php/users/userdata?value='+ search_query)
+                .then(successHandler)
+                .catch(errorHandler);
+            function successHandler(data) {
+
+                $scope.list_users = data.data;
+            }
+            function errorHandler(data){
+                console.log("Can't reload list!");
+            }
+        };
 
         $scope.changeRole = function (changeRoleId, thisUserId) {
             var newRole = {};
@@ -126,7 +117,6 @@
                     console.log("Can't reload list!");
                 }
             }());
-            
         }
     }
 

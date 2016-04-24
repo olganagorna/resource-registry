@@ -174,13 +174,35 @@ class UserController extends AppController
         {
             $sort = 'last_name DESC';
         }    
+
+        $words = explode(' ', $request['value']);
+        if(sizeof($words) != 2) {
+            $filters = [
+                'or',
+                ['like', 'first_name', $words[0]],
+                ['like', 'last_name', $words[0]],
+                ['like', 'name', $words[0]]
+            ];
+        } else {
+            $filters = ['or', [
+                'and',
+                ['like', 'first_name', $words[0]],
+                ['like', 'last_name', $words[1]]
+            ], [
+                'and',
+                ['like', 'first_name', $words[1]],
+                ['like', 'last_name', $words[0]]
+            ]];
+        }
+
+
         $getdata = User::find()
         ->select(['username','last_name','first_name','name as role_name'])
         ->innerJoinWith('personalData')->innerJoinWith('userRole')
-        ->andFilterWhere(['like', 'name', $request['value']])
-        // ->andFilterWhere(['like', 'role_id', $request['value']])
+        ->andFilterWhere($filters)
         ->orderBy($sort)
         ->asArray();
+        
         $dataProvider = new ActiveDataProvider([
             'query' => $getdata,
             'pagination' => [
