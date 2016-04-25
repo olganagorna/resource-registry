@@ -27,7 +27,7 @@ class CommunityController extends ActiveController
 			->asArray();
 		}
 
-		$dataProvider = new ActiveDataProvider([
+	    $dataProvider = new ActiveDataProvider([
 			'query' => $community,
 			'pagination' => [
 				'pageSize' => 4,
