@@ -9,9 +9,14 @@
     function UsersController(RestService, $location, constant, $filter , $rootScope, $scope, $http, PaginationService) {
 
         $scope.list_users = [];
+        $scope.roleFilter;
+        $scope.filteringDone;
+        $scope.userSearch;
+        $scope.searchingDone;
+        $scope.sortingDone;
         
         (function (){
-            return $http.get('rest.php/users/assignrole')
+            return $http.get('rest.php/users/userdata')
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
@@ -24,15 +29,6 @@
                 console.log(data.data[0].message);
             }
         })();
-        //Load resources per page
-        // RestService.getData(constant.usersQuery + '?&per-page=' + constant.perPage)
-        //     .then(function(data){
-        //         $scope.list_users = data.data;
-        //         console.log(data.data);
-        //     });
-        //     console.log(constant.usersQuery + '?&per-page=' + constant.perPage)
-
-        // console.log(constant.usersQuery); //returns admins/admin 
         
         //Pagination start
         $scope.currentPage = PaginationService.currentPage;
@@ -42,13 +38,22 @@
         };
 
         $scope.switchPage = function(index){
+            // console.log('req1 ' + request);
             if($scope.request){
                 PaginationService.switchPage(index, constant.usersQuery + '/search?' + buildQuery($scope.request)+ '&')
                     .then(function(data){
                         $scope.list_users = data.data;
                         $scope.currentPage = PaginationService.currentPage;
                 });
-            }else {
+            }  else if ($scope.searchingDone) {
+                console.log("first");
+                PaginationService.switchPage(index, 'users/userdata?value=' + $scope.searchingDone + "&page=" + index + "&per-page=" + constant.perPage)
+                    .then(function(data){
+                        $scope.list_users = data.data;
+                        $scope.currentPage = PaginationService.currentPage;
+                });
+            } else {
+                console.log("second");
                 PaginationService.switchPage(index, constant.usersQuery + '?')
                     .then(function(data){
                         $scope.list_users = data.data;
@@ -67,18 +72,70 @@
         };
         //Pagination end
 
-        $scope.sort = function(sort_param){
-            console.log($scope.list_users);
+        // filtering by role
+        $scope.filterRole = function(role_name) {
+            $scope.filteringDone = role_name;
+            $http.get('http://rr.com/rest.php/users/userdata?value='+ role_name)
+                .then(successHandler)
+                .catch(errorHandler);
+            function successHandler(data) {
+                $scope.list_users = data.data;
+            }
+            function errorHandler(data){
+                console.log("Can't reload list!");
+            }
+        };
 
-            var orderBy = $filter('orderBy');
-            $scope.order = function(predicate) {
-                console.log(predicate);
-                $scope.predicate = predicate;
-                $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : true;
-                $scope.list_users = orderBy($scope.list_users, predicate, $scope.reverse);
-                console.log("Sorted"+$scope.list_users);
-            };
-            $scope.order(sort_param, true);
+        // searching by first and last name
+        $scope.searchUser = function(search_query) {
+            $scope.searchingDone = search_query;
+            console.log($scope.searchingDone);
+            $http.get('http://rr.com/rest.php/users/userdata?value='+ search_query)
+                .then(successHandler)
+                .catch(errorHandler);
+            function successHandler(data) {
+                $scope.list_users = data.data;
+            }
+            function errorHandler(data){
+                console.log("Can't reload list!");
+            }
+        };
+        // sort by name
+        $scope.sortName = function() {
+            
+            if($scope.sort_order == "desc"){
+                $scope.sort_order = "asc";
+                
+            } else {
+                $scope.sort_order = "desc";
+                
+            }
+            
+            $http.get('http://rr.com/rest.php/users/userdata?sort=' + $scope.sort_order)
+                .then(successHandler)
+                .catch(errorHandler);
+            function successHandler(data) {
+                $scope.list_users = data.data;
+            }
+            function errorHandler(data){
+                console.log("Can't reload list!");
+            }
+        };
+        $scope.changeRole = function (changeRoleId, thisUserId) {
+            var newRole = {};
+            newRole.role_id = changeRoleId;
+            (function(){
+                var post = $http.post('rest.php/users/'+ thisUserId + "/changerole", JSON.stringify({role_id: changeRoleId}))
+                    .then(successHandler)
+                    .catch(errorHandler);
+                function successHandler(data) {
+                    console.log("success");
+                    // $scope.list_users = data.data;
+                }
+                function errorHandler(data){
+                    console.log("Can't reload list!");
+                }
+            }());
         }
     }
 

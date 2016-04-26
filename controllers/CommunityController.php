@@ -17,20 +17,20 @@ class CommunityController extends ActiveController
 		$community = Community::find();
 		
 		if(isset($request['value'])){
-			$community->select(['name', 'prefix', 'username'])
-			->innerJoinWith('users')
+			$community->select(['name', 'prefix', 'notes'])
 			->andFilterWhere(['like', 'name', $request['value']])
+            ->orderBy('name')
 			->asArray();	
 		}else{
-			$community->select(['name', 'prefix', 'username'])
-			->innerJoinWith('users')
+			$community->select(['name', 'prefix', 'notes'])
+            ->orderBy('name')
 			->asArray();
 		}
 
-		$dataProvider = new ActiveDataProvider([
+	    $dataProvider = new ActiveDataProvider([
 			'query' => $community,
 			'pagination' => [
-				'pageSize' => 20,
+				'pageSize' => 4,
 				'pageParam' => 'page',
 			],
 		]);
@@ -45,35 +45,22 @@ class CommunityController extends ActiveController
             throw new \yii\web\HttpException(400, 'Дані не отримані');
         }
         $communityModel = new Community();
-        if ($communityModel->findByCommunityName($post['community_name'])){
+        if ($communityModel->findByCommunityName($post['com_name'])){
             throw new \yii\web\HttpException(400, 'Користувач з таким логіном уже існує');
         }
-        $transaction = \Yii::$app->db->beginTransaction();
-        try {
-            $communityModel = new Community();
-            $communityModel->name = $post['community_name'];
-            $communityModel->prefix = $post['community_num'];
-            $communityModel->commissioner_id = 1;
-            $communityModel->notes = $post['community_additions'];
-            if (!$communityModel->save()){
-                foreach($communityModel->errors as $key){
-                    $errorMessage .= $key[0];
-                }
-                throw new \yii\web\HttpException(422,$errorMessage);
+        $com_name = $post['com_name'];
+        $com_num = $post['com_num'];
+        $com_adds = $post['com_adds'];
+
+        $communityModel->name = $com_name;
+        $communityModel->prefix = $com_num;
+        $communityModel->commissioner_id = 1;
+        $communityModel->notes = $com_adds;
+        if (!$communityModel->save()){
+            foreach($communityModel->errors as $key){
+                $errorMessage .= $key[0];
             }
-            $transaction->commit();
-            // $userModel = User::findUserById($post['user_id']);
-            // $userModel->role_id = $post['parametr'];               // parametr = '0' or '1' 
-            // $userModel->save();
-            // Add validation for data here
-    
-            return 'true';
-            
-        } catch (Exception $e) {
-            $transaction->rollBack();
-            throw new \yii\web\HttpException(422,$errorMessage . $error);
-            return $errorMessage . $error;
+            throw new \yii\web\HttpException(422,$errorMessage);
         }
-        exit('end');
     }
 }

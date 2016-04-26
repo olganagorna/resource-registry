@@ -33,10 +33,8 @@ class Community extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['commissioner_id'], 'required'],
-            [['commissioner_id'], 'integer'],
-            [['notes'], 'string'],
-            [['name', 'prefix'], 'string', 'max' => 50]
+            [['name', 'prefix'], 'string', 'max' => 50],
+            [['notes'], 'string']
         ];
     }
 
@@ -49,7 +47,6 @@ class Community extends \yii\db\ActiveRecord
             'community_id' => 'Community ID',
             'name' => 'Name',
             'prefix' => 'Prefix',
-            'commissioner_id' => 'Commissioner ID',
             'notes' => 'Notes',
         ];
     }
@@ -57,25 +54,9 @@ class Community extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCommissioner()
-    {
-        return $this->hasOne(User::className(), ['user_id' => 'commissioner_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function findUsers()
-    {
-        return $this->hasMany(User::className(), ['community_id' => 'community_id']);
-    }
-    public static function findByCommunityName($community_name)
+    public static function findByCommunityName($com_name)
     {
         //find Community in DB by Name
-        return static::findOne(['name' => $community_name]);
+        return static::findOne(['name' => $com_name]);
     }
-    public function getUsers()
-	{
-		return $this->hasOne(User::className(), ['user_id' => 'commissioner_id']);
-	}
 }

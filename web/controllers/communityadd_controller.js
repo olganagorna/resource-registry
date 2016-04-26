@@ -31,12 +31,11 @@
 
     comAdd.addCommunity = function(){
       // add new community controller
-      var dataMain = new Object();
-
-      dataMain.community_name = comAdd.community_name;
-      dataMain.community_num = comAdd.community_num;
-      // dataMain.commissioner_id = comAdd.commissioner_id;
-      dataMain.community_additions = comAdd.community_additions;
+      var dataMain = {
+        com_name: comAdd.community_name,
+        com_num: comAdd.community_num,
+        com_adds: comAdd.community_additions
+      };
 
       (function() {
         var post = $http.post('rest.php/communities/addcomm', JSON.stringify(dataMain))
@@ -45,7 +44,7 @@
         function successHandler(result) {
           console.log('Реєстрація пройшла успішно!');
           console.log(comAdd.community_name);
-          $('.alert-success').toggle();
+          $('.alert-success').toggle(); // show success alert
           //window.location.href = '/'; //community list
 
         }

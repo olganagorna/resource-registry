@@ -2,7 +2,7 @@
 namespace app\controllers;
 
 use yii\base\Exception;
-use yii\rest\ActiveController;
+//use yii\rest\ActiveController;
 use app\models\User;
 use app\models\LoginForm;
 use app\models\Role;
@@ -10,12 +10,10 @@ use app\models\PersonalData;
 use yii\web\Session;
 use yii\data\ActiveDataProvider;
 
-class UserController extends ActiveController
+class UserController extends AppController
 {
     public $modelClass = 'app\models\User';
-    //for pagination
-    public $serializer = [ 'class' => 'yii\rest\Serializer', 'collectionEnvelope' => 'items'];
-
+    
     public function actionLogin()
     {
         $modelLoginFrom = new LoginForm();
@@ -168,15 +166,46 @@ class UserController extends ActiveController
         \Yii::$app->session->destroy();
         return 'Вихід здійснено';
     }
-    public function actionAssignrole() {
+    public function actionUserdata() 
+    {
+
 
         $request= \Yii::$app->request->get();
+        $sort = 'last_name ASC';  
+        if($request['sort']=="desc") 
+        {
+            $sort = 'last_name DESC';
+        } else if($request['sort']=="asc") 
+        {
+            $sort = 'last_name ASC';
+        }    
+
+        $words = explode(' ', $request['value']);
+        if(sizeof($words) != 2) {
+            $filters = [
+                'or',
+                ['like', 'first_name', $words[0]],
+                ['like', 'last_name', $words[0]],
+                ['like', 'name', $words[0]]
+            ];
+        } else {
+            $filters = ['or', [
+                'and',
+                ['like', 'first_name', $words[0]],
+                ['like', 'last_name', $words[1]]
+            ], [
+                'and',
+                ['like', 'first_name', $words[1]],
+                ['like', 'last_name', $words[0]]
+            ]];
+        }
+
 
         $getdata = User::find()
-        ->select(['user_id','username', 'last_name','first_name','name'])
+        ->select(['username','last_name','first_name','name as role_name'])
         ->innerJoinWith('personalData')->innerJoinWith('userRole')
-        ->andFilterWhere(['like', $request['field'], $request['value']])
-        ->orderBy($request['column'])
+        ->andFilterWhere($filters)
+        ->orderBy($sort)
         ->asArray();
         
         $dataProvider = new ActiveDataProvider([
@@ -186,7 +215,37 @@ class UserController extends ActiveController
                 'pageParam' => 'page',
             ],
         ]);
-        return $dataProvider;
-        
+        return $dataProvider; 
+    }
+
+    public function actionChangerole() 
+    {  
+        echo ("done");
+        //$putrequest= \Yii::$app->request->put();
+        // $transaction = \Yii::$app->db->beginTransaction();
+        // try {
+        //     $userModel = new User();
+        //     $userModel->role_id = $put['community_name'];
+        //     if (!$userModel->save()){
+        //         foreach($userModel->errors as $key){
+        //             $errorMessage .= $key[0];
+        //         }
+        //         throw new \yii\web\HttpException(422,$errorMessage);
+        //     }
+        //     $transaction->commit();
+        //     $userModel = User::findUserById($post['commissioner_id']);
+        //     $userModel->role_id = 4;
+        //     $userModel->community_id = $userModel->community_id;
+        //     $userModel->save();
+        //     // Add validation for data here
+    
+        //     return 'true';
+            
+        // } catch (Exception $e) {
+        //     $transaction->rollBack();
+        //     throw new \yii\web\HttpException(422,$errorMessage . $error);
+        //     return $errorMessage . $error;
+        // }
+        // exit('end');
     }
 }
