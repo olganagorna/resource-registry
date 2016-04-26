@@ -53,7 +53,7 @@ class CommunityController extends ActiveController
             $communityModel = new Community();
             $communityModel->name = $post['community_name'];
             $communityModel->prefix = $post['community_num'];
-            $communityModel->commissioner_id = (int)$post['commissioner_id'];
+            $communityModel->commissioner_id = 1;
             $communityModel->notes = $post['community_additions'];
             if (!$communityModel->save()){
                 foreach($communityModel->errors as $key){
@@ -62,10 +62,9 @@ class CommunityController extends ActiveController
                 throw new \yii\web\HttpException(422,$errorMessage);
             }
             $transaction->commit();
-            $userModel = User::findUserById($post['commissioner_id']);
-            $userModel->role_id = 4;
-            $userModel->community_id = $communityModel->community_id;
-            $userModel->save();
+            // $userModel = User::findUserById($post['user_id']);
+            // $userModel->role_id = $post['parametr'];               // parametr = '0' or '1' 
+            // $userModel->save();
             // Add validation for data here
     
             return 'true';
