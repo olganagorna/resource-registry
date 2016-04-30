@@ -54,7 +54,6 @@ class CommunityController extends ActiveController
 
         $communityModel->name = $com_name;
         $communityModel->prefix = $com_num;
-        $communityModel->commissioner_id = 1;
         $communityModel->notes = $com_adds;
         if (!$communityModel->save()){
             foreach($communityModel->errors as $key){
