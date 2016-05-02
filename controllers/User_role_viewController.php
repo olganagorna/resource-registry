@@ -1,9 +1,7 @@
 <?php
 namespace app\controllers;
 
-use yii\rest\ActiveController;
-
-class User_role_viewController extends ActiveController
+class User_role_viewController extends AppController
 {
     public $modelClass = 'app\models\UserRoleView';
     

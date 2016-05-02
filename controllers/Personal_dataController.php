@@ -1,10 +1,9 @@
 <?php
 namespace app\controllers;
 
-use yii\rest\ActiveController;
 use yii\data\ActiveDataProvider;
 
-class Personal_dataController extends ActiveController
+class Personal_dataController extends AppController
 {
     public $modelClass = 'app\models\PersonalData';
 

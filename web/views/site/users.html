@@ -20,7 +20,7 @@
 		            	<h4>Логін</h4>
 		            </div>
 		            <div class="col-md-3 text-center">
-		            	<h4>Прізвище та ім'я<button class="glyphicon glyphicon-arrow-down" ng-click="sortName()"></button>
+		            	<h4>Прізвище та ім'я<span class="glyphicon glyphicon-sort" ng-click="sortName()"></span>
 		            	</h4>
 		            </div>
 		            <select ng-model="roleFilter" ng-change="filterRole(roleFilter)" class="col-md-3">
@@ -46,12 +46,15 @@
 			        		<option value="4">commissioner</option>
 			        	</select>
 			        </div>
-				    <div class="btn-group">
+			        <div class="col-md-3 text-center res_vert_allight_list">
+			        	<h4>{{data.activated}}</h4>
+			        </div>
+<!-- 				    <div class="btn-group">
 	                    <a class="btn btn-material-grey-200 text-center"
 	                       ng-click="user.del(user.user_id)">
 	                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 	                    </a>
-	                </div>		
+	                </div> -->		
 			    </li>
 			</ul>
 		</div>

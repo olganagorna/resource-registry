@@ -2,7 +2,6 @@
 namespace app\controllers;
 
 use yii\base\Exception;
-//use yii\rest\ActiveController;
 use app\models\User;
 use app\models\LoginForm;
 use app\models\Role;
@@ -166,19 +165,13 @@ class UserController extends AppController
         \Yii::$app->session->destroy();
         return 'Вихід здійснено';
     }
-    public function actionUserdata() 
-    {
 
-
+    public function actionUserdata() {
         $request= \Yii::$app->request->get();
         $sort = 'last_name ASC';  
-        if($request['sort']=="desc") 
-        {
+        if($request['sort']=="desc"){
             $sort = 'last_name DESC';
-        } else if($request['sort']=="asc") 
-        {
-            $sort = 'last_name ASC';
-        }    
+        }  
 
         $words = explode(' ', $request['value']);
         if(sizeof($words) != 2) {
@@ -200,9 +193,8 @@ class UserController extends AppController
             ]];
         }
 
-
         $getdata = User::find()
-        ->select(['username','last_name','first_name','name as role_name'])
+        ->select(['username','last_name','first_name','name as role_name', 'activated'])
         ->innerJoinWith('personalData')->innerJoinWith('userRole')
         ->andFilterWhere($filters)
         ->orderBy($sort)

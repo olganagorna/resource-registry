@@ -1,14 +1,12 @@
 <?php
 namespace app\controllers;
 
-use yii\rest\ActiveController;
 use yii\data\ActiveDataProvider;
 use app\models;
 
-class SearchController extends ActiveController
+class SearchController extends AppController
 {
  public $modelClass = 'app\models\Resource';
- public $serializer = [ 'class' => 'yii\rest\Serializer', 'collectionEnvelope' => 'items'];
  public $resourceParameter = 'app\models\Parameter';
  public $resourceAttribute = 'app\models\ResourceAttribute';
 

@@ -1,10 +1,9 @@
 <?php
 namespace app\controllers;
 
-use yii\rest\ActiveController;
 use yii\data\ActiveDataProvider;
 
-class ParameterController extends ActiveController
+class ParameterController extends ppController
 {
     public $modelClass = 'app\models\Parameter';
     
