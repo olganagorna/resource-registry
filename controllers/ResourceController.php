@@ -7,11 +7,10 @@ use app\models\PersonalData;
 use app\models\ResourceClass;
 use app\models\Parameter;
 use app\models\ResourceAttribute;
-class ResourceController extends ActiveController
+class ResourceController extends AppController
 {
 	public $modelClass = 'app\models\Resource';
-	public $serializer = [ 'class' => 'yii\rest\Serializer', 'collectionEnvelope' => 'items'];
-
+	
 
 	public function actionSearch()
 	{
