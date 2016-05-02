@@ -25,16 +25,14 @@
     //     console.log("Error"+result);
     //     comAdd.findUser = 'користувач "'+comAdd.username+'" відсутній у базі';
     //   }
-    // };
+    // };    
 
-    
-
-    comAdd.addCommunity = function(){
+    comAdd.addCommunity = function() {
       // add new community controller
       var dataMain = {
-        com_name: comAdd.community_name,
-        com_num: comAdd.community_num,
-        com_adds: comAdd.community_additions
+        com_name: comAdd.community.name,
+        com_num: comAdd.community.num,
+        com_adds: comAdd.community.additions
       };
 
       (function() {
@@ -43,8 +41,10 @@
           .catch(errorHandler);
         function successHandler(result) {
           console.log('Реєстрація пройшла успішно!');
-          console.log(comAdd.community_name);
+          console.log(comAdd.community.name);
           $('.alert-success').toggle(); // show success alert
+          comAdd.community = null;
+          $scope.$setPristine(true);
           //window.location.href = '/'; //community list
 
         }
