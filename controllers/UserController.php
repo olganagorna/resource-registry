@@ -2,7 +2,6 @@
 namespace app\controllers;
 
 use yii\base\Exception;
-//use yii\rest\ActiveController;
 use app\models\User;
 use app\models\LoginForm;
 use app\models\Role;
@@ -166,20 +165,18 @@ class UserController extends AppController
         \Yii::$app->session->destroy();
         return 'Вихід здійснено';
     }
+
     public function actionUserdata() 
     {
-
-
         $request= \Yii::$app->request->get();
         $sort = 'last_name ASC';  
         if($request['sort']=="desc") 
         {
             $sort = 'last_name DESC';
-        } else if($request['sort']=="asc") 
-        {
-            $sort = 'last_name ASC';
-        }    
+        }
 
+        // $activated = $request['activated'];
+        
         $words = explode(' ', $request['value']);
         if(sizeof($words) != 2) {
             $filters = [
@@ -199,23 +196,30 @@ class UserController extends AppController
                 ['like', 'last_name', $words[0]]
             ]];
         }
-
-
         $getdata = User::find()
-        ->select(['username','last_name','first_name','name as role_name'])
+        ->select(['username','last_name','first_name','name as role_name', 'activated'])
         ->innerJoinWith('personalData')->innerJoinWith('userRole')
         ->andFilterWhere($filters)
+        ->andFilterWhere(['like', 'activated', $request['activated']])
         ->orderBy($sort)
         ->asArray();
         
         $dataProvider = new ActiveDataProvider([
             'query' => $getdata,
             'pagination' => [
-                'pageSize' => 4,
+                'pageSize' => 30,
                 'pageParam' => 'page',
             ],
         ]);
         return $dataProvider; 
+    }
+    public function actionChangectivationstatus() 
+    {
+        $request= \Yii::$app->request->get();
+        $user = User::findOne(['username' => $request['username']]);
+        $user->activated=$request['activated'];
+        $user->update();
+
     }
 
     public function actionChangerole() 

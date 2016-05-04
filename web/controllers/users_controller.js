@@ -14,6 +14,8 @@
         $scope.userSearch;
         $scope.searchingDone;
         $scope.sortingDone;
+        $scope.activated;
+        $scope.nameuser;
         
         (function (){
             return $http.get('rest.php/users/userdata')
@@ -75,7 +77,7 @@
         // filtering by role
         $scope.filterRole = function(role_name) {
             $scope.filteringDone = role_name;
-            $http.get('http://rr.com/rest.php/users/userdata?value='+ role_name)
+            $http.get('rest.php/users/userdata?value='+ role_name)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
@@ -90,7 +92,7 @@
         $scope.searchUser = function(search_query) {
             $scope.searchingDone = search_query;
             console.log($scope.searchingDone);
-            $http.get('http://rr.com/rest.php/users/userdata?value='+ search_query)
+            $http.get('rest.php/users/userdata?value='+ search_query)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
@@ -111,7 +113,7 @@
                 
             }
             
-            $http.get('http://rr.com/rest.php/users/userdata?sort=' + $scope.sort_order)
+            $http.get('rest.php/users/userdata?sort=' + $scope.sort_order)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
@@ -121,6 +123,28 @@
                 console.log("Can't reload list!");
             }
         };
+
+
+        $scope.changeActivationStatus = function(activation_status, index){
+            $scope.activated = activation_status;
+
+
+            $http.get('rest.php/users/changectivationstatus?username='+ $scope.list_users.items[0].username + '&' + 'activated=' + activation_status)
+                .then(successHandler)
+                .catch(errorHandler);
+            function successHandler(data) {
+                $scope.list_users = data.data;
+            }
+            function errorHandler(data){
+                console.log("Can't change activation status!");
+            }
+            function getUsername(){
+                $scope.nameuser = username;
+                var username = angular.element('#deact-button-0');
+                console.log(username);
+            }
+        }
+
         $scope.changeRole = function (changeRoleId, thisUserId) {
             var newRole = {};
             newRole.role_id = changeRoleId;

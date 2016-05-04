@@ -45,11 +45,9 @@
 			        		<option value="4">commissioner</option>
 			        	</select>
 			        </div>
-				    <div class="btn-group">
-	                    <a class="btn btn-material-grey-200 text-center"
-	                       ng-click="user.del(user.user_id)">
-	                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-	                    </a>
+				    <div class="col-md-3">
+				    <button ng-show="{{data.activated == 0}}" ng-click="changeActivationStatus(1)" id="act-button-{{$index}}">Активувати</button>
+	                <button ng-show="{{data.activated == 1}}" ng-click="changeActivationStatus(0)"  id="deact-button-{{$index}}">Деактивувати</button> 
 	                </div>		
 			    </li>
 			</ul>
