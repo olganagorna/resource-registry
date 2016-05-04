@@ -13,7 +13,7 @@ class CommunityController extends ActiveController
 	
 	public function actionShow()
 	{
-		$request= \Yii::$app->request->get();
+        $request= \Yii::$app->request->get();
 		$community = Community::find();
 		
 		if(isset($request['value'])){
