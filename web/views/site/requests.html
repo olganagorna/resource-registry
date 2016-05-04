@@ -1,0 +1,69 @@
+<div ng-controller="Requests" class="requests-container">
+	<div class="container well">
+		<div class="row">
+			<div class="col-lg-10">
+				<ng-form>
+					<span>Пошук по запитам &nbsp</span>
+					<input type="text" class="requests-search" ng-model="requestSearch" />
+					<input class="btn btn-primary" type="submit" value="Пошук" ng-click="searchRequest(sender, recipient)"></input>
+					{{$scope.searchingVal}}
+				</ng-form>
+			</div>
+		</div>
+	</div>
+	<div class="container well">
+		<div class="row">
+			<ul class="list-group">
+				<li class="list-group-item">
+					<div class="row">
+						<div class="col-lg-2">Тип</div>
+						<div class="col-lg-2">Відправив</div>
+						<div class="col-lg-2">Час створення</div>
+						<div class="col-lg-2">Обробив</div>
+						<div class="col-lg-2">Час обробки</div>
+						<div class="col-lg-2">Статус</div>
+					</div>
+				</li>
+				<li class="list-group-item" ng-repeat="data in requests.items">
+					<div class="row">
+						<div class="col-lg-2">{{data.type}}</div>
+						<div class="col-lg-2">{{data.sender}}</div>
+						<div class="col-lg-2">{{data.create_time}}</div>
+						<div class="col-lg-2">{{data.reciever}}</div>
+						<div class="col-lg-2">{{data.complete_time}}</div>
+						<div class="col-lg-1">{{data.status}}</div>
+						<div class="col-lg-1">
+							<div class="btn-group">
+								<a class="btn btn-primary ng-scope" title="Редагувати" href="resource/update/185" ng-if="currentUser.role === 'registrar' &amp;&amp; currentUser.isLogined">
+							    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+							 	</a>
+							 	<a class="btn btn-danger btn-material-grey-200 text-center ng-scope" title="Видалити" ng-if="currentUser.role === 'registrar' &amp;&amp; currentUser.isLogined" ng-click="deleteResource(data.resource_id)"><span class="glyphicon glyphicon-trash" aria-hidden="true">Видалити</span></a>
+							 </div>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div class="col-md-8 margin_bottom">          
+                <ul class="pagination pagination-sm" ng-if="requests._meta.pageCount > 1">
+                    <li ng-if="requests._links.first">
+                        <a href="" ng-click="setPage(requests._links.first.href, 'first')">&laquo;</a>
+                    </li>
+                    <li ng-if="requests._links.prev">
+                        <a href="" ng-click="setPage(requests._links.prev.href, 'prev')" >‹</a>
+                    </li>
+                    <li ng-repeat="page in getPages(requests._meta.pageCount) track by $index"
+                        ng-click="switchPage(page)" ng-class="{active: page == currentPage}"
+                        ng-if="page">
+                        <span>{{page}}</span>
+                    </li>	
+                    <li ng-if="requests._links.next">
+                        <a href="" ng-click="setPage(requests._links.next.href, 'next')" >›</a>
+                    </li>
+                    <li ng-if="requests._links.last">
+                        <a href="" ng-click="setPage(requests._links.last.href, 'last')">&raquo;</a>
+                    </li>
+                </ul>
+			</div>  
+		</div>
+	</div>
+</div>

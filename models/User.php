@@ -39,7 +39,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
     public static function findIdentity($id)
     {
-        return static::findOne(['id' => $id]);
+        return static::findOne(['user_id' => $id]);
     }
     public static function findUserById($user_id)
     {

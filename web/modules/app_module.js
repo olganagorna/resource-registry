@@ -63,12 +63,7 @@
             templateUrl: 'views/site/registration.html',
             controllerAs: 'vm'
         })
-        .when('/site/community_add', {
-            controller: 'CommunityAddCtrl',
-            templateUrl: 'views/site/community_add.html',
-            controllerAs: 'vm'
-        })
-	.when('/site/home', {
+	   .when('/site/home', {
             controller: 'IndexCtrl',
             controllerAs: 'pp',
             templateUrl: 'views/site/personal_page.html'
@@ -97,6 +92,10 @@
             controller: 'communityAddCtrl',
             templateUrl: 'views/site/community_add.html',
             controllerAs: 'comAdd'
+        })
+        .when('/site/requests', {
+            controller: 'Requests',
+            templateUrl: 'views/site/requests.html'
         })
         .otherwise({
             redirectTo: '/site/login'
