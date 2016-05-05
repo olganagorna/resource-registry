@@ -1,9 +1,7 @@
 <?php
 namespace app\controllers;
 
-use yii\rest\ActiveController;
-
-class Operation_typeController extends ActiveController
+class Operation_typeController extends AppController
 {
     public $modelClass = 'app\models\OperationType';
     

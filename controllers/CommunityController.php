@@ -1,15 +1,13 @@
 <?php
 namespace app\controllers;
 
-use yii\rest\ActiveController;
 use yii\data\ActiveDataProvider;
 use app\models\User;
 use app\models\Community;
 
-class CommunityController extends ActiveController
+class CommunityController extends AppController
 {
 	public $modelClass = 'app\models\Community';
-	public $serializer = [ 'class' => 'yii\rest\Serializer', 'collectionEnvelope' => 'items'];
 	
 	public function actionShow()
 	{

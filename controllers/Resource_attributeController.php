@@ -1,9 +1,7 @@
 <?php
 namespace app\controllers;
 
-use yii\rest\ActiveController;
-
-class Resource_attributeController extends ActiveController
+class Resource_attributeController extends AppController
 {
     public $modelClass = 'app\models\ResourceAttribute';
     
