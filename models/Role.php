@@ -3,7 +3,7 @@
 namespace app\models;
 
 use Yii;
-
+use yii\db\ActiveRecord;
 /**
  * This is the model class for table "role".
  *
@@ -29,12 +29,12 @@ class Role extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'user_id'], 'required'],
-            [['user_id'], 'integer'],
+            [['name', 'role_id'], 'required'],
+            [['role_id'], 'integer'],
             [['name'], 'string', 'max' => 20]
         ];
     }
-
+    
     /**
      * @inheritdoc
      */
@@ -47,12 +47,17 @@ class Role extends \yii\db\ActiveRecord
         ];
     }
 
+    public function fields(){
+        return [
+            'name'
+        ];
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getUsers()
     {
         return $this->hasMany(User::className(), ['role_id' => 'role_id']);
-    }
-
+    }    
 }

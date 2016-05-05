@@ -34,7 +34,8 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             'id',
             'username',
-            'user_data_id'
+            'user_data_id',
+            'role_id'
         ];
     }
     public static function findIdentity($id)
@@ -117,5 +118,9 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+    public function getRoleName()
+    {
+        return $this->role_id;
     }
 }

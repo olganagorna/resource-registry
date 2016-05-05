@@ -16,11 +16,29 @@ class UserController extends AppController
     
     public function actionLogin()
     {
+        /*if (!\Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }*/
+
+        $modelLoginForm = new LoginForm();
+        $post = \Yii::$app->request->post();
+         
+        if ($modelLoginForm->load($post, '') && $modelLoginForm->login()) {
+            $roleName = Role::findOne(\Yii::$app->user->identity->role_id);
+            return [
+                'username' => \Yii::$app->user->identity->username,
+                'role' => $roleName->name,
+                'isLogined' => true,
+                'userDataID' => \Yii::$app->user->identity->user_data_id,
+            ];  
+        }
+        /*return $this->render('login', [
+            'model' => $modelLoginForm,
+        ]);
         $modelLoginFrom = new LoginForm();
 
         if ($modelLoginFrom->load(\Yii::$app->getRequest()->getBodyParams(), '') && $modelLoginFrom->login()) {
             $post = \Yii::$app->getRequest()->getBodyParams();
-
             $modelUser = new User();
 
             $modelRole = new Role();
@@ -38,11 +56,12 @@ class UserController extends AppController
                 'username' => $post['username'],
                 'role' => $result[0]->name,
                 'isLogined' => true,
-                'userDataID' => $resultuserdata->user_data_id
+                'userDataID' => $resultuserdata->user_data_id,
+                'my' => $modelLoginFrom
             ];
         } else {
             return $modelLoginFrom;
-        }
+        }*/
     }
     public function actionAdduser()
     {
@@ -162,17 +181,26 @@ class UserController extends AppController
         exit('ok');
     }
     public function actionLogout(){
-        \Yii::$app->session->get('role');
-        \Yii::$app->session->destroy();
+        \Yii::$app->user->logout();
+        /*\Yii::$app->session->get('role');
+        \Yii::$app->session->destroy();*/
+        if (condition) {
+            # code...
+        }
         return 'Вихід здійснено';
     }
     public function actionUserdata() 
     {
+
+
         $request= \Yii::$app->request->get();
         $sort = 'last_name ASC';  
-        if($request['sort']==1) 
+        if($request['sort']=="desc") 
         {
             $sort = 'last_name DESC';
+        } else if($request['sort']=="asc") 
+        {
+            $sort = 'last_name ASC';
         }    
 
         $words = explode(' ', $request['value']);
