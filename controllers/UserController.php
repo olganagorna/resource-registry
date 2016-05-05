@@ -62,6 +62,13 @@ class UserController extends AppController
             return $modelLoginFrom;
         }*/
     }
+    public function actionLogout(){
+        //\Yii::$app->user->logout();
+        /*\Yii::$app->session->get('role');
+        \Yii::$app->session->destroy();*/
+        
+        return \Yii::$app->user->identity;
+    }
     public function actionAdduser()
     {
  /*       echo \Yii::$app->basePath;
@@ -179,16 +186,7 @@ class UserController extends AppController
         echo $model->username;
         exit('ok');
     }
-    public function actionLogout(){
-        \Yii::$app->user->logout();
-        /*\Yii::$app->session->get('role');
-        \Yii::$app->session->destroy();*/
-        if (condition) {
-            # code...
-        }
-        return 'Вихід здійснено';
-    }
-
+    
     public function actionUserdata() {
 
 
