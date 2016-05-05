@@ -16,33 +16,22 @@ class UserController extends AppController
     
     public function actionLogin()
     {
-        $modelLoginFrom = new LoginForm();
-
-        if ($modelLoginFrom->load(\Yii::$app->getRequest()->getBodyParams(), '') && $modelLoginFrom->login()) {
-            $post = \Yii::$app->getRequest()->getBodyParams();
-
-            $modelUser = new User();
-
-            $modelRole = new Role();
-            $result = $modelRole->find()
-                ->where(['=','role_id', \Yii::$app->user->identity->getRole()]
-                )->all();
-            $resultuserdata = $modelUser->find()
-                ->where(['=','username', $post['username']]
-                )->one();
-            $session = new Session();
-            $session->open();
-            $session->set('role', $result[0]->name);
-            $session->close();
+        $modelLoginForm = new LoginForm();
+        $post = \Yii::$app->request->post();
+         
+        if ($modelLoginForm->load($post, '') && $modelLoginForm->login()) {
+            $roleName = Role::findOne(\Yii::$app->user->identity->role_id);
             return [
-                'username' => $post['username'],
-                'role' => $result[0]->name,
+                'username' => \Yii::$app->user->identity->username,
+                'role' => $roleName->name,
                 'isLogined' => true,
-                'userDataID' => $resultuserdata->user_data_id
-            ];
-        } else {
-            return $modelLoginFrom;
+                'userDataID' => \Yii::$app->user->identity->user_data_id,
+            ];  
         }
+    }
+    public function actionLogout(){
+        \Yii::$app->user->logout();
+        return 'Вихід здійснено';
     }
     public function actionAdduser()
     {
@@ -160,11 +149,6 @@ class UserController extends AppController
         $model->save();
         echo $model->username;
         exit('ok');
-    }
-    public function actionLogout(){
-        \Yii::$app->session->get('role');
-        \Yii::$app->session->destroy();
-        return 'Вихід здійснено';
     }
     public function actionUserdata() 
     {

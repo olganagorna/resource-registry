@@ -3,6 +3,7 @@ namespace app\components;
 
 use Yii;
 use yii\base\Component;
+use app\models\Role; 
 
 class AuthComponent extends Component
 {
@@ -39,7 +40,8 @@ class AuthComponent extends Component
     {
         $searchAction = array_search($action, $permission);
         if ($searchAction !== false) {
-            $role = \Yii::$app->session->get('role');
+            $roleName = Role::findOne(\Yii::$app->user->identity->role_id);
+            $role = $roleName->name;
             if (!$role) {
                 throw new \yii\web\ForbiddenHttpException('У вас немає прав на дану операцію');
             }
@@ -57,7 +59,8 @@ class AuthComponent extends Component
     {
         $searchAction = array_search($action, $permission);
         if ($searchAction !== false) {
-            $role = \Yii::$app->session->get('role');
+            $roleName = Role::findOne(\Yii::$app->user->identity->role_id);
+            $role = $roleName->name;
             if (!$role) {
                 throw new \yii\web\ForbiddenHttpException('У вас немає прав на дану операцію');
             }
