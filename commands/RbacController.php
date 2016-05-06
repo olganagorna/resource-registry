@@ -25,12 +25,14 @@ class RbacController extends Controller
         $logout =   $auth->createPermission('logout');*/
         $show = $auth->createPermission('show');
         $addcomm = $auth->createPermission('addcomm');
+        $view = $auth->createPermission('view');
          
         // Add permissions in Yii::$app->authManager
         /*$auth->add($login);
         $auth->add($logout);*/
         $auth->add($show);
         $auth->add($addcomm);
+        $auth->add($view);
           
         // Add rule, based on UserExt->group === $user->group
         $userGroupRule = new UserGroupRule();
@@ -60,12 +62,12 @@ class RbacController extends Controller
  
         // registrar
         $auth->addChild($registrar, $show);
-        /*$auth->addChild($registrar, $user);
+        $auth->addChild($registrar, $view);
 
-        // commissioner
+        /*// commissioner
         $auth->addChild($commissioner, $userdata);
-        $auth->addChild($commissioner, $user);*/
- 
+        $auth->addChild($commissioner, $user);
+ */
         // admin
         $auth->addChild($admin, $addcomm);
     }

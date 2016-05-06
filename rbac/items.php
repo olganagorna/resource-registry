@@ -6,6 +6,9 @@ return [
     'addcomm' => [
         'type' => 2,
     ],
+    'view' => [
+        'type' => 2,
+    ],
     'guest' => [
         'type' => 1,
         'ruleName' => 'userGroup',
@@ -19,6 +22,7 @@ return [
         'ruleName' => 'userGroup',
         'children' => [
             'show',
+            'view',
         ],
     ],
     'commissioner' => [

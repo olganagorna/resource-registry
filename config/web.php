@@ -12,9 +12,6 @@ $config = [
         ],
     ],
     'components' => [
-        'authcomponent' => [
-            'class' => 'app\components\AuthComponent',
-        ],
         'authManager' => [
             'class' => 'yii\rbac\PhpManager',
             'defaultRoles' => ['user', 'commissioner', 'registrar', 'admin'],

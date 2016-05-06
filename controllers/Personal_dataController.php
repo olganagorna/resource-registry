@@ -8,6 +8,19 @@ class Personal_dataController extends ActiveController
 {
     public $modelClass = 'app\models\PersonalData';
 
+    public function beforeAction($action)
+    {
+        if (parent::beforeAction($action)) {
+            if (!\Yii::$app->user->can($action->id)) {
+                throw new \yii\web\ForbiddenHttpException('Access denied');
+                $module =Yii::$app->controller->module->id;
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function behaviors()
     {
         return
@@ -19,6 +32,7 @@ class Personal_dataController extends ActiveController
     }
     public function actionSearch()
     {
+        die();
     	$GET = \Yii::$app->request->get();
     	if (!empty($GET)) {
     		$model = new $this->modelClass;
@@ -44,18 +58,5 @@ class Personal_dataController extends ActiveController
     	} else {
     		throw new \yii\web\HttpException(400, 'There are no query string');
     	}
-    }
-
-    public function checkAccess($action, $model = null, $params = [])
-    {
-        \Yii::$app->authcomponent->checkPermissions($action,\Yii::$app->authcomponent->write);
-        \Yii::$app->authcomponent->checkPermissionsPrivateData($action,\Yii::$app->authcomponent->read);
-        /*  exit('es');
-          exit($action);
-          if ($action == 'create' || $action == 'update' || $action || 'delete'){
-              if(!(\Yii::$app->session->get('role') == 'register')) {
-                  exit('1');
-              }
-          }*/
     }
 }
