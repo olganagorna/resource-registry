@@ -15,6 +15,10 @@ $config = [
         'authcomponent' => [
             'class' => 'app\components\AuthComponent',
         ],
+        'authManager' => [
+            'class' => 'yii\rbac\PhpManager',
+            'defaultRoles' => ['user', 'commissioner', 'registrar', 'admin'],
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'FbkQPfmLc5XQkHBgXYQ2Ymd_J3jz8Faw',
