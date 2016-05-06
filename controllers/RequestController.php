@@ -3,49 +3,55 @@
 namespace app\controllers;
 
 use Yii;
+use yii\rest\ActiveController;
+use yii\data\ActiveDataProvider;
 use app\models\Request;
 use app\models\RequestSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * RequestController implements the CRUD actions for Request model.
  */
-class RequestController extends Controller
-{
+class RequestController extends ActiveController
+{   
+    public $modelClass = 'app\models\Request';
+    public $serializer = [ 'class' => 'yii\rest\Serializer', 'collectionEnvelope' => 'items'];
+
     public function behaviors()
     {
-        return [
+        return ArrayHelper::merge(parent::behaviors(), [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
                 ],
             ],
-        ];
+        ]);
     }
 
 
 
-    public function actionShowRequest()
-    {
-        $get= \Yii::$app->request->get();
-        $request = Request::find();
+    public function actionShowrequest()
+    {   
+        $request= \Yii::$app->request->get();
+        $info = Request::find();
         
-        if(isset($get['value'])){
-            $request->select(['type', 'sender', 'create_time', 'reciever', 'complete_time', 'status'])
-            ->andFilterWhere(['like', 'type', $request['value']])
+        if(isset($request['value'])){
+            $info->select(['type', 'sender', 'create_time', 'reciever', 'complete_time', 'status'])
+            ->andFilterWhere(['like', 'type', $info['value']])
             ->orderBy('type')
             ->asArray();    
         }else{
-            $request->select(['type', 'sender', 'create_time', 'reciever', 'complete_time', 'status'])
+            $info->select(['type', 'sender', 'create_time', 'reciever', 'complete_time', 'status'])
             ->orderBy('create_time')
             ->asArray();
         }
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $request,
+            'query' => $info,
             'pagination' => [
                 'pageSize' => 4,
                 'pageParam' => 'page',

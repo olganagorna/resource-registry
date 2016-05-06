@@ -169,7 +169,6 @@ class UserController extends AppController
     public function actionUserdata() 
     {
 
-
         $request= \Yii::$app->request->get();
         $sort = 'last_name ASC';  
         if($request['sort']=="desc") 

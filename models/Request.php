@@ -3,6 +3,9 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "requests".
@@ -27,7 +30,7 @@ class Request extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'requests';
+        return 'request';
     }
 
     /**
@@ -71,6 +74,19 @@ class Request extends \yii\db\ActiveRecord
                 // if you're using datetime instead of UNIX timestamp:
                 'value' => new Expression('NOW()'),
             ],
+        ];
+    }
+
+    public function fields(){
+        return [
+            'req_id',
+            'res_id',
+            'type',
+            'sender',
+            'create_time',
+            'reciever',
+            'complete_time',
+            'status'
         ];
     }
 

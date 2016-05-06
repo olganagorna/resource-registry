@@ -11,7 +11,7 @@
         $scope.requests = [];
         $scope.searchingVal;
         (function(){
-            return $http.get('rest.php/requests/show')
+            return $http.get('rest.php/requests/showrequest')
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
@@ -26,7 +26,7 @@
 
             $scope.searchingVal = $scope.requestSearch;
             console.log($scope.searchingVal);
-            $http.get('http://rr.com/rest.php/requests/show?value='+ $scope.requestSearch)
+            $http.get('rest.php/requests/showrequest?value='+ $scope.requestSearch)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {

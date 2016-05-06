@@ -111,7 +111,7 @@
                 
             }
             
-            $http.get('http://rr.com/rest.php/users/userdata?sort=' + $scope.sort_order)
+            $http.get('http://resource.io/rest.php/users/userdata?sort=' + $scope.sort_order)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
