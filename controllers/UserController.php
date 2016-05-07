@@ -160,18 +160,17 @@ class UserController extends AppController
         echo $model->username;
         exit('ok');
     }
+    
     public function actionLogout(){
         \Yii::$app->session->get('role');
         \Yii::$app->session->destroy();
         return 'Вихід здійснено';
     }
 
-    public function actionUserdata() 
-    {
+    public function actionUserdata() {
         $request= \Yii::$app->request->get();
         $sort = 'last_name ASC';  
-        if($request['sort']=="desc") 
-        {
+        if($request['sort']=="desc"){
             $sort = 'last_name DESC';
         }
 
@@ -197,7 +196,7 @@ class UserController extends AppController
             ]];
         }
         $getdata = User::find()
-        ->select(['username','last_name','first_name','name as role_name', 'activated'])
+        ->select(['user_id','username','last_name','first_name','name as role_name','activated'])
         ->innerJoinWith('personalData')->innerJoinWith('userRole')
         ->andFilterWhere($filters)
         ->andFilterWhere(['like', 'activated', $request['activated']])
@@ -213,6 +212,31 @@ class UserController extends AppController
         ]);
         return $dataProvider; 
     }
+    public function actionChangeactivationstatus() 
+    {
+        $request= \Yii::$app->request->get();
+        $user = User::findOne(['username' => $request['username']]);
+        $user->activated=$request['activated'];
+        $user->update();
+
+    }
+
+    public function actionGetrole()
+    {
+        $getrole = Role::find()
+        ->select(['role_id','name as role_name'])
+        // ->innerJoinWith('users')
+        ->asArray();
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $getrole,
+            'pagination' => [
+                'pageSize' => 10,
+                'pageParam' => 'page',
+            ],
+        ]);
+        return $dataProvider; 
+    }
     public function actionChangectivationstatus() 
     {
         $request= \Yii::$app->request->get();
@@ -222,9 +246,26 @@ class UserController extends AppController
 
     }
 
-    public function actionChangerole() 
-    {  
-        echo ("done");
+    public function actionChangerole()
+    {
+        $request= \Yii::$app->request->get();
+        $user = User::findOne(['user_id' => $request['user_id']]);
+        $user->role_id=$request['role_id'];
+        $user->update();
+
+
+        // $putrequest= \Yii::$app->request->put();
+        // $transaction = \Yii::$app->db->beginTransaction();  
+        // try {
+
+        // } catch (Exception $e) {
+        //     $transaction->rollBack();
+        //     throw new \yii\web\HttpException(422,$errorMessage . $error);
+        //     return $errorMessage . $error;
+        // }
+        // exit('end');
+
+        //echo ("done");
         //$putrequest= \Yii::$app->request->put();
         // $transaction = \Yii::$app->db->beginTransaction();
         // try {

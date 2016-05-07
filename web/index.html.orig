@@ -52,7 +52,11 @@
             <div class="nav navbar-nav navbar-right md-my-room " >
                 <ul class="nav navbar-nav ng-navbar-nav">
                     <li class="md-login-sign" ng-if="currentUser.isLogined">
+<<<<<<< HEAD
+                        <a href="#" class="ng-home"  >
+=======
                         <!-- <a href="site/home" class="ng-home"  >
+>>>>>>> 378293ab8a171912b65fe47cb895282c2399ef43
                             <span class="glyphicon glyphicon glyphicon-log-in btn-mater" aria-hidden="true" ></span> {{currentUser.username}}
                         </a> -->
                         <span class="glyphicon glyphicon-log-in btn-mater" aria-hidden="true" ></span> {{currentUser.username}}

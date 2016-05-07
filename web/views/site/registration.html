@@ -6,18 +6,14 @@
             <div class="form-group" >
                 <label for="username">Логін</label>
                 <input type="text" name="username" id="username" class="form-control" ng-model="vm.username"  />
-
             </div>
             <div class="form-group" >
                 <label for="password">Пароль</label>
                 <input type="password" name="password" id="password" class="form-control" ng-model="vm.password"  />
-
             </div>
-
             <div class="form-group" >
                 <label for="email">Поштова скринька</label>
                 <input type="text" name="firstName" id="email" class="form-control" ng-model="vm.email"  />
-
             </div>
             <div class="form-group" >
                 <label for="lastName">Прізвище</label>
@@ -43,11 +39,13 @@
                 <label for="address">Адреса</label>
                 <input type="text" name="lastName" id="address" class="form-control" ng-model="vm.address"  />
             </div>
-
-
+            <div class="form-group" >
+                <label for="community">Громада</label>
+                <input type="text" name="lastName" id="community" class="form-control" ng-model="vm.community"  />
+            </div>
             <div class="form-actions">
                 <button type="submit" ng-click="vm.registration()" class="btn btn-primary">Зареєструватись</button>
-                <a href="site/login" class="btn btn-link">Відминити</a>
+                <a href="site/login" class="btn btn-link">Відмінити</a>
             </div>
         </form>
     </div>

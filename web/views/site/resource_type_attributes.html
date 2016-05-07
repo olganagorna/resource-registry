@@ -1,12 +1,12 @@
 <div class="container-fluid" ng-if="currentUser.role === 'admin'">
-    <div class="col-md-6">
+    <div class="col-md-6 md-sidebar">
         <div>
             <div class="md-list-group">
                 <ul class="list-group">
                     <li class="list-group-item row">
                         <div class="col-md-12 navigation-search">
-                                <input type="text" value="" class="form-control col-md-4" ng-model="pp.addClassInput" placeholder="назва нового класу">
-                                <a class="btn btn-material-amber-400 col-md-4" ng-click="pp.addClass()" href=""><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                <!-- <input type="text" value="" class="form-control col-md-4" ng-model="pp.addClassInput" placeholder="назва нового класу"> -->
+                                <a class="btn btn-material-amber-400 col-md-4" <!-- ng-click="pp.addClass()" --> href=""><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                     ДОДАТИ
                                 </a>
                         </div>
@@ -39,5 +39,5 @@
 </div>
 
 <div ng-show="resources.length === 0">
-    There are no resources
+    There are no attributes
 </div>
