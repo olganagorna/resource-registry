@@ -68,10 +68,15 @@
             templateUrl: 'views/site/community_add.html',
             controllerAs: 'vm'
         })
-	.when('/site/home', {
+	    .when('/resource/type', {
             controller: 'IndexCtrl',
             controllerAs: 'pp',
-            templateUrl: 'views/site/personal_page.html'
+            templateUrl: 'views/resource/resource_types.html'
+        })
+        .when('/resource/type/attributes', {
+            // controller: 'IndexCtrl',
+            // controllerAs: 'pp',
+            templateUrl: 'views/resource/resource_type_attributes.html'
         })
         .when('/site/users', {
             controller: 'UsersController',
@@ -98,6 +103,11 @@
             templateUrl: 'views/site/community_add.html',
             controllerAs: 'comAdd'
         })
+        // .when('resource/resource_types', {
+        //     controller: 'ResourceTypes',
+        //     controllerAs: 'typelist',
+        //     templateUrl: 'views/site/resource_types.html'  
+        // })
         .otherwise({
             redirectTo: '/site/login'
         });
