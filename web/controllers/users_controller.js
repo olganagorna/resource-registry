@@ -125,25 +125,25 @@
         };
 
 
-        $scope.changeActivationStatus = function(activation_status, index){
-            $scope.activated = activation_status;
+        // $scope.changeActivationStatus = function(activation_status, index){
+        //     $scope.activated = activation_status;
 
 
-            $http.get('rest.php/users/changectivationstatus?username='+ $scope.list_users.items[0].username + '&' + 'activated=' + activation_status)
-                .then(successHandler)
-                .catch(errorHandler);
-            function successHandler(data) {
-                $scope.list_users = data.data;
-            }
-            function errorHandler(data){
-                console.log("Can't change activation status!");
-            }
-            function getUsername(){
-                $scope.nameuser = username;
-                var username = angular.element('#deact-button-0');
-                console.log(username);
-            }
-        }
+        //     $http.get('rest.php/users/changectivationstatus?username='+ $scope.list_users.items[0].username + '&' + 'activated=' + activation_status)
+        //         .then(successHandler)
+        //         .catch(errorHandler);
+        //     function successHandler(data) {
+        //         $scope.list_users = data.data;
+        //     }
+        //     function errorHandler(data){
+        //         console.log("Can't change activation status!");
+        //     }
+        //     function getUsername(){
+        //         $scope.nameuser = username;
+        //         var username = angular.element('#deact-button-0');
+        //         console.log(username);
+        //     }
+        // }
 
         $scope.changeRole = function (changeRoleId, thisUserId) {
             var newRole = {};

@@ -46,12 +46,13 @@
                 <li ng-if="currentUser.role === 'registrar' "><a href="resource/search">ПОШУК</a></li>
                 <li ng-if="currentUser.role === 'registrar' "><a href="site/users">КОРИСТУВАЧІ</a></li>
                 <li ng-if="currentUser.role === 'registrar' "><a href="resource/community">ГРОМАДИ</a></li>
+                <li ng-if="currentUser.role === 'admin' "><a href="resource/type">ТИПИ РЕСУРСІВ</a></li>
             </ul> 
 
             <div class="nav navbar-nav navbar-right md-my-room " >
                 <ul class="nav navbar-nav ng-navbar-nav">
                     <li class="md-login-sign" ng-if="currentUser.isLogined">
-                        <a href="site/home" class="ng-home"  >
+                        <a href="#" class="ng-home"  >
                             <span class="glyphicon glyphicon glyphicon-log-in btn-mater" aria-hidden="true" ></span> {{currentUser.username}}
                         </a>
                     </li>

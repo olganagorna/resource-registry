@@ -68,10 +68,10 @@
             templateUrl: 'views/site/community_add.html',
             controllerAs: 'vm'
         })
-	.when('/site/home', {
+	.when('/resource/type', {
             controller: 'IndexCtrl',
             controllerAs: 'pp',
-            templateUrl: 'views/site/personal_page.html'
+            templateUrl: 'views/resource/resource_types.html'
         })
         .when('/site/users', {
             controller: 'UsersController',
