@@ -129,7 +129,7 @@
         $scope.changeActivationStatus = function(activation_status, index){
             $scope.activated = activation_status;
 
-            $http.get('rest.php/users/changectivationstatus?username='+ $scope.list_users.items[0].username + '&' + 'activated=' + activation_status)
+            $http.get('rest.php/users/changeactivationstatus?username='+ $scope.list_users.items[0].username + '&' + 'activated=' + activation_status)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
