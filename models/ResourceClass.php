@@ -1,9 +1,6 @@
 <?php
-
 namespace app\models;
-
 use Yii;
-
 /**
  * This is the model class for table "resource_class".
  *
@@ -22,7 +19,6 @@ class ResourceClass extends \yii\db\ActiveRecord
     {
         return 'resource_class';
     }
-
     /**
      * @inheritdoc
      */
@@ -33,7 +29,6 @@ class ResourceClass extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 40]
         ];
     }
-
     /**
      * @inheritdoc
      */
@@ -44,7 +39,6 @@ class ResourceClass extends \yii\db\ActiveRecord
             'name' => 'Name',
         ];
     }
-
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -52,7 +46,6 @@ class ResourceClass extends \yii\db\ActiveRecord
     {
         return $this->hasMany(AttributeClassView::className(), ['class_id' => 'class_id']);
     }
-
     /**
      * @return \yii\db\ActiveQuery
      */

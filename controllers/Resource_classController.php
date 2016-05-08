@@ -1,9 +1,7 @@
 <?php
 namespace app\controllers;
-
 use yii\rest\ActiveController;
 use yii\data\ActiveDataProvider;
-
 class Resource_classController extends ActiveController
 {
     public $modelClass = 'app\models\ResourceClass';
