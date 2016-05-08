@@ -103,15 +103,9 @@
             templateUrl: 'views/site/community_add.html',
             controllerAs: 'comAdd'
         })
-        // .when('resource/resource_types', {
-        //     controller: 'ResourceTypes',
-        //     controllerAs: 'typelist',
-        //     templateUrl: 'views/site/resource_types.html'  
-        // })
         .otherwise({
             redirectTo: '/site/login'
         });
-
         $locationProvider.html5Mode(true).hashPrefix('!');
     }
 

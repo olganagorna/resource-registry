@@ -15,10 +15,8 @@
         $scope.searchingDone;
         $scope.sortingDone;
         $scope.roleFound = [];
-        // $scope.roles = [];
-        // $scope.roleGet;
-        // $scope.activated;
-        // $scope.nameuser;
+        $scope.activated;
+        $scope.nameuser;
         
         (function (){
             return $http.get('rest.php/users/userdata')
@@ -104,6 +102,7 @@
                 console.log("Can't reload list!");
             }
         };
+
         // sort by name
         $scope.sortName = function() {
             
@@ -145,8 +144,6 @@
             }
         };
 
-    
-
         // get list of roles
         (function(){
             return $http.get('rest.php/users/getrole')
@@ -163,14 +160,7 @@
 
         // change user role
         $scope.changeRole = function (changeRoleId, userId) {
-            var newRole = new Object();
-            newRole.new_role_id = changeRoleId;
-            newRole.user_id = userId;
-            userId = $scope.list_users.items[0].user_id;
-            console.log(userId);
-            (function(){
-                $http.get("rest.php/users/changerole?" + "user_id=" + userId + "&role_id=" + changeRoleId)
-                // var post = $http.post("rest.php/users/changerole", JSON.stringify(newRole))
+            $http.get("rest.php/users/changerole?user_id=" + userId + "&role_id=" + changeRoleId)
                     .then(successHandler)
                     .catch(errorHandler);
                 function successHandler(data) {
@@ -179,7 +169,6 @@
                 function errorHandler(data){
                     console.log("Can't reload list!");
                 }
-            }());
         };
 
         // add new user
