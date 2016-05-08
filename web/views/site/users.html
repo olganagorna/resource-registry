@@ -30,7 +30,7 @@
 		            	<option value="commissioner">Коміссіонер</option>
 		            </select>
 		            <div class="col-md-3 text-center">
-		            	<h4>Дії {{xxx}}</h4>
+		            	<h4>Дії</h4>
 		            </div>
 		        </li>
 			    <li class="list-group-item shadow-z-1 md-list row" ng-repeat="data in list_users.items">
@@ -41,7 +41,7 @@
 
 
 			        <div class="col-md-3 text-center res_vert_allight_list">
-			           	<select id="user-role-selector" ng-model="changeRoleId" ng-change="changeRole(changeRoleId, userId)">
+			           	<select id="user-role-selector" ng-model="changeRoleId" ng-change="changeRole(changeRoleId, data.user_id)">
 			        		<option value="" selected style="display: none !important;">{{data.role_name}}</option>
 
 			        		<option ng-repeat="item in roleFound" value="{{item.role_id}}">{{item.role_name}}</option>
@@ -49,8 +49,8 @@
 			        	</select>
 			        </div>
 				    <div class="col-md-3">
-				    <button ng-show="{{data.activated == 0}}" ng-click="changeActivationStatus(1)" id="act-button-{{$index}}">Активувати</button>
-	                <button ng-show="{{data.activated == 1}}" ng-click="changeActivationStatus(0)"  id="deact-button-{{$index}}">Деактивувати</button> 
+				    <button ng-show="{{data.activated == 0}}" ng-click="changeActivationStatus(1, data.user_id)" id="act-button-{{$index}}">Активувати</button>
+	                <button ng-show="{{data.activated == 1}}" ng-click="changeActivationStatus(0, data.user_id)"  id="deact-button-{{$index}}">Деактивувати</button> 
 	                </div>
 			    </li>
 			</ul>
