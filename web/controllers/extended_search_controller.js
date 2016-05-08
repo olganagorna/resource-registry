@@ -8,9 +8,9 @@
     function SearchController($scope, $http, SearchService, $rootScope, RestService, constant, PaginationService) {
         $scope.request = {};
 
-        RestService.getData(constant.resource_classesQuery)
+        RestService.getData(constant.resource_typesQuery)
             .then(function(data){
-                $rootScope.resource_classes = data.data;
+                $rootScope.resource_types = data.data;
             });
 
         $scope.currentPage = PaginationService.currentPage;

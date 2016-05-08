@@ -223,7 +223,6 @@ class UserController extends AppController
     {
         $getrole = Role::find()
         ->select(['role_id','name as role_name'])
-        // ->innerJoinWith('users')
         ->asArray();
 
         $dataProvider = new ActiveDataProvider([
@@ -234,14 +233,6 @@ class UserController extends AppController
             ],
         ]);
         return $dataProvider; 
-    }
-    public function actionChangectivationstatus() 
-    {
-        $request= \Yii::$app->request->get();
-        $user = User::findOne(['username' => $request['username']]);
-        $user->activated=$request['activated'];
-        $user->update();
-
     }
 
     public function actionChangerole()

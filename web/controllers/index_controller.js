@@ -10,7 +10,7 @@
             console.log('pp');
 
             (function(){
-                return $http.get('rest.php/resource_classes')
+                return $http.get('rest.php/resource_types')
                     .then(successHandler)
                     .catch(errorHandler);
                 function successHandler(result) {
@@ -26,7 +26,7 @@
             pp.del = function(id){
                 //console.log(id);
                 (function(){
-                    return $http.delete('http://web/rest.php/resource_classes/' + id)
+                    return $http.delete('http://web/rest.php/resource_types/' + id)
                         .then(successHandler)
                         .catch(errorHandler);
                     function successHandler(result) {
@@ -46,7 +46,7 @@
                     name: pp.addClassInput
                 };
                 (function(){
-                    return $http.post('http://web/rest.php/resource_classes',classObj)
+                    return $http.post('http://web/rest.php/resource_types',classObj)
                         .then(successHandler)
                         .catch(errorHandler);
                     function successHandler(result) {
