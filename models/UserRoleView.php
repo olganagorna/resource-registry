@@ -3,10 +3,11 @@
 namespace app\models;
 
 use Yii;
+use \yii\db\ActiveRecord;
 
-class UserRoleView extends \yii\db\ActiveRecord{
+class UserRoleView extends ActiveRecord{
     public static function tableName(){
-        return 'user_role_view';
+        return 'user';
     }
     public function rules(){
         return [
