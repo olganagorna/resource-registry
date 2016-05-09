@@ -14,6 +14,7 @@ L.Control.Info = L.Control.extend({
                 this._div.innerHTML = '<h4>House info</h4>' + (house ?
                         '<b>' + house.name + '</b><br>' + house.description : "Select house");
         }
+
 });
 
 L.control.info = function () {

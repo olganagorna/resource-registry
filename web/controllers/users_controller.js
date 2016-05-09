@@ -5,10 +5,11 @@
         .module('restApp')
         .controller('UsersController', UsersController);
 
-    UsersController.$inject = ['RestService', '$location', 'constant', '$filter' , '$rootScope', '$scope', '$http', 'PaginationService'];
-    function UsersController(RestService, $location, constant, $filter , $rootScope, $scope, $http, PaginationService) {
+    UsersController.$inject = ['RestService', '$location', 'constant', '$filter' , '$rootScope', '$scope', '$http', 'PaginationServicee'];
+    function UsersController(RestService, $location, constant, $filter , $rootScope, $scope, $http, PaginationServicee) {
 
-        $scope.list_users = [];
+        $rootScope.xmlData = [];
+        $rootScope.requestQuery = 'users';
         $scope.roleSearch;
         $scope.searchingDone;
         
@@ -18,7 +19,7 @@
                 .catch(errorHandler);
             function successHandler(data) {
                 console.log(data);
-                $scope.list_users = data.data;
+                $rootScope.xmlData = data.data;
                 console.log(data.data);
             }
             function errorHandler(data){
@@ -29,7 +30,7 @@
         //Load resources per page
         // RestService.getData(constant.usersQuery + '?&per-page=' + constant.perPage)
         //     .then(function(data){
-        //         $scope.list_users = data.data;
+        //         $rootScope.xmlData = data.data;
         //         console.log(data.data);
         //     });
         //     console.log(constant.usersQuery + '?&per-page=' + constant.perPage)
@@ -37,64 +38,72 @@
         // console.log(constant.usersQuery); //returns admins/admin 
         
         //Pagination start
-        $scope.currentPage = PaginationService.currentPage;
-        console.log("current page is " + PaginationService.currentPage); //returns 1
+        $scope.currentPage = PaginationServicee.currentPage;
+        console.log("current page is " + PaginationServicee.currentPage); //returns 1
         $scope.getPages = function(pageCount) {
-            return PaginationService.getPages(pageCount);
+            return PaginationServicee.getPages(pageCount);
         };
 
         $scope.switchPage = function(index){
             // console.log('req1 ' + request);
-            if($scope.request){
-                PaginationService.switchPage(index, constant.usersQuery + '/search?' + buildQuery($scope.request)+ '&')
-                    .then(function(data){
-                        $scope.list_users = data.data;
-                        $scope.currentPage = PaginationService.currentPage;
-                });
-            }  else if ($scope.searchingDone) {
-                console.log("first");
-                PaginationService.switchPage(index, 'users/assignrole?value=' + $scope.searchingDone)
-                    .then(function(data){
-                        $scope.list_users = data.data;
-                        $scope.currentPage = PaginationService.currentPage;
+            var intervalID = setInterval(function(){
+                $rootScope.xmlDataLength = $rootScope.xmlData.length;
+                if ($rootScope.xmlData._meta.perPage != undefined) {
+                    if($scope.request){
+                        PaginationServicee.switchPage(index, constant.usersQuery + '/search?' + buildQuery($scope.request)+ '&')
+                            .then(function(data){
+                                $rootScope.xmlData = data.data;
+                                $scope.currentPage = PaginationServicee.currentPage;
+                        });
+                    }  else if ($scope.searchingDone) {
+                        console.log("first");
+                        PaginationServicee.switchPage(index, 'users/assignrole?value=' + $scope.searchingDone)
+                            .then(function(data){
+                                $rootScope.xmlData = data.data;
+                                $scope.currentPage = PaginationServicee.currentPage;
 
 
-                });
-            } else {
- 
-                console.log("second");
-                PaginationService.switchPage(index, constant.usersQuery + '?')
-                    .then(function(data){
-                        $scope.list_users = data.data;
-                        $scope.currentPage = PaginationService.currentPage;
+                        });
+                    } else {
+         
+                        console.log("second");
+                        PaginationServicee.switchPage(index, constant.usersQuery + '?')
+                            .then(function(data){
+                                $rootScope.xmlData = data.data;
+                                $scope.currentPage = PaginationServicee.currentPage;
 
 
-                });
-            }
+                        });
+                    }
+                    clearInterval(intervalID);
+                }
+
+            },10);
+            
         };
 
         
         $scope.switchPage($scope.currentPage);
         $scope.setPage = function(pageLink, pageType){
-            PaginationService.setPage(pageLink, pageType, $scope.list_users._meta.pageCount)
+            PaginationServicee.setPage(pageLink, pageType, $rootScope.xmlData._meta.pageCount)
                 .then(function(data){
-                    $scope.list_users = data.data;
-                    $scope.currentPage = PaginationService.currentPage;
+                    $rootScope.xmlData = data.data;
+                    $scope.currentPage = PaginationServicee.currentPage;
             });
-                console.log($scope.list_users._meta.pageCount);
+                console.log($rootScope.xmlData._meta.pageCount);
         };
         //Pagination end
 
         $scope.sort = function(sort_param){
-            console.log($scope.list_users);
+            console.log($rootScope.xmlData);
 
             var orderBy = $filter('orderBy');
             $scope.order = function(predicate) {
                 console.log(predicate);
                 $scope.predicate = predicate;
                 $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : true;
-                $scope.list_users = orderBy($scope.list_users, predicate, $scope.reverse);
-                console.log("Sorted"+$scope.list_users);
+                $rootScope.xmlData = orderBy($rootScope.xmlData, predicate, $scope.reverse);
+                console.log("Sorted"+$rootScope.xmlData);
             };
             $scope.order(sort_param, true);
         }
@@ -105,7 +114,7 @@
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
-                $scope.list_users = data.data;
+                $rootScope.xmlData = data.data;
             }
             function errorHandler(data){
                 console.log("Can't reload list!");

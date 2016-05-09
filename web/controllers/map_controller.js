@@ -20,6 +20,7 @@
 			}
 		};
 
+
 		$scope.showPolygonOnMap = function (coordinates) {
 			$scope.options.showPolygonOnMap.showPolygon = true;
 			$scope.options.showPolygonOnMap.latlngs = coordinates;
