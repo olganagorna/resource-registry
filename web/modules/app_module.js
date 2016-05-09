@@ -63,11 +63,6 @@
             templateUrl: 'views/site/registration.html',
             controllerAs: 'vm'
         })
-        .when('/site/community_add', {
-            controller: 'CommunityAddCtrl',
-            templateUrl: 'views/site/community_add.html',
-            controllerAs: 'vm'
-        })
 	.when('/resource/type', {
             controller: 'IndexCtrl',
             controllerAs: 'pp',
@@ -103,6 +98,10 @@
             templateUrl: 'views/site/community_add.html',
             controllerAs: 'comAdd'
         })
+        .when('/site/requests', {
+            controller: 'Requests',
+            templateUrl: 'views/site/requests.html'
+        })
         .otherwise({
             redirectTo: '/site/login'
         });
@@ -110,7 +109,7 @@
     }
 
     run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];
-    function run($rootScope, $location, $cookieStore, $http){
+    function run($rootScope, $location, $cookieStore, $http) {
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             var test = localStorage.getItem('username');

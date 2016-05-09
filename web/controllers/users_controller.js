@@ -14,19 +14,19 @@
         $scope.sortingDone;
         $scope.roleFound = [];
         
-        ($scope.getData = function(){
+        ($scope.getData = function() {
             return $http.get('rest.php/users/userdata')
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
                 $scope.list_users = data.data;
             }
-            function errorHandler(data){
+            function errorHandler(data) {
                 console.log("Can't reload list!");
             }
         })();
 
-        $scope.refreshData = function(){
+        $scope.refreshData = function() {
             $scope.getData();
         }
 
@@ -36,31 +36,31 @@
             return PaginationService.getPages(pageCount);
         };
 
-        $scope.switchPage = function(index){
-            if($scope.request){
+        $scope.switchPage = function(index) {
+            if($scope.request) {
                 PaginationService.switchPage(index, constant.usersQuery + '/search?' + buildQuery($scope.request)+ '&')
-                    .then(function(data){
+                    .then(function(data) {
                         $scope.list_users = data.data;
                         $scope.currentPage = PaginationService.currentPage;
                 });
             }  else if ($scope.searchingDone) {
                 PaginationService.switchPage(index, 'users/userdata?value=' + $scope.searchingDone + "&page=" + index + "&per-page=" + constant.perPage)
-                    .then(function(data){
+                    .then(function(data) {
                         $scope.list_users = data.data;
                         $scope.currentPage = PaginationService.currentPage;
                 });
             } else {
                 PaginationService.switchPage(index, constant.usersQuery + '?')
-                    .then(function(data){
+                    .then(function(data) {
                         $scope.list_users = data.data;
                         $scope.currentPage = PaginationService.currentPage;
                 });
             }
         };
         $scope.switchPage($scope.currentPage);
-        $scope.setPage = function(pageLink, pageType){
+        $scope.setPage = function(pageLink, pageType) {
             PaginationService.setPage(pageLink, pageType, $scope.list_users._meta.pageCount)
-                .then(function(data){
+                .then(function(data) {
                     $scope.list_users = data.data;
                     $scope.currentPage = PaginationService.currentPage;
             });
@@ -75,7 +75,7 @@
             function successHandler(data) {
                 $scope.list_users = data.data;
             }
-            function errorHandler(data){
+            function errorHandler(data) {
                 console.log("Can't reload list!");
             }
         };
@@ -89,14 +89,14 @@
             function successHandler(data) {
                 $scope.list_users = data.data;
             }
-            function errorHandler(data){
+            function errorHandler(data) {
                 console.log("Can't reload list!");
             }
         };
 
         // sort by name
         $scope.sortName = function() {
-            if($scope.sort_order == "desc"){
+            if($scope.sort_order == "desc") {
                 $scope.sort_order = "asc";
             } else {
                 $scope.sort_order = "desc";
@@ -107,20 +107,20 @@
             function successHandler(data) {
                 $scope.list_users = data.data;
             }
-            function errorHandler(data){
+            function errorHandler(data) {
                 console.log("Can't reload list!");
             }
         };
 
         // activate or deactivate user
-        $scope.changeActivationStatus = function(activation_status, user_id){
+        $scope.changeActivationStatus = function(activation_status, user_id) {
             $http.get('rest.php/users/changeactivationstatus?user_id='+ user_id + '&' + 'activated=' + activation_status)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler() {
                 $scope.refreshData();
             }
-            function errorHandler(){
+            function errorHandler() {
                 console.log("Can't change activation status!");
             }
         };
@@ -133,7 +133,7 @@
             function successHandler(data) {
                 $scope.roleFound = data.data.items;
             }
-            function errorHandler(data){
+            function errorHandler(data) {
                 console.log("Can't reload list!");
             }
         }());
@@ -146,7 +146,7 @@
             function successHandler() {
                 $scope.refreshData();
             }
-            function errorHandler(){
+            function errorHandler() {
                 console.log("Can't reload list!");
             }
         };
