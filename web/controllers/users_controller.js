@@ -75,7 +75,7 @@
         // filtering by role
         $scope.filterRole = function(role_name) {
             $scope.filteringDone = role_name;
-            $http.get('http://rr.com/rest.php/users/userdata?value='+ role_name)
+            $http.get('rest.php/users/userdata?value='+ role_name)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
@@ -90,7 +90,7 @@
         $scope.searchUser = function(search_query) {
             $scope.searchingDone = search_query;
             console.log($scope.searchingDone);
-            $http.get('http://rr.com/rest.php/users/userdata?value='+ search_query)
+            $http.get('rest.php/users/userdata?value='+ search_query)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
@@ -111,7 +111,7 @@
                 
             }
             
-            $http.get('http://resource.io/rest.php/users/userdata?sort=' + $scope.sort_order)
+            $http.get('rest.php/users/userdata?sort=' + $scope.sort_order)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {

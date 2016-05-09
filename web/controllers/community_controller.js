@@ -33,7 +33,7 @@
 
             $scope.searchingVal = $scope.communitySearch;
             console.log($scope.searchingVal);
-            $http.get('http://rr.com/rest.php/communities/show?value='+ $scope.communitySearch)
+            $http.get('rest.php/communities/show?value='+ $scope.communitySearch)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
