@@ -204,7 +204,7 @@ class UserController extends AppController
         $dataProvider = new ActiveDataProvider([
             'query' => $getdata,
             'pagination' => [
-                'pageSize' => 5,
+                'pageSize' => 30,
                 'pageParam' => 'page',
             ],
         ]);
