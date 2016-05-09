@@ -2,7 +2,6 @@
 namespace app\controllers;
 
 use yii\base\Exception;
-//use yii\rest\ActiveController;
 use app\models\User;
 use app\models\LoginForm;
 use app\models\Role;
@@ -161,6 +160,7 @@ class UserController extends AppController
         echo $model->username;
         exit('ok');
     }
+    
     public function actionLogout(){
         \Yii::$app->session->get('role');
         \Yii::$app->session->destroy();
@@ -173,9 +173,7 @@ class UserController extends AppController
         if($request['sort']=="desc"){
             $sort = 'last_name DESC';
         }
-
-        // $activated = $request['activated'];
-        
+      
         $words = explode(' ', $request['value']);
         if(sizeof($words) != 2) {
             $filters = [
@@ -206,7 +204,7 @@ class UserController extends AppController
         $dataProvider = new ActiveDataProvider([
             'query' => $getdata,
             'pagination' => [
-                'pageSize' => 30,
+                'pageSize' => 5,
                 'pageParam' => 'page',
             ],
         ]);
@@ -215,7 +213,7 @@ class UserController extends AppController
     public function actionChangeactivationstatus() 
     {
         $request= \Yii::$app->request->get();
-        $user = User::findOne(['username' => $request['username']]);
+        $user = User::findOne(['user_id' => $request['user_id']]);
         $user->activated=$request['activated'];
         $user->update();
 
@@ -231,58 +229,18 @@ class UserController extends AppController
         $dataProvider = new ActiveDataProvider([
             'query' => $getrole,
             'pagination' => [
-                'pageSize' => 10,
+                'pageSize' => 30,
                 'pageParam' => 'page',
             ],
         ]);
-        return $dataProvider;
+        return $dataProvider; 
     }
-
+    
     public function actionChangerole()
     {
         $request= \Yii::$app->request->get();
         $user = User::findOne(['user_id' => $request['user_id']]);
         $user->role_id=$request['role_id'];
         $user->update();
-
-
-        // $putrequest= \Yii::$app->request->put();
-        // $transaction = \Yii::$app->db->beginTransaction();  
-        // try {
-
-        // } catch (Exception $e) {
-        //     $transaction->rollBack();
-        //     throw new \yii\web\HttpException(422,$errorMessage . $error);
-        //     return $errorMessage . $error;
-        // }
-        // exit('end');
-
-        //echo ("done");
-        //$putrequest= \Yii::$app->request->put();
-        // $transaction = \Yii::$app->db->beginTransaction();
-        // try {
-        //     $userModel = new User();
-        //     $userModel->role_id = $put['community_name'];
-        //     if (!$userModel->save()){
-        //         foreach($userModel->errors as $key){
-        //             $errorMessage .= $key[0];
-        //         }
-        //         throw new \yii\web\HttpException(422,$errorMessage);
-        //     }
-        //     $transaction->commit();
-        //     $userModel = User::findUserById($post['commissioner_id']);
-        //     $userModel->role_id = 4;
-        //     $userModel->community_id = $userModel->community_id;
-        //     $userModel->save();
-        //     // Add validation for data here
-    
-        //     return 'true';
-            
-        // } catch (Exception $e) {
-        //     $transaction->rollBack();
-        //     throw new \yii\web\HttpException(422,$errorMessage . $error);
-        //     return $errorMessage . $error;
-        // }
-        // exit('end');
     }
 }

@@ -68,7 +68,7 @@
             templateUrl: 'views/site/community_add.html',
             controllerAs: 'vm'
         })
-	    .when('/resource/type', {
+	.when('/resource/type', {
             controller: 'IndexCtrl',
             controllerAs: 'pp',
             templateUrl: 'views/resource/resource_types.html'

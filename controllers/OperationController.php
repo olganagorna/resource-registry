@@ -1,13 +1,11 @@
 <?php
 namespace app\controllers;
 
-use yii\rest\ActiveController;
 use yii\data\ActiveDataProvider;
 
-class OperationController extends ActiveController
+class OperationController extends AppController
 {
     public $modelClass = 'app\models\Operation';
-	public $serializer = [ 'class' => 'yii\rest\Serializer', 'collectionEnvelope' => 'items'];
     
     public function behaviors()
     {
