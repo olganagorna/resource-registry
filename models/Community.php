@@ -54,21 +54,9 @@ class Community extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCommissioner()
-    {
-        return $this->hasOne(User::className(), ['user_id' => 'commissioner_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function findUsers()
-    {
-        return $this->hasMany(User::className(), ['community_id' => 'community_id']);
-    }
-    public static function findByCommunityName($community_name)
+    public static function findByCommunityName($com_name)
     {
         //find Community in DB by Name
-        return static::findOne(['name' => $community_name]);
+        return static::findOne(['name' => $com_name]);
     }
 }

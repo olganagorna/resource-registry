@@ -28,7 +28,7 @@
         <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
         <link href="https://cdn.rawgit.com/zhaber/datetimepicker/master/datetimepicker.css" type="text/css" rel="stylesheet">
     </head>
-    <body ng-controller="MainCtrl">
+    <body ng-controller="MainCtrl" onload="activePills()">
     <div class="navbar navbar-default shadow-z-1">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -39,8 +39,8 @@
             <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></span>РЕЄСТР</a><br>
         </div>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="/">ГОЛОВНА</a></li>
+            <ul class="nav navbar-nav nav-pills">
+                <li class="active"><a href="/">ГОЛОВНА</a></li>
                 <li ng-if="currentUser.role === 'registrar' "><a href="resource/index">РЕСУРСИ</a></li>
                 <li ng-if="currentUser.role === 'registrar'"><a href="site/logs">ЖУРНАЛ</a></li>
                 <li ng-if="currentUser.role === 'registrar' "><a href="resource/search">ПОШУК</a></li>

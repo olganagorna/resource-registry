@@ -34,10 +34,15 @@
 		            	<h4>Дії</h4>
 		            </div>
 		        </li>
-			    <li class="list-group-item shadow-z-1 md-list row" ng-repeat="data in xmlData.items | filter:idFilter">
-			        <div class="col-md-1 text-center res_vert_allight_list">{{data.user_id}}</div>
-			        <a class="col-md-4 text-center res_vert_allight_list">{{data.first_name}} {{data.last_name}}</a>
-			        <a class="col-md-3 text-center res_vert_allight_list">{{data.role_name}}</a>
+			    <li class="list-group-item shadow-z-1 md-list row" ng-repeat="data in list_users.items">
+			        <div class="col-md-3 text-center res_vert_allight_list">{{data.username}}</div>
+			        <a class="col-md-3 text-center res_vert_allight_list">{{data.last_name}} {{data.first_name}}</a>
+			        <div class="col-md-3 text-center res_vert_allight_list">
+			           	<select id="user-role-selector" ng-model="changeRoleId" ng-change="changeRole(changeRoleId, data.role_id)">
+			        		<option value="" selected style="display: none !important;">{{data.role_name}}</option> 
+			        		<!-- <option ng-repeat="item in filterRole.items" value=""></option> -->
+			        	</select>
+			        </div>			
 				    <div class="btn-group">
 	                    <a class="btn btn-material-grey-200 text-center"
 	                       ng-click="user.del(user.user_id)">
@@ -48,7 +53,26 @@
 			</ul>
 		</div>
 		<div class="col-md-12 center" >
-			<pagination-directive></pagination-directive>
+			<ul class="pagination pagination-sm">
+	            <li ng-if="list_users._links.first">
+	                <a href="" ng-click="setPage(list_users._links.first.href, 'first')">&laquo;</a>
+	            </li>
+	            <li ng-if="list_users._links.prev">
+	                <a href="" ng-click="setPage(list_users._links.prev.href, 'prev')" >‹</a>
+	            </li>
+
+	            <li ng-repeat="page in getPages(list_users._meta.pageCount) track by $index"
+	                ng-click="switchPage(page)" ng-class="{active: page == currentPage}"
+	                ng-if="page">
+	                <span>{{page}}</span>
+	            </li>
+	            <li ng-if="list_users._links.next">
+	                <a href="" ng-click="setPage(list_users._links.next.href, 'next')" >›</a>
+	            </li>
+	            <li ng-if="list_users._links.last">
+	                <a href="" ng-click="setPage(list_users._links.last.href, 'last')">&raquo;</a>
+	            </li>
+	        </ul>
 	    </div>
 	</div>
 </div>
