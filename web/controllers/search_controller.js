@@ -18,6 +18,8 @@
                 $rootScope.resource_classes = data.data;
             });
 
+            console.log('searchcontroller');
+
 
         //Pagination start
 

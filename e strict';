@@ -1,0 +1,1077 @@
+[33mcommit 2a4911c24925b0b13d908513064a395d8aaa2ff7[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Sun May 8 22:53:46 2016 +0300
+
+    added back resource class models and controllers
+
+[33mcommit c26309752e472e019c49ce343d1825aaf6ba1ac3[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Sun May 8 20:05:09 2016 +0300
+
+    LVPHP-163 & LVPHP-124 working get request for role and activation status changing
+
+[33mcommit 481efd8be39c4f857f3b59326ae3127798d9677e[m
+Merge: 0a9a39e 0375f98
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Sun May 8 19:15:30 2016 +0300
+
+    test2
+
+[33mcommit 0a9a39ebdff21ab7a90b860bf88cde55441e2d9c[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Sun May 8 18:58:57 2016 +0300
+
+    test
+
+[33mcommit 0375f9889a468a5c1c4333b028d08e789bd8297f[m
+Merge: 1c4e429 378293a
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Sat May 7 20:21:41 2016 +0300
+
+    test
+
+[33mcommit 1c4e42942b3ad932719c9ff24195d5ff33e99a52[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Sat May 7 19:36:29 2016 +0300
+
+    activation2
+
+[33mcommit 378293ab8a171912b65fe47cb895282c2399ef43[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Sat May 7 19:26:34 2016 +0300
+
+    LVPHP 159
+
+[33mcommit 867a373c199af4506a36016dc6cea5681d2c3201[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Thu May 5 15:20:28 2016 +0300
+
+    LVPHP124 - As Admin I want to assign roles to users
+
+[33mcommit d6cc7a9d40a16c9a6495dfada6ede5bba000d63a[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Wed May 4 23:18:17 2016 +0300
+
+    LVPHP-163 users list view(deactivate/activate button)
+
+[33mcommit 0171770041d05b88d3fb996521402d80b321ed5f[m
+Merge: 5652a9c b2a5839
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Mon May 2 20:45:06 2016 +0300
+
+    Merge branch 'lv-180' of https://github.com/afedchuk/resource-registry into HEAD
+
+[33mcommit 5652a9c71b7b8434c67d17e55fa4bfe34c7a3945[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Mon May 2 20:44:42 2016 +0300
+
+    activecontroller replaced with appcontroller
+
+[33mcommit b2a5839adf02489e567ce0b45f05a7b668d65a77[m
+Author: Y.Potupa <y.potupa@gmail.com>
+Date:   Sat Apr 30 13:10:12 2016 +0300
+
+    U126 Add community view (changed path after DB correction)
+
+[33mcommit d199eb61dff30780a6b2998ecdc9e5e183922e78[m
+Merge: d548745 e866e02
+Author: Y.Potupa <y.potupa@gmail.com>
+Date:   Tue Apr 26 14:59:41 2016 +0300
+
+    U126 - As Admin I want to add and edit and delete Communities (1.add button in commlist 2.success alert in commadd 3.cleaned all paths community)
+
+[33mcommit d54874564be9bab37f842ebdcc2d702cebfc60ea[m
+Author: Y.Potupa <y.potupa@gmail.com>
+Date:   Tue Apr 26 12:41:13 2016 +0300
+
+    U126 - As Admin add community (before change)
+
+[33mcommit e866e0252d01ff2546fd01b4323db6744f8da47f[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Mon Apr 25 20:43:34 2016 +0300
+
+    new database 25.04.16
+
+[33mcommit 1469cb78cbdc6c7537f99882c2fc0b89acd9cdd7[m
+Merge: 4946877 7bd6939
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Mon Apr 25 01:20:17 2016 +0300
+
+    Pulling from Olga Nagorna last commit
+
+[33mcommit 7bd69398604b2b09cbf19a061601e404b805ea8f[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Sun Apr 24 22:53:16 2016 +0300
+
+    sorting by last name
+
+[33mcommit 494687765d4ec8ee8e7ce3a798c6dfb8d3efe367[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Sun Apr 24 15:37:24 2016 +0300
+
+    my commit
+
+[33mcommit bdb994ec47e1d39e32264745954ee8072c92ba62[m
+Merge: 9afc795 ce5e073
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Sun Apr 24 13:56:47 2016 +0300
+
+    searching by first and last name2
+
+[33mcommit 9afc795133c399e5664f9415934ba7e886e9cfba[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Sun Apr 24 13:51:00 2016 +0300
+
+    searching by first and last name
+
+[33mcommit ce5e073dec3460d96065c3e1f31cb08b200f9179[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Sun Apr 24 01:35:31 2016 +0300
+
+    new database
+
+[33mcommit d42d032fb79a5708b2b8b9a79089a720d1167903[m
+Merge: 064cfb9 0c155bc
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Sat Apr 23 18:55:45 2016 +0300
+
+    another commit
+
+[33mcommit 064cfb9092815590e8d9d580870272d176ec7018[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Sat Apr 23 18:48:13 2016 +0300
+
+    new commit
+
+[33mcommit 0c155bc480c0ead30aa08ea77e18ac7258a77cb0[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Sat Apr 23 18:47:02 2016 +0300
+
+    constant service changed
+
+[33mcommit fbd361992939d44269604f8475ba33518eff1102[m
+Merge: 8f85bad 57d6b8b
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Sat Apr 23 18:37:26 2016 +0300
+
+    new branch commit2
+
+[33mcommit 57d6b8bd2c3ac1f2234fb258e574e5e5445b4cb7[m
+Merge: 43e3454 e1ad522
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Sat Apr 23 18:25:29 2016 +0300
+
+    Commit 23.04.16 from 4113 room
+
+[33mcommit 8f85badbe72644cb61d888378224964f1700c411[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Sat Apr 23 18:25:13 2016 +0300
+
+    pagination ok
+
+[33mcommit 43e3454d51e09d7c10a3e13c3d79f28cbe2aad2e[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Sat Apr 23 18:23:44 2016 +0300
+
+    commit 23.04.16 from 4113
+
+[33mcommit b23dd0fdeffe46603fd98e76d7d3772fbf5a6b0e[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Sat Apr 23 18:16:59 2016 +0300
+
+    commit 23.04.16 from 4113
+
+[33mcommit a83553d57c2cfbad47d6a381dc99ffb24d1fdc5d[m
+Merge: 6569601 e1ad522
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Sat Apr 23 18:13:46 2016 +0300
+
+    pagination ok
+
+[33mcommit 65696010c8242ae33f7c6ad29d401eb74a4d1bca[m
+Merge: 388a033 60de1fe
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Sat Apr 23 18:09:37 2016 +0300
+
+    pagination ok
+
+[33mcommit e1ad522224d7e0c0ecb7ffe244a6e9fd460f7d6e[m
+Author: YuriyTeslenko <dangercorp@gmail.com>
+Date:   Fri Apr 22 15:18:35 2016 +0300
+
+    Update db.php
+    
+    logiin/pass
+
+[33mcommit b0a6b4ac7f1875f0498b2e80b3f496cb817d5c4a[m
+Merge: 6125bb7 b6c05b3
+Author: YuriyTeslenko <dangercorp@gmail.com>
+Date:   Fri Apr 22 15:14:45 2016 +0300
+
+    Merge pull request #4 from YuriyTeslenko/lv-180
+    
+    Lv 180
+
+[33mcommit b6c05b351a9a186c2e7611f915ff3b8f9ebc465e[m
+Merge: 6785e20 ca86321
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Fri Apr 22 14:59:32 2016 +0300
+
+    -del
+    Merge branch 'dir_test' of https://github.com/YuriyTeslenko/resource-registry into dir_test
+
+[33mcommit 6785e202ff4f7dc6bc625c438f19882d858f3fe9[m
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Fri Apr 22 14:59:22 2016 +0300
+
+    -del
+
+[33mcommit ca86321e1e654c4e54b96a212b4c0e037db9bb5c[m
+Author: YuriyTeslenko <dangercorp@gmail.com>
+Date:   Fri Apr 22 10:08:32 2016 +0300
+
+    Delete db.php.orig
+
+[33mcommit 0da1a35a5ee195ee322ac89f68367212f0b68d1d[m
+Merge: 7cded7c 1aa5041
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Fri Apr 22 10:07:18 2016 +0300
+
+    -del
+
+[33mcommit 7cded7c05b957ec7db09f47b346429547bfa7606[m
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Fri Apr 22 10:03:50 2016 +0300
+
+    -del
+
+[33mcommit 1aa50411b0d559cb4e1b74583056c1f0b6bb7b4a[m
+Author: nazar <nzhovniriv@gmail.com>
+Date:   Fri Apr 22 01:01:13 2016 +0300
+
+    New changes in DB and Community model. Who was working with this model, please check the Community model file.
+
+[33mcommit 388a033b172a58ed252770d2c9bb41a5ed6bfe8c[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Thu Apr 21 22:25:09 2016 +0300
+
+    runtime deleted
+
+[33mcommit 60de1fecf36aba141dafca5324d607509fd7adbe[m
+Author: Andrii Uhryn <a_ugryn@ukr.net>
+Date:   Thu Apr 21 15:54:08 2016 +0300
+
+    a_uhryn merge (community page done)
+
+[33mcommit c3d8cf31a441c5a0defc7930e8042450fc5bd6c8[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Thu Apr 21 15:13:42 2016 +0300
+
+    config modified
+
+[33mcommit effd5aa04203c27251642d8d6bbd498be60812a7[m
+Merge: a43b66e 4aef4d5
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Thu Apr 21 15:10:56 2016 +0300
+
+    modified commit
+
+[33mcommit a43b66eb36d82e404c56a1766f162e0252cf3176[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Thu Apr 21 15:04:17 2016 +0300
+
+    new runtime
+
+[33mcommit 4aef4d52a1a05f639bbf1ae0b7074e4fedac0bbd[m
+Merge: 0fab2ed c98522b
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Thu Apr 21 14:52:25 2016 +0300
+
+    user roles filtration4
+
+[33mcommit 0fab2ed9bdaa0cbfa6a7e57e9fe3e492db18832e[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Thu Apr 21 14:28:43 2016 +0300
+
+    user roles filtration3
+
+[33mcommit c98522b8aa6e877c74bb3684ec727f243e33ba62[m
+Author: nazar <nzhovniriv@gmail.com>
+Date:   Thu Apr 21 12:38:02 2016 +0300
+
+    some changes in CommunityController
+
+[33mcommit b45c11900473fc0e9c1c6b45ed035817851acab7[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Wed Apr 20 23:04:27 2016 +0300
+
+    user roles filtration2
+
+[33mcommit 102636c857a593d8354d7d3d7ab079d6741e9448[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Wed Apr 20 22:59:36 2016 +0300
+
+    user roles filtration
+
+[33mcommit e5530f04d9b8e1eb28561364a4c23bf9c05b6510[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Wed Apr 20 20:41:22 2016 +0300
+
+    commit 20.04 at 20.45
+
+[33mcommit 5e290dba49877fdc8663297a2d40e5f271c0b5c3[m
+Merge: 8579bab ef4406c
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Wed Apr 20 20:37:10 2016 +0300
+
+    Commit 20.04.16 at 20.40
+
+[33mcommit 8579bab8efdeda2e35c2f182d2bf0804f4fb6f20[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Wed Apr 20 20:11:33 2016 +0300
+
+    change name on role_name
+
+[33mcommit ef4406cef282b1394e59323c88497a121d9b3f2f[m
+Author: Y.Potupa <y.potupa@gmail.com>
+Date:   Wed Apr 20 20:11:12 2016 +0300
+
+    20.04. push #2
+
+[33mcommit 6c3c4d74e4d639bcdcd7e2b2f0bd6546a549f8de[m
+Merge: 57260d6 edb2807
+Author: Y.Potupa <y.potupa@gmail.com>
+Date:   Wed Apr 20 20:07:19 2016 +0300
+
+    after pull
+
+[33mcommit 57260d64cbdd3ebe4116a02ac395e4db0c12cbb9[m
+Author: Y.Potupa <y.potupa@gmail.com>
+Date:   Wed Apr 20 20:07:05 2016 +0300
+
+    20.04. after pull
+
+[33mcommit edb28073754e8e3bbe51f393630d11feb90f94a8[m
+Author: YuriyTeslenko <dangercorp@gmail.com>
+Date:   Wed Apr 20 20:05:24 2016 +0300
+
+    Delete 570faa945c0bd.data
+    
+    -del
+
+[33mcommit 9b0c52f48f624f26aa9e785371e74fdb5e544179[m
+Author: YuriyTeslenko <dangercorp@gmail.com>
+Date:   Wed Apr 20 20:04:23 2016 +0300
+
+    Delete 963454f612a8b5fb4a63ba1e97f028a1.bin
+    
+    -del
+
+[33mcommit b1748f0ed61015c889f9fc96157b54b64ab91bdb[m
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Wed Apr 20 20:01:14 2016 +0300
+
+    some repairs
+
+[33mcommit 3bccae6bfe7e6515ec5f3381af16c53a02523266[m
+Author: Y.Potupa <y.potupa@gmail.com>
+Date:   Wed Apr 20 19:52:14 2016 +0300
+
+    20.04. git uncommented Role
+
+[33mcommit 84e9928ce40396348a06c967d249f2f8b371f3e7[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Wed Apr 20 00:22:21 2016 +0300
+
+    admin controller deletion in web.php
+
+[33mcommit 0c98f77110d59f881a19b7cf0f379c7b51fe8a2a[m
+Merge: ce2d2d0 912ddd2
+Author: Y.Potupa <y.potupa@gmail.com>
+Date:   Tue Apr 19 23:10:09 2016 +0300
+
+    19.04. after pull dir
+
+[33mcommit ce2d2d00b17cf7d34532b9e722221acb2fe5295c[m
+Author: Y.Potupa <y.potupa@gmail.com>
+Date:   Tue Apr 19 22:40:10 2016 +0300
+
+    19.04. before dir pull
+
+[33mcommit 912ddd2b1a4292c88daf1f4b0e7e1890167526f5[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Tue Apr 19 18:33:32 2016 +0300
+
+    delete db.php~
+
+[33mcommit 1e9ce67dc79651256aeb90515cab144f3ef4b056[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Tue Apr 19 18:32:05 2016 +0300
+
+    changed config/db.php file
+
+[33mcommit f7848cc924dbc831771ba05f7ddf0b7305fee5d1[m
+Merge: e729ad6 832ac07
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Tue Apr 19 18:27:04 2016 +0300
+
+    Merge branch 'dir_test' of https://github.com/YuriyTeslenko/resource-registry into dir_test
+
+[33mcommit e729ad6ffa4765e6d4bfd66a06c7bc235975ff3f[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Tue Apr 19 18:26:20 2016 +0300
+
+    remove Admin controller and Admin model
+
+[33mcommit 832ac07f465d5dd7e1ff0406cce599d1a7b60a27[m
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Tue Apr 19 16:28:30 2016 +0300
+
+    ComunityCtrl changed (Nazar)
+
+[33mcommit 2c7f5cfb024b414f661cce5e35bf5492f79e1132[m
+Merge: f170ae7 944fcc8
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Tue Apr 19 16:17:14 2016 +0300
+
+    Merge branch 'dir_test' of https://github.com/YuriyTeslenko/resource-registry into dir_test
+    
+    Controlle and model refactoring
+
+[33mcommit f170ae70aabdd139c128ef9a26083968abceba7c[m
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Tue Apr 19 16:17:02 2016 +0300
+
+    oh no
+
+[33mcommit 944fcc826f95f22cc71e792fb9bf34f53c427b7e[m
+Author: YuriyTeslenko <dangercorp@gmail.com>
+Date:   Tue Apr 19 15:51:17 2016 +0300
+
+    Delete Admin.php
+    
+    unwanted model
+
+[33mcommit 87388a38255822e7c07220084bc2b5091735b196[m
+Author: YuriyTeslenko <dangercorp@gmail.com>
+Date:   Tue Apr 19 15:50:44 2016 +0300
+
+    Delete AdminController.php
+    
+    unwanted controller
+
+[33mcommit 5f7ef5f6c2ee53a96b4041f6ee1ea5a5015c8797[m
+Merge: c339d2c 63fa994
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Tue Apr 19 15:38:19 2016 +0300
+
+    Merge branch 'dir_test' of https://github.com/YuriyTeslenko/resource-registry into dir_test
+
+[33mcommit c339d2c752e27dbdad1e3d0a872838f8d0f149c8[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Tue Apr 19 15:38:06 2016 +0300
+
+    user controller update
+
+[33mcommit 846176199b314c99b4c60679348e40ef8041c55c[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Tue Apr 19 15:22:58 2016 +0300
+
+    serialiser
+
+[33mcommit 63fa994873b52473cbe9b1ce6bd410c7885fe637[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Tue Apr 19 14:57:53 2016 +0300
+
+    user controller commit
+
+[33mcommit 7bfa33b030d19208710dd9930f124b49cea1b174[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Tue Apr 19 12:31:30 2016 +0300
+
+    commit 19.04.16
+
+[33mcommit e2c4dcc3388755e6ebcc0f15ba15f04fab917f0b[m
+Merge: 53dd3c1 e45fb30
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Tue Apr 19 12:21:48 2016 +0300
+
+    Merge branch 'dir_test' of https://github.com/YuriyTeslenko/resource-registry into dir_test
+
+[33mcommit 53dd3c15c9cdd7fe8fbf91ef57b7542ba5a258cd[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Tue Apr 19 12:20:32 2016 +0300
+
+    User model commit
+
+[33mcommit e45fb304a9882536db48a1b3448ff201713c525f[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Tue Apr 19 01:32:09 2016 +0300
+
+    comment deleted
+
+[33mcommit 2290a5ca2b4a217bc108ac25538f90da338b3f93[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Tue Apr 19 01:24:49 2016 +0300
+
+    users pagination
+
+[33mcommit f6f98c49ac4cdf44b18ac11b8c16f08ff7cfc365[m
+Merge: 835e98c 367cac4
+Author: Y.Potupa <y.potupa@gmail.com>
+Date:   Mon Apr 18 22:55:38 2016 +0300
+
+    18.04 edited ComModelPhp
+
+[33mcommit 835e98c774ec3879d90c238ce1e10ba70921fe4c[m
+Author: Y.Potupa <y.potupa@gmail.com>
+Date:   Mon Apr 18 22:29:50 2016 +0300
+
+    18.04. updated openshift
+
+[33mcommit 66d86e792d288b72d900d37f662ddb76d6cb0ed9[m
+Merge: d63e994 b5ca7db
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Mon Apr 18 20:24:15 2016 +0300
+
+    Merge branch 'dir_test' of https://github.com/YuriyTeslenko/resource-registry into dir_test
+
+[33mcommit b5ca7dbc682dc35399e60d584a326dd83ef22058[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Mon Apr 18 20:04:00 2016 +0300
+
+    new Controller
+
+[33mcommit d63e9947d9d895627c06a0baf41795a09eda2ae8[m
+Merge: 5889eb1 1e917ac
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Mon Apr 18 19:53:43 2016 +0300
+
+    db new
+
+[33mcommit 5889eb141ec1af1361c0a568bc66c8f729e61860[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Mon Apr 18 19:47:06 2016 +0300
+
+    db config
+
+[33mcommit 1e917ac63fd19990edeb84ae145e69d501269da9[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Mon Apr 18 19:32:27 2016 +0300
+
+    db 13.04.16 second commit
+
+[33mcommit 35e586d1b1db9c15130434692086ba64e10b02ca[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Mon Apr 18 19:28:03 2016 +0300
+
+    db 13.04.16
+
+[33mcommit 3e3c4bdf40bff310f9975b71ad72667296471c5c[m
+Author: Y.Potupa <y.potupa@gmail.com>
+Date:   Fri Apr 15 13:37:22 2016 +0300
+
+    local db
+
+[33mcommit f4b134d09adbcb899cc1590ef5532a89e9f2e557[m
+Author: Y.Potupa <y.potupa@gmail.com>
+Date:   Fri Apr 15 12:50:02 2016 +0300
+
+    15.04 AndYev sprint done
+
+[33mcommit b58fafe30284622a9141e5490f3ea282959f2306[m
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Fri Apr 15 11:18:02 2016 +0300
+
+    add manual
+
+[33mcommit 7f16c919445d139047271a20dc1a87ec7a5d81aa[m
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Fri Apr 15 10:53:37 2016 +0300
+
+    try to wear users list into directive mod
+
+[33mcommit 8602e50b540aed2e28f4d4474c6308ea41461494[m
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Fri Apr 15 10:36:07 2016 +0300
+
+    try to wear users list into directive
+
+[33mcommit 6125bb71cee5dd44fce0f3941ec66a5338fc2cb8[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Fri Apr 15 09:34:21 2016 +0300
+
+    Update users_controller.js
+
+[33mcommit 1a2ada0fb4652b29f9f4287ac293c582b11e64ab[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Fri Apr 15 09:31:21 2016 +0300
+
+    Update users.html
+
+[33mcommit 367cac48199d032e067d8f5a0a42301d0575b350[m
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Fri Apr 15 09:24:05 2016 +0300
+
+    all good3
+
+[33mcommit 00469c6a85a0a28ba62e10277f18f433cfca8e87[m
+Author: Y.Potupa <y.potupa@gmail.com>
+Date:   Fri Apr 15 03:04:04 2016 +0300
+
+    14.04 v5 my master
+
+[33mcommit 26af9f0b1b6053acc31f3827d3ca95606f160c27[m
+Author: Y.Potupa <y.potupa@gmail.com>
+Date:   Fri Apr 15 01:59:31 2016 +0300
+
+    14.04 v3
+
+[33mcommit 860646c0ab4378936b76a727dff98fb870e84533[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Fri Apr 15 00:40:53 2016 +0300
+
+    solving problems in web/index.html
+
+[33mcommit 5114d87ef91a7f6998365d5b84c28f7e960438e9[m
+Merge: ad584e3 ec91201
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Fri Apr 15 00:09:56 2016 +0300
+
+    I hope last commit for today
+
+[33mcommit ad584e391a7575aea3d6f712ff8bab2f482b2e2f[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Thu Apr 14 23:43:25 2016 +0300
+
+    new commit
+
+[33mcommit ec91201c3d56b892267074910187485763f807b9[m
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Thu Apr 14 23:12:15 2016 +0300
+
+    all good2
+
+[33mcommit c8e1912714fb4eea355c7a9ec1f8f47e20c33fa8[m
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Thu Apr 14 23:11:03 2016 +0300
+
+    all good
+
+[33mcommit 2a6aaa107c9bd0f626351980ff9e1150eec05c59[m
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Thu Apr 14 22:59:54 2016 +0300
+
+    all good
+
+[33mcommit 8370ce2ec8eee32cd7c3709214a58c0c79da0902[m
+Merge: f7feacb d5b9c14
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Thu Apr 14 22:27:11 2016 +0300
+
+    why is that?
+
+[33mcommit f7feacb28d32fd89d29d7d29f0942682fc99ba17[m
+Merge: 30b2037 a3eb890
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Thu Apr 14 22:17:48 2016 +0300
+
+    conflict commit
+
+[33mcommit 30b2037adf458575c3dff5e03b16833a0f405290[m
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Thu Apr 14 22:04:55 2016 +0300
+
+    correction commit
+
+[33mcommit e086e45895a58090a0f0ad0eb38cfb558a42cd04[m
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Thu Apr 14 22:00:21 2016 +0300
+
+    solved
+
+[33mcommit 56b6e433161b1b82e7c9619c87b2ec4d3578f5ae[m
+Merge: f9419a9 d5b9c14
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Thu Apr 14 21:13:20 2016 +0300
+
+    4-th commit
+
+[33mcommit f9419a90edd95e316e3406714369ccbcf004bcd0[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Thu Apr 14 21:05:33 2016 +0300
+
+    third commit
+
+[33mcommit d5b9c1423343fc9c0343c9d58c5b14f3b8d8fcbd[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Thu Apr 14 20:36:51 2016 +0300
+
+    merging part 2
+
+[33mcommit 2d5a3624a3d1047c99744e1464cf0e195948fee2[m
+Merge: baca941 3aa788b
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Thu Apr 14 20:17:08 2016 +0300
+
+    2 commit
+
+[33mcommit baca94192252acfdcb4f88f55b080710aa6e7389[m
+Author: Shakhzadov <k.shakhzadov@gmail.com>
+Date:   Thu Apr 14 20:10:15 2016 +0300
+
+    My first commit
+
+[33mcommit 3aa788b733cce029736339e9ec3ef44c6a99b973[m
+Merge: b0ac253 c20e188
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Thu Apr 14 19:46:49 2016 +0300
+
+    merging
+
+[33mcommit c20e1886c99be27ba3a327a207cb260719beb28c[m
+Author: Y.Potupa <y.potupa@gmail.com>
+Date:   Thu Apr 14 19:28:13 2016 +0300
+
+    14.04 v Andriy
+
+[33mcommit b0ac25362b8d9babe9228bbae611dc43c0576255[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Thu Apr 14 16:05:29 2016 +0300
+
+    my_commit
+
+[33mcommit 702dfaf5dfe42d6f87195fa8e52ea47df38d5f3c[m
+Merge: 6edab21 1250978
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Thu Apr 14 15:56:47 2016 +0300
+
+    conflict solved
+
+[33mcommit bd253d65ad7afee6eee21a9ce68cea70fb25ef50[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Thu Apr 14 15:52:55 2016 +0300
+
+    new commit users view
+
+[33mcommit b83679e64bb90429782e582a7be50b438b585d31[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Thu Apr 14 15:51:46 2016 +0300
+
+    new commit
+
+[33mcommit 1073a449d4367746a60f60eb04adc6fd8aa10370[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Thu Apr 14 15:50:44 2016 +0300
+
+    added users controller
+
+[33mcommit 080d6eb346e1c1684333214d4e3c858a908b972d[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Thu Apr 14 15:49:17 2016 +0300
+
+    added users controller and view
+
+[33mcommit 6edab21c77c51a2624f1bdf204f71739e11c1914[m
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Thu Apr 14 15:47:49 2016 +0300
+
+    my changes
+
+[33mcommit fdca3c02749b574845cad45df5b5b54ca847a4ad[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Thu Apr 14 15:10:03 2016 +0300
+
+    db config
+
+[33mcommit 4b2c18de2039cb3a08b617db3b78a96bfab8c5e1[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Thu Apr 14 15:07:06 2016 +0300
+
+    gitignore
+
+[33mcommit a3eb8908df4a5541efc7bac59e0f79714cbde737[m
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Thu Apr 14 14:51:43 2016 +0300
+
+    community selection done
+
+[33mcommit 1250978b3088e929601132133b9441e427ae6055[m
+Author: nazar <nzhovniriv@gmail.com>
+Date:   Thu Apr 14 13:05:54 2016 +0300
+
+    new changes community controller and model
+
+[33mcommit 22671ad3aacc511e6aac8ad571e7058c0059143e[m
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Thu Apr 14 12:38:33 2016 +0300
+
+    commissioner logic
+
+[33mcommit bda30118826bd00e286aadbf5d96b1558a38297b[m
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Wed Apr 13 16:29:04 2016 +0300
+
+    commissioner ctrl & view added
+
+[33mcommit 0e9e614f4dac4cad678d812cc04fbc2b2bf297f8[m
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Wed Apr 13 13:14:56 2016 +0300
+
+    ignore
+
+[33mcommit ed8aa3248f7682f59c0c5d12cc6af784ddad9612[m
+Author: YuriyTeslenko <YuriyTeslenko>
+Date:   Wed Apr 13 12:55:02 2016 +0300
+
+    Add all files and commit
+
+[33mcommit 5f60c80ce64fe85462ff5ed6bc48dcc291193630[m
+Merge: 00688bb 36cc21a
+Author: nazar <nzhovniriv@gmail.com>
+Date:   Tue Apr 12 13:09:13 2016 +0300
+
+    commit
+
+[33mcommit 00688bb632f46b234646a1e133eb0ee2b8d7d17c[m
+Author: nazar <nzhovniriv@gmail.com>
+Date:   Tue Apr 12 12:50:09 2016 +0300
+
+    creation table(community) in DB,Yii model(Community),Yii controller(CommunityController)
+
+[33mcommit c246bde3e5370ce66965252f0f1a495ad9198f08[m
+Author: nazar <nzhovniriv@gmail.com>
+Date:   Tue Apr 12 12:39:03 2016 +0300
+
+    init
+
+[33mcommit b3880b11a53f52c304231c756f0a29e000220efc[m
+Merge: 271fa04 36cc21a
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Fri Apr 1 00:47:07 2016 +0300
+
+    Merge branch 'lv-180' of https://github.com/afedchuk/resource-registry
+
+[33mcommit 271fa04f4954323d4f9ceca411227bbab6afd2cb[m
+Author: olganagorna <olechka.nagorna@gmail.com>
+Date:   Fri Apr 1 00:46:28 2016 +0300
+
+    first commit
+
+[33mcommit fa407e2931321e9e08c17fbe4536879e4bdbb2e4[m
+Author: Fedchuk Andrii <afed@softserveinc.com>
+Date:   Tue Mar 29 09:20:53 2016 -0400
+
+    test
+
+[33mcommit 36cc21a1f475a90c4ed482f3e707e565698a0dce[m
+Author: Fedchuk Andrii <afed@softserveinc.com>
+Date:   Tue Mar 29 08:55:23 2016 -0400
+
+    test
+
+[33mcommit bedece78cffd3c58f9bf670c1c294e851ab40007[m
+Merge: 46e3478 31ead98
+Author: genyklemberg <aputop@yahoo.com>
+Date:   Tue Mar 29 15:33:34 2016 +0300
+
+    Merge pull request #3 from genyklemberg/lv-180
+    
+    My first commit
+
+[33mcommit 31ead9871e6a329cc8af3bee18643ce267ccf623[m
+Author: Y.Potupa <y.potupa@gmail.com>
+Date:   Tue Mar 29 15:26:30 2016 +0300
+
+    My first commit
+
+[33mcommit 766ae51860b90badb45d8864b5bca1c40438820f[m
+Merge: df4c251 46e3478
+Author: afedchuk02 <afed@softserveinc.com>
+Date:   Mon Mar 28 23:44:07 2016 +0300
+
+    Merge pull request #2 from afedchuk/lv-180
+    
+    Processing ...
+
+[33mcommit 46e3478ad1f4fbe50314e1a192dfc1abe6ffeb98[m
+Author: Fedchuk Andrii <afed@softserveinc.com>
+Date:   Mon Mar 28 16:33:42 2016 -0400
+
+    Processing ...
+
+[33mcommit df4c25155c533b798fe93ec22e7cfd4b1ea2b7fc[m
+Author: Social-Projects <Social-Projects@users.noreply.github.com>
+Date:   Thu Nov 12 17:19:53 2015 +0200
+
+    Update README.md
+    
+    Last version of README.md file from the Team. Updated manual of installation.
+
+[33mcommit 677035b8b97f1bac96e6ec102b25d949a27ee2f2[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Wed Nov 11 18:00:41 2015 +0200
+
+    bug fixes
+
+[33mcommit 0e224233a5a11cf92a4449da8b80dd5a506d0c47[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Wed Nov 11 17:37:16 2015 +0200
+
+    major bug fixes
+
+[33mcommit 398be08747f29792075d2cafe9ab62ba9681fe17[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Wed Nov 11 17:31:18 2015 +0200
+
+    major bug fixes
+
+[33mcommit 629c6cb7ad83f16aecbc5146e40ad4543c94e7e4[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Tue Nov 10 13:43:40 2015 +0200
+
+    web host update
+
+[33mcommit dd52bc91d1f1acb5131738a054477be107844343[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Tue Nov 10 13:34:05 2015 +0200
+
+    resource display and minor fixes
+
+[33mcommit 6495bd12f6bcb0d61ed57b70d89ce5990d659394[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Tue Nov 10 13:10:25 2015 +0200
+
+    logs changes and minor fixes
+
+[33mcommit 5a421e2438e0dab92f7e7deb2e8926a8fb21f8f7[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Tue Nov 10 12:54:49 2015 +0200
+
+    fixed area and perimeter not displaying
+
+[33mcommit 22c8f1bc2f22bb5d49c7d0714e85c15493f921ec[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Mon Nov 9 21:11:03 2015 +0200
+
+    fixed login
+
+[33mcommit c987e424c369e45f21299e7190e04b6a3e4e50d6[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Mon Nov 9 20:53:06 2015 +0200
+
+    added test resources
+
+[33mcommit 23845ec3cab55ca63f2d21905f98da5d47f4f06f[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Mon Nov 9 20:41:31 2015 +0200
+
+    fixed dependencies
+
+[33mcommit 85f9e9c730268d97985f2f76630c7a94b65f59eb[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Mon Nov 9 16:57:39 2015 +0200
+
+    fixed coordinates
+
+[33mcommit 94b03ab26a5810347d99046f833b4a604d6df570[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Fri Nov 6 14:22:51 2015 +0200
+
+    perimeter and area fix
+
+[33mcommit 7e9a6efc01e3a17b50d6d63f286a731d62bdf096[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Fri Nov 6 10:06:57 2015 +0200
+
+    sql file update
+
+[33mcommit fde6c39c6ee5d30953933276d8966aa3cd6e7386[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Thu Nov 5 15:33:33 2015 +0200
+
+    create resource changes
+
+[33mcommit 406ee17e089ebfce116cdbea179f39fc8c1f0b9c[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Thu Nov 5 10:52:06 2015 +0200
+
+    style changes and create resource functionality
+
+[33mcommit 9ae714365a8c325753d44dc02bc9688d541b1701[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Tue Nov 3 13:35:01 2015 +0200
+
+    fixed db username
+
+[33mcommit b22f9015c13d0df70b639586b59887a497462f21[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Tue Nov 3 13:20:33 2015 +0200
+
+    db host fixed
+
+[33mcommit de83cc23c24bb9be6bf748b40651e538058f06d2[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Tue Nov 3 12:56:50 2015 +0200
+
+    added map search
+
+[33mcommit 85a580cb21db960e9a9947068acb5a1fcf70a9da[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Tue Nov 3 12:14:34 2015 +0200
+
+    db host fix
+
+[33mcommit e44cb026b1672ebc0ac922eb2a54e21db1eb6405[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Tue Nov 3 12:03:38 2015 +0200
+
+    style changes, export changes, map changes
+
+[33mcommit 96a8dcdcf17f03fe05f0f0f947e9f2568f7840ec[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Mon Nov 2 18:11:27 2015 +0200
+
+    fixed connection
+
+[33mcommit 4bb4dda407b285758d8259a2f28f6f03d341075b[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Mon Nov 2 16:57:20 2015 +0200
+
+    database login information fix
+
+[33mcommit 12436a95dcdff0c9b1daeed60b69c31a5b6e0c8a[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Mon Nov 2 16:45:04 2015 +0200
+
+    added template for output file
+
+[33mcommit 387acf931afd5e0411f969e672f24eeec3ff7f77[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Sat Oct 31 22:38:29 2015 +0200
+
+    fixed README.md
+
+[33mcommit f1501cf8f8f7994016868d0e4f9fc1d8c80da470[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Sat Oct 31 22:35:58 2015 +0200
+
+    added map centralisation
+
+[33mcommit cec67d0f4aecfe3aede9562d4f107eb09bdd4da8[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Sat Oct 31 12:30:14 2015 +0200
+
+    added databse sql file
+
+[33mcommit bd9faf4bb7cf08116d653ad1f37eb1877ecdfae6[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Sat Oct 31 12:27:02 2015 +0200
+
+    README.md update
+
+[33mcommit 84208e0810f6aea63355e5940ee6c80dcda74af4[m
+Author: Edward Litvinchyck <Edward Litvinchyck>
+Date:   Sat Oct 31 11:39:12 2015 +0200
+
+    initial commit

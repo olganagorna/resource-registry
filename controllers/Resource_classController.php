@@ -2,7 +2,8 @@
 namespace app\controllers;
 use yii\rest\ActiveController;
 use yii\data\ActiveDataProvider;
-class Resource_classController extends ActiveController
+use app\models\ResourceClass;
+class Resource_classController extends AppController
 {
     public $modelClass = 'app\models\ResourceClass';
     
@@ -42,5 +43,24 @@ class Resource_classController extends ActiveController
     	} else {
     		throw new \yii\web\HttpException(400, 'There are no query string');
     	}
+    }
+
+    public function actionPagination() {
+        $dataProvider = new ActiveDataProvider([
+            'query' => $getdata,
+            'pagination' => [
+                'pageSize' => 30,
+                'pageParam' => 'page',
+            ],
+        ]);
+    }
+
+    public function actionChangeactivationstatus() 
+    {
+        $request= \Yii::$app->request->get();
+        $resource_class = ResourceClass::findOne(['class_id' => $request['class_id']]);
+        $resource_class->activation_status=$request['activation_status'];
+        $resource_class->update();
+
     }
 }

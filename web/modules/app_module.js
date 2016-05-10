@@ -70,12 +70,12 @@
         })
 	.when('/resource/type', {
             controller: 'IndexCtrl',
-            controllerAs: 'pp',
+            controllerAs: 'types',
             templateUrl: 'views/resource/resource_types.html'
         })
         .when('/resource/type/attributes', {
-            // controller: 'IndexCtrl',
-            // controllerAs: 'pp',
+            controller: 'IndexCtrl',
+            controllerAs: 'pp',
             templateUrl: 'views/resource/resource_type_attributes.html'
         })
         .when('/site/users', {

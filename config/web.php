@@ -50,7 +50,10 @@ $config = [
                     'GET userdata' => 'userdata',
                     'GET changerole' => 'changerole',
                     'GET changeactivationstatus' => 'changeactivationstatus',
-                    'GET getrole' => 'getrole'
+                    'GET getrole' => 'getrole',
+                    'GET changeactivationstatus2' => 'changeactivationstatus2',
+                    'GET resourceclassdata' => 'resourceclassdata',
+
                     ],
                 ],
             ],
