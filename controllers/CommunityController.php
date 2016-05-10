@@ -10,27 +10,7 @@ class CommunityController extends AppController
 {
 	public $modelClass = 'app\models\Community';
 
-        public function beforeAction($action)
-    {
-        if (parent::beforeAction($action)) {
-            if (!\Yii::$app->user->can($action->id)) {
-                throw new \yii\web\ForbiddenHttpException('Access denied');
-                $module =Yii::$app->controller->module->id;
-                        /*$action =Yii::$app->controller->action->id;
-                        $controller=Yii::$app->controller->id;
-                        $route="$controller/$action";
-                        $post =Yii::$app->request->post();
-                        if(\Yii::$app->user->can($route)){
-                                return true;
-*/
-            }
-            return true;
-        } else {
-            return false;
-        }
-    }
-	
-	public function actionShow()
+    public function actionShow()
 	{
 		$request= \Yii::$app->request->get();
 		$community = Community::find();
