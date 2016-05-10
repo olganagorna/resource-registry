@@ -4,6 +4,8 @@
 
 	angular.module('restApp').directive("leafletMap", function () {
 
+		
+
 		var link = function ($scope, $element, attrs) {
 
 			var defaults = {

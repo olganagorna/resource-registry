@@ -5,18 +5,24 @@
         .module('restApp')
         .controller('UsersCommunity', UsersCommunity);
 
-    UsersCommunity.$inject = ['$scope', '$http', 'PaginationService', 'constant', '$location'];
-    function UsersCommunity($scope, $http, PaginationService, constant, $location) {
-
-        $scope.communities = [];
+    UsersCommunity.$inject = ['$rootScope','$scope', '$http', 'PaginationServicee', 'constant', '$location'];
+    function UsersCommunity($rootScope, $scope, $http, PaginationServicee, constant, $location) {
+        
+        $rootScope.xmlData = [];
+        $rootScope.requestQuery = 'communities/show';
+        $rootScope.parameters = [
+            ['value', ''],
+            ['name', ''],
+            ['surname', '']
+        ];
         $scope.searchingVal;
-        (function(){
-            return $http.get('rest.php/communities/show')
 
+        (function(){
+            return $http.get(constant.serviceBase + $rootScope.requestQuery)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
-                $scope.communities = data.data;console.log("lets start");
+                $rootScope.xmlData = data.data;
             }
             function errorHandler(data){
                 console.log("Can't render list!");
@@ -26,18 +32,17 @@
 
 
 
+// from html
 
 
 
         $scope.searchCommunity = function(community_name) {
-
             $scope.searchingVal = $scope.communitySearch;
-            console.log($scope.searchingVal);
-            $http.get('http://rr.com/rest.php/communities/show?value='+ $scope.communitySearch)
+            $http.get(constant.serviceBase + $rootScope.requestQuery + '?value=' + $scope.communitySearch)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
-                $scope.communities = data.data;
+                $rootScope.xmlData = data.data;
             }
             function errorHandler(data){
                 console.log("Can't reload list!");
@@ -49,52 +54,59 @@
 
         //Pagination start
 
-        $scope.currentPage = PaginationService.currentPage;
+        $scope.currentPage = PaginationServicee.currentPage;
 
         $scope.getPages = function(pageCount) {
-            return PaginationService.getPages(pageCount);
-        };
-
-
-
-        $scope.switchPage = function(index){
-            if($scope.request){
-                console.log("first");
-                PaginationService.switchPage(index, constant.communitiesQuery + '/search?' + buildQuery($scope.request)+ '&')
-                    .then(function(data){
-                        $scope.communities = data.data;
-                        $scope.currentPage = PaginationService.currentPage;
-                });
-            } else if ($scope.searchingVal) {
-                 console.log(constant.perPage);
-                PaginationService.switchPage(index, "communities/show?value=" + $scope.searchingVal + "&page=" + index + "&per-page=" + constant.perPage)
-                    .then(function(data){
-                        $scope.communities = data.data;
-                        $scope.currentPage = PaginationService.currentPage;
-                });
-            } else {
-                 console.log("third");
-                PaginationService.switchPage(index, constant.communitiesQuery + "/show" + '?')
-                    .then(function(data){
-                        $scope.communities = data.data;
-                        $scope.currentPage = PaginationService.currentPage;
-                });
-            }
-
+            return PaginationServicee.getPages(pageCount);
         };
 
 
         
 
+        $scope.switchPage = function(index){
+            var intervalID = setInterval(function(){
+                $scope.xmlDataLength = $rootScope.xmlData.length;
+                if ($rootScope.xmlData._meta.perPage != undefined) {
+                    if($scope.request){
+                        PaginationServicee.switchPage($rootScope.requestQuery + '/search?' + buildQuery($scope.request)+ '&')
+                            .then(function(data){
+                                $rootScope.xmlData = data.data;
+                                $scope.currentPage = PaginationServicee.currentPage;
+                        });
+                    } else if ($scope.searchingVal) {
+                        PaginationServicee.switchPage(index, $rootScope.requestQuery + "?value=" + $scope.searchingVal + "&")
+                            .then(function(data){
+                                $rootScope.xmlData = data.data;
+                                $scope.currentPage = PaginationServicee.currentPage;
+                        });
+                    } else {
+                        PaginationServicee.switchPage(index, $rootScope.requestQuery + '?')
+                            .then(function(data){
+                                $rootScope.xmlData = data.data;
+                                $scope.currentPage = PaginationServicee.currentPage;
+                        });
+                    }
+                    clearInterval(intervalID);
+                }
+
+            },10);
+        };
+        
 
         $scope.switchPage($scope.currentPage);
 
         $scope.setPage = function(pageLink, pageType){
-            PaginationService.setPage(pageLink, pageType, $scope.communities._meta.pageCount)
+            PaginationServicee.setPage(pageLink, pageType, $rootScope.xmlData._meta.pageCount)
                 .then(function(data){
-                    $scope.communities = data.data;
-                    $scope.currentPage = PaginationService.currentPage;
+                    $rootScope.xmlData = data.data;
+                    $scope.currentPage = PaginationServicee.currentPage;
             });
         };
+
+
+// from html end
+
+
+
     }
 })();

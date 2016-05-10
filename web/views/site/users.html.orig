@@ -34,10 +34,22 @@
 		            	<h4>Дії</h4>
 		            </div>
 		        </li>
+<<<<<<< HEAD
+			    <li class="list-group-item shadow-z-1 md-list row" ng-repeat="data in list_users.items">
+			        <div class="col-md-3 text-center res_vert_allight_list">{{data.username}}</div>
+			        <a class="col-md-3 text-center res_vert_allight_list">{{data.last_name}} {{data.first_name}}</a>
+			        <div class="col-md-3 text-center res_vert_allight_list">
+			           	<select id="user-role-selector" ng-model="changeRoleId" ng-change="changeRole(changeRoleId, data.role_id)">
+			        		<option value="" selected style="display: none !important;">{{data.role_name}}</option> 
+			        		<!-- <option ng-repeat="item in filterRole.items" value=""></option> -->
+			        	</select>
+			        </div>			
+=======
 			    <li class="list-group-item shadow-z-1 md-list row" ng-repeat="data in xmlData.items | filter:idFilter">
 			        <div class="col-md-1 text-center res_vert_allight_list">{{data.user_id}}</div>
 			        <a class="col-md-4 text-center res_vert_allight_list">{{data.first_name}} {{data.last_name}}</a>
 			        <a class="col-md-3 text-center res_vert_allight_list">{{data.role_name}}</a>
+>>>>>>> e0dfb64357c424d807ad3963c9f08c9f1d89287d
 				    <div class="btn-group">
 	                    <a class="btn btn-material-grey-200 text-center"
 	                       ng-click="user.del(user.user_id)">
