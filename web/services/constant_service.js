@@ -13,7 +13,7 @@
             communitiesQuery: 'communities',
             paramsNumber: 6,
             perPage: 4,
-            paginationRange: 7,
+            pageRange: 7,
             ownerDataFields:6,
             TIME_DIFF : 24*60*60*1000,
             MSEC_IN_MIN : 60000,

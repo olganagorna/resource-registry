@@ -6,7 +6,9 @@
 
 		return {
 			restrict: 'E',
-			templateUrl: 'views/site/pagination.html'
+			templateUrl: 'views/site/pagination.html',
+			controller: 'PaginatioController'
+			
 		};
 
 	});
