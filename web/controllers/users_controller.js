@@ -5,10 +5,10 @@
         .module('restApp')
         .controller('UsersController', UsersController);
 
-    UsersController.$inject = ['RestService', '$location', 'constant', '$filter' , '$rootScope', '$scope', '$http', 'PaginationService'];
-    function UsersController(RestService, $location, constant, $filter , $rootScope, $scope, $http, PaginationService) {
+    UsersController.$inject = ['RestService', '$location', 'constant', '$filter' , '$rootScope', '$scope', '$http', 'PaginationServicee'];
+    function UsersController(RestService, $location, constant, $filter , $rootScope, $scope, $http, PaginationServicee) {
 
-        $scope.list_users = [];
+        $rootScope.xmlData = [];
         $scope.roleFilter;
         $scope.userSearch;
         $scope.sortingDone;
@@ -19,7 +19,7 @@
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
-                $scope.list_users = data.data;
+                $rootScope.xmlData = data.data;
             }
             function errorHandler(data) {
                 console.log("Can't reload list!");
@@ -31,38 +31,45 @@
         }
 
         //Pagination start
-        $scope.currentPage = PaginationService.currentPage;
+        $scope.currentPage = PaginationServicee.currentPage;
         $scope.getPages = function(pageCount) {
-            return PaginationService.getPages(pageCount);
+            return PaginationServicee.getPages(pageCount);
         };
 
         $scope.switchPage = function(index) {
-            if($scope.request) {
-                PaginationService.switchPage(index, constant.usersQuery + '/search?' + buildQuery($scope.request)+ '&')
-                    .then(function(data) {
-                        $scope.list_users = data.data;
-                        $scope.currentPage = PaginationService.currentPage;
-                });
-            }  else if ($scope.searchingDone) {
-                PaginationService.switchPage(index, 'users/userdata?value=' + $scope.searchingDone + "&page=" + index + "&per-page=" + constant.perPage)
-                    .then(function(data) {
-                        $scope.list_users = data.data;
-                        $scope.currentPage = PaginationService.currentPage;
-                });
-            } else {
-                PaginationService.switchPage(index, constant.usersQuery + '?')
-                    .then(function(data) {
-                        $scope.list_users = data.data;
-                        $scope.currentPage = PaginationService.currentPage;
-                });
-            }
+            var intervalID = setInterval(function(){
+                $rootScope.xmlDataLength = $rootScope.xmlData.length;
+                if ($rootScope.xmlData._meta.perPage != undefined) {
+                    if($scope.request) {
+                        PaginationServicee.switchPage(index, constant.usersQuery + '/search?' + buildQuery($scope.request)+ '&')
+                            .then(function(data) {
+                                $rootScope.xmlData = data.data;
+                                $scope.currentPage = PaginationServicee.currentPage;
+                        });
+                    }  else if ($scope.searchingDone) {
+                        PaginationServicee.switchPage(index, 'users/userdata?value=' + $scope.searchingDone + "&page=" + index + "&per-page=" + constant.perPage)
+                            .then(function(data) {
+                                $rootScope.xmlData = data.data;
+                                $scope.currentPage = PaginationServicee.currentPage;
+                        });
+                    } else {
+                        PaginationServicee.switchPage(index, constant.usersQuery + '?')
+                            .then(function(data) {
+                                $rootScope.xmlData = data.data;
+                                $scope.currentPage = PaginationServicee.currentPage;
+                        });
+                    }    
+                    clearInterval(intervalID);
+                }
+
+            },10);
         };
         $scope.switchPage($scope.currentPage);
         $scope.setPage = function(pageLink, pageType) {
-            PaginationService.setPage(pageLink, pageType, $scope.list_users._meta.pageCount)
+            PaginationServicee.setPage(pageLink, pageType, $rootScope.xmlData._meta.pageCount)
                 .then(function(data) {
-                    $scope.list_users = data.data;
-                    $scope.currentPage = PaginationService.currentPage;
+                    $rootScope.xmlData = data.data;
+                    $scope.currentPage = PaginationServicee.currentPage;
             });
         };
         //Pagination end
@@ -73,7 +80,7 @@
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
-                $scope.list_users = data.data;
+                $rootScope.xmlData = data.data;
             }
             function errorHandler(data) {
                 console.log("Can't reload list!");
@@ -87,7 +94,7 @@
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
-                $scope.list_users = data.data;
+                $rootScope.xmlData = data.data;
             }
             function errorHandler(data) {
                 console.log("Can't reload list!");
@@ -105,7 +112,7 @@
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
-                $scope.list_users = data.data;
+                $rootScope.xmlData = data.data;
             }
             function errorHandler(data) {
                 console.log("Can't reload list!");
