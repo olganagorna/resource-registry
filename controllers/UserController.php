@@ -9,29 +9,11 @@ use app\models\Role;
 use app\models\PersonalData;
 use yii\web\Session;
 use yii\data\ActiveDataProvider;
-use yii\filters\AccessControl;
-use yii\helpers\ArrayHelper;
+
 
 class UserController extends AppController
 {
     public $modelClass = 'app\models\User';
-
-    public function behaviors()
-{
-    return ArrayHelper::merge(parent::behaviors(), [
-        'access' => [
-            'class' => AccessControl::className(),
-            'only' => ['userdata'],
-            'rules' => [
-                [
-                    'actions'=>['userdata'],
-                    'allow' => true,
-                    'roles' => ['registrar'],
-                ],
-            ],
-        ],
-    ]);
-}
     
     public function actionLogin()
     {
@@ -46,6 +28,8 @@ class UserController extends AppController
                 'isLogined' => true,
                 'userDataID' => \Yii::$app->user->identity->user_data_id,
             ];  
+        } else {
+            return $modelLoginForm;
         }
     }
     public function actionLogout(){

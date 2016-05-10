@@ -8,19 +8,6 @@ class Personal_dataController extends ActiveController
 {
     public $modelClass = 'app\models\PersonalData';
 
-    public function beforeAction($action)
-    {
-        if (parent::beforeAction($action)) {
-            if (!\Yii::$app->user->can($action->id)) {
-                throw new \yii\web\ForbiddenHttpException('Access denied');
-                $module =Yii::$app->controller->module->id;
-            }
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public function behaviors()
     {
         return

@@ -1,17 +1,25 @@
 <?php
 return [
-    'show' => [
+    'community/show' => [
         'type' => 2,
     ],
-    'addcomm' => [
+    'community/addcomm' => [
         'type' => 2,
     ],
-    'view' => [
+    'resource/view' => [
         'type' => 2,
     ],
-    'guest' => [
-        'type' => 1,
-        'ruleName' => 'userGroup',
+    'resource/index' => [
+        'type' => 2,
+    ],
+    'resource/getregisterkey' => [
+        'type' => 2,
+    ],
+    'resource/search' => [
+        'type' => 2,
+    ],
+    'user/userdata' => [
+        'type' => 2,
     ],
     'user' => [
         'type' => 1,
@@ -21,8 +29,12 @@ return [
         'type' => 1,
         'ruleName' => 'userGroup',
         'children' => [
-            'show',
-            'view',
+            'community/show',
+            'resource/view',
+            'resource/index',
+            'resource/getregisterkey',
+            'resource/search',
+            'user/userdata',
         ],
     ],
     'commissioner' => [
@@ -33,7 +45,7 @@ return [
         'type' => 1,
         'ruleName' => 'userGroup',
         'children' => [
-            'addcomm',
+            'community/addcomm',
         ],
     ],
 ];

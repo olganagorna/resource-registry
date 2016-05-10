@@ -51,9 +51,14 @@
                     .then(successHandler)
                     .catch(errorHandler);
                 function successHandler(result) {
+                    console.log(result);
                     sessionStorage.setItem('user',angular.toJson(result.data));
                     $rootScope.isLogined = true;
-                    $location.path('/resource/index');
+                    if (result.data.role == 'admin') {
+                        $location.path('/site/admin');
+                    } else {
+                        $location.path('/resource/index');
+                    }
 
                 }
                 function errorHandler(result){
