@@ -6,6 +6,8 @@ use app\models\ResourceClass;
 class Resource_classController extends ActiveController
 {
     public $modelClass = 'app\models\ResourceClass';
+
+    public $serializer = [ 'class' => 'yii\rest\Serializer', 'collectionEnvelope' => 'items'];
     
     public function behaviors()
     {
@@ -45,15 +47,15 @@ class Resource_classController extends ActiveController
     	}
     }
 
-    // public function actionPagination() {
-    //     $dataProvider = new ActiveDataProvider([
-    //         'query' => $getdata,
-    //         'pagination' => [
-    //             'pageSize' => 30,
-    //             'pageParam' => 'page',
-    //         ],
-    //     ]);
-    // }
+    public function actionPagination() {
+        $dataProvider = new ActiveDataProvider([
+            'query' => $getdata,
+            'pagination' => [
+                'pageSize' => 3,
+                'pageParam' => 'page',
+            ],
+        ]);
+    }
 
     public function actionChangeactivationstatus() 
     {
