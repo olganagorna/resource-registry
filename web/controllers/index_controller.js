@@ -26,7 +26,7 @@
             pp.del = function(id){
                 //console.log(id);
                 (function(){
-                    return $http.delete('http://web/rest.php/resource_classes/' + id)
+                    return $http.delete('rest.php/resource_classes/' + id)
                         .then(successHandler)
                         .catch(errorHandler);
                     function successHandler(result) {
@@ -46,7 +46,7 @@
                     name: pp.addClassInput
                 };
                 (function(){
-                    return $http.post('http://web/rest.php/resource_classes',classObj)
+                    return $http.post('rest.php/resource_classes',classObj)
                         .then(successHandler)
                         .catch(errorHandler);
                     function successHandler(result) {

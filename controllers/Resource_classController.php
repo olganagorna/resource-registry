@@ -3,7 +3,7 @@ namespace app\controllers;
 use yii\rest\ActiveController;
 use yii\data\ActiveDataProvider;
 use app\models\ResourceClass;
-class Resource_classController extends AppController
+class Resource_classController extends ActiveController
 {
     public $modelClass = 'app\models\ResourceClass';
     
@@ -45,15 +45,15 @@ class Resource_classController extends AppController
     	}
     }
 
-    public function actionPagination() {
-        $dataProvider = new ActiveDataProvider([
-            'query' => $getdata,
-            'pagination' => [
-                'pageSize' => 30,
-                'pageParam' => 'page',
-            ],
-        ]);
-    }
+    // public function actionPagination() {
+    //     $dataProvider = new ActiveDataProvider([
+    //         'query' => $getdata,
+    //         'pagination' => [
+    //             'pageSize' => 30,
+    //             'pageParam' => 'page',
+    //         ],
+    //     ]);
+    // }
 
     public function actionChangeactivationstatus() 
     {
