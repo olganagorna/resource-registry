@@ -34,7 +34,7 @@ $config = [
                         'resource_class', 'resource_attribute',
                         'personal_data', 'parameter',
                         'operation_type', 'operation', 'attribute_class_view', 'search',
-                        'community'
+                        'community', 'request'
                     ], 'extraPatterns' => [
                     'GET search' => 'search',
                     'POST login' => 'login',
@@ -43,13 +43,16 @@ $config = [
                     'POST changepass' => 'changepass',
                     'GET logout' => 'logout',
                     'GET show' => 'show',
+                    'GET showrequest' => 'showrequest',
                     'GET {id}/export' => 'export',
                     'GET getregisterkey' => 'getregisterkey',
                     'GET getresourcebycoordinate' => 'getresourcebycoordinate',
                     'POST getuser' => 'getuser',
                     'POST addcomm' => 'addcomm',
                     'GET userdata' => 'userdata',
-                    'POST {id}/changerole' => 'changerole'
+                    'GET changerole' => 'changerole',
+                    'GET changeactivationstatus' => 'changeactivationstatus',
+                    'GET getrole' => 'getrole'
                     ],
                 ],
             ],

@@ -24,6 +24,15 @@ return [
     'user/userdata' => [
         'type' => 2,
     ],
+    'user/getrole' => [
+        'type' => 2,
+    ],
+    'user/changeactivationstatus' => [
+        'type' => 2,
+    ],
+    'user/changerole' => [
+        'type' => 2,
+    ],
     'user' => [
         'type' => 1,
         'ruleName' => 'userGroup',
@@ -39,6 +48,9 @@ return [
             'resource/search',
             'user/userdata',
             'resource/create',
+            'user/getrole',
+            'user/changeactivationstatus',
+            'user/changerole',
         ],
     ],
     'commissioner' => [

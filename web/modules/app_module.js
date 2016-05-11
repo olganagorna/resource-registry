@@ -77,15 +77,15 @@
             templateUrl: 'views/site/registration.html',
             controllerAs: 'vm'
         })
-        .when('/site/community_add', {
-            controller: 'CommunityAddCtrl',
-            templateUrl: 'views/site/community_add.html',
-            controllerAs: 'vm'
-        })
-	    .when('/site/home', {
+	.when('/resource/type', {
             controller: 'IndexCtrl',
             controllerAs: 'pp',
-            templateUrl: 'views/site/personal_page.html'
+            templateUrl: 'views/resource/resource_types.html'
+        })
+        .when('/resource/type/attributes', {
+            // controller: 'IndexCtrl',
+            // controllerAs: 'pp',
+            templateUrl: 'views/resource/resource_type_attributes.html'
         })
         .when('/site/users', {
             controller: 'UsersController',
@@ -112,21 +112,18 @@
             templateUrl: 'views/site/community_add.html',
             controllerAs: 'comAdd'
         })
+        .when('/site/requests', {
+            controller: 'Requests',
+            templateUrl: 'views/site/requests.html'
+        })
         .otherwise({
             redirectTo: '/site/login'
         });
-
         $locationProvider.html5Mode(true).hashPrefix('!');
-        /*$httpProvider.interceptors.push([
-           '$injector',
-           function ($injector) {
-            return $injector.get('AuthInterceptor');
-            }
-        ]);*/
     }
 
     run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];
-    function run($rootScope, $location, $cookieStore, $http){
+    function run($rootScope, $location, $cookieStore, $http) {
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             var test = localStorage.getItem('username');
@@ -136,14 +133,5 @@
             console.log('change');
         });
     }
-/*.config(function ($httpProvider) {
-  $httpProvider.interceptors.push([
-    '$injector',
-    function ($injector) {
-      return $injector.get('AuthInterceptor');
-    }
-  ]);
-})*/
-        
 
 })();

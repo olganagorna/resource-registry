@@ -12,6 +12,7 @@ class ResourceController extends AppController
 {
 	public $modelClass = 'app\models\Resource';
 	
+
 	public function actionSearch()
 	{
 		$get = \Yii::$app->request->get();

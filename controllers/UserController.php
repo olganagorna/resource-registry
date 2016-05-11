@@ -2,7 +2,6 @@
 namespace app\controllers;
 
 use yii\base\Exception;
-//use yii\rest\ActiveController;
 use app\models\User;
 use app\models\LoginForm;
 use app\models\Role;
@@ -10,13 +9,9 @@ use app\models\PersonalData;
 use yii\web\Session;
 use yii\data\ActiveDataProvider;
 
-
-class UserController extends AppController
-{
+class UserController extends AppController {
     public $modelClass = 'app\models\User';
-    
-    public function actionLogin()
-    {
+    public function actionLogin() {
         $modelLoginForm = new LoginForm();
         $post = \Yii::$app->request->post();
          
@@ -45,7 +40,7 @@ class UserController extends AppController
             throw new \yii\web\HttpException(400, 'Дані не отримані');
         }
         $userModel = new User();
-        if ($userModel->findByUsername($post['username'])){
+        if ($userModel->findByUsername($post['username'])) {
             throw new \yii\web\HttpException(400, 'Користувач з таким логіном уже існує');
         }
         $transaction = \Yii::$app->db->beginTransaction();
@@ -57,8 +52,8 @@ class UserController extends AppController
             $personalDataModel->passport_series = $post['passport_series'];
             $personalDataModel->passport_number = $post['passport_number'];
             $personalDataModel->address = $post['address'];
-            if (!$personalDataModel->save()){
-                foreach($personalDataModel->errors as $key){
+            if (!$personalDataModel->save()) {
+                foreach($personalDataModel->errors as $key) {
                     $errorMessage .= $key[0];
                 }
                 throw new \yii\web\HttpException(422,$errorMessage);
@@ -80,8 +75,8 @@ class UserController extends AppController
             $userModel->role_id = 2;
             $userModel->user_data_id = $personalDataModel->personal_data_id;
             $userModel->generateAuthKey();
-            if (!$userModel->save()){
-                foreach($userModel->errors as $key){
+            if (!$userModel->save()) {
+                foreach($userModel->errors as $key) {
                     $errorMessage .= $key[0];
                 }
                 throw new \yii\web\HttpException(422,$errorMessage);
@@ -94,12 +89,12 @@ class UserController extends AppController
         }
         exit('end');
     }
-    public function actionRestorepass(){
+    public function actionRestorepass() {
         if (!$post = \Yii::$app->getRequest()->getBodyParams()) {
             throw new \yii\web\HttpException(400, 'Дані не отримані');
         }
         $model = User::findByUsername($post['username']);
-        if (!$model->username){
+        if (!$model->username) {
             throw new \yii\web\HttpException(400, 'Даного користувача не існує');
         }
 
@@ -115,20 +110,20 @@ class UserController extends AppController
         $model->save();
         return true;
     }
-    public function actionGetuser(){
+    public function actionGetuser() {
         // Get user from DB
         if (!$post = \Yii::$app->getRequest()->getBodyParams()) {
             throw new \yii\web\HttpException(400, 'Дані не отримані');
         }
         $model = User::getUserByUserName($post['username']);
-        if (!$model->username){
+        if (!$model->username) {
             throw new \yii\web\HttpException(400, 'Даного користувача не існує');
         }
         $model-> save();
         return $model;
     }
-    public function actionChangepass(){
-/*        echo \Yii::$app->session->get('role');
+    public function actionChangepass() {
+        /*echo \Yii::$app->session->get('role');
         exit('d');*/
         if (!$post = \Yii::$app->getRequest()->getBodyParams()) {
             throw new \yii\web\HttpException(400, 'Дані не отримані');
@@ -153,20 +148,14 @@ class UserController extends AppController
         echo $model->username;
         exit('ok');
     }
-    public function actionUserdata() 
-    {
-
-
+    
+    public function actionUserdata() {
         $request= \Yii::$app->request->get();
         $sort = 'last_name ASC';  
-        if($request['sort']=="desc") 
-        {
+        if($request['sort']=="desc") {
             $sort = 'last_name DESC';
-        } else if($request['sort']=="asc") 
-        {
-            $sort = 'last_name ASC';
-        }    
-
+        }
+      
         $words = explode(' ', $request['value']);
         if(sizeof($words) != 2) {
             $filters = [
@@ -186,53 +175,49 @@ class UserController extends AppController
                 ['like', 'last_name', $words[0]]
             ]];
         }
-
-
         $getdata = User::find()
-        ->select(['username','last_name','first_name','name as role_name'])
+        ->select(['user_id','username','last_name','first_name','name as role_name','activated'])
         ->innerJoinWith('personalData')->innerJoinWith('userRole')
         ->andFilterWhere($filters)
+        ->andFilterWhere(['like', 'activated', $request['activated']])
         ->orderBy($sort)
         ->asArray();
         
         $dataProvider = new ActiveDataProvider([
             'query' => $getdata,
             'pagination' => [
-                'pageSize' => 4,
+                'pageSize' => 30,
                 'pageParam' => 'page',
             ],
         ]);
         return $dataProvider; 
     }
 
-    public function actionChangerole() 
-    {  
-        echo ("done");
-        //$putrequest= \Yii::$app->request->put();
-        // $transaction = \Yii::$app->db->beginTransaction();
-        // try {
-        //     $userModel = new User();
-        //     $userModel->role_id = $put['community_name'];
-        //     if (!$userModel->save()){
-        //         foreach($userModel->errors as $key){
-        //             $errorMessage .= $key[0];
-        //         }
-        //         throw new \yii\web\HttpException(422,$errorMessage);
-        //     }
-        //     $transaction->commit();
-        //     $userModel = User::findUserById($post['commissioner_id']);
-        //     $userModel->role_id = 4;
-        //     $userModel->community_id = $userModel->community_id;
-        //     $userModel->save();
-        //     // Add validation for data here
+    public function actionChangeactivationstatus() {
+        $request= \Yii::$app->request->get();
+        $user = User::findOne(['user_id' => $request['user_id']]);
+        $user->activated=$request['activated'];
+        $user->update();
+    }
+
+    public function actionGetrole() {
+        $getrole = Role::find()
+        ->select(['role_id','name as role_name'])
+        ->asArray();
+        $dataProvider = new ActiveDataProvider([
+            'query' => $getrole,
+            'pagination' => [
+                'pageSize' => 30,
+                'pageParam' => 'page',
+            ],
+        ]);
+        return $dataProvider; 
+    }
     
-        //     return 'true';
-            
-        // } catch (Exception $e) {
-        //     $transaction->rollBack();
-        //     throw new \yii\web\HttpException(422,$errorMessage . $error);
-        //     return $errorMessage . $error;
-        // }
-        // exit('end');
+    public function actionChangerole() {
+        $request= \Yii::$app->request->get();
+        $user = User::findOne(['user_id' => $request['user_id']]);
+        $user->role_id=$request['role_id'];
+        $user->update();
     }
 }
