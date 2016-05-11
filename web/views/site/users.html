@@ -46,7 +46,7 @@
 				            	<h4></h4>
 				            </div>
 				        </li>
-					    <li class="list-group-item shadow-z-1 md-list row" ng-repeat="data in list_users.items">
+					    <li class="list-group-item shadow-z-1 md-list row" ng-repeat="data in xmlData.items">
 					        <div class="col-md-3 text-left res_vert_allight_list">{{data.username}}</div>
 					        <div class="col-md-3 text-left res_vert_allight_list">{{data.last_name}} {{data.first_name}}</div>
 					        <div class="col-md-3 text-left res_vert_allight_list">
@@ -81,23 +81,23 @@
 			<div class="col-md-12 center" >
 				<ng-form>
 					<ul class="pagination pagination-sm">
-			            <li ng-if="list_users._links.first">
-			                <a href="" ng-click="setPage(list_users._links.first.href, 'first')">&laquo;</a>
+			            <li ng-if="xmlData._links.first">
+			                <a href="" ng-click="setPage(xmlData._links.first.href, 'first')">&laquo;</a>
 			            </li>
-			            <li ng-if="list_users._links.prev">
-			                <a href="" ng-click="setPage(list_users._links.prev.href, 'prev')" >‹</a>
+			            <li ng-if="xmlData._links.prev">
+			                <a href="" ng-click="setPage(xmlData._links.prev.href, 'prev')" >‹</a>
 			            </li>
 
-			            <li ng-repeat="page in getPages(list_users._meta.pageCount) track by $index"
+			            <li ng-repeat="page in getPages(xmlData._meta.pageCount) track by $index"
 			                ng-click="switchPage(page)" ng-class="{active: page == currentPage}"
 			                ng-if="page">
 			                <span>{{page}}</span>
 			            </li>
-			            <li ng-if="list_users._links.next">
-			                <a href="" ng-click="setPage(list_users._links.next.href, 'next')" >›</a>
+			            <li ng-if="xmlData._links.next">
+			                <a href="" ng-click="setPage(xmlData._links.next.href, 'next')" >›</a>
 			            </li>
-			            <li ng-if="list_users._links.last">
-			                <a href="" ng-click="setPage(list_users._links.last.href, 'last')">&raquo;</a>
+			            <li ng-if="xmlData._links.last">
+			                <a href="" ng-click="setPage(xmlData._links.last.href, 'last')">&raquo;</a>
 			            </li>
 			        </ul>
 			    </ng-form>    

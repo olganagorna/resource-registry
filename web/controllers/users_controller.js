@@ -8,7 +8,7 @@
     UsersController.$inject = ['RestService', '$location', 'constant', '$filter' , '$rootScope', '$scope', '$http', 'PaginationService'];
     function UsersController(RestService, $location, constant, $filter , $rootScope, $scope, $http, PaginationService) {
 
-        $scope.list_users = [];
+        $scope.xmlData = [];
         $scope.roleFilter;
         $scope.userSearch;
         $scope.sortingDone;
@@ -19,7 +19,7 @@
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
-                $scope.list_users = data.data;
+                $scope.xmlData = data.data;
             }
             function errorHandler(data) {
                 console.log("Can't reload list!");
@@ -40,28 +40,28 @@
             if($scope.request) {
                 PaginationService.switchPage(index, constant.usersQuery + '/search?' + buildQuery($scope.request)+ '&')
                     .then(function(data) {
-                        $scope.list_users = data.data;
+                        $scope.xmlData = data.data;
                         $scope.currentPage = PaginationService.currentPage;
                 });
             }  else if ($scope.searchingDone) {
                 PaginationService.switchPage(index, 'users/userdata?value=' + $scope.searchingDone + "&page=" + index + "&per-page=" + constant.perPage)
                     .then(function(data) {
-                        $scope.list_users = data.data;
+                        $scope.xmlData = data.data;
                         $scope.currentPage = PaginationService.currentPage;
                 });
             } else {
                 PaginationService.switchPage(index, constant.usersQuery + '?')
                     .then(function(data) {
-                        $scope.list_users = data.data;
+                        $scope.xmlData = data.data;
                         $scope.currentPage = PaginationService.currentPage;
                 });
             }
         };
         $scope.switchPage($scope.currentPage);
         $scope.setPage = function(pageLink, pageType) {
-            PaginationService.setPage(pageLink, pageType, $scope.list_users._meta.pageCount)
+            PaginationService.setPage(pageLink, pageType, $scope.xmlData._meta.pageCount)
                 .then(function(data) {
-                    $scope.list_users = data.data;
+                    $scope.xmlData = data.data;
                     $scope.currentPage = PaginationService.currentPage;
             });
         };
@@ -73,7 +73,7 @@
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
-                $scope.list_users = data.data;
+                $scope.xmlData = data.data;
             }
             function errorHandler(data) {
                 console.log("Can't reload list!");
@@ -87,7 +87,7 @@
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
-                $scope.list_users = data.data;
+                $scope.xmlData = data.data;
             }
             function errorHandler(data) {
                 console.log("Can't reload list!");
@@ -105,7 +105,7 @@
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
-                $scope.list_users = data.data;
+                $scope.xmlData = data.data;
             }
             function errorHandler(data) {
                 console.log("Can't reload list!");

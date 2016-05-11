@@ -24259,3 +24259,915 @@ $_SERVER = [
     'argv' => []
     'argc' => 0
 ]
+2016-05-11 16:48:48 [127.0.0.1][29][09ac9b1310a4e8910189f938ca5916a9][error][yii\web\HttpException:404] exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in /var/www/rr.com/vendor/yiisoft/yii2/web/Request.php:190
+Stack trace:
+#0 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(75): yii\web\Request->resolve()
+#1 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#3 {main}
+2016-05-11 16:48:48 [127.0.0.1][29][09ac9b1310a4e8910189f938ca5916a9][info][application] $_COOKIE = [
+    'PHPSESSID' => '09ac9b1310a4e8910189f938ca5916a9'
+    '_csrf' => '21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5\";}'
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+    'role' => 'registrar'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'rr.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'HTTP_DNT' => '1'
+    'HTTP_REFERER' => 'http://rr.com/resource/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=09ac9b1310a4e8910189f938ca5916a9; _csrf=21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5%22%3B%7D; _identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'rr.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
+    'REMOTE_PORT' => '35526'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/undefined'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/undefined'
+    'PATH_TRANSLATED' => 'redirect:/#/undefined'
+    'PHP_SELF' => '/rest.php/undefined'
+    'REQUEST_TIME_FLOAT' => 1462985328.018
+    'REQUEST_TIME' => 1462985328
+    'argv' => []
+    'argc' => 0
+]
+2016-05-11 16:48:48 [127.0.0.1][29][09ac9b1310a4e8910189f938ca5916a9][error][yii\web\HttpException:404] exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in /var/www/rr.com/vendor/yiisoft/yii2/web/Request.php:190
+Stack trace:
+#0 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(75): yii\web\Request->resolve()
+#1 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#3 {main}
+2016-05-11 16:48:48 [127.0.0.1][29][09ac9b1310a4e8910189f938ca5916a9][info][application] $_COOKIE = [
+    'PHPSESSID' => '09ac9b1310a4e8910189f938ca5916a9'
+    '_csrf' => '21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5\";}'
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+    'role' => 'registrar'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'rr.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'HTTP_DNT' => '1'
+    'HTTP_REFERER' => 'http://rr.com/resource/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=09ac9b1310a4e8910189f938ca5916a9; _csrf=21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5%22%3B%7D; _identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'rr.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
+    'REMOTE_PORT' => '35534'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/undefined'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/undefined'
+    'PATH_TRANSLATED' => 'redirect:/#/undefined'
+    'PHP_SELF' => '/rest.php/undefined'
+    'REQUEST_TIME_FLOAT' => 1462985328.086
+    'REQUEST_TIME' => 1462985328
+    'argv' => []
+    'argc' => 0
+]
+2016-05-11 16:59:14 [127.0.0.1][7][09ac9b1310a4e8910189f938ca5916a9][error][yii\web\HttpException:404] exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in /var/www/rr.com/vendor/yiisoft/yii2/web/Request.php:190
+Stack trace:
+#0 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(75): yii\web\Request->resolve()
+#1 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#3 {main}
+2016-05-11 16:59:14 [127.0.0.1][7][09ac9b1310a4e8910189f938ca5916a9][info][application] $_COOKIE = [
+    'PHPSESSID' => '09ac9b1310a4e8910189f938ca5916a9'
+    '_csrf' => '21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5\";}'
+    '_identity' => 'f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[7,\"sBZlLkpEbikELmURWCopgN-lYiqU7UYu\",2592000]\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 7
+    'role' => 'admin'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'rr.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'HTTP_DNT' => '1'
+    'HTTP_REFERER' => 'http://rr.com/resource/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=09ac9b1310a4e8910189f938ca5916a9; _csrf=21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5%22%3B%7D; _identity=f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22sBZlLkpEbikELmURWCopgN-lYiqU7UYu%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'rr.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
+    'REMOTE_PORT' => '35774'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/undefined'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/undefined'
+    'PATH_TRANSLATED' => 'redirect:/#/undefined'
+    'PHP_SELF' => '/rest.php/undefined'
+    'REQUEST_TIME_FLOAT' => 1462985954.126
+    'REQUEST_TIME' => 1462985954
+    'argv' => []
+    'argc' => 0
+]
+2016-05-11 16:59:14 [127.0.0.1][7][09ac9b1310a4e8910189f938ca5916a9][error][yii\web\HttpException:404] exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in /var/www/rr.com/vendor/yiisoft/yii2/web/Request.php:190
+Stack trace:
+#0 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(75): yii\web\Request->resolve()
+#1 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#3 {main}
+2016-05-11 16:59:14 [127.0.0.1][7][09ac9b1310a4e8910189f938ca5916a9][info][application] $_COOKIE = [
+    'PHPSESSID' => '09ac9b1310a4e8910189f938ca5916a9'
+    '_csrf' => '21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5\";}'
+    '_identity' => 'f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[7,\"sBZlLkpEbikELmURWCopgN-lYiqU7UYu\",2592000]\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 7
+    'role' => 'admin'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'rr.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'HTTP_DNT' => '1'
+    'HTTP_REFERER' => 'http://rr.com/resource/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=09ac9b1310a4e8910189f938ca5916a9; _csrf=21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5%22%3B%7D; _identity=f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22sBZlLkpEbikELmURWCopgN-lYiqU7UYu%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'rr.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
+    'REMOTE_PORT' => '35770'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/undefined'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/undefined'
+    'PATH_TRANSLATED' => 'redirect:/#/undefined'
+    'PHP_SELF' => '/rest.php/undefined'
+    'REQUEST_TIME_FLOAT' => 1462985954.257
+    'REQUEST_TIME' => 1462985954
+    'argv' => []
+    'argc' => 0
+]
+2016-05-11 17:07:04 [127.0.0.1][29][09ac9b1310a4e8910189f938ca5916a9][error][yii\web\HttpException:404] exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in /var/www/rr.com/vendor/yiisoft/yii2/web/Request.php:190
+Stack trace:
+#0 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(75): yii\web\Request->resolve()
+#1 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#3 {main}
+2016-05-11 17:07:04 [127.0.0.1][29][09ac9b1310a4e8910189f938ca5916a9][info][application] $_COOKIE = [
+    'PHPSESSID' => '09ac9b1310a4e8910189f938ca5916a9'
+    '_csrf' => '21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5\";}'
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+    'role' => 'registrar'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'rr.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'HTTP_DNT' => '1'
+    'HTTP_REFERER' => 'http://rr.com/resource/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=09ac9b1310a4e8910189f938ca5916a9; _csrf=21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5%22%3B%7D; _identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'rr.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
+    'REMOTE_PORT' => '35914'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/undefined'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/undefined'
+    'PATH_TRANSLATED' => 'redirect:/#/undefined'
+    'PHP_SELF' => '/rest.php/undefined'
+    'REQUEST_TIME_FLOAT' => 1462986424.456
+    'REQUEST_TIME' => 1462986424
+    'argv' => []
+    'argc' => 0
+]
+2016-05-11 17:07:04 [127.0.0.1][29][09ac9b1310a4e8910189f938ca5916a9][error][yii\web\HttpException:404] exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in /var/www/rr.com/vendor/yiisoft/yii2/web/Request.php:190
+Stack trace:
+#0 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(75): yii\web\Request->resolve()
+#1 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#3 {main}
+2016-05-11 17:07:04 [127.0.0.1][29][09ac9b1310a4e8910189f938ca5916a9][info][application] $_COOKIE = [
+    'PHPSESSID' => '09ac9b1310a4e8910189f938ca5916a9'
+    '_csrf' => '21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5\";}'
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+    'role' => 'registrar'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'rr.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'HTTP_DNT' => '1'
+    'HTTP_REFERER' => 'http://rr.com/resource/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=09ac9b1310a4e8910189f938ca5916a9; _csrf=21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5%22%3B%7D; _identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'rr.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
+    'REMOTE_PORT' => '35922'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/undefined'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/undefined'
+    'PATH_TRANSLATED' => 'redirect:/#/undefined'
+    'PHP_SELF' => '/rest.php/undefined'
+    'REQUEST_TIME_FLOAT' => 1462986424.594
+    'REQUEST_TIME' => 1462986424
+    'argv' => []
+    'argc' => 0
+]
+2016-05-11 17:08:37 [127.0.0.1][7][09ac9b1310a4e8910189f938ca5916a9][error][yii\web\HttpException:404] exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in /var/www/rr.com/vendor/yiisoft/yii2/web/Request.php:190
+Stack trace:
+#0 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(75): yii\web\Request->resolve()
+#1 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#3 {main}
+2016-05-11 17:08:37 [127.0.0.1][7][09ac9b1310a4e8910189f938ca5916a9][info][application] $_COOKIE = [
+    'PHPSESSID' => '09ac9b1310a4e8910189f938ca5916a9'
+    '_csrf' => '21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5\";}'
+    '_identity' => 'f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[7,\"sBZlLkpEbikELmURWCopgN-lYiqU7UYu\",2592000]\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 7
+    'role' => 'admin'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'rr.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'HTTP_DNT' => '1'
+    'HTTP_REFERER' => 'http://rr.com/resource/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=09ac9b1310a4e8910189f938ca5916a9; _csrf=21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5%22%3B%7D; _identity=f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22sBZlLkpEbikELmURWCopgN-lYiqU7UYu%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'rr.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
+    'REMOTE_PORT' => '35964'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/undefined'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/undefined'
+    'PATH_TRANSLATED' => 'redirect:/#/undefined'
+    'PHP_SELF' => '/rest.php/undefined'
+    'REQUEST_TIME_FLOAT' => 1462986517.515
+    'REQUEST_TIME' => 1462986517
+    'argv' => []
+    'argc' => 0
+]
+2016-05-11 17:08:37 [127.0.0.1][7][09ac9b1310a4e8910189f938ca5916a9][error][yii\web\HttpException:404] exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in /var/www/rr.com/vendor/yiisoft/yii2/web/Request.php:190
+Stack trace:
+#0 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(75): yii\web\Request->resolve()
+#1 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#3 {main}
+2016-05-11 17:08:37 [127.0.0.1][7][09ac9b1310a4e8910189f938ca5916a9][info][application] $_COOKIE = [
+    'PHPSESSID' => '09ac9b1310a4e8910189f938ca5916a9'
+    '_csrf' => '21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5\";}'
+    '_identity' => 'f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[7,\"sBZlLkpEbikELmURWCopgN-lYiqU7UYu\",2592000]\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 7
+    'role' => 'admin'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'rr.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'HTTP_DNT' => '1'
+    'HTTP_REFERER' => 'http://rr.com/resource/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=09ac9b1310a4e8910189f938ca5916a9; _csrf=21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5%22%3B%7D; _identity=f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22sBZlLkpEbikELmURWCopgN-lYiqU7UYu%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'rr.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
+    'REMOTE_PORT' => '35936'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/undefined'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/undefined'
+    'PATH_TRANSLATED' => 'redirect:/#/undefined'
+    'PHP_SELF' => '/rest.php/undefined'
+    'REQUEST_TIME_FLOAT' => 1462986517.659
+    'REQUEST_TIME' => 1462986517
+    'argv' => []
+    'argc' => 0
+]
+2016-05-11 17:18:03 [127.0.0.1][29][09ac9b1310a4e8910189f938ca5916a9][error][yii\web\HttpException:404] exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in /var/www/rr.com/vendor/yiisoft/yii2/web/Request.php:190
+Stack trace:
+#0 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(75): yii\web\Request->resolve()
+#1 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#3 {main}
+2016-05-11 17:18:03 [127.0.0.1][29][09ac9b1310a4e8910189f938ca5916a9][info][application] $_COOKIE = [
+    'PHPSESSID' => '09ac9b1310a4e8910189f938ca5916a9'
+    '_csrf' => '21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5\";}'
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+    'role' => 'registrar'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'rr.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'HTTP_DNT' => '1'
+    'HTTP_REFERER' => 'http://rr.com/resource/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=09ac9b1310a4e8910189f938ca5916a9; _csrf=21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5%22%3B%7D; _identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'rr.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
+    'REMOTE_PORT' => '36196'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/undefined'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/undefined'
+    'PATH_TRANSLATED' => 'redirect:/#/undefined'
+    'PHP_SELF' => '/rest.php/undefined'
+    'REQUEST_TIME_FLOAT' => 1462987083.915
+    'REQUEST_TIME' => 1462987083
+    'argv' => []
+    'argc' => 0
+]
+2016-05-11 17:18:04 [127.0.0.1][29][09ac9b1310a4e8910189f938ca5916a9][error][yii\web\HttpException:404] exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in /var/www/rr.com/vendor/yiisoft/yii2/web/Request.php:190
+Stack trace:
+#0 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(75): yii\web\Request->resolve()
+#1 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#3 {main}
+2016-05-11 17:18:03 [127.0.0.1][29][09ac9b1310a4e8910189f938ca5916a9][info][application] $_COOKIE = [
+    'PHPSESSID' => '09ac9b1310a4e8910189f938ca5916a9'
+    '_csrf' => '21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5\";}'
+    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 29
+    'role' => 'registrar'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'rr.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'HTTP_DNT' => '1'
+    'HTTP_REFERER' => 'http://rr.com/resource/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=09ac9b1310a4e8910189f938ca5916a9; _csrf=21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5%22%3B%7D; _identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'rr.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
+    'REMOTE_PORT' => '36194'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/undefined'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/undefined'
+    'PATH_TRANSLATED' => 'redirect:/#/undefined'
+    'PHP_SELF' => '/rest.php/undefined'
+    'REQUEST_TIME_FLOAT' => 1462987083.906
+    'REQUEST_TIME' => 1462987083
+    'argv' => []
+    'argc' => 0
+]
+2016-05-11 17:20:59 [127.0.0.1][7][09ac9b1310a4e8910189f938ca5916a9][error][yii\web\HttpException:404] exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in /var/www/rr.com/vendor/yiisoft/yii2/web/Request.php:190
+Stack trace:
+#0 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(75): yii\web\Request->resolve()
+#1 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#3 {main}
+2016-05-11 17:20:59 [127.0.0.1][7][09ac9b1310a4e8910189f938ca5916a9][info][application] $_COOKIE = [
+    'PHPSESSID' => '09ac9b1310a4e8910189f938ca5916a9'
+    '_csrf' => '21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5\";}'
+    '_identity' => 'f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[7,\"sBZlLkpEbikELmURWCopgN-lYiqU7UYu\",2592000]\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 7
+    'role' => 'admin'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'rr.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'HTTP_DNT' => '1'
+    'HTTP_REFERER' => 'http://rr.com/resource/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=09ac9b1310a4e8910189f938ca5916a9; _csrf=21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5%22%3B%7D; _identity=f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22sBZlLkpEbikELmURWCopgN-lYiqU7UYu%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'rr.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
+    'REMOTE_PORT' => '36212'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/undefined'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/undefined'
+    'PATH_TRANSLATED' => 'redirect:/#/undefined'
+    'PHP_SELF' => '/rest.php/undefined'
+    'REQUEST_TIME_FLOAT' => 1462987259.306
+    'REQUEST_TIME' => 1462987259
+    'argv' => []
+    'argc' => 0
+]
+2016-05-11 17:20:59 [127.0.0.1][7][09ac9b1310a4e8910189f938ca5916a9][error][yii\web\HttpException:404] exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in /var/www/rr.com/vendor/yiisoft/yii2/web/Request.php:190
+Stack trace:
+#0 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(75): yii\web\Request->resolve()
+#1 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#3 {main}
+2016-05-11 17:20:59 [127.0.0.1][7][09ac9b1310a4e8910189f938ca5916a9][info][application] $_COOKIE = [
+    'PHPSESSID' => '09ac9b1310a4e8910189f938ca5916a9'
+    '_csrf' => '21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5\";}'
+    '_identity' => 'f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[7,\"sBZlLkpEbikELmURWCopgN-lYiqU7UYu\",2592000]\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 7
+    'role' => 'admin'
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'rr.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'HTTP_DNT' => '1'
+    'HTTP_REFERER' => 'http://rr.com/resource/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=09ac9b1310a4e8910189f938ca5916a9; _csrf=21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5%22%3B%7D; _identity=f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22sBZlLkpEbikELmURWCopgN-lYiqU7UYu%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'rr.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
+    'REMOTE_PORT' => '36222'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/undefined'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/undefined'
+    'PATH_TRANSLATED' => 'redirect:/#/undefined'
+    'PHP_SELF' => '/rest.php/undefined'
+    'REQUEST_TIME_FLOAT' => 1462987259.374
+    'REQUEST_TIME' => 1462987259
+    'argv' => []
+    'argc' => 0
+]
+2016-05-11 17:22:26 [127.0.0.1][7][09ac9b1310a4e8910189f938ca5916a9][error][yii\web\HttpException:404] exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in /var/www/rr.com/vendor/yiisoft/yii2/web/Request.php:190
+Stack trace:
+#0 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(75): yii\web\Request->resolve()
+#1 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#3 {main}
+2016-05-11 17:22:26 [127.0.0.1][7][09ac9b1310a4e8910189f938ca5916a9][info][application] $_COOKIE = [
+    'PHPSESSID' => '09ac9b1310a4e8910189f938ca5916a9'
+    '_csrf' => '21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5\";}'
+    '_identity' => 'f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[7,\"sBZlLkpEbikELmURWCopgN-lYiqU7UYu\",2592000]\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'role' => 'admin'
+    '__id' => 7
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'rr.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'HTTP_DNT' => '1'
+    'HTTP_REFERER' => 'http://rr.com/resource/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=09ac9b1310a4e8910189f938ca5916a9; _csrf=21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5%22%3B%7D; _identity=f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22sBZlLkpEbikELmURWCopgN-lYiqU7UYu%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'rr.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
+    'REMOTE_PORT' => '36266'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/undefined'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/undefined'
+    'PATH_TRANSLATED' => 'redirect:/#/undefined'
+    'PHP_SELF' => '/rest.php/undefined'
+    'REQUEST_TIME_FLOAT' => 1462987346.547
+    'REQUEST_TIME' => 1462987346
+    'argv' => []
+    'argc' => 0
+]
+2016-05-11 17:22:26 [127.0.0.1][7][09ac9b1310a4e8910189f938ca5916a9][error][yii\web\HttpException:404] exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in /var/www/rr.com/vendor/yiisoft/yii2/web/Request.php:190
+Stack trace:
+#0 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(75): yii\web\Request->resolve()
+#1 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#3 {main}
+2016-05-11 17:22:26 [127.0.0.1][7][09ac9b1310a4e8910189f938ca5916a9][info][application] $_COOKIE = [
+    'PHPSESSID' => '09ac9b1310a4e8910189f938ca5916a9'
+    '_csrf' => '21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5\";}'
+    '_identity' => 'f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[7,\"sBZlLkpEbikELmURWCopgN-lYiqU7UYu\",2592000]\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'role' => 'admin'
+    '__id' => 7
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'rr.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'HTTP_DNT' => '1'
+    'HTTP_REFERER' => 'http://rr.com/resource/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=09ac9b1310a4e8910189f938ca5916a9; _csrf=21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5%22%3B%7D; _identity=f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22sBZlLkpEbikELmURWCopgN-lYiqU7UYu%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'rr.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
+    'REMOTE_PORT' => '36268'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/undefined'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/undefined'
+    'PATH_TRANSLATED' => 'redirect:/#/undefined'
+    'PHP_SELF' => '/rest.php/undefined'
+    'REQUEST_TIME_FLOAT' => 1462987346.736
+    'REQUEST_TIME' => 1462987346
+    'argv' => []
+    'argc' => 0
+]
+2016-05-11 17:28:34 [127.0.0.1][7][09ac9b1310a4e8910189f938ca5916a9][error][yii\web\HttpException:404] exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in /var/www/rr.com/vendor/yiisoft/yii2/web/Request.php:190
+Stack trace:
+#0 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(75): yii\web\Request->resolve()
+#1 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#3 {main}
+2016-05-11 17:28:34 [127.0.0.1][7][09ac9b1310a4e8910189f938ca5916a9][info][application] $_COOKIE = [
+    'PHPSESSID' => '09ac9b1310a4e8910189f938ca5916a9'
+    '_csrf' => '21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5\";}'
+    '_identity' => 'f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[7,\"sBZlLkpEbikELmURWCopgN-lYiqU7UYu\",2592000]\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'role' => 'admin'
+    '__id' => 7
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'rr.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'HTTP_DNT' => '1'
+    'HTTP_REFERER' => 'http://rr.com/resource/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=09ac9b1310a4e8910189f938ca5916a9; _csrf=21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5%22%3B%7D; _identity=f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22sBZlLkpEbikELmURWCopgN-lYiqU7UYu%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'rr.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
+    'REMOTE_PORT' => '36324'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/undefined'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/undefined'
+    'PATH_TRANSLATED' => 'redirect:/#/undefined'
+    'PHP_SELF' => '/rest.php/undefined'
+    'REQUEST_TIME_FLOAT' => 1462987714.187
+    'REQUEST_TIME' => 1462987714
+    'argv' => []
+    'argc' => 0
+]
+2016-05-11 17:28:34 [127.0.0.1][7][09ac9b1310a4e8910189f938ca5916a9][error][yii\web\HttpException:404] exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in /var/www/rr.com/vendor/yiisoft/yii2/web/Request.php:190
+Stack trace:
+#0 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(75): yii\web\Request->resolve()
+#1 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#3 {main}
+2016-05-11 17:28:34 [127.0.0.1][7][09ac9b1310a4e8910189f938ca5916a9][info][application] $_COOKIE = [
+    'PHPSESSID' => '09ac9b1310a4e8910189f938ca5916a9'
+    '_csrf' => '21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5\";}'
+    '_identity' => 'f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[7,\"sBZlLkpEbikELmURWCopgN-lYiqU7UYu\",2592000]\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'role' => 'admin'
+    '__id' => 7
+]
+
+$_SERVER = [
+    'proto' => 'http'
+    'HTTP_HOST' => 'rr.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'HTTP_DNT' => '1'
+    'HTTP_REFERER' => 'http://rr.com/resource/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=09ac9b1310a4e8910189f938ca5916a9; _csrf=21b97ad9033decf7979e1007dada7796bba0ac5aeacdaf903f0b6e4a39dad7c8a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22i1kIjb1PnlHYJiq_GL4E0Xap2ZI10Kk5%22%3B%7D; _identity=f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22sBZlLkpEbikELmURWCopgN-lYiqU7UYu%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'rr.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
+    'REMOTE_PORT' => '36322'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rest.php/undefined'
+    'SCRIPT_NAME' => '/rest.php'
+    'PATH_INFO' => '/undefined'
+    'PATH_TRANSLATED' => 'redirect:/#/undefined'
+    'PHP_SELF' => '/rest.php/undefined'
+    'REQUEST_TIME_FLOAT' => 1462987714.245
+    'REQUEST_TIME' => 1462987714
+    'argv' => []
+    'argc' => 0
+]

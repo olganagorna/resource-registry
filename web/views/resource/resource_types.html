@@ -16,7 +16,7 @@
                             <div class=" col-md-4 text-center"><h4>Назва класу</h4></div>
                         </div>
                     </li>
-                    <li class="list-group-item shadow-z-1 md-list row " style="padding:0px 5px 0px 5px!important;" ng-repeat="data in classes.items">
+                    <li class="list-group-item shadow-z-1 md-list row " style="padding:0px 5px 0px 5px!important;" ng-repeat="data in xmlData.items">
                         <div class="col-md-4 text-center res_vert_allight_list">{{data.class_id}}</div>
                         <div class="col-md-4 text-center res_vert_allight_list">{{data.name}}</div>
                         <div class="btn-group">
@@ -37,23 +37,23 @@
                 </ul>
             </div>
             <ul class="pagination pagination-sm">
-                <li ng-if="classes._links.first">
-                    <a href="" ng-click="setPage(classes._links.first.href, 'first')">&laquo;</a>
+                <li ng-if="xmlData._links.first">
+                    <a href="" ng-click="setPage(xmlData._links.first.href, 'first')">&laquo;</a>
                 </li>
-                <li ng-if="classes._links.prev">
-                    <a href="" ng-click="setPage(classes._links.prev.href, 'prev')" >‹</a>
+                <li ng-if="xmlData._links.prev">
+                    <a href="" ng-click="setPage(xmlData._links.prev.href, 'prev')" >‹</a>
                 </li>
 
-                <li ng-repeat="page in getPages(classes._meta.pageCount) track by $index"
+                <li ng-repeat="page in getPages(xmlData._meta.pageCount) track by $index"
                     ng-click="switchPage(page)" ng-class="{active: page == currentPage}"
                     ng-if="page">
                     <span>{{page}}</span>
                 </li>
-                <li ng-if="classes._links.next">
-                    <a href="" ng-click="setPage(classes._links.next.href, 'next')" >›</a>
+                <li ng-if="xmlData._links.next">
+                    <a href="" ng-click="setPage(xmlData._links.next.href, 'next')" >›</a>
                 </li>
-                <li ng-if="classes._links.last">
-                    <a href="" ng-click="setPage(classes._links.last.href, 'last')">&raquo;</a>
+                <li ng-if="xmlData._links.last">
+                    <a href="" ng-click="setPage(xmlData._links.last.href, 'last')">&raquo;</a>
                 </li>
             </ul>
 

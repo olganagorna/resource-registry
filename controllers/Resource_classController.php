@@ -3,11 +3,10 @@ namespace app\controllers;
 use yii\rest\ActiveController;
 use yii\data\ActiveDataProvider;
 use app\models\ResourceClass;
-class Resource_classController extends ActiveController
+class Resource_classController extends AppController
 {
     public $modelClass = 'app\models\ResourceClass';
 
-    public $serializer = [ 'class' => 'yii\rest\Serializer', 'collectionEnvelope' => 'items'];
     
     public function behaviors()
     {
@@ -47,15 +46,7 @@ class Resource_classController extends ActiveController
     	}
     }
 
-    public function actionPagination() {
-        $dataProvider = new ActiveDataProvider([
-            'query' => $getdata,
-            'pagination' => [
-                'pageSize' => 3,
-                'pageParam' => 'page',
-            ],
-        ]);
-    }
+
 
     public function actionChangeactivationstatus() 
     {
