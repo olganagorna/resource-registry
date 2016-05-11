@@ -23672,358 +23672,63 @@ $_SERVER = [
     ]
     'argc' => 1
 ]
-2016-05-08 17:38:22 [127.0.0.1][-][-][error][yii\db\Exception] exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php:579
+2016-05-08 17:39:38 [127.0.0.1][-][-][error][yii\db\Exception] exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'rr.resource_class' doesn't exist' in /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php:837
 Stack trace:
-#0 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(579): PDO->__construct('mysql:host=loca...', 'root', '019eed', NULL)
-#1 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(529): yii\db\Connection->createPdoInstance()
-#2 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(836): yii\db\Connection->open()
-#3 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(823): yii\db\Connection->getMasterPdo()
-#4 /var/www/rr.com/vendor/yiisoft/yii2/db/Schema.php(477): yii\db\Connection->getSlavePdo()
-#5 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(732): yii\db\Schema->quoteValue('registrar')
-#6 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(172): yii\db\Connection->quoteValue('registrar')
-#7 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(806): yii\db\Command->getRawSql()
-#8 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(373): yii\db\Command->queryInternal('fetch', NULL)
-#9 /var/www/rr.com/vendor/yiisoft/yii2/db/Query.php(243): yii\db\Command->queryOne()
-#10 /var/www/rr.com/vendor/yiisoft/yii2/db/ActiveQuery.php(300): yii\db\Query->one(NULL)
-#11 /var/www/rr.com/vendor/yiisoft/yii2/db/BaseActiveRecord.php(102): yii\db\ActiveQuery->one()
-#12 /var/www/rr.com/models/User.php(55): yii\db\BaseActiveRecord::findOne(Array)
-#13 /var/www/rr.com/models/LoginForm.php(73): app\models\User::findByUsername('registrar')
-#14 /var/www/rr.com/models/LoginForm.php(45): app\models\LoginForm->getUser()
-#15 [internal function]: app\models\LoginForm->validatePassword('password', NULL)
-#16 /var/www/rr.com/vendor/yiisoft/yii2/validators/InlineValidator.php(69): call_user_func(Array, 'password', NULL)
-#17 /var/www/rr.com/vendor/yiisoft/yii2/validators/Validator.php(240): yii\validators\InlineValidator->validateAttribute(Object(app\models\LoginForm), 'password')
-#18 /var/www/rr.com/vendor/yiisoft/yii2/base/Model.php(352): yii\validators\Validator->validateAttributes(Object(app\models\LoginForm), Array)
-#19 /var/www/rr.com/models/LoginForm.php(59): yii\base\Model->validate()
-#20 /var/www/rr.com/controllers/UserController.php(20): app\models\LoginForm->login()
-#21 [internal function]: app\controllers\UserController->actionLogin()
-#22 /var/www/rr.com/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
-#23 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
-#24 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('login', Array)
-#25 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('user/login', Array)
-#26 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#27 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#28 {main}
+#0 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(837): PDOStatement->execute()
+#1 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(385): yii\db\Command->queryInternal('fetchColumn', 0)
+#2 /var/www/rr.com/vendor/yiisoft/yii2/db/Query.php(389): yii\db\Command->queryScalar()
+#3 /var/www/rr.com/vendor/yiisoft/yii2/db/ActiveQuery.php(339): yii\db\Query->queryScalar('COUNT(*)', NULL)
+#4 /var/www/rr.com/vendor/yiisoft/yii2/db/Query.php(296): yii\db\ActiveQuery->queryScalar('COUNT(*)', NULL)
+#5 /var/www/rr.com/vendor/yiisoft/yii2/data/ActiveDataProvider.php(165): yii\db\Query->count('*', NULL)
+#6 /var/www/rr.com/vendor/yiisoft/yii2/data/BaseDataProvider.php(147): yii\data\ActiveDataProvider->prepareTotalCount()
+#7 /var/www/rr.com/vendor/yiisoft/yii2/data/ActiveDataProvider.php(105): yii\data\BaseDataProvider->getTotalCount()
+#8 /var/www/rr.com/vendor/yiisoft/yii2/data/BaseDataProvider.php(79): yii\data\ActiveDataProvider->prepareModels()
+#9 /var/www/rr.com/vendor/yiisoft/yii2/data/BaseDataProvider.php(92): yii\data\BaseDataProvider->prepare()
+#10 /var/www/rr.com/vendor/yiisoft/yii2/rest/Serializer.php(174): yii\data\BaseDataProvider->getModels()
+#11 /var/www/rr.com/vendor/yiisoft/yii2/rest/Serializer.php(143): yii\rest\Serializer->serializeDataProvider(Object(yii\data\ActiveDataProvider))
+#12 /var/www/rr.com/vendor/yiisoft/yii2/rest/Controller.php(97): yii\rest\Serializer->serialize(Object(yii\data\ActiveDataProvider))
+#13 /var/www/rr.com/vendor/yiisoft/yii2/rest/Controller.php(75): yii\rest\Controller->serializeData(Object(yii\data\ActiveDataProvider))
+#14 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(153): yii\rest\Controller->afterAction(Object(yii\rest\IndexAction), Object(yii\data\ActiveDataProvider))
+#15 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('index', Array)
+#16 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('resource_class/...', Array)
+#17 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#18 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#19 {main}
 
-Next exception 'yii\db\Exception' with message 'SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php:534
+Next exception 'yii\db\Exception' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'rr.resource_class' doesn't exist
+The SQL being executed was: SELECT COUNT(*) FROM `resource_class`' in /var/www/rr.com/vendor/yiisoft/yii2/db/Schema.php:628
 Stack trace:
-#0 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(836): yii\db\Connection->open()
-#1 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(823): yii\db\Connection->getMasterPdo()
-#2 /var/www/rr.com/vendor/yiisoft/yii2/db/Schema.php(477): yii\db\Connection->getSlavePdo()
-#3 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(732): yii\db\Schema->quoteValue('registrar')
-#4 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(172): yii\db\Connection->quoteValue('registrar')
-#5 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(806): yii\db\Command->getRawSql()
-#6 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(373): yii\db\Command->queryInternal('fetch', NULL)
-#7 /var/www/rr.com/vendor/yiisoft/yii2/db/Query.php(243): yii\db\Command->queryOne()
-#8 /var/www/rr.com/vendor/yiisoft/yii2/db/ActiveQuery.php(300): yii\db\Query->one(NULL)
-#9 /var/www/rr.com/vendor/yiisoft/yii2/db/BaseActiveRecord.php(102): yii\db\ActiveQuery->one()
-#10 /var/www/rr.com/models/User.php(55): yii\db\BaseActiveRecord::findOne(Array)
-#11 /var/www/rr.com/models/LoginForm.php(73): app\models\User::findByUsername('registrar')
-#12 /var/www/rr.com/models/LoginForm.php(45): app\models\LoginForm->getUser()
-#13 [internal function]: app\models\LoginForm->validatePassword('password', NULL)
-#14 /var/www/rr.com/vendor/yiisoft/yii2/validators/InlineValidator.php(69): call_user_func(Array, 'password', NULL)
-#15 /var/www/rr.com/vendor/yiisoft/yii2/validators/Validator.php(240): yii\validators\InlineValidator->validateAttribute(Object(app\models\LoginForm), 'password')
-#16 /var/www/rr.com/vendor/yiisoft/yii2/base/Model.php(352): yii\validators\Validator->validateAttributes(Object(app\models\LoginForm), Array)
-#17 /var/www/rr.com/models/LoginForm.php(59): yii\base\Model->validate()
-#18 /var/www/rr.com/controllers/UserController.php(20): app\models\LoginForm->login()
-#19 [internal function]: app\controllers\UserController->actionLogin()
-#20 /var/www/rr.com/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
-#21 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
-#22 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('login', Array)
-#23 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('user/login', Array)
-#24 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#25 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#26 {main}
+#0 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(852): yii\db\Schema->convertException(Object(PDOException), 'SELECT COUNT(*)...')
+#1 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(385): yii\db\Command->queryInternal('fetchColumn', 0)
+#2 /var/www/rr.com/vendor/yiisoft/yii2/db/Query.php(389): yii\db\Command->queryScalar()
+#3 /var/www/rr.com/vendor/yiisoft/yii2/db/ActiveQuery.php(339): yii\db\Query->queryScalar('COUNT(*)', NULL)
+#4 /var/www/rr.com/vendor/yiisoft/yii2/db/Query.php(296): yii\db\ActiveQuery->queryScalar('COUNT(*)', NULL)
+#5 /var/www/rr.com/vendor/yiisoft/yii2/data/ActiveDataProvider.php(165): yii\db\Query->count('*', NULL)
+#6 /var/www/rr.com/vendor/yiisoft/yii2/data/BaseDataProvider.php(147): yii\data\ActiveDataProvider->prepareTotalCount()
+#7 /var/www/rr.com/vendor/yiisoft/yii2/data/ActiveDataProvider.php(105): yii\data\BaseDataProvider->getTotalCount()
+#8 /var/www/rr.com/vendor/yiisoft/yii2/data/BaseDataProvider.php(79): yii\data\ActiveDataProvider->prepareModels()
+#9 /var/www/rr.com/vendor/yiisoft/yii2/data/BaseDataProvider.php(92): yii\data\BaseDataProvider->prepare()
+#10 /var/www/rr.com/vendor/yiisoft/yii2/rest/Serializer.php(174): yii\data\BaseDataProvider->getModels()
+#11 /var/www/rr.com/vendor/yiisoft/yii2/rest/Serializer.php(143): yii\rest\Serializer->serializeDataProvider(Object(yii\data\ActiveDataProvider))
+#12 /var/www/rr.com/vendor/yiisoft/yii2/rest/Controller.php(97): yii\rest\Serializer->serialize(Object(yii\data\ActiveDataProvider))
+#13 /var/www/rr.com/vendor/yiisoft/yii2/rest/Controller.php(75): yii\rest\Controller->serializeData(Object(yii\data\ActiveDataProvider))
+#14 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(153): yii\rest\Controller->afterAction(Object(yii\rest\IndexAction), Object(yii\data\ActiveDataProvider))
+#15 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('index', Array)
+#16 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('resource_class/...', Array)
+#17 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#18 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#19 {main}
 Additional Information:
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'rr.resource_class' doesn't exist
+)
 
-2016-05-08 17:38:22 [127.0.0.1][-][-][info][application] $_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => '5dn38rod7m0e362qbslmgshjr0'
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'CONTENT_LENGTH' => '57'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_ORIGIN' => 'http://rr.com'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'CONTENT_TYPE' => 'application/json;charset=UTF-8'
-    'HTTP_REFERER' => 'http://rr.com/site/login'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=5dn38rod7m0e362qbslmgshjr0'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '42004'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'POST'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/users/login'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/users/login'
-    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
-    'PHP_SELF' => '/rest.php/users/login'
-    'REQUEST_TIME_FLOAT' => 1462729102.024
-    'REQUEST_TIME' => 1462729102
-]
-2016-05-08 17:38:22 [127.0.0.1][-][-][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'Exception' with message 'Serialization of 'Closure' is not allowed' 
-
-in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
-
-Stack trace:
-#0 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
-#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
-#2 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
-#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
-#4 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
-#5 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\db\Exception))
-#6 {main}
-2016-05-08 17:38:22 [127.0.0.1][-][-][info][application] $_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => '5dn38rod7m0e362qbslmgshjr0'
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'CONTENT_LENGTH' => '57'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_ORIGIN' => 'http://rr.com'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'CONTENT_TYPE' => 'application/json;charset=UTF-8'
-    'HTTP_REFERER' => 'http://rr.com/site/login'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=5dn38rod7m0e362qbslmgshjr0'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '42004'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'POST'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/users/login'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/users/login'
-    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
-    'PHP_SELF' => '/rest.php/users/login'
-    'REQUEST_TIME_FLOAT' => 1462729102.024
-    'REQUEST_TIME' => 1462729102
-]
-2016-05-08 17:38:26 [127.0.0.1][-][-][error][yii\db\Exception] exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php:579
-Stack trace:
-#0 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(579): PDO->__construct('mysql:host=loca...', 'root', '019eed', NULL)
-#1 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(529): yii\db\Connection->createPdoInstance()
-#2 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(836): yii\db\Connection->open()
-#3 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(823): yii\db\Connection->getMasterPdo()
-#4 /var/www/rr.com/vendor/yiisoft/yii2/db/Schema.php(477): yii\db\Connection->getSlavePdo()
-#5 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(732): yii\db\Schema->quoteValue('registrar')
-#6 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(172): yii\db\Connection->quoteValue('registrar')
-#7 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(806): yii\db\Command->getRawSql()
-#8 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(373): yii\db\Command->queryInternal('fetch', NULL)
-#9 /var/www/rr.com/vendor/yiisoft/yii2/db/Query.php(243): yii\db\Command->queryOne()
-#10 /var/www/rr.com/vendor/yiisoft/yii2/db/ActiveQuery.php(300): yii\db\Query->one(NULL)
-#11 /var/www/rr.com/vendor/yiisoft/yii2/db/BaseActiveRecord.php(102): yii\db\ActiveQuery->one()
-#12 /var/www/rr.com/models/User.php(55): yii\db\BaseActiveRecord::findOne(Array)
-#13 /var/www/rr.com/models/LoginForm.php(73): app\models\User::findByUsername('registrar')
-#14 /var/www/rr.com/models/LoginForm.php(45): app\models\LoginForm->getUser()
-#15 [internal function]: app\models\LoginForm->validatePassword('password', NULL)
-#16 /var/www/rr.com/vendor/yiisoft/yii2/validators/InlineValidator.php(69): call_user_func(Array, 'password', NULL)
-#17 /var/www/rr.com/vendor/yiisoft/yii2/validators/Validator.php(240): yii\validators\InlineValidator->validateAttribute(Object(app\models\LoginForm), 'password')
-#18 /var/www/rr.com/vendor/yiisoft/yii2/base/Model.php(352): yii\validators\Validator->validateAttributes(Object(app\models\LoginForm), Array)
-#19 /var/www/rr.com/models/LoginForm.php(59): yii\base\Model->validate()
-#20 /var/www/rr.com/controllers/UserController.php(20): app\models\LoginForm->login()
-#21 [internal function]: app\controllers\UserController->actionLogin()
-#22 /var/www/rr.com/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
-#23 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
-#24 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('login', Array)
-#25 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('user/login', Array)
-#26 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#27 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#28 {main}
-
-Next exception 'yii\db\Exception' with message 'SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php:534
-Stack trace:
-#0 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(836): yii\db\Connection->open()
-#1 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(823): yii\db\Connection->getMasterPdo()
-#2 /var/www/rr.com/vendor/yiisoft/yii2/db/Schema.php(477): yii\db\Connection->getSlavePdo()
-#3 /var/www/rr.com/vendor/yiisoft/yii2/db/Connection.php(732): yii\db\Schema->quoteValue('registrar')
-#4 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(172): yii\db\Connection->quoteValue('registrar')
-#5 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(806): yii\db\Command->getRawSql()
-#6 /var/www/rr.com/vendor/yiisoft/yii2/db/Command.php(373): yii\db\Command->queryInternal('fetch', NULL)
-#7 /var/www/rr.com/vendor/yiisoft/yii2/db/Query.php(243): yii\db\Command->queryOne()
-#8 /var/www/rr.com/vendor/yiisoft/yii2/db/ActiveQuery.php(300): yii\db\Query->one(NULL)
-#9 /var/www/rr.com/vendor/yiisoft/yii2/db/BaseActiveRecord.php(102): yii\db\ActiveQuery->one()
-#10 /var/www/rr.com/models/User.php(55): yii\db\BaseActiveRecord::findOne(Array)
-#11 /var/www/rr.com/models/LoginForm.php(73): app\models\User::findByUsername('registrar')
-#12 /var/www/rr.com/models/LoginForm.php(45): app\models\LoginForm->getUser()
-#13 [internal function]: app\models\LoginForm->validatePassword('password', NULL)
-#14 /var/www/rr.com/vendor/yiisoft/yii2/validators/InlineValidator.php(69): call_user_func(Array, 'password', NULL)
-#15 /var/www/rr.com/vendor/yiisoft/yii2/validators/Validator.php(240): yii\validators\InlineValidator->validateAttribute(Object(app\models\LoginForm), 'password')
-#16 /var/www/rr.com/vendor/yiisoft/yii2/base/Model.php(352): yii\validators\Validator->validateAttributes(Object(app\models\LoginForm), Array)
-#17 /var/www/rr.com/models/LoginForm.php(59): yii\base\Model->validate()
-#18 /var/www/rr.com/controllers/UserController.php(20): app\models\LoginForm->login()
-#19 [internal function]: app\controllers\UserController->actionLogin()
-#20 /var/www/rr.com/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
-#21 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\InlineAction->runWithParams(Array)
-#22 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('login', Array)
-#23 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('user/login', Array)
-#24 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#25 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#26 {main}
-Additional Information:
-
-2016-05-08 17:38:26 [127.0.0.1][-][-][info][application] $_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => '5dn38rod7m0e362qbslmgshjr0'
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'CONTENT_LENGTH' => '57'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_ORIGIN' => 'http://rr.com'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'CONTENT_TYPE' => 'application/json;charset=UTF-8'
-    'HTTP_REFERER' => 'http://rr.com/site/login'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=5dn38rod7m0e362qbslmgshjr0'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '42006'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'POST'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/users/login'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/users/login'
-    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
-    'PHP_SELF' => '/rest.php/users/login'
-    'REQUEST_TIME_FLOAT' => 1462729106.584
-    'REQUEST_TIME' => 1462729106
-]
-2016-05-08 17:38:26 [127.0.0.1][-][-][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'Exception' with message 'Serialization of 'Closure' is not allowed' 
-
-in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
-
-Stack trace:
-#0 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
-#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
-#2 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
-#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
-#4 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
-#5 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\db\Exception))
-#6 {main}
-2016-05-08 17:38:26 [127.0.0.1][-][-][info][application] $_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => '5dn38rod7m0e362qbslmgshjr0'
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'CONTENT_LENGTH' => '57'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_ORIGIN' => 'http://rr.com'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'CONTENT_TYPE' => 'application/json;charset=UTF-8'
-    'HTTP_REFERER' => 'http://rr.com/site/login'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=5dn38rod7m0e362qbslmgshjr0'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '42006'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'POST'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/users/login'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/users/login'
-    'PATH_TRANSLATED' => 'redirect:/#/users/login/login'
-    'PHP_SELF' => '/rest.php/users/login'
-    'REQUEST_TIME_FLOAT' => 1462729106.584
-    'REQUEST_TIME' => 1462729106
-]
-2016-05-08 17:40:21 [127.0.0.1][-][5dn38rod7m0e362qbslmgshjr0][error][yii\web\HttpException:403] exception 'yii\web\ForbiddenHttpException' with message 'У вас немає прав на дану операцію' in /var/www/rr.com/components/AuthComponent.php:69
-Stack trace:
-#0 /var/www/rr.com/controllers/Personal_dataController.php(52): app\components\AuthComponent->checkPermissionsPrivateData('view', Array)
-#1 [internal function]: app\controllers\Personal_dataController->checkAccess('view', Object(app\models\PersonalData))
-#2 /var/www/rr.com/vendor/yiisoft/yii2/rest/ViewAction.php(29): call_user_func(Array, 'view', Object(app\models\PersonalData))
-#3 [internal function]: yii\rest\ViewAction->run('65')
-#4 /var/www/rr.com/vendor/yiisoft/yii2/base/Action.php(92): call_user_func_array(Array, Array)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\Action->runWithParams(Array)
-#6 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('view', Array)
-#7 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('personal_data/v...', Array)
-#8 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#9 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#10 {main}
-2016-05-08 17:40:21 [127.0.0.1][-][5dn38rod7m0e362qbslmgshjr0][info][application] $_GET = [
-    'id' => '65'
-]
-
-$_COOKIE = [
-    '_identity' => '569359d69ec9a9804f06032bfb9a5e698947557bb7688f815d1b5706d19f7448a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[8,\"LTrS-nd6GOp4NAuWsqLPMGRmTXyhnRoR\",2592000]\";}'
-    'PHPSESSID' => '5dn38rod7m0e362qbslmgshjr0'
-]
-
-$_SESSION = [
-    '__flash' => []
-    '__id' => 8
-    'role' => 'user'
+2016-05-08 17:39:38 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    'PHPSESSID' => 'api4e2sdcqrb83doq4gvcref97'
+    '_identity' => 'f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[7,\"sBZlLkpEbikELmURWCopgN-lYiqU7UYu\",2592000]\";}'
 ]
 
 $_SERVER = [
@@ -24032,10 +23737,11 @@ $_SERVER = [
     'HTTP_CONNECTION' => 'keep-alive'
     'HTTP_ACCEPT' => 'application/json, text/plain, */*'
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/index'
+    'HTTP_DNT' => '1'
+    'HTTP_REFERER' => 'http://rr.com/resource/type'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=569359d69ec9a9804f06032bfb9a5e698947557bb7688f815d1b5706d19f7448a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B8%2C%22LTrS-nd6GOp4NAuWsqLPMGRmTXyhnRoR%22%2C2592000%5D%22%3B%7D; PHPSESSID=5dn38rod7m0e362qbslmgshjr0'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=api4e2sdcqrb83doq4gvcref97; _identity=f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22sBZlLkpEbikELmURWCopgN-lYiqU7UYu%22%2C2592000%5D%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => ''
     'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
@@ -24049,20 +23755,22 @@ $_SERVER = [
     'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
     'SERVER_ADMIN' => 'admin@example.com'
     'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '42108'
+    'REMOTE_PORT' => '53256'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
     'REQUEST_METHOD' => 'GET'
     'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/65'
+    'REQUEST_URI' => '/rest.php/resource_classes'
     'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/65'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/65/65'
-    'PHP_SELF' => '/rest.php/personal_datas/65'
-    'REQUEST_TIME_FLOAT' => 1462729221.916
-    'REQUEST_TIME' => 1462729221
+    'PATH_INFO' => '/resource_classes'
+    'PATH_TRANSLATED' => 'redirect:/#/resource_classes'
+    'PHP_SELF' => '/rest.php/resource_classes'
+    'REQUEST_TIME_FLOAT' => 1462729178.455
+    'REQUEST_TIME' => 1462729178
+    'argv' => []
+    'argc' => 0
 ]
-2016-05-08 17:40:21 [127.0.0.1][-][5dn38rod7m0e362qbslmgshjr0][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
+2016-05-08 17:39:38 [127.0.0.1][-][-][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
 
 in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
 
@@ -24073,21 +23781,11 @@ Stack trace:
 #3 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
 #4 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
 #5 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
-#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\ForbiddenHttpException))
+#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\db\Exception))
 #7 {main}
-2016-05-08 17:40:21 [127.0.0.1][-][5dn38rod7m0e362qbslmgshjr0][info][application] $_GET = [
-    'id' => '65'
-]
-
-$_COOKIE = [
-    '_identity' => '569359d69ec9a9804f06032bfb9a5e698947557bb7688f815d1b5706d19f7448a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[8,\"LTrS-nd6GOp4NAuWsqLPMGRmTXyhnRoR\",2592000]\";}'
-    'PHPSESSID' => '5dn38rod7m0e362qbslmgshjr0'
-]
-
-$_SESSION = [
-    '__flash' => []
-    '__id' => 8
-    'role' => 'user'
+2016-05-08 17:39:38 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    'PHPSESSID' => 'api4e2sdcqrb83doq4gvcref97'
+    '_identity' => 'f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[7,\"sBZlLkpEbikELmURWCopgN-lYiqU7UYu\",2592000]\";}'
 ]
 
 $_SERVER = [
@@ -24096,10 +23794,11 @@ $_SERVER = [
     'HTTP_CONNECTION' => 'keep-alive'
     'HTTP_ACCEPT' => 'application/json, text/plain, */*'
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/index'
+    'HTTP_DNT' => '1'
+    'HTTP_REFERER' => 'http://rr.com/resource/type'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=569359d69ec9a9804f06032bfb9a5e698947557bb7688f815d1b5706d19f7448a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B8%2C%22LTrS-nd6GOp4NAuWsqLPMGRmTXyhnRoR%22%2C2592000%5D%22%3B%7D; PHPSESSID=5dn38rod7m0e362qbslmgshjr0'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=api4e2sdcqrb83doq4gvcref97; _identity=f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22sBZlLkpEbikELmURWCopgN-lYiqU7UYu%22%2C2592000%5D%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => ''
     'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
@@ -24113,109 +23812,41 @@ $_SERVER = [
     'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
     'SERVER_ADMIN' => 'admin@example.com'
     'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '42108'
+    'REMOTE_PORT' => '53256'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
     'REQUEST_METHOD' => 'GET'
     'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/65'
+    'REQUEST_URI' => '/rest.php/resource_classes'
     'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/65'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/65/65'
-    'PHP_SELF' => '/rest.php/personal_datas/65'
-    'REQUEST_TIME_FLOAT' => 1462729221.916
-    'REQUEST_TIME' => 1462729221
+    'PATH_INFO' => '/resource_classes'
+    'PATH_TRANSLATED' => 'redirect:/#/resource_classes'
+    'PHP_SELF' => '/rest.php/resource_classes'
+    'REQUEST_TIME_FLOAT' => 1462729178.455
+    'REQUEST_TIME' => 1462729178
+    'argv' => []
+    'argc' => 0
 ]
-2016-05-08 17:40:28 [127.0.0.1][-][5dn38rod7m0e362qbslmgshjr0][error][yii\web\HttpException:403] exception 'yii\web\ForbiddenHttpException' with message 'У вас немає прав на дану операцію' in /var/www/rr.com/components/AuthComponent.php:69
+2016-05-08 17:54:04 [127.0.0.1][7][510c77d74c1c723ea5f6a0e4825bc3b8][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request "resource_class/index".' in /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php:461
 Stack trace:
-#0 /var/www/rr.com/controllers/Personal_dataController.php(52): app\components\AuthComponent->checkPermissionsPrivateData('view', Array)
-#1 [internal function]: app\controllers\Personal_dataController->checkAccess('view', Object(app\models\PersonalData))
-#2 /var/www/rr.com/vendor/yiisoft/yii2/rest/ViewAction.php(29): call_user_func(Array, 'view', Object(app\models\PersonalData))
-#3 [internal function]: yii\rest\ViewAction->run('115')
-#4 /var/www/rr.com/vendor/yiisoft/yii2/base/Action.php(92): call_user_func_array(Array, Array)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\Action->runWithParams(Array)
-#6 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('view', Array)
-#7 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('personal_data/v...', Array)
-#8 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#9 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#10 {main}
-2016-05-08 17:40:28 [127.0.0.1][-][5dn38rod7m0e362qbslmgshjr0][info][application] $_GET = [
-    'id' => '115'
-]
+#0 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('resource_class/...', Array)
+#1 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#3 {main}
 
-$_COOKIE = [
-    '_identity' => '4094117428262f2447a9f4b4f4afde3085d56c1cfe086fabec20688d6c026a10a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[31,\"mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY\",2592000]\";}'
-    'PHPSESSID' => '5dn38rod7m0e362qbslmgshjr0'
-]
-
-$_SESSION = [
-    '__flash' => []
-    '__id' => 31
-    'role' => 'commissioner'
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/index'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=4094117428262f2447a9f4b4f4afde3085d56c1cfe086fabec20688d6c026a10a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B31%2C%22mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY%22%2C2592000%5D%22%3B%7D; PHPSESSID=5dn38rod7m0e362qbslmgshjr0'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '42114'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/115'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/115'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/115/115'
-    'PHP_SELF' => '/rest.php/personal_datas/115'
-    'REQUEST_TIME_FLOAT' => 1462729228.58
-    'REQUEST_TIME' => 1462729228
-]
-2016-05-08 17:40:28 [127.0.0.1][-][5dn38rod7m0e362qbslmgshjr0][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
-
-in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
-
+Next exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php:96
 Stack trace:
-#0 [internal function]: PDO->__sleep()
-#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
-#2 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
-#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
-#4 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
-#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\ForbiddenHttpException))
-#7 {main}
-2016-05-08 17:40:28 [127.0.0.1][-][5dn38rod7m0e362qbslmgshjr0][info][application] $_GET = [
-    'id' => '115'
-]
-
-$_COOKIE = [
-    '_identity' => '4094117428262f2447a9f4b4f4afde3085d56c1cfe086fabec20688d6c026a10a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[31,\"mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY\",2592000]\";}'
-    'PHPSESSID' => '5dn38rod7m0e362qbslmgshjr0'
+#0 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#2 {main}
+2016-05-08 17:54:04 [127.0.0.1][7][510c77d74c1c723ea5f6a0e4825bc3b8][info][application] $_COOKIE = [
+    'PHPSESSID' => 'api4e2sdcqrb83doq4gvcref97'
+    '_identity' => 'f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[7,\"sBZlLkpEbikELmURWCopgN-lYiqU7UYu\",2592000]\";}'
 ]
 
 $_SESSION = [
     '__flash' => []
-    '__id' => 31
-    'role' => 'commissioner'
+    '__id' => 7
 ]
 
 $_SERVER = [
@@ -24224,10 +23855,11 @@ $_SERVER = [
     'HTTP_CONNECTION' => 'keep-alive'
     'HTTP_ACCEPT' => 'application/json, text/plain, */*'
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/index'
+    'HTTP_DNT' => '1'
+    'HTTP_REFERER' => 'http://rr.com/resource/type'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=4094117428262f2447a9f4b4f4afde3085d56c1cfe086fabec20688d6c026a10a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B31%2C%22mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY%22%2C2592000%5D%22%3B%7D; PHPSESSID=5dn38rod7m0e362qbslmgshjr0'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=api4e2sdcqrb83doq4gvcref97; _identity=f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22sBZlLkpEbikELmURWCopgN-lYiqU7UYu%22%2C2592000%5D%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => ''
     'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
@@ -24241,109 +23873,42 @@ $_SERVER = [
     'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
     'SERVER_ADMIN' => 'admin@example.com'
     'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '42114'
+    'REMOTE_PORT' => '53912'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
     'REQUEST_METHOD' => 'GET'
     'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/115'
+    'REQUEST_URI' => '/rest.php/resource_classes'
     'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/115'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/115/115'
-    'PHP_SELF' => '/rest.php/personal_datas/115'
-    'REQUEST_TIME_FLOAT' => 1462729228.58
-    'REQUEST_TIME' => 1462729228
+    'PATH_INFO' => '/resource_classes'
+    'PATH_TRANSLATED' => 'redirect:/#/resource_classes'
+    'PHP_SELF' => '/rest.php/resource_classes'
+    'REQUEST_TIME_FLOAT' => 1462730044.726
+    'REQUEST_TIME' => 1462730044
+    'argv' => []
+    'argc' => 0
 ]
-2016-05-08 21:40:08 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][error][yii\web\HttpException:403] exception 'yii\web\ForbiddenHttpException' with message 'У вас немає прав на дану операцію' in /var/www/rr.com/components/AuthComponent.php:69
+2016-05-08 17:56:06 [127.0.0.1][7][510c77d74c1c723ea5f6a0e4825bc3b8][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request "resource_class/index".' in /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php:461
 Stack trace:
-#0 /var/www/rr.com/controllers/Personal_dataController.php(52): app\components\AuthComponent->checkPermissionsPrivateData('view', Array)
-#1 [internal function]: app\controllers\Personal_dataController->checkAccess('view', Object(app\models\PersonalData))
-#2 /var/www/rr.com/vendor/yiisoft/yii2/rest/ViewAction.php(29): call_user_func(Array, 'view', Object(app\models\PersonalData))
-#3 [internal function]: yii\rest\ViewAction->run('65')
-#4 /var/www/rr.com/vendor/yiisoft/yii2/base/Action.php(92): call_user_func_array(Array, Array)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\Action->runWithParams(Array)
-#6 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('view', Array)
-#7 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('personal_data/v...', Array)
-#8 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#9 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#10 {main}
-2016-05-08 21:40:08 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '65'
-]
+#0 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('resource_class/...', Array)
+#1 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#3 {main}
 
-$_COOKIE = [
-    '_identity' => '569359d69ec9a9804f06032bfb9a5e698947557bb7688f815d1b5706d19f7448a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[8,\"LTrS-nd6GOp4NAuWsqLPMGRmTXyhnRoR\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-    '__id' => 8
-    'role' => 'user'
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/index'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=569359d69ec9a9804f06032bfb9a5e698947557bb7688f815d1b5706d19f7448a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B8%2C%22LTrS-nd6GOp4NAuWsqLPMGRmTXyhnRoR%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '54242'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/65'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/65'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/65/65'
-    'PHP_SELF' => '/rest.php/personal_datas/65'
-    'REQUEST_TIME_FLOAT' => 1462743608.437
-    'REQUEST_TIME' => 1462743608
-]
-2016-05-08 21:40:08 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
-
-in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
-
+Next exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php:96
 Stack trace:
-#0 [internal function]: PDO->__sleep()
-#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
-#2 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
-#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
-#4 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
-#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\ForbiddenHttpException))
-#7 {main}
-2016-05-08 21:40:08 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '65'
-]
-
-$_COOKIE = [
-    '_identity' => '569359d69ec9a9804f06032bfb9a5e698947557bb7688f815d1b5706d19f7448a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[8,\"LTrS-nd6GOp4NAuWsqLPMGRmTXyhnRoR\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
+#0 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#2 {main}
+2016-05-08 17:56:06 [127.0.0.1][7][510c77d74c1c723ea5f6a0e4825bc3b8][info][application] $_COOKIE = [
+    'PHPSESSID' => '510c77d74c1c723ea5f6a0e4825bc3b8'
+    '_csrf' => '617138b6d33ecd75f4c3884cee46047eae54c19a7e2b7cfb301a920f40bb093da:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"R34D3cdy7Bh6PRLD9mtFjYM_PTH61HcE\";}'
+    '_identity' => 'f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[7,\"sBZlLkpEbikELmURWCopgN-lYiqU7UYu\",2592000]\";}'
 ]
 
 $_SESSION = [
     '__flash' => []
-    '__id' => 8
-    'role' => 'user'
+    '__id' => 7
 ]
 
 $_SERVER = [
@@ -24352,10 +23917,11 @@ $_SERVER = [
     'HTTP_CONNECTION' => 'keep-alive'
     'HTTP_ACCEPT' => 'application/json, text/plain, */*'
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/index'
+    'HTTP_DNT' => '1'
+    'HTTP_REFERER' => 'http://rr.com/resource/type'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=569359d69ec9a9804f06032bfb9a5e698947557bb7688f815d1b5706d19f7448a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B8%2C%22LTrS-nd6GOp4NAuWsqLPMGRmTXyhnRoR%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=510c77d74c1c723ea5f6a0e4825bc3b8; _csrf=617138b6d33ecd75f4c3884cee46047eae54c19a7e2b7cfb301a920f40bb093da%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22R34D3cdy7Bh6PRLD9mtFjYM_PTH61HcE%22%3B%7D; _identity=f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22sBZlLkpEbikELmURWCopgN-lYiqU7UYu%22%2C2592000%5D%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => ''
     'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
@@ -24369,43 +23935,29 @@ $_SERVER = [
     'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
     'SERVER_ADMIN' => 'admin@example.com'
     'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '54242'
+    'REMOTE_PORT' => '53940'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
     'REQUEST_METHOD' => 'GET'
     'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/65'
+    'REQUEST_URI' => '/rest.php/resource_classes'
     'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/65'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/65/65'
-    'PHP_SELF' => '/rest.php/personal_datas/65'
-    'REQUEST_TIME_FLOAT' => 1462743608.437
-    'REQUEST_TIME' => 1462743608
+    'PATH_INFO' => '/resource_classes'
+    'PATH_TRANSLATED' => 'redirect:/#/resource_classes'
+    'PHP_SELF' => '/rest.php/resource_classes'
+    'REQUEST_TIME_FLOAT' => 1462730166.601
+    'REQUEST_TIME' => 1462730166
+    'argv' => []
+    'argc' => 0
 ]
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][error][yii\web\HttpException:403] exception 'yii\web\ForbiddenHttpException' with message 'У вас немає прав на дану операцію' in /var/www/rr.com/components/AuthComponent.php:62
+2016-05-08 17:59:36 [127.0.0.1][-][-][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Class 'app\models\ResourceClass' not found' in /var/www/rr.com/vendor/yiisoft/yii2/rest/IndexAction.php:61
 Stack trace:
-#0 /var/www/rr.com/controllers/Personal_dataController.php(52): app\components\AuthComponent->checkPermissionsPrivateData('view', Array)
-#1 [internal function]: app\controllers\Personal_dataController->checkAccess('view', Object(app\models\PersonalData))
-#2 /var/www/rr.com/vendor/yiisoft/yii2/rest/ViewAction.php(29): call_user_func(Array, 'view', Object(app\models\PersonalData))
-#3 [internal function]: yii\rest\ViewAction->run('113')
-#4 /var/www/rr.com/vendor/yiisoft/yii2/base/Action.php(92): call_user_func_array(Array, Array)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\Action->runWithParams(Array)
-#6 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('view', Array)
-#7 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('personal_data/v...', Array)
-#8 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#9 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#10 {main}
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-05-08 17:59:36 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    'PHPSESSID' => '510c77d74c1c723ea5f6a0e4825bc3b8'
+    '_csrf' => '617138b6d33ecd75f4c3884cee46047eae54c19a7e2b7cfb301a920f40bb093da:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"R34D3cdy7Bh6PRLD9mtFjYM_PTH61HcE\";}'
+    '_identity' => 'f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[7,\"sBZlLkpEbikELmURWCopgN-lYiqU7UYu\",2592000]\";}'
 ]
 
 $_SERVER = [
@@ -24414,10 +23966,11 @@ $_SERVER = [
     'HTTP_CONNECTION' => 'keep-alive'
     'HTTP_ACCEPT' => 'application/json, text/plain, */*'
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
+    'HTTP_DNT' => '1'
+    'HTTP_REFERER' => 'http://rr.com/resource/type'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=510c77d74c1c723ea5f6a0e4825bc3b8; _csrf=617138b6d33ecd75f4c3884cee46047eae54c19a7e2b7cfb301a920f40bb093da%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22R34D3cdy7Bh6PRLD9mtFjYM_PTH61HcE%22%3B%7D; _identity=f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22sBZlLkpEbikELmURWCopgN-lYiqU7UYu%22%2C2592000%5D%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => ''
     'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
@@ -24431,55 +23984,42 @@ $_SERVER = [
     'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
     'SERVER_ADMIN' => 'admin@example.com'
     'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57858'
+    'REMOTE_PORT' => '53964'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
     'REQUEST_METHOD' => 'GET'
     'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
+    'REQUEST_URI' => '/rest.php/resource_types'
     'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749400.007
-    'REQUEST_TIME' => 1462749400
+    'PATH_INFO' => '/resource_types'
+    'PATH_TRANSLATED' => 'redirect:/#/resource_types'
+    'PHP_SELF' => '/rest.php/resource_types'
+    'REQUEST_TIME_FLOAT' => 1462730376.645
+    'REQUEST_TIME' => 1462730376
+    'argv' => []
+    'argc' => 0
 ]
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
-
-in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
-
+2016-05-08 18:00:06 [127.0.0.1][-][-][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Class 'app\models\ResourceClass' not found' in /var/www/rr.com/vendor/yiisoft/yii2/rest/IndexAction.php:61
 Stack trace:
-#0 [internal function]: PDO->__sleep()
-#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
-#2 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
-#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
-#4 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
-#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\ForbiddenHttpException))
-#7 {main}
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-05-08 18:00:06 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    'PHPSESSID' => '510c77d74c1c723ea5f6a0e4825bc3b8'
+    '_csrf' => '617138b6d33ecd75f4c3884cee46047eae54c19a7e2b7cfb301a920f40bb093da:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"R34D3cdy7Bh6PRLD9mtFjYM_PTH61HcE\";}'
+    '_identity' => 'f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[7,\"sBZlLkpEbikELmURWCopgN-lYiqU7UYu\",2592000]\";}'
 ]
 
 $_SERVER = [
     'proto' => 'http'
     'HTTP_HOST' => 'rr.com'
     'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
+    'HTTP_DNT' => '1'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=510c77d74c1c723ea5f6a0e4825bc3b8; _csrf=617138b6d33ecd75f4c3884cee46047eae54c19a7e2b7cfb301a920f40bb093da%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22R34D3cdy7Bh6PRLD9mtFjYM_PTH61HcE%22%3B%7D; _identity=f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22sBZlLkpEbikELmURWCopgN-lYiqU7UYu%22%2C2592000%5D%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => ''
     'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
@@ -24493,55 +24033,49 @@ $_SERVER = [
     'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
     'SERVER_ADMIN' => 'admin@example.com'
     'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57858'
+    'REMOTE_PORT' => '53982'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
     'REQUEST_METHOD' => 'GET'
     'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
+    'REQUEST_URI' => '/rest.php/resource_types'
     'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749400.007
-    'REQUEST_TIME' => 1462749400
+    'PATH_INFO' => '/resource_types'
+    'PATH_TRANSLATED' => 'redirect:/#/resource_types'
+    'PHP_SELF' => '/rest.php/resource_types'
+    'REQUEST_TIME_FLOAT' => 1462730406.473
+    'REQUEST_TIME' => 1462730406
+    'argv' => []
+    'argc' => 0
 ]
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][error][yii\web\HttpException:403] exception 'yii\web\ForbiddenHttpException' with message 'У вас немає прав на дану операцію' in /var/www/rr.com/components/AuthComponent.php:62
+2016-05-08 18:00:12 [127.0.0.1][7][510c77d74c1c723ea5f6a0e4825bc3b8][error][yii\web\HttpException:404] exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in /var/www/rr.com/vendor/yiisoft/yii2/web/Request.php:190
 Stack trace:
-#0 /var/www/rr.com/controllers/Personal_dataController.php(52): app\components\AuthComponent->checkPermissionsPrivateData('view', Array)
-#1 [internal function]: app\controllers\Personal_dataController->checkAccess('view', Object(app\models\PersonalData))
-#2 /var/www/rr.com/vendor/yiisoft/yii2/rest/ViewAction.php(29): call_user_func(Array, 'view', Object(app\models\PersonalData))
-#3 [internal function]: yii\rest\ViewAction->run('113')
-#4 /var/www/rr.com/vendor/yiisoft/yii2/base/Action.php(92): call_user_func_array(Array, Array)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\Action->runWithParams(Array)
-#6 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('view', Array)
-#7 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('personal_data/v...', Array)
-#8 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#9 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#10 {main}
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
+#0 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(75): yii\web\Request->resolve()
+#1 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#3 {main}
+2016-05-08 18:00:12 [127.0.0.1][7][510c77d74c1c723ea5f6a0e4825bc3b8][info][application] $_COOKIE = [
+    'PHPSESSID' => '510c77d74c1c723ea5f6a0e4825bc3b8'
+    '_csrf' => '617138b6d33ecd75f4c3884cee46047eae54c19a7e2b7cfb301a920f40bb093da:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"R34D3cdy7Bh6PRLD9mtFjYM_PTH61HcE\";}'
+    '_identity' => 'f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[7,\"sBZlLkpEbikELmURWCopgN-lYiqU7UYu\",2592000]\";}'
 ]
 
 $_SESSION = [
     '__flash' => []
+    '__id' => 7
 ]
 
 $_SERVER = [
     'proto' => 'http'
     'HTTP_HOST' => 'rr.com'
     'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
+    'HTTP_DNT' => '1'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=510c77d74c1c723ea5f6a0e4825bc3b8; _csrf=617138b6d33ecd75f4c3884cee46047eae54c19a7e2b7cfb301a920f40bb093da%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22R34D3cdy7Bh6PRLD9mtFjYM_PTH61HcE%22%3B%7D; _identity=f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22sBZlLkpEbikELmURWCopgN-lYiqU7UYu%22%2C2592000%5D%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => ''
     'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
@@ -24555,55 +24089,49 @@ $_SERVER = [
     'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
     'SERVER_ADMIN' => 'admin@example.com'
     'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57856'
+    'REMOTE_PORT' => '53992'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
     'REQUEST_METHOD' => 'GET'
     'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
+    'REQUEST_URI' => '/rest.php/resource_classes'
     'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749400.162
-    'REQUEST_TIME' => 1462749400
+    'PATH_INFO' => '/resource_classes'
+    'PATH_TRANSLATED' => 'redirect:/#/resource_classes'
+    'PHP_SELF' => '/rest.php/resource_classes'
+    'REQUEST_TIME_FLOAT' => 1462730412.72
+    'REQUEST_TIME' => 1462730412
+    'argv' => []
+    'argc' => 0
 ]
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
-
-in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
-
+2016-05-08 18:00:31 [127.0.0.1][7][510c77d74c1c723ea5f6a0e4825bc3b8][error][yii\web\HttpException:404] exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in /var/www/rr.com/vendor/yiisoft/yii2/web/Request.php:190
 Stack trace:
-#0 [internal function]: PDO->__sleep()
-#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
-#2 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
-#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
-#4 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
-#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\ForbiddenHttpException))
-#7 {main}
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
+#0 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(75): yii\web\Request->resolve()
+#1 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
+#3 {main}
+2016-05-08 18:00:31 [127.0.0.1][7][510c77d74c1c723ea5f6a0e4825bc3b8][info][application] $_COOKIE = [
+    'PHPSESSID' => '510c77d74c1c723ea5f6a0e4825bc3b8'
+    '_csrf' => '617138b6d33ecd75f4c3884cee46047eae54c19a7e2b7cfb301a920f40bb093da:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"R34D3cdy7Bh6PRLD9mtFjYM_PTH61HcE\";}'
+    '_identity' => 'f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[7,\"sBZlLkpEbikELmURWCopgN-lYiqU7UYu\",2592000]\";}'
 ]
 
 $_SESSION = [
     '__flash' => []
+    '__id' => 7
 ]
 
 $_SERVER = [
     'proto' => 'http'
     'HTTP_HOST' => 'rr.com'
     'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
+    'HTTP_DNT' => '1'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=510c77d74c1c723ea5f6a0e4825bc3b8; _csrf=617138b6d33ecd75f4c3884cee46047eae54c19a7e2b7cfb301a920f40bb093da%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22R34D3cdy7Bh6PRLD9mtFjYM_PTH61HcE%22%3B%7D; _identity=f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22sBZlLkpEbikELmURWCopgN-lYiqU7UYu%22%2C2592000%5D%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => ''
     'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
@@ -24617,55 +24145,42 @@ $_SERVER = [
     'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
     'SERVER_ADMIN' => 'admin@example.com'
     'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57856'
+    'REMOTE_PORT' => '54026'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
     'REQUEST_METHOD' => 'GET'
     'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
+    'REQUEST_URI' => '/rest.php/resource_class'
     'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749400.162
-    'REQUEST_TIME' => 1462749400
+    'PATH_INFO' => '/resource_class'
+    'PATH_TRANSLATED' => 'redirect:/#/resource_class'
+    'PHP_SELF' => '/rest.php/resource_class'
+    'REQUEST_TIME_FLOAT' => 1462730431.449
+    'REQUEST_TIME' => 1462730431
+    'argv' => []
+    'argc' => 0
 ]
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][error][yii\web\HttpException:403] exception 'yii\web\ForbiddenHttpException' with message 'У вас немає прав на дану операцію' in /var/www/rr.com/components/AuthComponent.php:62
+2016-05-08 18:01:58 [127.0.0.1][-][-][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Class 'app\models\ResourceClass' not found' in /var/www/rr.com/vendor/yiisoft/yii2/rest/IndexAction.php:61
 Stack trace:
-#0 /var/www/rr.com/controllers/Personal_dataController.php(52): app\components\AuthComponent->checkPermissionsPrivateData('view', Array)
-#1 [internal function]: app\controllers\Personal_dataController->checkAccess('view', Object(app\models\PersonalData))
-#2 /var/www/rr.com/vendor/yiisoft/yii2/rest/ViewAction.php(29): call_user_func(Array, 'view', Object(app\models\PersonalData))
-#3 [internal function]: yii\rest\ViewAction->run('113')
-#4 /var/www/rr.com/vendor/yiisoft/yii2/base/Action.php(92): call_user_func_array(Array, Array)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\Action->runWithParams(Array)
-#6 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('view', Array)
-#7 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('personal_data/v...', Array)
-#8 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#9 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#10 {main}
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-05-08 18:01:58 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    'PHPSESSID' => '510c77d74c1c723ea5f6a0e4825bc3b8'
+    '_csrf' => '617138b6d33ecd75f4c3884cee46047eae54c19a7e2b7cfb301a920f40bb093da:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"R34D3cdy7Bh6PRLD9mtFjYM_PTH61HcE\";}'
+    '_identity' => 'f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[7,\"sBZlLkpEbikELmURWCopgN-lYiqU7UYu\",2592000]\";}'
 ]
 
 $_SERVER = [
     'proto' => 'http'
     'HTTP_HOST' => 'rr.com'
     'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
+    'HTTP_DNT' => '1'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=510c77d74c1c723ea5f6a0e4825bc3b8; _csrf=617138b6d33ecd75f4c3884cee46047eae54c19a7e2b7cfb301a920f40bb093da%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22R34D3cdy7Bh6PRLD9mtFjYM_PTH61HcE%22%3B%7D; _identity=f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22sBZlLkpEbikELmURWCopgN-lYiqU7UYu%22%2C2592000%5D%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => ''
     'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
@@ -24679,55 +24194,43 @@ $_SERVER = [
     'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
     'SERVER_ADMIN' => 'admin@example.com'
     'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57860'
+    'REMOTE_PORT' => '54064'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
     'REQUEST_METHOD' => 'GET'
     'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
+    'REQUEST_URI' => '/rest.php/resource_types'
     'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749400.163
-    'REQUEST_TIME' => 1462749400
+    'PATH_INFO' => '/resource_types'
+    'PATH_TRANSLATED' => 'redirect:/#/resource_types'
+    'PHP_SELF' => '/rest.php/resource_types'
+    'REQUEST_TIME_FLOAT' => 1462730518.869
+    'REQUEST_TIME' => 1462730518
+    'argv' => []
+    'argc' => 0
 ]
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
-
-in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
-
+2016-05-08 18:06:45 [127.0.0.1][-][-][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Class 'app\models\ResourceClass' not found' in /var/www/rr.com/vendor/yiisoft/yii2/rest/IndexAction.php:61
 Stack trace:
-#0 [internal function]: PDO->__sleep()
-#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
-#2 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
-#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
-#4 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
-#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\ForbiddenHttpException))
-#7 {main}
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-05-08 18:06:45 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    'PHPSESSID' => '510c77d74c1c723ea5f6a0e4825bc3b8'
+    '_csrf' => '617138b6d33ecd75f4c3884cee46047eae54c19a7e2b7cfb301a920f40bb093da:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"R34D3cdy7Bh6PRLD9mtFjYM_PTH61HcE\";}'
+    '_identity' => 'f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[7,\"sBZlLkpEbikELmURWCopgN-lYiqU7UYu\",2592000]\";}'
 ]
 
 $_SERVER = [
     'proto' => 'http'
     'HTTP_HOST' => 'rr.com'
     'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
+    'HTTP_DNT' => '1'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8,ru;q=0.6'
+    'HTTP_COOKIE' => 'PHPSESSID=510c77d74c1c723ea5f6a0e4825bc3b8; _csrf=617138b6d33ecd75f4c3884cee46047eae54c19a7e2b7cfb301a920f40bb093da%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22R34D3cdy7Bh6PRLD9mtFjYM_PTH61HcE%22%3B%7D; _identity=f0d9117e0ed835cd799d4a011e95220a47e1292ef502015d3a8a079d23464954a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22sBZlLkpEbikELmURWCopgN-lYiqU7UYu%22%2C2592000%5D%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => ''
     'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
@@ -24741,2132 +24244,18 @@ $_SERVER = [
     'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
     'SERVER_ADMIN' => 'admin@example.com'
     'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57860'
+    'REMOTE_PORT' => '54116'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
     'REQUEST_METHOD' => 'GET'
     'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
+    'REQUEST_URI' => '/rest.php/resource_types'
     'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749400.163
-    'REQUEST_TIME' => 1462749400
-]
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][error][yii\web\HttpException:403] exception 'yii\web\ForbiddenHttpException' with message 'У вас немає прав на дану операцію' in /var/www/rr.com/components/AuthComponent.php:62
-Stack trace:
-#0 /var/www/rr.com/controllers/Personal_dataController.php(52): app\components\AuthComponent->checkPermissionsPrivateData('view', Array)
-#1 [internal function]: app\controllers\Personal_dataController->checkAccess('view', Object(app\models\PersonalData))
-#2 /var/www/rr.com/vendor/yiisoft/yii2/rest/ViewAction.php(29): call_user_func(Array, 'view', Object(app\models\PersonalData))
-#3 [internal function]: yii\rest\ViewAction->run('113')
-#4 /var/www/rr.com/vendor/yiisoft/yii2/base/Action.php(92): call_user_func_array(Array, Array)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\Action->runWithParams(Array)
-#6 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('view', Array)
-#7 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('personal_data/v...', Array)
-#8 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#9 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#10 {main}
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57858'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749400.162
-    'REQUEST_TIME' => 1462749400
-]
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
-
-in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
-
-Stack trace:
-#0 [internal function]: PDO->__sleep()
-#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
-#2 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
-#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
-#4 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
-#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\ForbiddenHttpException))
-#7 {main}
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57858'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749400.162
-    'REQUEST_TIME' => 1462749400
-]
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][error][yii\web\HttpException:403] exception 'yii\web\ForbiddenHttpException' with message 'У вас немає прав на дану операцію' in /var/www/rr.com/components/AuthComponent.php:62
-Stack trace:
-#0 /var/www/rr.com/controllers/Personal_dataController.php(52): app\components\AuthComponent->checkPermissionsPrivateData('view', Array)
-#1 [internal function]: app\controllers\Personal_dataController->checkAccess('view', Object(app\models\PersonalData))
-#2 /var/www/rr.com/vendor/yiisoft/yii2/rest/ViewAction.php(29): call_user_func(Array, 'view', Object(app\models\PersonalData))
-#3 [internal function]: yii\rest\ViewAction->run('113')
-#4 /var/www/rr.com/vendor/yiisoft/yii2/base/Action.php(92): call_user_func_array(Array, Array)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\Action->runWithParams(Array)
-#6 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('view', Array)
-#7 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('personal_data/v...', Array)
-#8 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#9 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#10 {main}
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57860'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749400.233
-    'REQUEST_TIME' => 1462749400
-]
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
-
-in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
-
-Stack trace:
-#0 [internal function]: PDO->__sleep()
-#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
-#2 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
-#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
-#4 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
-#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\ForbiddenHttpException))
-#7 {main}
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57860'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749400.233
-    'REQUEST_TIME' => 1462749400
-]
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][error][yii\web\HttpException:403] exception 'yii\web\ForbiddenHttpException' with message 'У вас немає прав на дану операцію' in /var/www/rr.com/components/AuthComponent.php:62
-Stack trace:
-#0 /var/www/rr.com/controllers/Personal_dataController.php(52): app\components\AuthComponent->checkPermissionsPrivateData('view', Array)
-#1 [internal function]: app\controllers\Personal_dataController->checkAccess('view', Object(app\models\PersonalData))
-#2 /var/www/rr.com/vendor/yiisoft/yii2/rest/ViewAction.php(29): call_user_func(Array, 'view', Object(app\models\PersonalData))
-#3 [internal function]: yii\rest\ViewAction->run('113')
-#4 /var/www/rr.com/vendor/yiisoft/yii2/base/Action.php(92): call_user_func_array(Array, Array)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\Action->runWithParams(Array)
-#6 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('view', Array)
-#7 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('personal_data/v...', Array)
-#8 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#9 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#10 {main}
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57860'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749400.267
-    'REQUEST_TIME' => 1462749400
-]
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
-
-in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
-
-Stack trace:
-#0 [internal function]: PDO->__sleep()
-#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
-#2 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
-#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
-#4 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
-#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\ForbiddenHttpException))
-#7 {main}
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57860'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749400.267
-    'REQUEST_TIME' => 1462749400
-]
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][error][yii\web\HttpException:403] exception 'yii\web\ForbiddenHttpException' with message 'У вас немає прав на дану операцію' in /var/www/rr.com/components/AuthComponent.php:62
-Stack trace:
-#0 /var/www/rr.com/controllers/Personal_dataController.php(52): app\components\AuthComponent->checkPermissionsPrivateData('view', Array)
-#1 [internal function]: app\controllers\Personal_dataController->checkAccess('view', Object(app\models\PersonalData))
-#2 /var/www/rr.com/vendor/yiisoft/yii2/rest/ViewAction.php(29): call_user_func(Array, 'view', Object(app\models\PersonalData))
-#3 [internal function]: yii\rest\ViewAction->run('113')
-#4 /var/www/rr.com/vendor/yiisoft/yii2/base/Action.php(92): call_user_func_array(Array, Array)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\Action->runWithParams(Array)
-#6 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('view', Array)
-#7 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('personal_data/v...', Array)
-#8 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#9 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#10 {main}
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57862'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749400.267
-    'REQUEST_TIME' => 1462749400
-]
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
-
-in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
-
-Stack trace:
-#0 [internal function]: PDO->__sleep()
-#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
-#2 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
-#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
-#4 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
-#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\ForbiddenHttpException))
-#7 {main}
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57862'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749400.267
-    'REQUEST_TIME' => 1462749400
-]
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][error][yii\web\HttpException:403] exception 'yii\web\ForbiddenHttpException' with message 'У вас немає прав на дану операцію' in /var/www/rr.com/components/AuthComponent.php:62
-Stack trace:
-#0 /var/www/rr.com/controllers/Personal_dataController.php(52): app\components\AuthComponent->checkPermissionsPrivateData('view', Array)
-#1 [internal function]: app\controllers\Personal_dataController->checkAccess('view', Object(app\models\PersonalData))
-#2 /var/www/rr.com/vendor/yiisoft/yii2/rest/ViewAction.php(29): call_user_func(Array, 'view', Object(app\models\PersonalData))
-#3 [internal function]: yii\rest\ViewAction->run('113')
-#4 /var/www/rr.com/vendor/yiisoft/yii2/base/Action.php(92): call_user_func_array(Array, Array)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\Action->runWithParams(Array)
-#6 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('view', Array)
-#7 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('personal_data/v...', Array)
-#8 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#9 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#10 {main}
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57856'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749400.267
-    'REQUEST_TIME' => 1462749400
-]
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
-
-in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
-
-Stack trace:
-#0 [internal function]: PDO->__sleep()
-#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
-#2 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
-#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
-#4 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
-#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\ForbiddenHttpException))
-#7 {main}
-2016-05-08 23:16:40 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57856'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749400.267
-    'REQUEST_TIME' => 1462749400
-]
-2016-05-08 23:16:43 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][error][yii\web\HttpException:403] exception 'yii\web\ForbiddenHttpException' with message 'У вас немає прав на дану операцію' in /var/www/rr.com/components/AuthComponent.php:62
-Stack trace:
-#0 /var/www/rr.com/controllers/Personal_dataController.php(52): app\components\AuthComponent->checkPermissionsPrivateData('view', Array)
-#1 [internal function]: app\controllers\Personal_dataController->checkAccess('view', Object(app\models\PersonalData))
-#2 /var/www/rr.com/vendor/yiisoft/yii2/rest/ViewAction.php(29): call_user_func(Array, 'view', Object(app\models\PersonalData))
-#3 [internal function]: yii\rest\ViewAction->run('113')
-#4 /var/www/rr.com/vendor/yiisoft/yii2/base/Action.php(92): call_user_func_array(Array, Array)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\Action->runWithParams(Array)
-#6 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('view', Array)
-#7 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('personal_data/v...', Array)
-#8 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#9 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#10 {main}
-2016-05-08 23:16:43 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/index'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57856'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749403.709
-    'REQUEST_TIME' => 1462749403
-]
-2016-05-08 23:16:43 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
-
-in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
-
-Stack trace:
-#0 [internal function]: PDO->__sleep()
-#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
-#2 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
-#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
-#4 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
-#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\ForbiddenHttpException))
-#7 {main}
-2016-05-08 23:16:43 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/index'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57856'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749403.709
-    'REQUEST_TIME' => 1462749403
-]
-2016-05-08 23:16:45 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][error][yii\web\HttpException:403] exception 'yii\web\ForbiddenHttpException' with message 'У вас немає прав на дану операцію' in /var/www/rr.com/components/AuthComponent.php:62
-Stack trace:
-#0 /var/www/rr.com/controllers/Personal_dataController.php(52): app\components\AuthComponent->checkPermissionsPrivateData('view', Array)
-#1 [internal function]: app\controllers\Personal_dataController->checkAccess('view', Object(app\models\PersonalData))
-#2 /var/www/rr.com/vendor/yiisoft/yii2/rest/ViewAction.php(29): call_user_func(Array, 'view', Object(app\models\PersonalData))
-#3 [internal function]: yii\rest\ViewAction->run('113')
-#4 /var/www/rr.com/vendor/yiisoft/yii2/base/Action.php(92): call_user_func_array(Array, Array)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\Action->runWithParams(Array)
-#6 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('view', Array)
-#7 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('personal_data/v...', Array)
-#8 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#9 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#10 {main}
-2016-05-08 23:16:45 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/index'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57854'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749405.517
-    'REQUEST_TIME' => 1462749405
-]
-2016-05-08 23:16:45 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
-
-in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
-
-Stack trace:
-#0 [internal function]: PDO->__sleep()
-#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
-#2 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
-#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
-#4 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
-#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\ForbiddenHttpException))
-#7 {main}
-2016-05-08 23:16:45 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/index'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57854'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749405.517
-    'REQUEST_TIME' => 1462749405
-]
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][error][yii\web\HttpException:403] exception 'yii\web\ForbiddenHttpException' with message 'У вас немає прав на дану операцію' in /var/www/rr.com/components/AuthComponent.php:62
-Stack trace:
-#0 /var/www/rr.com/controllers/Personal_dataController.php(52): app\components\AuthComponent->checkPermissionsPrivateData('view', Array)
-#1 [internal function]: app\controllers\Personal_dataController->checkAccess('view', Object(app\models\PersonalData))
-#2 /var/www/rr.com/vendor/yiisoft/yii2/rest/ViewAction.php(29): call_user_func(Array, 'view', Object(app\models\PersonalData))
-#3 [internal function]: yii\rest\ViewAction->run('113')
-#4 /var/www/rr.com/vendor/yiisoft/yii2/base/Action.php(92): call_user_func_array(Array, Array)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\Action->runWithParams(Array)
-#6 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('view', Array)
-#7 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('personal_data/v...', Array)
-#8 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#9 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#10 {main}
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57856'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749406.565
-    'REQUEST_TIME' => 1462749406
-]
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
-
-in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
-
-Stack trace:
-#0 [internal function]: PDO->__sleep()
-#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
-#2 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
-#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
-#4 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
-#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\ForbiddenHttpException))
-#7 {main}
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57856'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749406.565
-    'REQUEST_TIME' => 1462749406
-]
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][error][yii\web\HttpException:403] exception 'yii\web\ForbiddenHttpException' with message 'У вас немає прав на дану операцію' in /var/www/rr.com/components/AuthComponent.php:62
-Stack trace:
-#0 /var/www/rr.com/controllers/Personal_dataController.php(52): app\components\AuthComponent->checkPermissionsPrivateData('view', Array)
-#1 [internal function]: app\controllers\Personal_dataController->checkAccess('view', Object(app\models\PersonalData))
-#2 /var/www/rr.com/vendor/yiisoft/yii2/rest/ViewAction.php(29): call_user_func(Array, 'view', Object(app\models\PersonalData))
-#3 [internal function]: yii\rest\ViewAction->run('113')
-#4 /var/www/rr.com/vendor/yiisoft/yii2/base/Action.php(92): call_user_func_array(Array, Array)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\Action->runWithParams(Array)
-#6 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('view', Array)
-#7 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('personal_data/v...', Array)
-#8 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#9 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#10 {main}
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57874'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749406.614
-    'REQUEST_TIME' => 1462749406
-]
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
-
-in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
-
-Stack trace:
-#0 [internal function]: PDO->__sleep()
-#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
-#2 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
-#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
-#4 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
-#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\ForbiddenHttpException))
-#7 {main}
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57874'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749406.614
-    'REQUEST_TIME' => 1462749406
-]
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][error][yii\web\HttpException:403] exception 'yii\web\ForbiddenHttpException' with message 'У вас немає прав на дану операцію' in /var/www/rr.com/components/AuthComponent.php:62
-Stack trace:
-#0 /var/www/rr.com/controllers/Personal_dataController.php(52): app\components\AuthComponent->checkPermissionsPrivateData('view', Array)
-#1 [internal function]: app\controllers\Personal_dataController->checkAccess('view', Object(app\models\PersonalData))
-#2 /var/www/rr.com/vendor/yiisoft/yii2/rest/ViewAction.php(29): call_user_func(Array, 'view', Object(app\models\PersonalData))
-#3 [internal function]: yii\rest\ViewAction->run('113')
-#4 /var/www/rr.com/vendor/yiisoft/yii2/base/Action.php(92): call_user_func_array(Array, Array)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\Action->runWithParams(Array)
-#6 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('view', Array)
-#7 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('personal_data/v...', Array)
-#8 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#9 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#10 {main}
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57854'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749406.614
-    'REQUEST_TIME' => 1462749406
-]
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
-
-in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
-
-Stack trace:
-#0 [internal function]: PDO->__sleep()
-#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
-#2 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
-#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
-#4 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
-#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\ForbiddenHttpException))
-#7 {main}
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57854'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749406.614
-    'REQUEST_TIME' => 1462749406
-]
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][error][yii\web\HttpException:403] exception 'yii\web\ForbiddenHttpException' with message 'У вас немає прав на дану операцію' in /var/www/rr.com/components/AuthComponent.php:62
-Stack trace:
-#0 /var/www/rr.com/controllers/Personal_dataController.php(52): app\components\AuthComponent->checkPermissionsPrivateData('view', Array)
-#1 [internal function]: app\controllers\Personal_dataController->checkAccess('view', Object(app\models\PersonalData))
-#2 /var/www/rr.com/vendor/yiisoft/yii2/rest/ViewAction.php(29): call_user_func(Array, 'view', Object(app\models\PersonalData))
-#3 [internal function]: yii\rest\ViewAction->run('113')
-#4 /var/www/rr.com/vendor/yiisoft/yii2/base/Action.php(92): call_user_func_array(Array, Array)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\Action->runWithParams(Array)
-#6 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('view', Array)
-#7 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('personal_data/v...', Array)
-#8 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#9 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#10 {main}
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57856'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749406.632
-    'REQUEST_TIME' => 1462749406
-]
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
-
-in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
-
-Stack trace:
-#0 [internal function]: PDO->__sleep()
-#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
-#2 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
-#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
-#4 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
-#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\ForbiddenHttpException))
-#7 {main}
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57856'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749406.632
-    'REQUEST_TIME' => 1462749406
-]
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][error][yii\web\HttpException:403] exception 'yii\web\ForbiddenHttpException' with message 'У вас немає прав на дану операцію' in /var/www/rr.com/components/AuthComponent.php:62
-Stack trace:
-#0 /var/www/rr.com/controllers/Personal_dataController.php(52): app\components\AuthComponent->checkPermissionsPrivateData('view', Array)
-#1 [internal function]: app\controllers\Personal_dataController->checkAccess('view', Object(app\models\PersonalData))
-#2 /var/www/rr.com/vendor/yiisoft/yii2/rest/ViewAction.php(29): call_user_func(Array, 'view', Object(app\models\PersonalData))
-#3 [internal function]: yii\rest\ViewAction->run('113')
-#4 /var/www/rr.com/vendor/yiisoft/yii2/base/Action.php(92): call_user_func_array(Array, Array)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\Action->runWithParams(Array)
-#6 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('view', Array)
-#7 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('personal_data/v...', Array)
-#8 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#9 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#10 {main}
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57856'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749406.755
-    'REQUEST_TIME' => 1462749406
-]
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
-
-in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
-
-Stack trace:
-#0 [internal function]: PDO->__sleep()
-#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
-#2 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
-#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
-#4 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
-#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\ForbiddenHttpException))
-#7 {main}
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57856'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749406.755
-    'REQUEST_TIME' => 1462749406
-]
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][error][yii\web\HttpException:403] exception 'yii\web\ForbiddenHttpException' with message 'У вас немає прав на дану операцію' in /var/www/rr.com/components/AuthComponent.php:62
-Stack trace:
-#0 /var/www/rr.com/controllers/Personal_dataController.php(52): app\components\AuthComponent->checkPermissionsPrivateData('view', Array)
-#1 [internal function]: app\controllers\Personal_dataController->checkAccess('view', Object(app\models\PersonalData))
-#2 /var/www/rr.com/vendor/yiisoft/yii2/rest/ViewAction.php(29): call_user_func(Array, 'view', Object(app\models\PersonalData))
-#3 [internal function]: yii\rest\ViewAction->run('113')
-#4 /var/www/rr.com/vendor/yiisoft/yii2/base/Action.php(92): call_user_func_array(Array, Array)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\Action->runWithParams(Array)
-#6 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('view', Array)
-#7 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('personal_data/v...', Array)
-#8 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#9 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#10 {main}
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57856'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749406.803
-    'REQUEST_TIME' => 1462749406
-]
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
-
-in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
-
-Stack trace:
-#0 [internal function]: PDO->__sleep()
-#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
-#2 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
-#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
-#4 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
-#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\ForbiddenHttpException))
-#7 {main}
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57856'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749406.803
-    'REQUEST_TIME' => 1462749406
-]
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][error][yii\web\HttpException:403] exception 'yii\web\ForbiddenHttpException' with message 'У вас немає прав на дану операцію' in /var/www/rr.com/components/AuthComponent.php:62
-Stack trace:
-#0 /var/www/rr.com/controllers/Personal_dataController.php(52): app\components\AuthComponent->checkPermissionsPrivateData('view', Array)
-#1 [internal function]: app\controllers\Personal_dataController->checkAccess('view', Object(app\models\PersonalData))
-#2 /var/www/rr.com/vendor/yiisoft/yii2/rest/ViewAction.php(29): call_user_func(Array, 'view', Object(app\models\PersonalData))
-#3 [internal function]: yii\rest\ViewAction->run('113')
-#4 /var/www/rr.com/vendor/yiisoft/yii2/base/Action.php(92): call_user_func_array(Array, Array)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\Action->runWithParams(Array)
-#6 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('view', Array)
-#7 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('personal_data/v...', Array)
-#8 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#9 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#10 {main}
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57854'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749406.803
-    'REQUEST_TIME' => 1462749406
-]
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
-
-in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
-
-Stack trace:
-#0 [internal function]: PDO->__sleep()
-#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
-#2 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
-#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
-#4 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
-#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\ForbiddenHttpException))
-#7 {main}
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57854'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749406.803
-    'REQUEST_TIME' => 1462749406
-]
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][error][yii\web\HttpException:403] exception 'yii\web\ForbiddenHttpException' with message 'У вас немає прав на дану операцію' in /var/www/rr.com/components/AuthComponent.php:62
-Stack trace:
-#0 /var/www/rr.com/controllers/Personal_dataController.php(52): app\components\AuthComponent->checkPermissionsPrivateData('view', Array)
-#1 [internal function]: app\controllers\Personal_dataController->checkAccess('view', Object(app\models\PersonalData))
-#2 /var/www/rr.com/vendor/yiisoft/yii2/rest/ViewAction.php(29): call_user_func(Array, 'view', Object(app\models\PersonalData))
-#3 [internal function]: yii\rest\ViewAction->run('113')
-#4 /var/www/rr.com/vendor/yiisoft/yii2/base/Action.php(92): call_user_func_array(Array, Array)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\Action->runWithParams(Array)
-#6 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('view', Array)
-#7 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('personal_data/v...', Array)
-#8 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#9 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#10 {main}
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57874'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749406.803
-    'REQUEST_TIME' => 1462749406
-]
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
-
-in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
-
-Stack trace:
-#0 [internal function]: PDO->__sleep()
-#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
-#2 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
-#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
-#4 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
-#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\ForbiddenHttpException))
-#7 {main}
-2016-05-08 23:16:46 [127.0.0.1][-][bpp055o2sjou9jv124fb95pum2][info][application] $_GET = [
-    'id' => '113'
-]
-
-$_COOKIE = [
-    '_identity' => '50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[29,\"nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z\",2592000]\";}'
-    'PHPSESSID' => 'bpp055o2sjou9jv124fb95pum2'
-]
-
-$_SESSION = [
-    '__flash' => []
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/search'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=50b9c3317635e1536f23c1354300042ae4c9b7691d5c28e7a99fec0c49872104a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B29%2C%22nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z%22%2C2592000%5D%22%3B%7D; PHPSESSID=bpp055o2sjou9jv124fb95pum2'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '57874'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/113'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/113'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/113/113'
-    'PHP_SELF' => '/rest.php/personal_datas/113'
-    'REQUEST_TIME_FLOAT' => 1462749406.803
-    'REQUEST_TIME' => 1462749406
-]
-2016-05-09 13:46:22 [127.0.0.1][-][dhu4m7j86125do4h0maro4prd1][error][yii\web\HttpException:403] exception 'yii\web\ForbiddenHttpException' with message 'У вас немає прав на дану операцію' in /var/www/rr.com/components/AuthComponent.php:69
-Stack trace:
-#0 /var/www/rr.com/controllers/Personal_dataController.php(52): app\components\AuthComponent->checkPermissionsPrivateData('view', Array)
-#1 [internal function]: app\controllers\Personal_dataController->checkAccess('view', Object(app\models\PersonalData))
-#2 /var/www/rr.com/vendor/yiisoft/yii2/rest/ViewAction.php(29): call_user_func(Array, 'view', Object(app\models\PersonalData))
-#3 [internal function]: yii\rest\ViewAction->run('65')
-#4 /var/www/rr.com/vendor/yiisoft/yii2/base/Action.php(92): call_user_func_array(Array, Array)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\Action->runWithParams(Array)
-#6 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('view', Array)
-#7 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('personal_data/v...', Array)
-#8 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#9 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#10 {main}
-2016-05-09 13:46:22 [127.0.0.1][-][dhu4m7j86125do4h0maro4prd1][info][application] $_GET = [
-    'id' => '65'
-]
-
-$_COOKIE = [
-    '_identity' => '569359d69ec9a9804f06032bfb9a5e698947557bb7688f815d1b5706d19f7448a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[8,\"LTrS-nd6GOp4NAuWsqLPMGRmTXyhnRoR\",2592000]\";}'
-    'PHPSESSID' => 'dhu4m7j86125do4h0maro4prd1'
-]
-
-$_SESSION = [
-    '__flash' => []
-    '__id' => 8
-    'role' => 'user'
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/index'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=569359d69ec9a9804f06032bfb9a5e698947557bb7688f815d1b5706d19f7448a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B8%2C%22LTrS-nd6GOp4NAuWsqLPMGRmTXyhnRoR%22%2C2592000%5D%22%3B%7D; PHPSESSID=dhu4m7j86125do4h0maro4prd1'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '53554'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/65'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/65'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/65/65'
-    'PHP_SELF' => '/rest.php/personal_datas/65'
-    'REQUEST_TIME_FLOAT' => 1462801582.779
-    'REQUEST_TIME' => 1462801582
-]
-2016-05-09 13:46:22 [127.0.0.1][-][dhu4m7j86125do4h0maro4prd1][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
-
-in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
-
-Stack trace:
-#0 [internal function]: PDO->__sleep()
-#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
-#2 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
-#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
-#4 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
-#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\ForbiddenHttpException))
-#7 {main}
-2016-05-09 13:46:22 [127.0.0.1][-][dhu4m7j86125do4h0maro4prd1][info][application] $_GET = [
-    'id' => '65'
-]
-
-$_COOKIE = [
-    '_identity' => '569359d69ec9a9804f06032bfb9a5e698947557bb7688f815d1b5706d19f7448a:2:{i:0;s:9:\"_identity\";i:1;s:46:\"[8,\"LTrS-nd6GOp4NAuWsqLPMGRmTXyhnRoR\",2592000]\";}'
-    'PHPSESSID' => 'dhu4m7j86125do4h0maro4prd1'
-]
-
-$_SESSION = [
-    '__flash' => []
-    '__id' => 8
-    'role' => 'user'
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/index'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=569359d69ec9a9804f06032bfb9a5e698947557bb7688f815d1b5706d19f7448a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B8%2C%22LTrS-nd6GOp4NAuWsqLPMGRmTXyhnRoR%22%2C2592000%5D%22%3B%7D; PHPSESSID=dhu4m7j86125do4h0maro4prd1'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '53554'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/65'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/65'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/65/65'
-    'PHP_SELF' => '/rest.php/personal_datas/65'
-    'REQUEST_TIME_FLOAT' => 1462801582.779
-    'REQUEST_TIME' => 1462801582
-]
-2016-05-09 13:46:33 [127.0.0.1][-][dhu4m7j86125do4h0maro4prd1][error][yii\web\HttpException:403] exception 'yii\web\ForbiddenHttpException' with message 'У вас немає прав на дану операцію' in /var/www/rr.com/components/AuthComponent.php:69
-Stack trace:
-#0 /var/www/rr.com/controllers/Personal_dataController.php(52): app\components\AuthComponent->checkPermissionsPrivateData('view', Array)
-#1 [internal function]: app\controllers\Personal_dataController->checkAccess('view', Object(app\models\PersonalData))
-#2 /var/www/rr.com/vendor/yiisoft/yii2/rest/ViewAction.php(29): call_user_func(Array, 'view', Object(app\models\PersonalData))
-#3 [internal function]: yii\rest\ViewAction->run('116')
-#4 /var/www/rr.com/vendor/yiisoft/yii2/base/Action.php(92): call_user_func_array(Array, Array)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/Controller.php(151): yii\base\Action->runWithParams(Array)
-#6 /var/www/rr.com/vendor/yiisoft/yii2/base/Module.php(455): yii\base\Controller->runAction('view', Array)
-#7 /var/www/rr.com/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('personal_data/v...', Array)
-#8 /var/www/rr.com/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
-#9 /var/www/rr.com/web/rest.php(13): yii\base\Application->run()
-#10 {main}
-2016-05-09 13:46:33 [127.0.0.1][-][dhu4m7j86125do4h0maro4prd1][info][application] $_GET = [
-    'id' => '116'
-]
-
-$_COOKIE = [
-    '_identity' => '0c9a045c1b9fcf77ca1b617c55af8e4b8f190581baa7b38a3ac1aa430db0fb73a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[38,\"mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY\",2592000]\";}'
-    'PHPSESSID' => 'dhu4m7j86125do4h0maro4prd1'
-]
-
-$_SESSION = [
-    '__flash' => []
-    '__id' => 38
-    'role' => 'commissioner'
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/index'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=0c9a045c1b9fcf77ca1b617c55af8e4b8f190581baa7b38a3ac1aa430db0fb73a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B38%2C%22mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY%22%2C2592000%5D%22%3B%7D; PHPSESSID=dhu4m7j86125do4h0maro4prd1'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '53594'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/116'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/116'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/116/116'
-    'PHP_SELF' => '/rest.php/personal_datas/116'
-    'REQUEST_TIME_FLOAT' => 1462801593.412
-    'REQUEST_TIME' => 1462801593
-]
-2016-05-09 13:46:33 [127.0.0.1][-][dhu4m7j86125do4h0maro4prd1][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: Exception 'PDOException' with message 'You cannot serialize or unserialize PDO instances' 
-
-in /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php:58
-
-Stack trace:
-#0 [internal function]: PDO->__sleep()
-#1 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(58): serialize(Array)
-#2 /var/www/rr.com/vendor/yiisoft/yii2-debug/LogTarget.php(112): yii\debug\LogTarget->export(Array)
-#3 /var/www/rr.com/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\debug\LogTarget->collect(Array, true)
-#4 /var/www/rr.com/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
-#5 /var/www/rr.com/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
-#6 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\ForbiddenHttpException))
-#7 {main}
-2016-05-09 13:46:33 [127.0.0.1][-][dhu4m7j86125do4h0maro4prd1][info][application] $_GET = [
-    'id' => '116'
-]
-
-$_COOKIE = [
-    '_identity' => '0c9a045c1b9fcf77ca1b617c55af8e4b8f190581baa7b38a3ac1aa430db0fb73a:2:{i:0;s:9:\"_identity\";i:1;s:47:\"[38,\"mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY\",2592000]\";}'
-    'PHPSESSID' => 'dhu4m7j86125do4h0maro4prd1'
-]
-
-$_SESSION = [
-    '__flash' => []
-    '__id' => 38
-    'role' => 'commissioner'
-]
-
-$_SERVER = [
-    'proto' => 'http'
-    'HTTP_HOST' => 'rr.com'
-    'HTTP_CONNECTION' => 'keep-alive'
-    'HTTP_ACCEPT' => 'application/json, text/plain, */*'
-    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
-    'HTTP_REFERER' => 'http://rr.com/resource/index'
-    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
-    'HTTP_ACCEPT_LANGUAGE' => 'uk-UA,uk;q=0.8,ru;q=0.6,en-US;q=0.4,en;q=0.2'
-    'HTTP_COOKIE' => '_identity=0c9a045c1b9fcf77ca1b617c55af8e4b8f190581baa7b38a3ac1aa430db0fb73a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A47%3A%22%5B38%2C%22mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY%22%2C2592000%5D%22%3B%7D; PHPSESSID=dhu4m7j86125do4h0maro4prd1'
-    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    'SERVER_SIGNATURE' => ''
-    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
-    'SERVER_NAME' => 'rr.com'
-    'SERVER_ADDR' => '127.0.0.1'
-    'SERVER_PORT' => '80'
-    'REMOTE_ADDR' => '127.0.0.1'
-    'DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'REQUEST_SCHEME' => 'http'
-    'CONTEXT_PREFIX' => ''
-    'CONTEXT_DOCUMENT_ROOT' => '/var/www/rr.com/web'
-    'SERVER_ADMIN' => 'admin@example.com'
-    'SCRIPT_FILENAME' => '/var/www/rr.com/web/rest.php'
-    'REMOTE_PORT' => '53594'
-    'GATEWAY_INTERFACE' => 'CGI/1.1'
-    'SERVER_PROTOCOL' => 'HTTP/1.1'
-    'REQUEST_METHOD' => 'GET'
-    'QUERY_STRING' => ''
-    'REQUEST_URI' => '/rest.php/personal_datas/116'
-    'SCRIPT_NAME' => '/rest.php'
-    'PATH_INFO' => '/personal_datas/116'
-    'PATH_TRANSLATED' => 'redirect:/#/personal_datas/116/116'
-    'PHP_SELF' => '/rest.php/personal_datas/116'
-    'REQUEST_TIME_FLOAT' => 1462801593.412
-    'REQUEST_TIME' => 1462801593
+    'PATH_INFO' => '/resource_types'
+    'PATH_TRANSLATED' => 'redirect:/#/resource_types'
+    'PHP_SELF' => '/rest.php/resource_types'
+    'REQUEST_TIME_FLOAT' => 1462730805.141
+    'REQUEST_TIME' => 1462730805
+    'argv' => []
+    'argc' => 0
 ]

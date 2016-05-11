@@ -101,9 +101,9 @@
                     $scope.resources = data.data;
                 });
             //Load resource class
-            RestService.getData(constant.resource_classesQuery)
+            RestService.getData(constant.resource_typesQuery)
                 .then(function(data){
-                    $scope.resource_classes = data.data;
+                    $scope.resource_types = data.data;
                 });
             
             //MAIN HASH REQUEST FOR RESOURCE

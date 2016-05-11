@@ -120,7 +120,7 @@ class ResourceController extends AppController
 
 		$owner_name = 'народ України (Український народ)';
 
-		$resource_class = 'природний ресурс';
+		$resource_type = 'природний ресурс';
 		$resource_subclass = ResourceClass::findOne($resource->class_id)->name;
 		$creation_date = $resource->date;
 
@@ -184,7 +184,7 @@ class ResourceController extends AppController
 
 		$tableFields = [
 			'Найменування об’єкту' => $resource->name,
-			'Клас об’єкту' => $resource_class,
+			'Клас об’єкту' => $resource_type,
 			'Підклас об’єкту' => $resource_subclass,
 			'Власник об’єкту' => $owner_name,
 			'Географічні координати кутів (вершин) об’єкту у форматі ГГ°ММ\'СС,СС". ' => $coordinates,

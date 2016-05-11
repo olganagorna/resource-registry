@@ -157,13 +157,13 @@
                             angular.copy($scope.personal_data, oldRegistrarData);
                     });
 
-                    RestService.getData(constant.resource_classesQuery)
+                    RestService.getData(constant.resource_typesQuery)
                         .then(function(data){
-                            $scope.resource_classes = data.data;
+                            $scope.resource_types = data.data;
                             $scope.resource.class_id = '';
                         })
                         .then(function(){
-                            RestService.getData(constant.resource_classesQuery + '/search?name=' + $scope.resource.class)
+                            RestService.getData(constant.resource_typesQuery + '/search?name=' + $scope.resource.class)
                                 .then(function(data){
                                     var classObj = data.data;
                                     $scope.resource.class_id = classObj[0].class_id;

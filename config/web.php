@@ -30,7 +30,7 @@ $config = [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => ['user', 'resource', 'user_role_view',
-                        'resource_class', 'resource_attribute',
+                        'resource_type', 'resource_attribute',
                         'personal_data', 'parameter',
                         'operation_type', 'operation', 'attribute_class_view', 'search',
                         'community', 'request'

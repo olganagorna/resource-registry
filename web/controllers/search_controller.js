@@ -13,9 +13,9 @@
 
 
         //Load resource classes
-        RestService.getData(constant.resource_classesQuery)
+        RestService.getData(constant.resource_typesQuery)
             .then(function(data){
-                $rootScope.resource_classes = data.data;
+                $rootScope.resource_types = data.data;
             });
 
             console.log('searchcontroller');
