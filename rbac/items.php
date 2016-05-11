@@ -18,6 +18,9 @@ return [
     'resource/search' => [
         'type' => 2,
     ],
+    'resource/create' => [
+        'type' => 2,
+    ],
     'user/userdata' => [
         'type' => 2,
     ],
@@ -35,6 +38,7 @@ return [
             'resource/getregisterkey',
             'resource/search',
             'user/userdata',
+            'resource/create',
         ],
     ],
     'commissioner' => [

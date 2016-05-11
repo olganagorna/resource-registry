@@ -34,7 +34,9 @@ class RbacController extends Controller
         $getRgKey = $auth->createPermission('resource/getregisterkey'); 
         $auth->add($getRgKey); 
         $resSearch = $auth->createPermission('resource/search'); 
-        $auth->add($resSearch); 
+        $auth->add($resSearch);
+        $resCreate = $auth->createPermission('resource/create'); 
+        $auth->add($resCreate); 
         $userdata = $auth->createPermission('user/userdata'); 
         $auth->add($userdata);
 
@@ -65,6 +67,7 @@ class RbacController extends Controller
         $auth->addChild($registrar, $getRgKey);
         $auth->addChild($registrar, $resSearch);
         $auth->addChild($registrar, $userdata);
+        $auth->addChild($registrar, $resCreate);
         
         /*// commissioner
         $auth->addChild($commissioner, $userdata);
