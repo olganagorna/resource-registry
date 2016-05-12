@@ -1,20 +1,19 @@
-<ul class="pagination pagination-sm">
-    <li ng-if="list_users._links.first">
-        <a href="" ng-click="setPage(list_users._links.first.href, 'first')">&laquo;</a>
+<ul class="pagination pagination-sm" ng-if="xmlData._meta.pageCount > 1">
+    <li ng-if="xmlData._links.first">
+        <a href="" ng-click="setPage(xmlData._links.first.href, 'first')">&laquo;</a>
     </li>
-    <li ng-if="list_users._links.prev">
-        <a href="" ng-click="setPage(list_users._links.prev.href, 'prev')" >‹</a>
+    <li ng-if="xmlData._links.prev">
+        <a href="" ng-click="setPage(xmlData._links.prev.href, 'prev')" >‹</a>
     </li>
-
-    <li ng-repeat="page in getPages(list_users._meta.pageCount) track by $index"
+    <li ng-repeat="page in getPages() track by $index"
         ng-click="switchPage(page)" ng-class="{active: page == currentPage}"
         ng-if="page">
         <span>{{page}}</span>
     </li>
-    <li ng-if="list_users._links.next">
-        <a href="" ng-click="setPage(list_users._links.next.href, 'next')" >›</a>
+    <li ng-if="xmlData._links.next">
+        <a href="" ng-click="setPage(xmlData._links.next.href, 'next')" >›</a>
     </li>
-    <li ng-if="list_users._links.last">
-        <a href="" ng-click="setPage(list_users._links.last.href, 'last')">&raquo;</a>
+    <li ng-if="xmlData._links.last">
+        <a href="" ng-click="setPage(xmlData._links.last.href, 'last')">&raquo;</a>
     </li>
 </ul>

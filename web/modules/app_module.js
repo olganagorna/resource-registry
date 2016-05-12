@@ -5,16 +5,30 @@
     angular
         .module('restApp', ['ngRoute', 'restApp.map', 'ngCookies', 'calendar', 'datePicker', 'ui.bootstrap'])
         .config(config)
-        .run(run);
+        .run(run)
+        .factory('AuthInterceptor', function ($rootScope, $q,
+                                      AUTH_EVENTS) {
+  return {
+    responseError: function (response) { 
+      $rootScope.$broadcast({
+        401: AUTH_EVENTS.notAuthenticated,
+        403: AUTH_EVENTS.notAuthorized,
+        419: AUTH_EVENTS.sessionTimeout,
+        440: AUTH_EVENTS.sessionTimeout
+      }[response.status], response);
+      return $q.reject(response);
+    }
+  };
+});
 
     config.$inject = ['$locationProvider', '$routeProvider'];
 
-    function config($locationProvider, $routeProvider) {
+    function config($locationProvider, $routeProvider, $httpProvider) {
 
     $routeProvider
-        .when('/site/index', {
+        .when('/site/admin', {
             controller: 'index',
-            templateUrl: 'views/site/index.html'
+            templateUrl: 'views/site/admin.html'
         })
         .when('/resource/resource', {
             templateUrl: 'views/resource/resource.html'
@@ -63,10 +77,15 @@
             templateUrl: 'views/site/registration.html',
             controllerAs: 'vm'
         })
-	   .when('/site/home', {
+	.when('/resource/type', {
             controller: 'IndexCtrl',
             controllerAs: 'pp',
-            templateUrl: 'views/site/personal_page.html'
+            templateUrl: 'views/resource/resource_types.html'
+        })
+        .when('/resource/type/attributes', {
+            // controller: 'IndexCtrl',
+            // controllerAs: 'pp',
+            templateUrl: 'views/resource/resource_type_attributes.html'
         })
         .when('/site/users', {
             controller: 'UsersController',
@@ -100,12 +119,11 @@
         .otherwise({
             redirectTo: '/site/login'
         });
-
         $locationProvider.html5Mode(true).hashPrefix('!');
     }
 
     run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];
-    function run($rootScope, $location, $cookieStore, $http){
+    function run($rootScope, $location, $cookieStore, $http) {
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             var test = localStorage.getItem('username');

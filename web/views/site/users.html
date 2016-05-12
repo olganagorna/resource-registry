@@ -2,76 +2,88 @@
 	<div class="container well">
 		<div class="row">
 			<div class="col-md-12">
+				<h4>Пошук</h4>
 				<ng-form>
-					<span>Пошук по імені користувача &nbsp</span>
+					<span>Пошук користувача (по прізвищу, імені та ролі) &nbsp</span>
 					<input type="text" class="community-search" ng-model="userSearch" ng-enter="searchUser(userSearch)"/>
 					<input class="btn btn-primary" type="submit" value="Пошук" ng-click="searchUser(userSearch)"></input>
 					<input class="btn btn-primary" type="submit" value="Додати користувача" ng-click="addUser(userAdd)"></input>
 				</ng-form>
 			</div>
-		</div>
-	</div>
-	<div class="col-md-12">
-		<div class="md-list-group">
-			<ul class="list-group">
-				<li class="row list-group-item">
-		            <div class="col-md-3 text-center">
-		            	<h4>Логін</h4>
-		            </div>
-		            <div class="col-md-3 text-center">
-		            	<h4>Прізвище та ім'я<button class="glyphicon glyphicon-arrow-down" ng-click="sortName()"></button>
-		            	</h4>
-		            </div>
-		            <select ng-model="roleFilter" ng-change="filterRole(roleFilter)" class="col-md-3">
-						<option value="">Всі користувачі</option>
-		            	<option value="admin">Адміністратор</option>
-		            	<option value="registrar">Реєстратор</option>
-		            	<option value="user">Користувач</option>
-		            	<option value="commissioner">Коміссіонер</option>
-		            </select>
-		            <div class="col-md-3 text-center">
-		            	<h4>Дії</h4>
-		            </div>
-		        </li>
-			    <li class="list-group-item shadow-z-1 md-list row" ng-repeat="data in list_users.items">
-			        <div class="col-md-3 text-center res_vert_allight_list">{{data.username}}</div>
-			        <a class="col-md-3 text-center res_vert_allight_list">{{data.last_name}} {{data.first_name}}</a>
-			        <div class="col-md-3 text-center res_vert_allight_list">
-			           	<select id="user-role-selector" ng-model="changeRoleId" ng-change="changeRole(changeRoleId, data.role_id)">
-			        		<option value="" selected style="display: none !important;">{{data.role_name}}</option> 
-			        		<!-- <option ng-repeat="item in filterRole.items" value=""></option> -->
-			        	</select>
-			        </div>			
-				    <div class="btn-group">
-	                    <a class="btn btn-material-grey-200 text-center"
-	                       ng-click="user.del(user.user_id)">
-	                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-	                    </a>
-	                </div>		
-			    </li>
-			</ul>
-		</div>
-		<div class="col-md-12 center" >
-			<ul class="pagination pagination-sm">
-	            <li ng-if="list_users._links.first">
-	                <a href="" ng-click="setPage(list_users._links.first.href, 'first')">&laquo;</a>
-	            </li>
-	            <li ng-if="list_users._links.prev">
-	                <a href="" ng-click="setPage(list_users._links.prev.href, 'prev')" >‹</a>
-	            </li>
+			<div class="col-md-12">
+				<ng-form>
+					<ul class="list-group">
+						<li class="list-group-item shadow-z-1 md-list row text-left res_vert_allight_list">
+				            <div class="col-md-3">
+				            	<h4>Логін</h4>
+				            </div>
+				            <div class="col-md-3">
+				            	<h4>Прізвище та ім'я</h4>
+				            </div>
+				            <div class="col-md-3">
+					            <h4>Роль користувача</h4>
+				            </div>
+				            <div class="col-md-2">
+				            	<h4>Дії</h4>
+				            </div>
+				        </li>
+				        <li class="list-group-item shadow-z-1 md-list row">
+				            <div class="col-md-3 text-left res_vert_allight_list">
+				            	<h4></h4>
+				            </div>
+				            <div class="col-md-3 text-left res_vert_allight_list">
+				            	<button ng-click="sortName()"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></button>
+				            </div>
+				            <div class="col-md-3 text-left res_vert_allight_list">
+					            <select ng-model="roleFilter" ng-change="filterRole(roleFilter)">
+									<option value="">Всі користувачі</option>
+					            	<option value="admin">Адміністратор</option>
+					            	<option value="registrar">Реєстратор</option>
+					            	<option value="user">Користувач</option>
+					            	<option value="commissioner">Коміссіонер</option>
+					            </select>
+				            </div>
+				            <div class="col-md-2 text-left res_vert_allight_list">
+				            	<h4></h4>
+				            </div>
+				        </li>
+					    <li class="list-group-item shadow-z-1 md-list row" ng-repeat="data in xmlData.items">
+					        <div class="col-md-3 text-left res_vert_allight_list">{{data.username}}</div>
+					        <div class="col-md-3 text-left res_vert_allight_list">{{data.last_name}} {{data.first_name}}</div>
+					        <div class="col-md-3 text-left res_vert_allight_list">
+					           	<select id="user-role-selector" ng-model="changeRoleId" ng-change="changeRole(changeRoleId, data.user_id)">
+					        		<option value="{{item.role_id}}" selected hidden>{{data.role_name}}</option>
+					        		<option ng-repeat="item in roleFound" value="{{item.role_id}}" ng-hide="data.role_name == item.role_name">{{item.role_name}}</option>
+					        	</select>
+					        </div>
+					        <!-- <div class="col-md-2">
+					        	<button type="button" class="btn btn-primary">Редагувати</button>
+					        </div>
+						    <div class="col-md-2">
+							    <button type="button" class="btn btn-primary" ng-show="{{data.activated == 0}}" ng-click="changeActivationStatus(1, data.user_id)" id="act-button-{{$index}}">Активувати</button>
+				                <button type="button" class="btn btn-primary" ng-show="{{data.activated == 1}}" ng-click="changeActivationStatus(0, data.user_id)"  id="deact-button-{{$index}}">Деактивувати</button> 
+			                </div> -->
 
-	            <li ng-repeat="page in getPages(list_users._meta.pageCount) track by $index"
-	                ng-click="switchPage(page)" ng-class="{active: page == currentPage}"
-	                ng-if="page">
-	                <span>{{page}}</span>
-	            </li>
-	            <li ng-if="list_users._links.next">
-	                <a href="" ng-click="setPage(list_users._links.next.href, 'next')" >›</a>
-	            </li>
-	            <li ng-if="list_users._links.last">
-	                <a href="" ng-click="setPage(list_users._links.last.href, 'last')">&raquo;</a>
-	            </li>
-	        </ul>
+			                <div class="btn-group text-center">
+                            	<a class="btn btn-primary ng-scope" title="Редагувати" ng-if="currentUser.role === 'registrar' &amp;&amp; currentUser.isLogined">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            	</a>
+                            	<a class="btn btn-material-red-400 text-center ng-scope" title="Деактивувати" ng-if="currentUser.role === 'registrar' &amp;&amp; currentUser.isLogined" ng-show="{{data.activated == 1}}" ng-click="changeActivationStatus(0, data.user_id)" id="deact-button-{{$index}}">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            	</a>
+                            	<a class="btn btn-material-grey-500 text-center ng-scope" title="Активувати" ng-if="currentUser.role === 'registrar' &amp;&amp; currentUser.isLogined" ng-show="{{data.activated == 0}}" ng-click="changeActivationStatus(1, data.user_id)"  id="act-button-{{$index}}">
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                            	</a>
+                        	</div>
+					    </li>
+					</ul>
+				<ng-form>
+			</div> 
+			<div class="col-md-12 center" >
+				<ng-form>
+					<pagination-directive></pagination-directive>
+			    </ng-form>    
+			</div>	       
 	    </div>
 	</div>
 </div>

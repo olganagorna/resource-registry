@@ -12,6 +12,7 @@ class ResourceController extends AppController
 {
 	public $modelClass = 'app\models\Resource';
 	
+
 	public function actionSearch()
 	{
 		$get = \Yii::$app->request->get();
@@ -284,9 +285,4 @@ class ResourceController extends AppController
 		$xmlWriter->save("php://output");
 	}
 
-
-	/*public function checkAccess($action, $model = null, $params = [])
-	{
-		\Yii::$app->authcomponent->checkPermissions($action,\Yii::$app->authcomponent->write);
-	}*/
 }

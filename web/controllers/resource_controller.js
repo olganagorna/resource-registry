@@ -44,7 +44,7 @@
             $scope.formatCoords = function(coords){
                 return  CoordsService.formatCoords (coords);
             };
-
+            
 
             $rootScope.$watch('mapOptions.created', function(val) {
                 if (val) {

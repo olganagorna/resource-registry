@@ -1,34 +1,13 @@
 <?php
 namespace app\controllers;
 
-//use yii\rest\ActiveController;
-use yii\data\ActiveDataProvider;
+use app\controllers\AppController;
 use app\models\User;
 use app\models\Community;
 
 class CommunityController extends AppController
 {
 	public $modelClass = 'app\models\Community';
-
-        public function beforeAction($action)
-    {
-        if (parent::beforeAction($action)) {
-            if (!\Yii::$app->user->can($action->id)) {
-                throw new \yii\web\ForbiddenHttpException('Access denied');
-                $module =Yii::$app->controller->module->id;
-                        /*$action =Yii::$app->controller->action->id;
-                        $controller=Yii::$app->controller->id;
-                        $route="$controller/$action";
-                        $post =Yii::$app->request->post();
-                        if(\Yii::$app->user->can($route)){
-                                return true;
-*/
-            }
-            return true;
-        } else {
-            return false;
-        }
-    }
 	
 	public function actionShow()
 	{
@@ -37,24 +16,16 @@ class CommunityController extends AppController
 		
 		if(isset($request['value'])){
 			$community->select(['name', 'prefix', 'notes'])
-			->andFilterWhere(['like', 'name', $request['value']])
+            ->andFilterWhere(['like', 'name', $request['value']])
             ->orderBy('name')
-			->asArray();	
+            ->asArray();	
 		}else{
 			$community->select(['name', 'prefix', 'notes'])
             ->orderBy('name')
 			->asArray();
 		}
 
-	    $dataProvider = new ActiveDataProvider([
-			'query' => $community,
-			'pagination' => [
-				'pageSize' => 4,
-				'pageParam' => 'page',
-			],
-		]);
-		
-		return $dataProvider;
+        return self::buildPagination($community);
 	}
 
 	public function actionAddcomm()

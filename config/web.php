@@ -51,7 +51,9 @@ $config = [
                     'POST getuser' => 'getuser',
                     'POST addcomm' => 'addcomm',
                     'GET userdata' => 'userdata',
-                    'POST {id}/changerole' => 'changerole'
+                    'GET changerole' => 'changerole',
+                    'GET changeactivationstatus' => 'changeactivationstatus',
+                    'GET getrole' => 'getrole'
                     ],
                 ],
             ],
