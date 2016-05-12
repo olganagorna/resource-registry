@@ -21,6 +21,7 @@ class RbacController extends Controller
         $admin =        $auth->createRole('admin');
  
         // Create simple, based on controller and action{$NAME} permissions
+        $showrequest = $auth->createPermission('showrequest');
         // Add permissions in Yii::$app->authManager
 
         $show = $auth->createPermission('community/show'); 

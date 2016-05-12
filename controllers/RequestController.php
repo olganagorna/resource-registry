@@ -20,6 +20,29 @@ class RequestController extends ActiveController
     public $modelClass = 'app\models\Request';
     public $serializer = [ 'class' => 'yii\rest\Serializer', 'collectionEnvelope' => 'items'];
 
+    /**
+     * Access provider
+     */
+    // public function beforeAction($action)
+    // {
+    //     if (parent::beforeAction($action)) {
+    //         if (!\Yii::$app->user->can($action->id)) {
+    //             throw new \yii\web\ForbiddenHttpException('Access denied');
+    //             $module =Yii::$app->controller->module->id;
+    //                     $action =Yii::$app->controller->action->id;
+    //                     $controller=Yii::$app->controller->id;
+    //                     $route="$controller/$action";
+    //                     $post =Yii::$app->request->post();
+    //                     if(\Yii::$app->user->can($route)){
+    //                             return true;
+
+    //         }
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
@@ -32,21 +55,26 @@ class RequestController extends ActiveController
         ]);
     }
 
-
-
     public function actionShowrequest()
     {   
         $request= \Yii::$app->request->get();
         $info = Request::find();
-        
+        // request value is used for search options 
+            // for user search by registrar
+            // for registrar search by user
         if(isset($request['value'])){
-            $info->select(['type', 'sender', 'create_time', 'reciever', 'complete_time', 'status'])
-            ->andFilterWhere(['like', 'type', $info['value']])
-            ->orderBy('type')
+            $info->select(['type', 'u2.username as username_s', 'create_time', 'user.username as username_r', 'complete_time', 'status'])
+            ->innerJoinWith('sender')
+            ->innerJoinWith('reciever')
+            ->andFilterWhere(['like', 'username_s', $info['value']])
+            ->orderBy('status')
             ->asArray();    
+        // ordinary list show
         }else{
-            $info->select(['type', 'sender', 'create_time', 'reciever', 'complete_time', 'status'])
-            ->orderBy('create_time')
+            $info->select(['type', 'u2.username as username_s', 'create_time', 'user.username as username_r', 'complete_time', 'status'])
+            ->innerJoinWith('sender')
+            ->innerJoinWith('reciever')
+            ->orderBy('status')
             ->asArray();
         }
 
@@ -59,6 +87,27 @@ class RequestController extends ActiveController
         ]);
         
         return $dataProvider;
+    }
+
+    public function actionAddreq()
+    {
+        // Add request action. Variables should be changed
+        $requestModel = new Request();
+        $type = '2';
+        $sender = '22';
+        $reciever = '31';
+        $status = '2';
+
+        $requestModel->type = $type;
+        $requestModel->sender = $sender;
+        $requestModel->reciever = $reciever;
+        $requestModel->status = $status;
+        if (!$requestModel->save()){
+            foreach($requestModel->errors as $key){
+                $errorMessage .= $key[0];
+            }
+            throw new \yii\web\HttpException(422,$errorMessage);
+        }
     }
 
     /**

@@ -3,21 +3,25 @@
 
     angular
         .module('restApp')
-        .controller('Requests', Requests);
+        .controller('RequestsController', RequestsController);
 
-    Requests.$inject = ['$scope', '$http', 'PaginationService', 'constant', '$location'];
-    function Requests($scope, $http, PaginationService, constant, $location) {
+    RequestsController.$inject = ['$scope', '$http', 'PaginationService', 'constant'];
+    function RequestsController($scope, $http, PaginationService, constant, $location) {
 
         $scope.requests = [];
         $scope.searchingVal;
+
         (function(){
             return $http.get('rest.php/requests/showrequest')
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
-                $scope.requests = data.data;console.log("lets start");
+                console.log("lets start");
+                console.log(typeof data.data);
+                $scope.requests = data.data;
+                $scope.requests.create_time = Date(data.data.create_time);
             }
-            function errorHandler(data){
+            function errorHandler(result){
                 console.log("Can't render list!");
             }
         }());
@@ -37,47 +41,30 @@
             }
         };
 
-        //Pagination start
+        // $scope.addRequest = function() {
+        //   // add new community controller
+        //   var data = {
+        //     // type: $scope.requests.type,
+        //     // sender: $scope.requests.sender,
+        //     // reciever: $scope.requests.reciever,
+        //     // status: $scope.requests.status
+        //     type: '2',
+        //     sender: '25',
+        //     reciever: '31',
+        //     status: '2'
+        //   };
 
-        $scope.currentPage = PaginationService.currentPage;
-
-        $scope.getPages = function(pageCount) {
-            return PaginationService.getPages(pageCount);
-        };
-
-        $scope.switchPage = function(index){
-            if($scope.request){
-                console.log("first");
-                PaginationService.switchPage(index, constant.communitiesQuery + '/search?' + buildQuery($scope.request)+ '&')
-                    .then(function(data){
-                        $scope.requests = data.data;
-                        $scope.currentPage = PaginationService.currentPage;
-                });
-            } else if ($scope.searchingVal) {
-                 console.log(constant.perPage);
-                PaginationService.switchPage(index, "requests/show?value=" + $scope.searchingVal + "&page=" + index + "&per-page=" + constant.perPage)
-                    .then(function(data){
-                        $scope.requests = data.data;
-                        $scope.currentPage = PaginationService.currentPage;
-                });
-            } else {
-                 console.log("third");
-                PaginationService.switchPage(index, constant.communitiesQuery + "/show" + '?')
-                    .then(function(data){
-                        $scope.requests = data.data;
-                        $scope.currentPage = PaginationService.currentPage;
-                });
-            }
-        };
-
-        $scope.switchPage($scope.currentPage);
-
-        $scope.setPage = function(pageLink, pageType){
-            PaginationService.setPage(pageLink, pageType, $scope.requests._meta.pageCount)
-                .then(function(data){
-                    $scope.requests = data.data;
-                    $scope.currentPage = PaginationService.currentPage;
-            });
-        };
+        //   (function() {
+        //     var post = $http.post('rest.php/requests/addreq', JSON.stringify(data))
+        //       .then(successHandler)
+        //       .catch(errorHandler);
+        //     function successHandler(result) {
+        //       console.log('Реєстрація пройшла успішно!');
+        //     }
+        //     function errorHandler(result){
+        //       console.log("Error:"+result);
+        //     }
+        //   })();  
+        // }  
     }
 })();

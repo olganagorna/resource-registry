@@ -44,6 +44,7 @@ $config = [
                     'GET logout' => 'logout',
                     'GET show' => 'show',
                     'GET showrequest' => 'showrequest',
+                    'GET addreq' => 'addreq',
                     'GET {id}/export' => 'export',
                     'GET getregisterkey' => 'getregisterkey',
                     'GET getresourcebycoordinate' => 'getresourcebycoordinate',
