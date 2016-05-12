@@ -3,8 +3,8 @@
     <div ng-controller="SearchController">
     <div id="top">
     <div class="col-sm-12 main-resource-class-btn">
-azdadvsbbf
-                <div class="col-sm-2 class-div-highlight" ng-repeat="data in classes"  ng-repeat="elem in classes"
+
+                <div class="col-sm-2 class-div-highlight" ng-repeat="data in xmlData.items"  ng-repeat="elem in classes"
                      ng-mouseover="elem.over=true" ng-mouseleave="elem.over=false" ng-click="select(elem)">
                         <div class="class-div-highlight-allight">
                         <div class="class-div-highlight-margin" ng-class="{blink: elem.over, highlight:isSelected(elem)}">

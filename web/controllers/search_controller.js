@@ -10,15 +10,29 @@
 
     function SearchController($scope, $http, SearchService, $rootScope, RestService, constant, PaginationService) {
         $scope.request = {};
+        $scope.xmlData = [];
+
+        ($scope.getData = function() {
+            return $http.get('rest.php/resource_classes')
+                .then(successHandler)
+                .catch(errorHandler);
+            function successHandler(result) {
+                $scope.xmlData = result.data;
+            }
+            function errorHandler(result){
+                alert(result.data[0].message);
+                console.log(result.data[0].message);
+            }
+        })();
 
 
         //Load resource classes
-        RestService.getData(constant.resource_typesQuery)
-            .then(function(data){
-                $rootScope.resource_types = data.data;
-            });
+        // RestService.getData(constant.resource_typesQuery)
+        //     .then(function(data){
+        //         $rootScope.resource_types = data.data;
+        //     });
 
-            console.log('searchcontroller');
+        //     console.log('searchcontroller');
 
 
         //Pagination start
