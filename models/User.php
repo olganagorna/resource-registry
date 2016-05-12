@@ -34,7 +34,8 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             'id',
             'username',
-            'user_data_id'
+            'user_data_id',
+            'role_id'
         ];
     }
     public static function findIdentity($id)

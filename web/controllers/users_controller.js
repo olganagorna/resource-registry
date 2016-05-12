@@ -20,16 +20,17 @@
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
-                console.log(data);
                 $scope.list_users = data.data;
-                console.log(data.data);
+                console.log($scope.list_users);
             }
             function errorHandler(data){
                 alert(data.data[0].message);
                 console.log(data.data[0].message);
             }
         })();
-        
+
+
+
         //Pagination start
         $scope.currentPage = PaginationService.currentPage;
         console.log("current page is " + PaginationService.currentPage); //returns 1
@@ -75,7 +76,7 @@
         // filtering by role
         $scope.filterRole = function(role_name) {
             $scope.filteringDone = role_name;
-            $http.get('http://rr.com/rest.php/users/userdata?value='+ role_name)
+            $http.get('rest.php/users/userdata?value='+ role_name)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
@@ -90,7 +91,7 @@
         $scope.searchUser = function(search_query) {
             $scope.searchingDone = search_query;
             console.log($scope.searchingDone);
-            $http.get('http://rr.com/rest.php/users/userdata?value='+ search_query)
+            $http.get('rest.php/users/userdata?value='+ search_query)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
@@ -111,7 +112,7 @@
                 
             }
             
-            $http.get('http://resource.io/rest.php/users/userdata?sort=' + $scope.sort_order)
+            $http.get('rest.php/users/userdata?sort=' + $scope.sort_order)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
@@ -121,11 +122,29 @@
                 console.log("Can't reload list!");
             }
         };
-        $scope.changeRole = function (changeRoleId, thisUserId) {
+        console.log("->"+$scope.roleFilter+"<-");
+
+        // add new user
+        // $scope.addUser = function(search_query) {
+        //     $scope.searchingDone = search_query;
+        //     console.log($scope.searchingDone);
+        //     $http.get('http://rr.com/rest.php/users/userdata?value='+ search_query)
+        //         .then(successHandler)
+        //         .catch(errorHandler);
+        //     function successHandler(data) {
+        //         $scope.list_users = data.data;
+        //     }
+        //     function errorHandler(data){
+        //         console.log("Can't reload list!");
+        //     }
+        // };
+
+        // change user role
+        $scope.changeRole = function (changeRoleId, userId) {
             var newRole = {};
             newRole.role_id = changeRoleId;
             (function(){
-                var post = $http.post('rest.php/users/'+ thisUserId + "/changerole", JSON.stringify({role_id: changeRoleId}))
+                var post = $http.post('rest.php/users/'+ userId + "/changerole", JSON.stringify({role_id: changeRoleId}))
                     .then(successHandler)
                     .catch(errorHandler);
                 function successHandler(data) {
@@ -140,3 +159,5 @@
     }
 
 })();
+
+

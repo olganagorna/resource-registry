@@ -62,17 +62,20 @@ class Request extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * behavioral timestamp input for create and complete columns
+     */
     public function behaviors()
     {
         return [
             [
                 'class' => TimestampBehavior::className(),
                 'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['create_time', 'complete_time'],
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['create_time'],
                     ActiveRecord::EVENT_BEFORE_UPDATE => ['complete_time'],
                 ],
                 // if you're using datetime instead of UNIX timestamp:
-                'value' => new Expression('NOW()'),
+                // 'value' => new Expression('NOW()'),
             ],
         ];
     }
@@ -93,7 +96,7 @@ class Request extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getReciever0()
+    public function getReciever()
     {
         return $this->hasOne(User::className(), ['user_id' => 'reciever']);
     }
@@ -109,8 +112,10 @@ class Request extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSender0()
+    public function getSender()
     {
-        return $this->hasOne(User::className(), ['user_id' => 'sender']);
+        return $this->hasOne(User::className(), ['user_id' => 'sender'])
+            ->from(User::tableName() . ' u2');  // user table alias as u2, because of ambiguity
+            // ->from(['u2' => User::tableName()]);
     }
 }

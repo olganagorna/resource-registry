@@ -1,15 +1,34 @@
 <?php
 namespace app\controllers;
 
-use yii\rest\ActiveController;
+//use yii\rest\ActiveController;
 use yii\data\ActiveDataProvider;
 use app\models\User;
 use app\models\Community;
 
-class CommunityController extends ActiveController
+class CommunityController extends AppController
 {
 	public $modelClass = 'app\models\Community';
-	public $serializer = [ 'class' => 'yii\rest\Serializer', 'collectionEnvelope' => 'items'];
+
+        public function beforeAction($action)
+    {
+        if (parent::beforeAction($action)) {
+            if (!\Yii::$app->user->can($action->id)) {
+                throw new \yii\web\ForbiddenHttpException('Access denied');
+                $module =Yii::$app->controller->module->id;
+                        /*$action =Yii::$app->controller->action->id;
+                        $controller=Yii::$app->controller->id;
+                        $route="$controller/$action";
+                        $post =Yii::$app->request->post();
+                        if(\Yii::$app->user->can($route)){
+                                return true;
+*/
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
 	
 	public function actionShow()
 	{

@@ -13,8 +13,12 @@
 
             $http.get('rest.php/users/logout')
                 .then(function(response){
-                    var user = angular.fromJson(sessionStorage.getItem('user'));
-                    user.isLogined = false;
+                    var user = {
+                        "username":"",
+                        "role":"guest",
+                        "isLogined":false,
+                        "userDataID":0
+                    };
                     sessionStorage.setItem('user',angular.toJson(user));
                     $location.path('site/login');
                 });
@@ -47,7 +51,6 @@
                     .then(successHandler)
                     .catch(errorHandler);
                 function successHandler(result) {
-                    console.log(result.data);
                     sessionStorage.setItem('user',angular.toJson(result.data));
                     $rootScope.isLogined = true;
                     $location.path('/resource/index');
@@ -55,7 +58,6 @@
                 }
                 function errorHandler(result){
                     alert(result.data[0].message);
-                    console.log(result.data[0].message);
                 }
             };
             vm.send();

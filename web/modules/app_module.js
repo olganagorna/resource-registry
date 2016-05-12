@@ -1,4 +1,4 @@
-(function(){
+    (function(){
 
     'use strict';
 
@@ -94,7 +94,7 @@
             controllerAs: 'comAdd'
         })
         .when('/site/requests', {
-            controller: 'Requests',
+            controller: 'RequestsController',
             templateUrl: 'views/site/requests.html'
         })
         .otherwise({

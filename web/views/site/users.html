@@ -6,7 +6,7 @@
 					<span>Пошук по імені користувача &nbsp</span>
 					<input type="text" class="community-search" ng-model="userSearch" ng-enter="searchUser(userSearch)"/>
 					<input class="btn btn-primary" type="submit" value="Пошук" ng-click="searchUser(userSearch)"></input>
-					<input class="btn btn-primary" type="submit" value="Додати користувача" ng-click="addUser()"></input>
+					<input class="btn btn-primary" type="submit" value="Додати користувача" ng-click="addUser(userAdd)"></input>
 				</ng-form>
 			</div>
 		</div>
@@ -33,18 +33,15 @@
 		            	<h4>Дії</h4>
 		            </div>
 		        </li>
-			    <li class="list-group-item shadow-z-1 md-list row" ng-repeat="data in list_users.items | filter:idFilter">
+			    <li class="list-group-item shadow-z-1 md-list row" ng-repeat="data in list_users.items">
 			        <div class="col-md-3 text-center res_vert_allight_list">{{data.username}}</div>
 			        <a class="col-md-3 text-center res_vert_allight_list">{{data.last_name}} {{data.first_name}}</a>
 			        <div class="col-md-3 text-center res_vert_allight_list">
-			        	<select id="user-role-selector" ng-model="changeRoleId" ng-change="changeRole(changeRoleId, data.user_id)">
-			        		<option value="">{{data.role_name}}</option>
-			        		<option value="1">user</option>
-			        		<option value="2">registrar</option>
-			        		<option value="3">admin</option>
-			        		<option value="4">commissioner</option>
+			           	<select id="user-role-selector" ng-model="changeRoleId" ng-change="changeRole(changeRoleId, data.role_id)">
+			        		<option value="" selected style="display: none !important;">{{data.role_name}}</option> 
+			        		<!-- <option ng-repeat="item in filterRole.items" value=""></option> -->
 			        	</select>
-			        </div>
+			        </div>			
 				    <div class="btn-group">
 	                    <a class="btn btn-material-grey-200 text-center"
 	                       ng-click="user.del(user.user_id)">

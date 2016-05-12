@@ -12,8 +12,9 @@ $config = [
         ],
     ],
     'components' => [
-        'authcomponent' => [
-            'class' => 'app\components\AuthComponent',
+        'authManager' => [
+            'class' => 'yii\rbac\PhpManager',
+            'defaultRoles' => ['user', 'commissioner', 'registrar', 'admin'],
         ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -43,6 +44,7 @@ $config = [
                     'GET logout' => 'logout',
                     'GET show' => 'show',
                     'GET showrequest' => 'showrequest',
+                    'GET addreq' => 'addreq',
                     'GET {id}/export' => 'export',
                     'GET getregisterkey' => 'getregisterkey',
                     'GET getresourcebycoordinate' => 'getresourcebycoordinate',
