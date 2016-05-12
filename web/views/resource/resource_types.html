@@ -12,27 +12,24 @@
                                 </a>
                         </div>
                         <div class="row" >
-                            <div class="col-md-4 text-center"><h4>Ідентифікатор класу slfknsljn</h4></div>
+                            <div class="col-md-4 text-center"><h4>Ідентифікатор класу</h4></div>
                             <div class=" col-md-4 text-center"><h4>Назва класу</h4></div>
                         </div>
                     </li>
                     <li class="list-group-item shadow-z-1 md-list row " style="padding:0px 5px 0px 5px!important;" ng-repeat="data in xmlData.items">
                         <div class="col-md-4 text-center res_vert_allight_list">{{data.class_id}}</div>
                         <div class="col-md-4 text-center res_vert_allight_list">{{data.name}}</div>
-                        <div class="btn-group">
-                            <a class="btn btn-primary ng-scope" href="resource/update/{{data.resource_id}}" title="Редагувати" ng-if="currentUser.role === 'admin' &amp;&amp; currentUser.isLogined">
+                        <div class="btn-group text-center">
+                                <a class="btn btn-primary ng-scope" title="Редагувати" ng-if="currentUser.role === 'admin' &amp;&amp; currentUser.isLogined">
                                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            </a>
-                            <!-- <a class="btn btn-material-grey-200 text-center ng-scope" title="Деактивувати" ng-if="currentUser.role === 'admin' &amp;&amp; currentUser.isLogined" ng-click="types.del(data.class_id)">
-                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                            </a>
-                            </a>
-                            <a class="btn btn-material-grey-200 text-center ng-scope" title="Активувати" ng-if="currentUser.role === 'admin' &amp;&amp; currentUser.isLogined" ng-click="types.del(data.class_id)">
-                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                            </a> -->
-                            <button ng-show="{{data.activation_status == 0}}" ng-click="changeActivationStatus(1, data.class_id)">Активувати</button>
-                            <button ng-show="{{data.activation_status == 1}}" ng-click="changeActivationStatus(0, data.class_id)">Деактивувати</button>
-                        </div>
+                                </a>
+                                <a class="btn btn-material-red-400 text-center ng-scope" title="Деактивувати" ng-if="currentUser.role === 'admin' &amp;&amp; currentUser.isLogined" ng-show="{{data.activation_status == 1}}" ng-click="changeActivationStatus(0, data.class_id)" id="deact-button-{{$index}}">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </a>
+                                <a class="btn btn-material-grey-500 text-center ng-scope" title="Активувати" ng-if="currentUser.role === 'admin' &amp;&amp; currentUser.isLogined" ng-show="{{data.activation_status == 0}}" ng-click="changeActivationStatus(1, data.class_id)"  id="act-button-{{$index}}">
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                </a>
+                            </div>
                     </li>
                 </ul>
             </div>

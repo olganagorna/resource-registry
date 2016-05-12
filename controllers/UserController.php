@@ -187,10 +187,10 @@ class UserController extends AppController {
             ]];
         }
         $getdata = User::find()
-        ->select(['user_id','username','last_name','first_name','name as role_name','activated'])
+        ->select(['user_id','username','last_name','first_name','name as role_name','activation_status'])
         ->innerJoinWith('personalData')->innerJoinWith('userRole')
         ->andFilterWhere($filters)
-        ->andFilterWhere(['like', 'activated', $request['activated']])
+        ->andFilterWhere(['like', 'activation_status', $request['activation_status']])
         ->orderBy($sort)
         ->asArray();
         
@@ -207,7 +207,7 @@ class UserController extends AppController {
     public function actionChangeactivationstatus() {
         $request= \Yii::$app->request->get();
         $user = User::findOne(['user_id' => $request['user_id']]);
-        $user->activated=$request['activated'];
+        $user->activation_status=$request['activation_status'];
         $user->update();
     }
 

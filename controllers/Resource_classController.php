@@ -53,7 +53,12 @@ class Resource_classController extends AppController
         $request= \Yii::$app->request->get();
         $resource_class = ResourceClass::findOne(['class_id' => $request['class_id']]);
         $resource_class->activation_status=$request['activation_status'];
-        $resource_class->update();
+        if(($resource_class->activation_status == 0)||($resource_class->activation_status == 1)){
+            $resource_class->update();
+        } else{
+            return;
+        }
+        
 
     }
 }
