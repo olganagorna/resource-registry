@@ -5,10 +5,11 @@
         .module('restApp')
         .controller('RequestsController', RequestsController);
 
-    RequestsController.$inject = ['$scope', '$http', 'PaginationService', 'constant'];
-    function RequestsController($scope, $http, PaginationService, constant, $location) {
+    RequestsController.$inject = ['$scope', '$http', 'PaginationServicee', 'constant', '$location', '$rootScope'];
+    function RequestsController($scope, $http, PaginationServicee, constant, $location, $rootScope) {
 
-        $scope.requests = [];
+        $rootScope.xmlData = [];
+        $rootScope.requestQuery = 'requests/showrequest';
         $scope.searchingVal;
 
         (function(){
@@ -18,7 +19,7 @@
             function successHandler(data) {
                 console.log("lets start");
                 console.log(typeof data.data);
-                $scope.requests = data.data;
+                $rootScope.xmlData = data.data;
                 $scope.requests.create_time = Date(data.data.create_time);
             }
             function errorHandler(result){
@@ -26,15 +27,13 @@
             }
         }());
 
-        $scope.searchRequest = function(sender, recipient) { // must provided two arguments
-
-            $scope.searchingVal = $scope.requestSearch;
+        $scope.searchRequest = function(requestSearch) {
             console.log($scope.searchingVal);
             $http.get('rest.php/requests/showrequest?value='+ $scope.requestSearch)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
-                $scope.requests = data.data;
+                $rootScope.xmlData = data.data;
             }
             function errorHandler(data){
                 console.log("Can't reload list!");
@@ -66,5 +65,49 @@
         //     }
         //   })();  
         // }  
+
+        //Pagination start
+       $scope.currentPage = PaginationServicee.currentPage;
+       $scope.getPages = function(pageCount) {
+           return PaginationServicee.getPages(pageCount);
+       };
+
+       $scope.switchPage = function(index) {
+           var intervalID = setInterval(function(){
+               $rootScope.xmlDataLength = $rootScope.xmlData.length;
+               if ($rootScope.xmlData._meta.perPage != undefined) {
+                   if($scope.request) {
+                       PaginationServicee.switchPage(index, $rootScope.requestQuery + '/search?' + buildQuery($scope.request)+ '&')
+                           .then(function(data) {
+                               $rootScope.xmlData = data.data;
+                               $scope.currentPage = PaginationServicee.currentPage;
+                       });
+                   }  else if ($scope.searchingDone) {
+                       PaginationServicee.switchPage(index, $rootScope.requestQuery + '?value=' + $scope.searchingDone + "&page=" + index + "&per-page=" + constant.perPage)
+                           .then(function(data) {
+                               $rootScope.xmlData = data.data;
+                               $scope.currentPage = PaginationServicee.currentPage;
+                       });
+                   } else {
+                       PaginationServicee.switchPage(index, $rootScope.requestQuery + '?')
+                           .then(function(data) {
+                               $rootScope.xmlData = data.data;
+                               $scope.currentPage = PaginationServicee.currentPage;
+                       });
+                   }    
+                   clearInterval(intervalID);
+               }
+
+           },1000);
+       };
+       $scope.switchPage($scope.currentPage);
+       $scope.setPage = function(pageLink, pageType) {
+           PaginationServicee.setPage(pageLink, pageType, $rootScope.xmlData._meta.pageCount)
+               .then(function(data) {
+                   $rootScope.xmlData = data.data;
+                   $scope.currentPage = PaginationServicee.currentPage;
+           });
+       };
+       //Pagination end
     }
 })();

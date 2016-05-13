@@ -3,7 +3,6 @@
 namespace app\controllers;
 
 use Yii;
-use yii\rest\ActiveController;
 use yii\data\ActiveDataProvider;
 use app\models\Request;
 use app\models\RequestSearch;
@@ -15,33 +14,9 @@ use yii\helpers\ArrayHelper;
 /**
  * RequestController implements the CRUD actions for Request model.
  */
-class RequestController extends ActiveController
+class RequestController extends AppController
 {   
     public $modelClass = 'app\models\Request';
-    public $serializer = [ 'class' => 'yii\rest\Serializer', 'collectionEnvelope' => 'items'];
-
-    /**
-     * Access provider
-     */
-    // public function beforeAction($action)
-    // {
-    //     if (parent::beforeAction($action)) {
-    //         if (!\Yii::$app->user->can($action->id)) {
-    //             throw new \yii\web\ForbiddenHttpException('Access denied');
-    //             $module =Yii::$app->controller->module->id;
-    //                     $action =Yii::$app->controller->action->id;
-    //                     $controller=Yii::$app->controller->id;
-    //                     $route="$controller/$action";
-    //                     $post =Yii::$app->request->post();
-    //                     if(\Yii::$app->user->can($route)){
-    //                             return true;
-
-    //         }
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
 
     public function behaviors()
     {
@@ -66,27 +41,19 @@ class RequestController extends ActiveController
             $info->select(['type', 'u2.username as username_s', 'create_time', 'user.username as username_r', 'complete_time', 'status'])
             ->innerJoinWith('sender')
             ->innerJoinWith('reciever')
-            ->andFilterWhere(['like', 'username_s', $info['value']])
-            ->orderBy('status')
+            ->andFilterWhere(['like', 'u2.username', $request['value']])
+            ->orderBy('status, create_time, complete_time')
             ->asArray();    
         // ordinary list show
         }else{
             $info->select(['type', 'u2.username as username_s', 'create_time', 'user.username as username_r', 'complete_time', 'status'])
             ->innerJoinWith('sender')
             ->innerJoinWith('reciever')
-            ->orderBy('status')
+            ->orderBy('status, create_time, complete_time')
             ->asArray();
         }
 
-        $dataProvider = new ActiveDataProvider([
-            'query' => $info,
-            'pagination' => [
-                'pageSize' => 4,
-                'pageParam' => 'page',
-            ],
-        ]);
-        
-        return $dataProvider;
+        return self::buildPagination($info, $paginatio=5);
     }
 
     public function actionAddreq()

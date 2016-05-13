@@ -30,8 +30,8 @@
 			<div class="col-lg-10">
 				<ng-form>
 					<span>Пошук по запитам &nbsp</span>
-					<input type="text" class="requests-search" ng-model="requestSearch" />
-					<input class="btn btn-primary" type="submit" value="Пошук" ng-click="searchRequest(sender, recipient)"></input>
+					<input type="text" class="requests-search" ng-model="requestSearch" ng-enter="searchRequest(requestSearch)" />
+					<input class="btn btn-primary" type="submit" value="Пошук" ng-click="searchRequest(requestSearch)"></input>
 					{{$scope.searchingVal}}
 				</ng-form>
 			</div>
@@ -50,7 +50,7 @@
 						<div class="col-lg-1">Статус</div>
 					</div>
 				</li>
-				<li class="list-group-item" ng-repeat="data in requests.items">
+				<li class="list-group-item" ng-repeat="data in xmlData.items">
 					<div class="row">
 						<div class="col-lg-2"><span ng-show="data.type == 0">"додати ресурс"</span><span ng-show="data.type == 1">"запит на витяг"</span></div>
 						<div class="col-lg-2">{{data.username_s}}</div>
@@ -69,25 +69,7 @@
 				</li>
 			</ul>
 			<div class="col-md-8 margin_bottom">          
-                <ul class="pagination pagination-sm" ng-if="requests._meta.pageCount > 1">
-                    <li ng-if="requests._links.first">
-                        <a href="" ng-click="setPage(requests._links.first.href, 'first')">&laquo;</a>
-                    </li>
-                    <li ng-if="requests._links.prev">
-                        <a href="" ng-click="setPage(requests._links.prev.href, 'prev')" >‹</a>
-                    </li>
-                    <li ng-repeat="page in getPages(requests._meta.pageCount) track by $index"
-                        ng-click="switchPage(page)" ng-class="{active: page == currentPage}"
-                        ng-if="page">
-                        <span>{{page}}</span>
-                    </li>	
-                    <li ng-if="requests._links.next">
-                        <a href="" ng-click="setPage(requests._links.next.href, 'next')" >›</a>
-                    </li>
-                    <li ng-if="requests._links.last">
-                        <a href="" ng-click="setPage(requests._links.last.href, 'last')">&raquo;</a>
-                    </li>
-                </ul>
+                <pagination-directive><pagination-directive/>
 			</div>  
 		</div>
 	</div>

@@ -33,6 +33,9 @@ return [
     'user/changerole' => [
         'type' => 2,
     ],
+    'request/showrequest' => [
+        'type' => 2,
+    ],
     'user' => [
         'type' => 1,
         'ruleName' => 'userGroup',
@@ -51,6 +54,7 @@ return [
             'user/getrole',
             'user/changeactivationstatus',
             'user/changerole',
+            'request/showrequest',
         ],
     ],
     'commissioner' => [
