@@ -48,6 +48,8 @@ class RbacController extends Controller
         $auth->add($userChngRole);
         $reqShow = $auth->createPermission('request/showrequest'); 
         $auth->add($reqShow);
+        $reqAdd = $auth->createPermission('request/addreq'); 
+        $auth->add($reqAdd);
 
         // Add rule, based on UserExt->group === $user->group
         $userGroupRule = new UserGroupRule();
@@ -81,6 +83,7 @@ class RbacController extends Controller
         $auth->addChild($registrar, $userChngActSt);
         $auth->addChild($registrar, $userChngRole);
         $auth->addChild($registrar, $reqShow);
+        $auth->addChild($registrar, $reqAdd);
        
         /*// commissioner
         $auth->addChild($commissioner, $userdata);

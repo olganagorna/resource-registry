@@ -36,6 +36,9 @@ return [
     'request/showrequest' => [
         'type' => 2,
     ],
+    'request/addreq' => [
+        'type' => 2,
+    ],
     'user' => [
         'type' => 1,
         'ruleName' => 'userGroup',
@@ -55,6 +58,7 @@ return [
             'user/changeactivationstatus',
             'user/changerole',
             'request/showrequest',
+            'request/addreq',
         ],
     ],
     'commissioner' => [

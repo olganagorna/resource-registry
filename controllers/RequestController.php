@@ -42,14 +42,14 @@ class RequestController extends AppController
             ->innerJoinWith('sender')
             ->innerJoinWith('reciever')
             ->andFilterWhere(['like', 'u2.username', $request['value']])
-            ->orderBy('status, create_time, complete_time')
+            ->orderBy('status, create_time desc, complete_time desc')
             ->asArray();    
         // ordinary list show
         }else{
             $info->select(['type', 'u2.username as username_s', 'create_time', 'user.username as username_r', 'complete_time', 'status'])
             ->innerJoinWith('sender')
             ->innerJoinWith('reciever')
-            ->orderBy('status, create_time, complete_time')
+            ->orderBy('status, create_time desc, complete_time desc')
             ->asArray();
         }
 
@@ -60,10 +60,10 @@ class RequestController extends AppController
     {
         // Add request action. Variables should be changed
         $requestModel = new Request();
-        $type = '2';
-        $sender = '22';
-        $reciever = '31';
-        $status = '2';
+        $type = '0';
+        $sender = '1';
+        $reciever = '3';
+        $status = '0';
 
         $requestModel->type = $type;
         $requestModel->sender = $sender;

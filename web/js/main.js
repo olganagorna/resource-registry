@@ -10,3 +10,8 @@ var activePills = function () {
         }
     });
 };
+
+(function() {
+	document.getElementsByClassName('status-1').title = 'in process';
+	document.getElementsByClassName('status-2').title = 'complete';
+})();

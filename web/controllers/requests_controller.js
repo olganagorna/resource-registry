@@ -13,12 +13,12 @@
         $scope.searchingVal;
 
         (function(){
-            return $http.get('rest.php/requests/showrequest')
+            return $http.get('rest.php/'+ $rootScope.requestQuery)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
                 console.log("lets start");
-                console.log(typeof data.data);
+                // console.log(typeof data.data);
                 $rootScope.xmlData = data.data;
                 $scope.requests.create_time = Date(data.data.create_time);
             }
@@ -29,7 +29,7 @@
 
         $scope.searchRequest = function(requestSearch) {
             console.log($scope.searchingVal);
-            $http.get('rest.php/requests/showrequest?value='+ $scope.requestSearch)
+            $http.get('rest.php/'+ $rootScope.requestQuery + '?value='+ $scope.requestSearch)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {

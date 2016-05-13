@@ -74,7 +74,7 @@ class Request extends \yii\db\ActiveRecord
                     ActiveRecord::EVENT_BEFORE_INSERT => ['create_time'],
                     ActiveRecord::EVENT_BEFORE_UPDATE => ['complete_time'],
                 ],
-                // if you're using datetime instead of UNIX timestamp:
+                // // if you're using datetime instead of UNIX timestamp:
                 // 'value' => new Expression('NOW()'),
             ],
         ];
