@@ -57,7 +57,7 @@
                     if (result.data.role == 'admin') {
                         $location.path('/site/admin');
                     } else {
-                        $location.path('/site/requests');
+                        $location.path('/resource/index');
                     }
 
                 }

@@ -45,6 +45,12 @@
             ],
             MSG_REASON_DOC_PSW:'паспорт громадянина України',
             MSG_REASON_DOC_DEPARTMENT:'виданий на ім\'я'
+            
+        }
 
+        ).constant('AUTH_EVENTS', {
+            sessionTimeout: 'auth-session-timeout',
+            notAuthenticated: 'auth-not-authenticated',
+            notAuthorized: 'auth-not-authorized'
         });
 })();

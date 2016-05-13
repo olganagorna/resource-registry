@@ -1,0 +1,17 @@
+<?php
+
+return [
+    'class' => 'yii\db\Connection',
+<<<<<<< HEAD
+    'dsn' => 'mysql:host=localhost;dbname=resource-registry',
+=======
+    'dsn' => 'mysql:host=localhost;dbname=resource_registry',
+>>>>>>> 58f8930bcc75df945b784432e9c223e7d8fab985
+    'username' => 'root',
+    'password' => 'yodc',
+    'charset' => 'utf8',
+];
+
+// Jenkins
+// admin
+// Mtblp-ujF24-
