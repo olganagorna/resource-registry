@@ -21,6 +21,12 @@ return [
     'resource/create' => [
         'type' => 2,
     ],
+    'resource/gettingdata' => [
+        'type' => 2,
+    ],
+    'resource/additiondata' => [
+        'type' => 2,
+    ],
     'user/userdata' => [
         'type' => 2,
     ],
@@ -59,6 +65,8 @@ return [
             'user/changerole',
             'request/showrequest',
             'request/addreq',
+            'resource/gettingdata',
+            'resource/additiondata',
         ],
     ],
     'commissioner' => [
