@@ -2,9 +2,11 @@
 
 	'use strict';
 
-	angular.module('restApp').directive("leafletMap", function () {
+	angular.module('restApp').directive("leafletMap", function ($http) {
 
-		var link = function ($scope, $element, attrs) {
+		var link = function ($scope, $element, attrs, $rootScope, $http) {
+
+			
 
 			var defaults = {
 				height: '500px',
@@ -15,6 +17,8 @@
 					zoom: 10
 				}
 			};
+
+			$scope.resourcesWithNames = [];
 
 			$scope.mapCreated = false;
 			$scope.resourcesGeoJsonOn = false;
@@ -151,6 +155,7 @@
 				initCoordinatesElement();
 				initInteractivity();
 				initAdding();
+				initFinding();
 				initSearch();
 				initGeojson();
 
@@ -287,7 +292,183 @@
 							$scope.bind = $scope.drawnItem._latlngs;
 							$scope.$apply();
 						});
+
+				
+
+						
+
+
 					}
+				}
+
+
+				
+
+				function initFinding() {
+
+					if (attrs.find === 'true') {
+						/*array for resources on map*/
+						var resourcesOnMap = [];
+
+						/*array for markers*/
+						var markersOnMap = [];
+
+						/*radius of circle*/
+						var radius = 500;
+
+						/*drawing circle*/
+						var circle = L.circle(L.latLng(49.83587885628228, 23.99765968322754), radius, {
+							opacity: 1,
+							weight: 1,
+							fillOpacity: 0
+						});
+						$scope.map.on('click', function(click) {
+
+							/*showing resources on the map*/
+							function showResources(resources) {
+								if(resources.length == 0) return;
+								for(var i = 0; i < resources.length; i++){
+									$scope.map.addLayer(resources[i]);
+								}
+							}
+									
+							/*deleting resources from the map*/
+							$scope.deleteResources = function(resources) {
+								console.log("before");
+							    if(resources.length == 0) return;
+							    for(var i = 0; i < resources.length; i++){
+								   	$scope.map.removeLayer(resources[i]);
+								}
+								resources.length = 0;
+								console.log("remove!!!");
+							}
+		
+							
+
+
+								var click = click;
+								$scope.clickData = [click.latlng.lat, click.latlng.lng];
+								console.log($scope.clickData);
+								$scope.coordCompare = {
+									'44' : 80.208,
+									'45' : 78.848,
+									'46' : 77.465,
+									'47' : 76.057,
+									'48' : 74.627,
+									'49' : 73.173,
+									'50' : 71.697,
+									'51' : 70.199,
+									'52' : 68.679
+								};
+								$scope.range = 10;
+								$rootScope.y1 = $scope.clickData[0] - (0.00900009 * $scope.range);
+								$rootScope.y2 = $scope.clickData[0] + (0.00900009 * $scope.range);
+								$rootScope.x1 = $scope.clickData[1] - ((1 / $scope.coordCompare[Math.round($scope.clickData[0])]) * $scope.range);
+								$rootScope.x2 = $scope.clickData[1] + ((1 / $scope.coordCompare[Math.round($scope.clickData[0])]) * $scope.range);
+								console.log($rootScope.y1, $rootScope.y2, $rootScope.x1, $rootScope.x2);
+
+								// $scope.resources = [];
+
+							
+								// $http.get('rest.php/resources/gettingdata' + $rootScope.y1 + '&max_lat=' + $rootScope.y2 + '&min_lng=' + $rootScope.x1 + '&max_lng=' + $rootScope.x2)
+								// 	   .then(successHandler)
+								// 	   .catch(errorHandler);
+								// function successHandler(data) {
+								// 	   $scope.resources = data.data;
+								// }
+								// function errorHandler(data){
+								// 	   console.log("Can't reload list!");
+								// }
+								$scope.xmlData = [];
+								$scope.xmlData.length = 0;
+								$.get( 'rest.php/resources/gettingdata?min_lat=' + $rootScope.y1 + '&max_lat=' + $rootScope.y2 + '&min_lng=' + $rootScope.x1 + '&max_lng=' + $rootScope.x2, function(data) {
+								  	$scope.xmlData = data;
+								  	var resources = [];
+								  
+									for (var i = 0; i < $scope.xmlData.length; i++) {
+										var cache = $scope.xmlData[i].coordinates;
+										resources.push(JSON.parse(cache));
+										$scope.resourcesWithNames.push($scope.xmlData[i].name);
+
+									}
+									console.log($scope.resourcesWithNames);
+
+
+									/*latitude and longitude(the centroid of a closed polygon)*/
+									var items = [];
+
+									/*array for markers*/
+									var marker = [];
+
+									/*definition of the centroid of a closed polygon*/		
+									function getCentroid(arr) {
+									    var twoTimesSignedArea = 0;
+									    var cxTimes6SignedArea = 0;
+									    var cyTimes6SignedArea = 0;
+
+									    var length = arr.length
+
+									    var x = function (i) { return arr[i % length][0] };
+									    var y = function (i) { return arr[i % length][1] };
+
+									    for ( var i = 0; i < arr.length; i++) {
+									        var twoSA = x(i) * y(i + 1) - x(i + 1) * y(i);
+									        twoTimesSignedArea += twoSA;
+									        cxTimes6SignedArea += (x(i) + x(i + 1)) * twoSA;
+									        cyTimes6SignedArea += (y(i) + y(i + 1)) * twoSA;
+									    }
+									    var sixSignedArea = 3 * twoTimesSignedArea;
+									    return [ cxTimes6SignedArea / sixSignedArea, cyTimes6SignedArea / sixSignedArea];        
+									}
+
+									/*pushing coordinates into array(items)*/
+									function fillItems(array) {
+										for(var i = 0; i < array.length; i++){
+											items.push(getCentroid(array[i]));
+										}
+									}
+
+									/*pushing items into array(marker) each by each and then add markers*/
+									function itemWrap(array) {
+										for(var i = 0; i < array.length; i++){
+										    var LamMarker = new L.marker([array[i][0], array[i][1]]);
+										    marker.push(LamMarker);
+									    }
+									}
+
+									fillItems(resources);
+
+									itemWrap(items);
+
+									function showResourcesOnMap(clickEvent) {
+									    circle.setLatLng(clickEvent.latlng);
+									    circle.addTo($scope.map);
+									    $scope.deleteResources(resourcesOnMap);
+									    $scope.deleteResources(markersOnMap);
+
+									   	for(var i = 0; i < marker.length; i++){
+									   		var distance = clickEvent.latlng.distanceTo(L.latLng(marker[i]._latlng.lat, marker[i]._latlng.lng));
+									   		if(distance <= radius){
+									    		for(var j = 0; j < resources.length; j++){
+									    			var centroid = getCentroid(resources[j]);
+									    			if(centroid[0] == marker[i]._latlng.lat && centroid[1] == marker[i]._latlng.lng){
+									    				resourcesOnMap.push(L.polygon(resources[j]));
+									    				markersOnMap.push(new L.marker([centroid[0], centroid[1]]));
+									    				//map.addLayer(L.polygon(resources[j]));
+									    			}
+									    		}
+									    		showResources(resourcesOnMap);
+									    		showResources(markersOnMap);
+										    }
+									   	}
+									};
+
+									showResourcesOnMap(click);
+
+								});
+							});
+					}
+					
 				}
 
 				function initSearch () {
@@ -415,6 +596,7 @@
 		};
 
 	});
+
 
 
 })();
