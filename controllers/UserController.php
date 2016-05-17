@@ -7,7 +7,7 @@ use app\models\LoginForm;
 use app\models\Role;
 use app\models\PersonalData;
 use yii\web\Session;
-use yii\data\ActiveDataProvider;
+use app\controllers\AppController;
 
 class UserController extends AppController {
     public $modelClass = 'app\models\User';
@@ -183,14 +183,7 @@ class UserController extends AppController {
         ->orderBy($sort)
         ->asArray();
         
-        $dataProvider = new ActiveDataProvider([
-            'query' => $getdata,
-            'pagination' => [
-                'pageSize' => 30,
-                'pageParam' => 'page',
-            ],
-        ]);
-        return $dataProvider; 
+        return self::buildPagination($getdata, 10); 
     }
 
     public function actionChangeactivationstatus() {
@@ -204,14 +197,7 @@ class UserController extends AppController {
         $getrole = Role::find()
         ->select(['role_id','name as role_name'])
         ->asArray();
-        $dataProvider = new ActiveDataProvider([
-            'query' => $getrole,
-            'pagination' => [
-                'pageSize' => 30,
-                'pageParam' => 'page',
-            ],
-        ]);
-        return $dataProvider; 
+        return self::buildPagination($getrole, 5); 
     }
     
     public function actionChangerole() {
