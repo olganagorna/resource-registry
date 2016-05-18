@@ -299,7 +299,7 @@ class ResourceController extends AppController
 	public function actionGettingdata(){
 		$request= \Yii::$app->request->get();
 		$params = [':min_lat' => $request['min_lat'], ':max_lat' => $request['max_lat'], ':min_lng' => $request['min_lng'], ':max_lng' => $request['max_lng']];
-		$sql = "SELECT name, coordinates FROM resource WHERE registration_number IN (SELECT registration_number FROM coordinates WHERE lat BETWEEN :min_lat AND :max_lat UNION SELECT registration_number FROM coordinates WHERE lng BETWEEN :min_lng AND :max_lng)";
+		$sql = "SELECT name, coordinates, registration_number FROM resource WHERE registration_number IN (SELECT registration_number FROM coordinates WHERE lat BETWEEN :min_lat AND :max_lat UNION SELECT registration_number FROM coordinates WHERE lng BETWEEN :min_lng AND :max_lng)";
 		$data = \Yii::$app->db
         		->createCommand($sql)
         		->bindValues($params)

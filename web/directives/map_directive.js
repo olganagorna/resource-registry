@@ -18,6 +18,8 @@
 				}
 			};
 
+			$scope.resourcesList = [];
+
 			$scope.resourcesWithNames = [];
 
 			$scope.mapCreated = false;
@@ -334,13 +336,11 @@
 									
 							/*deleting resources from the map*/
 							$scope.deleteResources = function(resources) {
-								console.log("before");
 							    if(resources.length == 0) return;
 							    for(var i = 0; i < resources.length; i++){
 								   	$scope.map.removeLayer(resources[i]);
 								}
 								resources.length = 0;
-								console.log("remove!!!");
 							}
 		
 							
@@ -384,7 +384,7 @@
 								$.get( 'rest.php/resources/gettingdata?min_lat=' + $rootScope.y1 + '&max_lat=' + $rootScope.y2 + '&min_lng=' + $rootScope.x1 + '&max_lng=' + $rootScope.x2, function(data) {
 								  	$scope.xmlData = data;
 								  	var resources = [];
-								  
+								  	$scope.resourcesWithNames.length = 0;
 									for (var i = 0; i < $scope.xmlData.length; i++) {
 										var cache = $scope.xmlData[i].coordinates;
 										resources.push(JSON.parse(cache));
@@ -439,13 +439,12 @@
 									fillItems(resources);
 
 									itemWrap(items);
-
 									function showResourcesOnMap(clickEvent) {
 									    circle.setLatLng(clickEvent.latlng);
 									    circle.addTo($scope.map);
 									    $scope.deleteResources(resourcesOnMap);
 									    $scope.deleteResources(markersOnMap);
-
+									    $scope.resourcesList.length = 0;
 									   	for(var i = 0; i < marker.length; i++){
 									   		var distance = clickEvent.latlng.distanceTo(L.latLng(marker[i]._latlng.lat, marker[i]._latlng.lng));
 									   		if(distance <= radius){
@@ -454,13 +453,15 @@
 									    			if(centroid[0] == marker[i]._latlng.lat && centroid[1] == marker[i]._latlng.lng){
 									    				resourcesOnMap.push(L.polygon(resources[j]));
 									    				markersOnMap.push(new L.marker([centroid[0], centroid[1]]));
-									    				//map.addLayer(L.polygon(resources[j]));
+									    				$scope.resourcesList.push($scope.xmlData[j]);
 									    			}
 									    		}
 									    		showResources(resourcesOnMap);
 									    		showResources(markersOnMap);
 										    }
 									   	}
+									   	console.dir($scope.resourcesList);
+									   	$scope.$apply();
 									};
 
 									showResourcesOnMap(click);
@@ -586,7 +587,7 @@
 
 		return {
 			restrict: 'E',
-			template: '<div id="map"></div>',
+			templateUrl: 'directives/map_directive.html',
 			controller: 'MapCtrl',
 			scope: {
 				bind: '=bind',
