@@ -25,6 +25,8 @@
 			$scope.mapCreated = false;
 			$scope.resourcesGeoJsonOn = false;
 
+			$scope.markerList = [];
+
 			// Map init
 
 			$scope.updateMapView = function (position, zoom) {
@@ -333,6 +335,13 @@
 									$scope.map.addLayer(resources[i]);
 								}
 							}
+
+							function showMarkers(resources) {
+								if(resources.length == 0) return;
+								for(var i = 0; i < resources.length; i++){
+									$scope.map.addLayer(resources[i].bindPopup($scope.markerList[i]));
+								}
+							}
 									
 							/*deleting resources from the map*/
 							$scope.deleteResources = function(resources) {
@@ -391,7 +400,6 @@
 										$scope.resourcesWithNames.push($scope.xmlData[i].name);
 
 									}
-									console.log($scope.resourcesWithNames);
 
 
 									/*latitude and longitude(the centroid of a closed polygon)*/
@@ -445,6 +453,7 @@
 									    $scope.deleteResources(resourcesOnMap);
 									    $scope.deleteResources(markersOnMap);
 									    $scope.resourcesList.length = 0;
+									    $scope.markerList.length = 0;
 									   	for(var i = 0; i < marker.length; i++){
 									   		var distance = clickEvent.latlng.distanceTo(L.latLng(marker[i]._latlng.lat, marker[i]._latlng.lng));
 									   		if(distance <= radius){
@@ -454,13 +463,14 @@
 									    				resourcesOnMap.push(L.polygon(resources[j]));
 									    				markersOnMap.push(new L.marker([centroid[0], centroid[1]]));
 									    				$scope.resourcesList.push($scope.xmlData[j]);
+									    				$scope.markerList.push($scope.xmlData[j].name);
 									    			}
 									    		}
 									    		showResources(resourcesOnMap);
-									    		showResources(markersOnMap);
+									    		showMarkers(markersOnMap);
 										    }
 									   	}
-									   	console.dir($scope.resourcesList);
+									   	console.log($scope.markerList, "there");
 									   	$scope.$apply();
 									};
 
