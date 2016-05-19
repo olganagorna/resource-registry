@@ -516,8 +516,9 @@ td.form-group{
 /* MAIN RESOURCE PAGE */
 
 .main-resource-class-btn {
-    position: absolute;
+    _position: absolute;
     height: 45%;
+    margin-bottom: 20px;
 }
 
 .main-resource-class-map-position {

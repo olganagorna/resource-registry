@@ -7,6 +7,7 @@ use app\models\PersonalData;
 use app\models\ResourceClass;
 use app\models\Parameter;
 use app\models\ResourceAttribute;
+use app\models\Coordinates;
 
 class ResourceController extends AppController
 {
@@ -283,6 +284,27 @@ class ResourceController extends AppController
 		header('Expires: 0');
 		$xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
 		$xmlWriter->save("php://output");
+	}
+	public function actionAdditiondata() {
+		$request = file_get_contents("php://input");
+		$data = json_decode($request);
+		for($i = 0; $i < count($data) - 1; $i++){
+			$coord = new Coordinates();
+			$coord->lat = $data[$i][0];
+			$coord->lng = $data[$i][1];
+			$coord->registration_number = $data[count($data) - 1][0];
+			$coord->save();
+		}
+	}
+	public function actionGettingdata(){
+		$request= \Yii::$app->request->get();
+		$params = [':min_lat' => $request['min_lat'], ':max_lat' => $request['max_lat'], ':min_lng' => $request['min_lng'], ':max_lng' => $request['max_lng']];
+		$sql = "SELECT name, coordinates, registration_number FROM resource WHERE registration_number IN (SELECT registration_number FROM coordinates WHERE lat BETWEEN :min_lat AND :max_lat UNION SELECT registration_number FROM coordinates WHERE lng BETWEEN :min_lng AND :max_lng)";
+		$data = \Yii::$app->db
+        		->createCommand($sql)
+        		->bindValues($params)
+       			->queryAll();
+        return $data;
 	}
 
 }
