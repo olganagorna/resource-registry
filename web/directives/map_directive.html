@@ -1,5 +1,8 @@
             <div class="container-fluid">
                 <div class="col-md-7" >
+                    <p>
+                        Введіть радіус пошуку (по замовчанню 500м) &nbsp; <input type="text" ng-model="circleRadius" placeholder="500">
+                    </p>
                     <div id="map"></div>
                 </div>
                 <div class="col-md-5">
@@ -21,7 +24,7 @@
                                     </div>
                                 </div>
                                 <ul class="list-group result" >      
-                                    <li class="list-group-item shadow-z-1 md-list row " ng-repeat="data in resourcesList" ng-if="resourcesList">
+                                    <li class="list-group-item shadow-z-1 md-list row " ng-repeat="data in xmlData" ng-if="xmlData">
                                         <div class="col-md-4 text-align-left res_vert_allight_list">{{data.registration_number}}</div>
                                         <div class="col-md-4 text-align-left res_vert_allight_list">{{data.name}}</div>
                                         <div class="btn-group">
