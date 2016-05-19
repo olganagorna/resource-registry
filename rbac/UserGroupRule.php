@@ -15,7 +15,7 @@ class UserGroupRule extends Rule
             if ($item->name === 'admin') {
                 return $group == 3;
             } elseif ($item->name === 'user') {
-                return $group == 1;
+                return $group == 1 || $group == 2 || $group == 4;
             } elseif ($item->name === 'registrar') {
                 return $group == 2;
             } elseif ($item->name === 'commissioner') {

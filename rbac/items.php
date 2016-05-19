@@ -48,30 +48,36 @@ return [
     'user' => [
         'type' => 1,
         'ruleName' => 'userGroup',
+        'children' => [
+            'resource/view',
+            'resource/index',
+            'resource/search',
+            'resource/getregisterkey',
+            'resource/create',
+            'resource/gettingdata',
+            'resource/additiondata',
+        ],
     ],
     'registrar' => [
         'type' => 1,
         'ruleName' => 'userGroup',
         'children' => [
+            'user',
             'community/show',
-            'resource/view',
-            'resource/index',
-            'resource/getregisterkey',
-            'resource/search',
             'user/userdata',
-            'resource/create',
             'user/getrole',
             'user/changeactivationstatus',
             'user/changerole',
             'request/showrequest',
             'request/addreq',
-            'resource/gettingdata',
-            'resource/additiondata',
         ],
     ],
     'commissioner' => [
         'type' => 1,
         'ruleName' => 'userGroup',
+        'children' => [
+            'user',
+        ],
     ],
     'admin' => [
         'type' => 1,
