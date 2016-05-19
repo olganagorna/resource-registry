@@ -42,6 +42,12 @@ class RbacController extends Controller
         $auth->add($resGettingdata);
         $resAdditiondata = $auth->createPermission('resource/additiondata');
         $auth->add($resAdditiondata); 
+        $resourceClass = $auth->createPermission('resource_class/index'); 
+        $auth->add($resourceClass);
+        $resourceClassSearch = $auth->createPermission('resource_class/search'); 
+        $auth->add($resourceClassSearch);
+        $resourceClassChangeActivationStatus = $auth->createPermission('resource_class/changeactivationstatus');
+        $auth->add($resourceClassChangeActivationStatus);
         $userdata = $auth->createPermission('user/userdata'); 
         $auth->add($userdata);
         $userGetRole = $auth->createPermission('user/getrole'); 
@@ -54,6 +60,8 @@ class RbacController extends Controller
         $auth->add($reqShow);
         $reqAdd = $auth->createPermission('request/addreq'); 
         $auth->add($reqAdd);
+        $search = $auth->createPermission('search/search'); 
+        $auth->add($search);
 
         // Add rule, based on UserExt->group === $user->group
         $userGroupRule = new UserGroupRule();
@@ -90,6 +98,13 @@ class RbacController extends Controller
         $auth->addChild($registrar, $reqAdd);
         $auth->addChild($registrar, $resGettingdata);
         $auth->addChild($registrar, $resAdditiondata);
+        $auth->addChild($registrar, $resourceClassSearch);
+        $auth->addChild($registrar, $resourceClassChangeActivationStatus);
+        $auth->addChild($registrar, $resourceClass);
+        $auth->addChild($registrar, $search);
+
+
+        
        
         /*// commissioner
         $auth->addChild($commissioner, $userdata);
@@ -98,5 +113,9 @@ class RbacController extends Controller
         // admin
         //$auth->addChild($admin, $guest);
         $auth->addChild($admin, $addcomm);
+        $auth->addChild($admin, $resourceClassSearch);
+        $auth->addChild($admin, $resourceClassChangeActivationStatus);
+        $auth->addChild($admin, $resourceClass);
+
     }
 }

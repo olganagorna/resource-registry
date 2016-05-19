@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-12 main-resource-class-btn">
-                        <div class="col-sm-2 class-div-highlight" ng-repeat="data in classes"  ng-repeat="elem in classes"
+                        <div class="col-sm-2 class-div-highlight" ng-repeat="data in classes.items"  ng-repeat="elem in classes.items"
                              ng-mouseover="elem.over=true" ng-mouseleave="elem.over=false" ng-click="select(elem)">
                             <div class="class-div-highlight-allight">
                                 <div class="class-div-highlight-margin" ng-class="{blink: elem.over, highlight:isSelected(elem)}">

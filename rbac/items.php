@@ -27,6 +27,15 @@ return [
     'resource/additiondata' => [
         'type' => 2,
     ],
+    'resource_class/index' => [
+        'type' => 2,
+    ],
+    'resource_class/search' => [
+        'type' => 2,
+    ],
+    'resource_class/changeactivationstatus' => [
+        'type' => 2,
+    ],
     'user/userdata' => [
         'type' => 2,
     ],
@@ -43,6 +52,9 @@ return [
         'type' => 2,
     ],
     'request/addreq' => [
+        'type' => 2,
+    ],
+    'search/search' => [
         'type' => 2,
     ],
     'user' => [
@@ -67,6 +79,10 @@ return [
             'request/addreq',
             'resource/gettingdata',
             'resource/additiondata',
+            'resource_class/search',
+            'resource_class/changeactivationstatus',
+            'resource_class/index',
+            'search/search',
         ],
     ],
     'commissioner' => [
@@ -78,6 +94,9 @@ return [
         'ruleName' => 'userGroup',
         'children' => [
             'community/addcomm',
+            'resource_class/search',
+            'resource_class/changeactivationstatus',
+            'resource_class/index',
         ],
     ],
 ];
