@@ -18,12 +18,11 @@
 				}
 			};
 
-			$scope.resourcesList = [];
-
+			$scope.xmlData = [];
 			$scope.resourcesWithNames = [];
-
 			$scope.mapCreated = false;
 			$scope.resourcesGeoJsonOn = false;
+			$scope.markerList = [];
 
 			// Map init
 
@@ -324,6 +323,14 @@
 							weight: 1,
 							fillOpacity: 0
 						});
+						function getRadius() {
+			            	(function() {
+			            		var value = parseInt($scope.circleRadius);
+			            		if(!isNaN(value)){
+			            			radius = value;
+			            		}
+			            	}());
+						}
 						$scope.map.on('click', function(click) {
 
 							/*showing resources on the map*/
@@ -331,6 +338,13 @@
 								if(resources.length == 0) return;
 								for(var i = 0; i < resources.length; i++){
 									$scope.map.addLayer(resources[i]);
+								}
+							}
+
+							function showMarkers(resources) {
+								if(resources.length == 0) return;
+								for(var i = 0; i < resources.length; i++){
+									$scope.map.addLayer(resources[i].bindPopup($scope.markerList[i]));
 								}
 							}
 									
@@ -379,19 +393,18 @@
 								// function errorHandler(data){
 								// 	   console.log("Can't reload list!");
 								// }
-								$scope.xmlData = [];
-								$scope.xmlData.length = 0;
+								$scope.xmlReturn = [];
+								$scope.xmlReturn.length = 0;
 								$.get( 'rest.php/resources/gettingdata?min_lat=' + $rootScope.y1 + '&max_lat=' + $rootScope.y2 + '&min_lng=' + $rootScope.x1 + '&max_lng=' + $rootScope.x2, function(data) {
-								  	$scope.xmlData = data;
+								  	$scope.xmlReturn = data;
 								  	var resources = [];
 								  	$scope.resourcesWithNames.length = 0;
-									for (var i = 0; i < $scope.xmlData.length; i++) {
-										var cache = $scope.xmlData[i].coordinates;
+									for (var i = 0; i < $scope.xmlReturn.length; i++) {
+										var cache = $scope.xmlReturn[i].coordinates;
 										resources.push(JSON.parse(cache));
-										$scope.resourcesWithNames.push($scope.xmlData[i].name);
+										$scope.resourcesWithNames.push($scope.xmlReturn[i].name);
 
 									}
-									console.log($scope.resourcesWithNames);
 
 
 									/*latitude and longitude(the centroid of a closed polygon)*/
@@ -440,11 +453,14 @@
 
 									itemWrap(items);
 									function showResourcesOnMap(clickEvent) {
+										getRadius();
+			    						circle.setRadius(radius);
 									    circle.setLatLng(clickEvent.latlng);
 									    circle.addTo($scope.map);
 									    $scope.deleteResources(resourcesOnMap);
 									    $scope.deleteResources(markersOnMap);
-									    $scope.resourcesList.length = 0;
+									    $scope.xmlData.length = 0;
+									    $scope.markerList.length = 0;
 									   	for(var i = 0; i < marker.length; i++){
 									   		var distance = clickEvent.latlng.distanceTo(L.latLng(marker[i]._latlng.lat, marker[i]._latlng.lng));
 									   		if(distance <= radius){
@@ -453,14 +469,15 @@
 									    			if(centroid[0] == marker[i]._latlng.lat && centroid[1] == marker[i]._latlng.lng){
 									    				resourcesOnMap.push(L.polygon(resources[j]));
 									    				markersOnMap.push(new L.marker([centroid[0], centroid[1]]));
-									    				$scope.resourcesList.push($scope.xmlData[j]);
+									    				$scope.xmlData.push($scope.xmlReturn[j]);
+									    				$scope.markerList.push($scope.xmlReturn[j].name);
 									    			}
 									    		}
 									    		showResources(resourcesOnMap);
-									    		showResources(markersOnMap);
+									    		showMarkers(markersOnMap);
 										    }
 									   	}
-									   	console.dir($scope.resourcesList);
+									   	console.log($scope.markerList, "there");
 									   	$scope.$apply();
 									};
 
