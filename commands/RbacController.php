@@ -21,7 +21,6 @@ class RbacController extends Controller
         $admin =        $auth->createRole('admin');
  
         // Create simple, based on controller and action{$NAME} permissions
-        $showrequest = $auth->createPermission('showrequest');
         // Add permissions in Yii::$app->authManager
 
         $show = $auth->createPermission('community/show'); 
@@ -73,30 +72,28 @@ class RbacController extends Controller
  
         // Add permission-per-role in Yii::$app->authManager
         // user
-        //$auth->addChild($user, $guest);
+        $auth->addChild($user, $view);
+        $auth->addChild($user, $resIndex);
+        $auth->addChild($user, $resSearch);
+        $auth->addChild($user, $getRgKey);
+        $auth->addChild($user, $resCreate);
+        $auth->addChild($user, $resGettingdata);
+        $auth->addChild($user, $resAdditiondata);
  
         // registrar
+        $auth->addChild($registrar, $user);
         $auth->addChild($registrar, $show);
-        $auth->addChild($registrar, $view);
-        $auth->addChild($registrar, $resIndex);
-        $auth->addChild($registrar, $getRgKey);
-        $auth->addChild($registrar, $resSearch);
         $auth->addChild($registrar, $userdata);
-        $auth->addChild($registrar, $resCreate);
         $auth->addChild($registrar, $userGetRole);
         $auth->addChild($registrar, $userChngActSt);
         $auth->addChild($registrar, $userChngRole);
         $auth->addChild($registrar, $reqShow);
         $auth->addChild($registrar, $reqAdd);
-        $auth->addChild($registrar, $resGettingdata);
-        $auth->addChild($registrar, $resAdditiondata);
-       
-        /*// commissioner
-        $auth->addChild($commissioner, $userdata);
+        
+        // commissioner
         $auth->addChild($commissioner, $user);
- */
+ 
         // admin
-        //$auth->addChild($admin, $guest);
         $auth->addChild($admin, $addcomm);
     }
 }

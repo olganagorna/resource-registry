@@ -27,12 +27,9 @@
         var vm = this;
 
         if($location.search().p){
-            console.log($location.search().p);
             vm.resetForm = true;
-            console.log(vm.resetForm);
         } else {
             vm.resetForm = false;
-            console.log(vm.resetForm);
         }
 
         vm.user = {
@@ -51,7 +48,6 @@
                     .then(successHandler)
                     .catch(errorHandler);
                 function successHandler(result) {
-                    console.log(result);
                     sessionStorage.setItem('user',angular.toJson(result.data));
                     $rootScope.isLogined = true;
                     if (result.data.role == 'admin') {
