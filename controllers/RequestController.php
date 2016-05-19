@@ -37,21 +37,12 @@ class RequestController extends AppController
         // request value is used for search options 
             // for user search by registrar
             // for registrar search by user
-        if(isset($request['value'])){
-            $info->select(['type', 'u2.username as username_s', 'create_time', 'user.username as username_r', 'complete_time', 'status'])
-            ->innerJoinWith('sender')
-            ->innerJoinWith('reciever')
-            ->andFilterWhere(['like', 'u2.username', $request['value']])
-            ->orderBy('status, create_time desc, complete_time desc')
-            ->asArray();    
-        // ordinary list show
-        }else{
-            $info->select(['type', 'u2.username as username_s', 'create_time', 'user.username as username_r', 'complete_time', 'status'])
-            ->innerJoinWith('sender')
-            ->innerJoinWith('reciever')
-            ->orderBy('status, create_time desc, complete_time desc')
-            ->asArray();
-        }
+        $info->select(['req_id','type', 'u2.username as username_s', 'create_time', 'user.username as username_r', 'complete_time', 'status'])
+        ->innerJoinWith('sender')
+        ->innerJoinWith('reciever')
+        ->andFilterWhere(['like', 'u2.username', $request['value']])
+        ->orderBy('status, create_time desc, complete_time desc')
+        ->asArray();    
 
         return self::buildPagination($info, $paginatio=5);
     }
@@ -62,7 +53,6 @@ class RequestController extends AppController
         $requestModel = new Request();
         $type = '0';
         $sender = '1';
-        $reciever = '3';
         $status = '0';
 
         $requestModel->type = $type;

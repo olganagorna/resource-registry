@@ -14,8 +14,12 @@ class UserController extends AppController {
     public function actionLogin() {
         $modelLoginForm = new LoginForm();
         $post = \Yii::$app->request->post();
-         
-        if ($modelLoginForm->load($post, '') && $modelLoginForm->login()) {
+        
+        if ($modelLoginForm->load($post, '') && $modelLoginForm->login() ) {
+            if (!\Yii::$app->user->identity->activation_status) {
+                // TODO: add some graceful exception or show error
+                return $modelLoginForm;
+            };
             $roleName = Role::findOne(\Yii::$app->user->identity->role_id);
             return [
                 'username' => \Yii::$app->user->identity->username,
@@ -27,15 +31,13 @@ class UserController extends AppController {
             return $modelLoginForm;
         }
     }
+
     public function actionLogout(){
         \Yii::$app->user->logout();
         return 'Вихід здійснено';
     }
     public function actionAdduser()
     {
- /*       echo \Yii::$app->basePath;
-        echo \Yii::$app->session->get('role');
-        exit('1');*/
         if (!$post = \Yii::$app->getRequest()->getBodyParams()) {
             throw new \yii\web\HttpException(400, 'Дані не отримані');
         }

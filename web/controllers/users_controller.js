@@ -13,6 +13,20 @@
         $scope.userSearch;
         $scope.sortingDone;
         $scope.roleFound = [];
+
+
+        $scope.modifyRoleName = function() {
+            var toEquate = {
+                    "user": "Користувач",
+                    "registrar": "Реєстратор",
+                    "admin": "Адміністратор",
+                    "commissioner": "Уповноважений"
+                };
+                
+                for(var i = 0; i < $rootScope.xmlData.items.length; i++) {
+                    $rootScope.xmlData.items[i].role_name = toEquate[$rootScope.xmlData.items[i].role_name];
+                }
+        };
         
         ($scope.getData = function() {
             return $http.get('rest.php/users/userdata')
@@ -20,6 +34,7 @@
                 .catch(errorHandler);
             function successHandler(data) {
                 $rootScope.xmlData = data.data;
+                $scope.modifyRoleName();
             }
             function errorHandler(data) {
                 console.log("Can't reload list!");
@@ -44,18 +59,21 @@
                         PaginationServicee.switchPage(index, constant.usersQuery + '/search?' + buildQuery($scope.request)+ '&')
                             .then(function(data) {
                                 $rootScope.xmlData = data.data;
+                                $scope.modifyRoleName();
                                 $scope.currentPage = PaginationServicee.currentPage;
                         });
                     }  else if ($scope.searchingDone) {
                         PaginationServicee.switchPage(index, 'users/userdata?value=' + $scope.searchingDone + "&page=" + index + "&per-page=" + constant.perPage)
                             .then(function(data) {
                                 $rootScope.xmlData = data.data;
+                                $scope.modifyRoleName();
                                 $scope.currentPage = PaginationServicee.currentPage;
                         });
                     } else {
                         PaginationServicee.switchPage(index, constant.usersQuery + '?')
                             .then(function(data) {
                                 $rootScope.xmlData = data.data;
+                                $scope.modifyRoleName();
                                 $scope.currentPage = PaginationServicee.currentPage;
                         });
                     }    
@@ -69,10 +87,11 @@
             PaginationServicee.setPage(pageLink, pageType, $rootScope.xmlData._meta.pageCount)
                 .then(function(data) {
                     $rootScope.xmlData = data.data;
+                    $scope.modifyRoleName();
                     $scope.currentPage = PaginationServicee.currentPage;
             });
         };
-        //Pagination end
+        // //Pagination end
 
         // filtering by role
         $scope.filterRole = function(role_name) {
@@ -81,6 +100,7 @@
                 .catch(errorHandler);
             function successHandler(data) {
                 $rootScope.xmlData = data.data;
+                $scope.modifyRoleName();
             }
             function errorHandler(data) {
                 console.log("Can't reload list!");
@@ -89,12 +109,12 @@
 
         // searching by first and last name
         $scope.searchUser = function(search_query) {
-            console.log($scope.searchingDone);
             $http.get('rest.php/users/userdata?value='+ search_query)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
                 $rootScope.xmlData = data.data;
+                $scope.modifyRoleName();
             }
             function errorHandler(data) {
                 console.log("Can't reload list!");
@@ -113,6 +133,7 @@
                 .catch(errorHandler);
             function successHandler(data) {
                 $rootScope.xmlData = data.data;
+                $scope.modifyRoleName();
             }
             function errorHandler(data) {
                 console.log("Can't reload list!");
@@ -139,11 +160,25 @@
                 .catch(errorHandler);
             function successHandler(data) {
                 $scope.roleFound = data.data.items;
+
+                var toEquate = {
+                    "user": "Користувач",
+                    "registrar": "Реєстратор",
+                    "admin": "Адміністратор",
+                    "commissioner": "Уповноважений"
+                };
+                
+                for(var i = 0; i < $scope.roleFound.length; i++) {
+                    $scope.roleFound[i].role_name = toEquate[$scope.roleFound[i].role_name];
+                }
+                
             }
             function errorHandler(data) {
                 console.log("Can't reload list!");
             }
         }());
+
+        
 
         // change user role
         $scope.changeRole = function (changeRoleId, user_id) {
