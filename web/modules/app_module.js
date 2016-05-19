@@ -13,14 +13,14 @@
 
     $routeProvider
         .when('/site/admin', {
-            controller: 'index',
             templateUrl: 'views/site/admin.html'
+
         })
         .when('/resource/resource', {
             templateUrl: 'views/resource/resource.html'
         })
         .when('/site/logs', {
-             templateUrl: 'views/site/logs.html'
+            templateUrl: 'views/site/logs.html'
         })
         .when('/site/contact', {
             templateUrl: 'views/site/contact.html'
@@ -65,7 +65,7 @@
         })
 	.when('/resource/type', {
             controller: 'IndexCtrl',
-            controllerAs: 'pp',
+            // controllerAs: 'pp',
             templateUrl: 'views/resource/resource_types.html'
         })
         .when('/resource/type/attributes', {
@@ -119,10 +119,6 @@
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             var test = localStorage.getItem('username');
-            /*if (!test) {
-             $location.path('/site/login');
-             }*/
-            console.log('change');
         });
     }
 
