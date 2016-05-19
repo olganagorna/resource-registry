@@ -23,10 +23,10 @@ class RbacController extends Controller
         // Create simple, based on controller and action{$NAME} permissions
         // Add permissions in Yii::$app->authManager
 
-        $show = $auth->createPermission('community/show'); 
-        $auth->add($show); 
-        $addcomm = $auth->createPermission('community/addcomm'); 
-        $auth->add($addcomm); 
+        $commShow = $auth->createPermission('community/show'); 
+        $auth->add($commShow); 
+        $commAdd = $auth->createPermission('community/addcomm'); 
+        $auth->add($commAdd); 
         $view = $auth->createPermission('resource/view'); 
         $auth->add($view); 
         $resIndex = $auth->createPermission('resource/index'); 
@@ -90,7 +90,6 @@ class RbacController extends Controller
  
         // registrar
         $auth->addChild($registrar, $user);
-        $auth->addChild($registrar, $show);
         $auth->addChild($registrar, $userdata);
         $auth->addChild($registrar, $userGetRole);
         $auth->addChild($registrar, $userChngActSt);
@@ -101,18 +100,15 @@ class RbacController extends Controller
         $auth->addChild($registrar, $resourceClassChangeActivationStatus);
         $auth->addChild($registrar, $resourceClass);
         $auth->addChild($registrar, $search);
-
-
-        
-        
+       
         // commissioner
         $auth->addChild($commissioner, $user);
  
         // admin
-        $auth->addChild($admin, $addcomm);
+        $auth->addChild($admin, $commAdd);
+        $auth->addChild($admin, $commShow);
         $auth->addChild($admin, $resourceClassSearch);
         $auth->addChild($admin, $resourceClassChangeActivationStatus);
         $auth->addChild($admin, $resourceClass);
-
     }
 }

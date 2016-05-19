@@ -75,7 +75,6 @@ return [
         'ruleName' => 'userGroup',
         'children' => [
             'user',
-            'community/show',
             'user/userdata',
             'user/getrole',
             'user/changeactivationstatus',
@@ -100,6 +99,7 @@ return [
         'ruleName' => 'userGroup',
         'children' => [
             'community/addcomm',
+            'community/show',
             'resource_class/search',
             'resource_class/changeactivationstatus',
             'resource_class/index',
