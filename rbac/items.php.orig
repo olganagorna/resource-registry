@@ -82,10 +82,15 @@ return [
             'user/changerole',
             'request/showrequest',
             'request/addreq',
+<<<<<<< HEAD
+            'resource/gettingdata',
+            'resource/additiondata',
             'resource_class/search',
             'resource_class/changeactivationstatus',
             'resource_class/index',
             'search/search',
+=======
+>>>>>>> bded0ed470f62b82add633d6d3c66087055ef146
         ],
     ],
     'commissioner' => [

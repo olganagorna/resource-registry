@@ -65,7 +65,7 @@
         })
 	.when('/resource/type', {
             controller: 'IndexCtrl',
-            controllerAs: 'pp',
+            // controllerAs: 'pp',
             templateUrl: 'views/resource/resource_types.html'
         })
         .when('/resource/type/attributes', {

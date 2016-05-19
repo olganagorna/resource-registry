@@ -97,6 +97,9 @@ class RbacController extends Controller
         $auth->addChild($registrar, $userChngRole);
         $auth->addChild($registrar, $reqShow);
         $auth->addChild($registrar, $reqAdd);
+<<<<<<< HEAD
+        $auth->addChild($registrar, $resGettingdata);
+        $auth->addChild($registrar, $resAdditiondata);
         $auth->addChild($registrar, $resourceClassSearch);
         $auth->addChild($registrar, $resourceClassChangeActivationStatus);
         $auth->addChild($registrar, $resourceClass);
@@ -104,8 +107,13 @@ class RbacController extends Controller
 
 
         
+       
+        /*// commissioner
+        $auth->addChild($commissioner, $userdata);
+=======
         
         // commissioner
+>>>>>>> bded0ed470f62b82add633d6d3c66087055ef146
         $auth->addChild($commissioner, $user);
  
         // admin
