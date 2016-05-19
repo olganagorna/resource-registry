@@ -17,8 +17,6 @@
 
         function index($scope, $http, RestService, $rootScope, $location, $route, PaginationService, constant, CoordsService) {
 
-            $rootScope.currentUser = angular.fromJson(sessionStorage.getItem('user'));
-
             $rootScope.coords = [];
             $rootScope.mapOptions = {};
 

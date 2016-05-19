@@ -7,7 +7,6 @@
 
     LoginController.$inject = ['$location', '$scope', '$http', '$rootScope'];
     function LoginController($location, $scope, $http, $rootScope) {
-        $rootScope.currentUser = angular.fromJson(sessionStorage.getItem('user'));
 
         $rootScope.logout = function (){
 
@@ -20,6 +19,7 @@
                         "userDataID":0
                     };
                     sessionStorage.setItem('user',angular.toJson(user));
+                    $rootScope.currentUser = angular.fromJson(sessionStorage.getItem('user'));
                     $location.path('site/login');
                 });
         };
@@ -49,7 +49,7 @@
                     .catch(errorHandler);
                 function successHandler(result) {
                     sessionStorage.setItem('user',angular.toJson(result.data));
-                    $rootScope.isLogined = true;
+                    $rootScope.currentUser = angular.fromJson(sessionStorage.getItem('user'));
                     if (result.data.role == 'admin') {
                         $location.path('/site/admin');
                     } else {
