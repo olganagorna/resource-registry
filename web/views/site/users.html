@@ -22,6 +22,15 @@
 			border-radius: 5px;
 			border: 1px solid #e3e3e3;
 		}
+
+		.sort {
+			color: rgba(0,0,0,.84);
+		}
+
+		a:hover {
+			text-decoration: none;
+		}
+
 	</style>
 
 	<div class="container well">
@@ -32,7 +41,6 @@
 					<input type="text" class="community-search" ng-model="userSearch" ng-enter="searchUser(userSearch)"/>
 					<input class="btn btn-primary" type="submit" value="Пошук" ng-click="searchUser(userSearch)"></input>
 				</ng-form>
-				<a class="btn btn-primary ng-scope" title="Сортувати" ng-click="sortName()">СОРТУВАТИ <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></a>
 			</div>
 			<div class="col-lg-2 col-md-6 col-sm-6">
 				<a class="btn btn-material-amber-400 ng-scope" href="#" ng-if="currentUser.role === 'registrar' &amp;&amp; currentUser.isLogined">ДОДАТИ <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
@@ -44,7 +52,9 @@
 			<ul class="list-group">
 				<li class="list-group-item">
 					<div class="row">
-						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Прізвище та ім'я</div>
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+						<a class="sort ng-scope" title="Сортувати" ng-click="sortName()">Прізвище та ім'я <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></a>
+                        </div>					
 						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Логін</div>
 						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 							<select ng-model="roleFilter" ng-change="filterRole(roleFilter)">
