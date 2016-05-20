@@ -54,7 +54,7 @@
         $scope.switchPage = function(index) {
             var intervalID = setInterval(function(){
                 $rootScope.xmlDataLength = $rootScope.xmlData.length;
-                if ($rootScope.xmlData._meta.perPage != undefined) {
+                if ($rootScope.xmlData._meta.perPage) {
                     if($scope.request) {
                         PaginationServicee.switchPage(index, constant.usersQuery + '/search?' + buildQuery($scope.request)+ '&')
                             .then(function(data) {
