@@ -1,6 +1,6 @@
 <div class="container-fluid" ng-if="currentUser.role === 'admin'">
-    <div class="col-md-6">
-        <div>
+    <div class="row">
+        <div class="col-md-6">
             <div class="md-list-group">
                 <ul class="list-group">
                     <li class="list-group-item row">
@@ -52,8 +52,17 @@
                     <a href="" ng-click="setPage(xmlData._links.last.href, 'last')">&raquo;</a>
                 </li>
             </ul>
-
         </div>
+        <!-- <div class="col-md-6">
+            <div class="md-list-group">
+                <ul class="list-group">
+                    <li class="list-group-item shadow-z-1 md-list row " style="padding:0px 5px 0px 5px!important;" ng-repeat="data in xmlData">
+                        <div class="col-md-4 text-center res_vert_allight_list">{{data.class_id}}</div>
+                        <div class="col-md-4 text-center res_vert_allight_list">{{data.name}}</div>
+                    </li>
+                </ul>
+            </div>
+        </div> -->
     </div>
 </div>
 
