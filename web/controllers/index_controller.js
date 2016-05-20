@@ -14,9 +14,7 @@
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(result) {
-                
                 $scope.xmlData = result.data;
-                console.log("aaaa" + $scope.xmlData);
             }
             function errorHandler(result){
                 alert(result.data[0].message);
