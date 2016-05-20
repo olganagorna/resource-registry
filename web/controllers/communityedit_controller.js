@@ -3,7 +3,7 @@
 
    angular
        .module('restApp')
-       .controller('CommissionerCtrl', CommissionerCtrl);
+       .controller('CommEditCtrl', CommEditCtrl);
 
    CommissionerCtrl.$inject = ['$scope', '$http', '$routeParams'];
    function CommissionerCtrl($scope, $http, $routeParams) {

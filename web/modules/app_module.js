@@ -89,8 +89,8 @@
             controllerAs: 'usersCtrl'
         })
         .when('/community/update/:communityId', {
-            controller: 'CommissionerCtrl',
-            templateUrl: 'views/site/set_commissioner.html',
+            controller: 'CommEditCtrl',
+            templateUrl: 'views/site/community_edit.html',
             controllerAs: 'commissCtrl'
         })
         .when('/community/communityadd', {
