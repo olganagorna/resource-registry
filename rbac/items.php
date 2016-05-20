@@ -6,6 +6,9 @@ return [
     'community/addcomm' => [
         'type' => 2,
     ],
+    'community/view' => [
+        'type' => 2,
+    ],
     'resource/view' => [
         'type' => 2,
     ],
@@ -100,6 +103,7 @@ return [
         'children' => [
             'community/addcomm',
             'community/show',
+            'community/view',
             'resource_class/search',
             'resource_class/changeactivationstatus',
             'resource_class/index',

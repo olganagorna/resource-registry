@@ -5,24 +5,21 @@
        .module('restApp')
        .controller('CommEditCtrl', CommEditCtrl);
 
-   CommissionerCtrl.$inject = ['$scope', '$http', '$routeParams'];
-   function CommissionerCtrl($scope, $http, $routeParams) {
-       var commissCtrl = this;
-       commissCtrl.communId = $routeParams.communityId;
-       commissCtrl.name = 'error';
+   CommEditCtrl.$inject = ['$scope', '$http', '$routeParams'];
+   function CommEditCtrl($scope, $http, $routeParams) {
+       var commEdit = this;
+       commEdit.communId = $routeParams.communityId;
+       commEdit.name = 'error';
 
        (function(){
-           var get = $http.get('rest.php/communities')
+           var get = $http.get('rest.php/communities/'+commEdit.communId)
                .then(successHandler)
                .catch(errorHandler);
            function successHandler(result) {
-               for (var i = 0; i < result.data.length; i++) {
-                 if (result.data[i].community_id == commissCtrl.communId){
-                  commissCtrl.name = result.data[i].name;
-                  commissCtrl.prefix = result.data[i].prefix;
-                  break;
-                 }
-               }
+                  commEdit.name = result.data.name;
+                  commEdit.prefix = result.data.prefix;
+                  commEdit.notes = result.data.notes;
+
            }
            function errorHandler(result){
                alert(result.data[0].message);

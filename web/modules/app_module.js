@@ -86,7 +86,7 @@
         .when('/community/update/:communityId', {
             controller: 'CommEditCtrl',
             templateUrl: 'views/site/community_edit.html',
-            controllerAs: 'commissCtrl'
+            controllerAs: 'commEdit'
         })
         .when('/community/communityadd', {
             controller: 'communityAddCtrl',
