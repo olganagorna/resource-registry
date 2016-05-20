@@ -2,7 +2,7 @@
 
 	'use strict';
 
-	angular.module('restApp').directive("leafletMap", function ($http) {
+	angular.module('restApp').directive("leafletMapCreate", function ($http) {
 
 		var link = function ($scope, $element, attrs, $rootScope, $http) {
 
@@ -32,8 +32,8 @@
 
 			$scope.createMap = function () {
 				if (!$scope.mapCreated) {
-					$('#map').show();
-					$scope.map = L.map('map');
+					$('#map-create').show();
+					$scope.map = L.map('map-create');
 
 					$scope.baseLayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 						minZoom: 5,
@@ -70,7 +70,7 @@
 						$scope.drawControl.removeFrom($scope.map);
 
 					$scope.map.remove();
-					$('#map').hide();
+					$('#map-create').hide();
 
 					$scope.mapCreated = false;
 				}
@@ -155,7 +155,6 @@
 				initCoordinatesElement();
 				initInteractivity();
 				initAdding();
-				initFinding();
 				initSearch();
 				initGeojson();
 
@@ -168,8 +167,8 @@
 	              }, '').addTo($scope.map);
 
 				function initCssProperties () {
-					$('#map').css({ 'height': attrs.height || defaults.height });
-					$('#map').css({ 'width': attrs.width || defaults.width });
+					$('#map-create').css({ 'height': attrs.height || defaults.height });
+					$('#map-create').css({ 'width': attrs.width || defaults.width });
 				}
 
 				function initCoordinatesElement () {
@@ -191,7 +190,7 @@
 						if ($scope.map.tap)
 							$scope.map.tap.disable();
 
-						$('#map').css({ 'cursor': 'default' });
+						$('#map-create').css({ 'cursor': 'default' });
 						$(".leaflet-control-zoom").css("visibility", "hidden");
 
 					}
@@ -301,321 +300,6 @@
 					}
 				}
 
-
-				
-
-				function initFinding() {
-
-					if (attrs.find === 'true') {
-						/*array for resources on map*/
-						var resourcesOnMap = [];
-
-						/*array for markers*/
-						var markersOnMap = [];
-
-						/*radius of circle*/
-						var radius = 500;
-
-						/*drawing circle*/
-						var circle = L.circle(L.latLng(49.83587885628228, 23.99765968322754), radius, {
-							opacity: 1,
-							weight: 1,
-							fillOpacity: 0
-						});
-						function getRadius() {
-			            	(function() {
-			            		var value = parseInt($scope.circleRadius);
-			            		if(!isNaN(value)){
-			            			radius = value;
-			            		}
-			            	}());
-						}
-	
-
-						$scope.map.on('click', function(click) {
-
-
-							/*showing resources on the map*/
-							function showResources(resources) {
-								if(resources.length == 0) return;
-								for(var i = 0; i < resources.length; i++){
-									$scope.map.addLayer(resources[i]);
-								}
-							}
-
-							function showMarkers(resources) {
-								if(resources.length == 0) return;
-								for(var i = 0; i < resources.length; i++){
-									$scope.map.addLayer(resources[i].bindPopup($scope.markerList[i]));
-								}
-							}
-									
-							/*deleting resources from the map*/
-							$scope.deleteResources = function(resources) {
-							    if(resources.length == 0) return;
-							    for(var i = 0; i < resources.length; i++){
-								   	$scope.map.removeLayer(resources[i]);
-								}
-								resources.length = 0;
-							}
-		
-							
-
-
-								var click = click;
-								$scope.clickData = [click.latlng.lat, click.latlng.lng];
-								console.log($scope.clickData);
-								$scope.coordCompare = {
-									'44' : 80.208,
-									'45' : 78.848,
-									'46' : 77.465,
-									'47' : 76.057,
-									'48' : 74.627,
-									'49' : 73.173,
-									'50' : 71.697,
-									'51' : 70.199,
-									'52' : 68.679
-								};
-								$scope.range = 10;
-								$rootScope.y1 = $scope.clickData[0] - (0.00900009 * $scope.range);
-								$rootScope.y2 = $scope.clickData[0] + (0.00900009 * $scope.range);
-								$rootScope.x1 = $scope.clickData[1] - ((1 / $scope.coordCompare[Math.round($scope.clickData[0])]) * $scope.range);
-								$rootScope.x2 = $scope.clickData[1] + ((1 / $scope.coordCompare[Math.round($scope.clickData[0])]) * $scope.range);
-								console.log($rootScope.y1, $rootScope.y2, $rootScope.x1, $rootScope.x2);
-
-								// $scope.resources = [];
-
-							
-								// $http.get('rest.php/resources/gettingdata' + $rootScope.y1 + '&max_lat=' + $rootScope.y2 + '&min_lng=' + $rootScope.x1 + '&max_lng=' + $rootScope.x2)
-								// 	   .then(successHandler)
-								// 	   .catch(errorHandler);
-								// function successHandler(data) {
-								// 	   $scope.resources = data.data;
-								// }
-								// function errorHandler(data){
-								// 	   console.log("Can't reload list!");
-								// }
-								$scope.xmlReturn = [];
-								$scope.xmlReturn.length = 0;
-								$.get( 'rest.php/resources/gettingdata?min_lat=' + $rootScope.y1 + '&max_lat=' + $rootScope.y2 + '&min_lng=' + $rootScope.x1 + '&max_lng=' + $rootScope.x2, function(data) {
-								  	$scope.xmlReturn = data;
-								  	var resources = [];
-								  	$scope.resourcesWithNames.length = 0;
-									for (var i = 0; i < $scope.xmlReturn.length; i++) {
-										var cache = $scope.xmlReturn[i].coordinates;
-										resources.push(JSON.parse(cache));
-										$scope.resourcesWithNames.push($scope.xmlReturn[i].name);
-
-									}
-
-
-									/*latitude and longitude(the centroid of a closed polygon)*/
-									var items = [];
-
-									/*array for markers*/
-									var marker = [];
-
-									/*definition of the centroid of a closed polygon*/		
-									function getCentroid(arr) {
-									    var twoTimesSignedArea = 0;
-									    var cxTimes6SignedArea = 0;
-									    var cyTimes6SignedArea = 0;
-
-									    var length = arr.length
-
-									    var x = function (i) { return arr[i % length][0] };
-									    var y = function (i) { return arr[i % length][1] };
-
-									    for ( var i = 0; i < arr.length; i++) {
-									        var twoSA = x(i) * y(i + 1) - x(i + 1) * y(i);
-									        twoTimesSignedArea += twoSA;
-									        cxTimes6SignedArea += (x(i) + x(i + 1)) * twoSA;
-									        cyTimes6SignedArea += (y(i) + y(i + 1)) * twoSA;
-									    }
-									    var sixSignedArea = 3 * twoTimesSignedArea;
-									    return [ cxTimes6SignedArea / sixSignedArea, cyTimes6SignedArea / sixSignedArea];        
-									}
-
-									/*pushing coordinates into array(items)*/
-									function fillItems(array) {
-										for(var i = 0; i < array.length; i++){
-											items.push(getCentroid(array[i]));
-										}
-									}
-
-									/*pushing items into array(marker) each by each and then add markers*/
-									function itemWrap(array) {
-										for(var i = 0; i < array.length; i++){
-										    var LamMarker = new L.marker([array[i][0], array[i][1]]);
-										    marker.push(LamMarker);
-									    }
-									}
-
-									fillItems(resources);
-
-									itemWrap(items);
-									function showResourcesOnMap(clickEvent) {
-										getRadius();
-			    						circle.setRadius(radius);
-									    circle.setLatLng(clickEvent.latlng);
-									    circle.addTo($scope.map);
-									    $scope.deleteResources(resourcesOnMap);
-									    $scope.deleteResources(markersOnMap);
-									    $scope.xmlData.length = 0;
-									    $scope.markerList.length = 0;
-									   	for(var i = 0; i < marker.length; i++){
-									   		var distance = clickEvent.latlng.distanceTo(L.latLng(marker[i]._latlng.lat, marker[i]._latlng.lng));
-									   		if(distance <= radius){
-									    		for(var j = 0; j < resources.length; j++){
-									    			var centroid = getCentroid(resources[j]);
-									    			if(centroid[0] == marker[i]._latlng.lat && centroid[1] == marker[i]._latlng.lng){
-									    				resourcesOnMap.push(L.polygon(resources[j]));
-									    				markersOnMap.push(new L.marker([centroid[0], centroid[1]]));
-									    				$scope.xmlData.push($scope.xmlReturn[j]);
-									    				$scope.markerList.push($scope.xmlReturn[j].name);
-									    			}
-									    		}
-									    		showResources(resourcesOnMap);
-									    		showMarkers(markersOnMap);
-										    }
-									   	}
-									   	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-									   	console.log("start pagination");
-
-
-									   	// PAGINATION
-
-									   	$scope.partOfList = [];
-									   	$scope.listLength = $scope.xmlData.length;
-									   	$scope.listRange = 4;
-									   	$scope.paginationRange = 5;
-									   	$scope.listCacheArray = [];
-									   	$scope.listCacheArrayLength = Math.ceil($scope.listLength/$scope.listRange);
-									   	$scope.currentPage = 1;
-									
-
-									   	$scope.switchPage = function(pageNumber) {
-									   		if (pageNumber != "...") {
-									   			$scope.partOfList.length = 0;
-										   		$scope.currentPage = pageNumber;
-										   		for (var i = 0; i < $scope.listCacheArray[pageNumber-1].length; i++) {
-										   			$scope.partOfList.push($scope.listCacheArray[pageNumber-1][i]);
-										   		}
-										   	}
-
-									   	};
-
-
-
-
-
-									   	$scope.getPages = function() {
-							                var pageCount = $scope.listCacheArrayLength, currentPage = $scope.currentPage,
-							                    paginationRange = $scope.paginationRange, beforeCenter, afterCenter;
-							                $scope.pages = [];
-
-							                if (paginationRange%2 == 0) {
-							                    beforeCenter = (paginationRange/2)-1; 
-							                    afterCenter = paginationRange/2;
-							                } else {
-							                    beforeCenter = Math.floor(paginationRange/2);
-							                    afterCenter = beforeCenter;
-							                }
-
-							                for (var i=1; i<=pageCount; i++) {
-							                    if (i >= currentPage - paginationRange && i <= currentPage + paginationRange) $scope.pages.push(i);
-							                }
-
-
-							                console.log($scope.pages, 'first');
-
-
-							                for (var i = 0; i<=$scope.pages.length-1; i++) {
-							                    if ($scope.pages[$scope.pages.length-1] - currentPage >= afterCenter && currentPage - $scope.pages[0] > beforeCenter  ) {
-							                        $scope.pages.shift();
-							                    } else if ( $scope.pages[$scope.pages.length-1] - currentPage < afterCenter && $scope.pages.length > paginationRange) {
-							                        $scope.pages.shift();
-							                    }
-							                }
-							                console.log($scope.pages, 'second');
-							                
-							                while ($scope.pages.length > paginationRange) $scope.pages.pop();
-							                console.log($scope.pages, 'third');
-							                if ($scope.pages[0]!=1 && currentPage - beforeCenter >= 0) $scope.pages[0] = "...";
-							                console.log($scope.pages, 'fourth');
-							                if ($scope.pages[$scope.pages.length-1]!=pageCount) $scope.pages[$scope.pages.length-1] = "...";
-							                console.log($scope.pages, 'fifth');        
-							                return $scope.pages;
-							            };
-
-									   	(function() {
-									   		if ($scope.listLength > $scope.listRange) {
-									   			for (var i = 0; i < $scope.listCacheArrayLength; i++) {
-									   				$scope.listCacheArray.push([]);
-									   				for(var j = 0; j < $scope.listRange; j++) {
-									   					if ($scope.xmlData.length) $scope.listCacheArray[i].push($scope.xmlData.shift());
-									   				}
-									   			}
-									   			$scope.switchPage(1);
-									   		}
-									   		else {
-									   			for (var i = 0; i < $scope.xmlData.length; i++) {
-									   				for(var j = 0; j < $scope.listRange; j++) {
-									   					if ($scope.xmlData.length) $scope.partOfList.push($scope.xmlData.shift());
-									   				}
-									   			}
-									   		}
-									   	}());
-
-									   	$scope.$apply();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-									};
-
-									showResourcesOnMap(click);
-
-								});
-							});
-					}
-					
-				}
 
 				function initSearch () {
 					
@@ -732,7 +416,7 @@
 
 		return {
 			restrict: 'E',
-			templateUrl: 'directives/map_directive.html',
+			template: '<div id="map-create"></div>',
 			controller: 'MapCtrl',
 			scope: {
 				bind: '=bind',

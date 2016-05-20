@@ -16,7 +16,7 @@
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
-                $scope.communities = data.data;console.log("lets start");
+                $scope.communities = data.data;
             }
             function errorHandler(data){
                 console.log("Can't render list!");
@@ -32,7 +32,7 @@
         $scope.searchCommunity = function(community_name) {
 
             $scope.searchingVal = $scope.communitySearch;
-            console.log($scope.searchingVal);
+
             $http.get('http://rr.com/rest.php/communities/show?value='+ $scope.communitySearch)
                 .then(successHandler)
                 .catch(errorHandler);

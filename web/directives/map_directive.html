@@ -24,7 +24,7 @@
                                     </div>
                                 </div>
                                 <ul class="list-group result" >      
-                                    <li class="list-group-item shadow-z-1 md-list row " ng-repeat="data in xmlData" ng-if="xmlData">
+                                    <li class="list-group-item shadow-z-1 md-list row " ng-repeat="data in partOfList" ng-if="xmlData">
                                         <div class="col-md-5 text-align-left res_vert_allight_list">{{data.registration_number}}</div>
                                         <div class="col-md-5 text-align-left res_vert_allight_list">{{data.name}}</div>
                                         <div class="col-md-2">
@@ -53,24 +53,17 @@
                         </div>
                     </div>
                     <div class="col-md-8 margin_bottom">          
-                        <ul class="pagination pagination-sm" ng-if="resources._meta.pageCount > 1">
-                            <li ng-if="resources._links.first">
-                                <a href="" ng-click="setPage(resources._links.first.href, 'first')">&raquo;</a>
+                        <ul class="pagination pagination-sm" ng-if="listCacheArrayLength > 1">
+                            <li ng-hide="1 == currentPage">
+                                <a href="" ng-click="switchPage(1)">&laquo;</a>
                             </li>
-                            <li ng-if="resources._links.prev">
-                                <a href="" ng-click="setPage(resources._links.prev.href, 'prev')" >›</a>
-                            </li>
-
-                            <li ng-repeat="page in getPages(resources._meta.pageCount) track by $index"
+                            <li ng-repeat="page in getPages(listCacheArrayLength) track by $index"
                                 ng-click="switchPage(page)" ng-class="{active: page == currentPage}"
                                 ng-if="page">
                                 <span>{{page}}</span>
                             </li>
-                            <li ng-if="resources._links.next">
-                                <a href="" ng-click="setPage(resources._links.next.href, 'next')" >‹</a>
-                            </li>
-                            <li ng-if="resources._links.last">
-                                <a href="" ng-click="setPage(resources._links.last.href, 'last')">&laquo;</a>
+                            <li ng-hide="listCacheArrayLength == currentPage">
+                                <a href="" ng-click="switchPage(listCacheArrayLength)">&raquo;</a>
                             </li>
                         </ul>
                     </div>    
