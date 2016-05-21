@@ -63,15 +63,10 @@
             templateUrl: 'views/site/registration.html',
             controllerAs: 'vm'
         })
-	.when('/resource/type', {
+	    .when('/resource/type', {
             controller: 'IndexCtrl',
             // controllerAs: 'pp',
             templateUrl: 'views/resource/resource_types.html'
-        })
-        .when('/resource/type/attributes', {
-            // controller: 'IndexCtrl',
-            // controllerAs: 'pp',
-            templateUrl: 'views/resource/resource_type_attributes.html'
         })
         .when('/site/users', {
             controller: 'UsersController',
@@ -89,9 +84,9 @@
             controllerAs: 'usersCtrl'
         })
         .when('/community/update/:communityId', {
-            controller: 'CommissionerCtrl',
-            templateUrl: 'views/site/set_commissioner.html',
-            controllerAs: 'commissCtrl'
+            controller: 'CommEditCtrl',
+            templateUrl: 'views/site/community_edit.html',
+            controllerAs: 'commEdit'
         })
         .when('/community/communityadd', {
             controller: 'communityAddCtrl',

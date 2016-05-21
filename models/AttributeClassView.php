@@ -52,13 +52,17 @@ class AttributeClassView extends \yii\db\ActiveRecord
      */
     public function getResourceAttribute()
     {
-        return $this->hasOne(ResourceAttribute::className(), ['attribute_id' => 'attribute_id']);
+        return $this->hasMany(ResourceAttribute::className(), ['attribute_id' => 'attribute_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
+<<<<<<< HEAD
     public function getRessourceClass()
+=======
+    public function getResourceClass()
+>>>>>>> 7979bd0fb9eb08e4e0465e42f59939ef840b3fbe
     {
         return $this->hasMany(ResourceClass::className(), ['class_id' => 'class_id']);
     }

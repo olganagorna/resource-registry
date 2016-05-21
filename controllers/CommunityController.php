@@ -15,12 +15,12 @@ class CommunityController extends AppController
 		$community = Community::find();
 		
 		if(isset($request['value'])){
-			$community->select(['name', 'prefix', 'notes'])
+			$community->select(['name', 'prefix', 'notes', 'community_id'])
             ->andFilterWhere(['like', 'name', $request['value']])
             ->orderBy('name')
             ->asArray();	
 		}else{
-			$community->select(['name', 'prefix', 'notes'])
+			$community->select(['name', 'prefix', 'notes', 'community_id'])
             ->orderBy('name')
 			->asArray();
 		}
