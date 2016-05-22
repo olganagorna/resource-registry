@@ -64,8 +64,6 @@
             controllerAs: 'vm'
         })
 	    .when('/resource/type', {
-            controller: 'IndexCtrl',
-            // controllerAs: 'pp',
             templateUrl: 'views/resource/resource_types.html'
         })
         .when('/site/users', {

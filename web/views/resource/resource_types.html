@@ -1,4 +1,4 @@
-<div class="container-fluid" ng-if="currentUser.role === 'admin'">
+<div class="container-fluid" ng-if="currentUser.role === 'admin'" ng-controller="IndexCtrl">
     
     <style>
         input {  text-indent: 1.5em;}
@@ -57,15 +57,21 @@
                                             </span>
                                             <input type="text" class="form-control" ng-model="types.addClassInput" placeholder="назва нового атрибуту">
                                         </div>
+                                        <div ng-controller="ResClassAttrCtrl">
+                                            <div class="col-md-12" ng-repeat="data in resourceAttributes.items | filter:searchByClassId(data.class_id)">
+                                                <span>{{data.attribute_id}}</span><span style="float: right">{{data.class_id}}</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-2"></div>
+                                
                             </div>    
                         </div>
                     </li>
                 </ul>
             </div>
-            <ul class="pagination pagination-sm">
+            <!-- <ul class="pagination pagination-sm">
                 <li ng-if="xmlData._links.first">
                     <a href="" ng-click="setPage(xmlData._links.first.href, 'first')">&laquo;</a>
                 </li>
@@ -83,9 +89,10 @@
                 <li ng-if="xmlData._links.last">
                     <a href="" ng-click="setPage(xmlData._links.last.href, 'last')">&raquo;</a>
                 </li>
-            </ul>
+            </ul> -->
         </div>
     </div>
+    <!-- <div class="col-md-6"></div> -->
 </div>
 
 <div ng-show="resources.length === 0">

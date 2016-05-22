@@ -60,6 +60,12 @@ return [
     'search/search' => [
         'type' => 2,
     ],
+    'attribute_class_view/index' => [
+        'type' => 2,
+    ],
+    'attribute_class_view/attribute' => [
+        'type' => 2,
+    ],
     'user' => [
         'type' => 1,
         'ruleName' => 'userGroup',
@@ -107,6 +113,8 @@ return [
             'resource_class/search',
             'resource_class/changeactivationstatus',
             'resource_class/index',
+            'attribute_class_view/index',
+            'attribute_class_view/attribute',
         ],
     ],
 ];

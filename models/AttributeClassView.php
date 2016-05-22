@@ -3,7 +3,7 @@
 namespace app\models;
 
 use Yii;
-
+use yii\db\ActiveRecord;
 /**
  * This is the model class for table "attribute_class_view".
  *
@@ -58,11 +58,7 @@ class AttributeClassView extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-<<<<<<< HEAD
-    public function getRessourceClass()
-=======
     public function getResourceClass()
->>>>>>> 7979bd0fb9eb08e4e0465e42f59939ef840b3fbe
     {
         return $this->hasMany(ResourceClass::className(), ['class_id' => 'class_id']);
     }
