@@ -28,7 +28,9 @@ class RbacController extends Controller
         $commAdd = $auth->createPermission('community/addcomm'); 
         $auth->add($commAdd);
         $commView = $auth->createPermission('community/view'); 
-        $auth->add($commView); 
+        $auth->add($commView);
+        $commUpdt = $auth->createPermission('community/update'); 
+        $auth->add($commUpdt); 
         $view = $auth->createPermission('resource/view'); 
         $auth->add($view); 
         $resIndex = $auth->createPermission('resource/index'); 
@@ -109,6 +111,7 @@ class RbacController extends Controller
         $auth->addChild($admin, $commAdd);
         $auth->addChild($admin, $commShow);
         $auth->addChild($admin, $commView);
+        $auth->addChild($admin, $commUpdt);        
         $auth->addChild($admin, $resourceClassSearch);
         $auth->addChild($admin, $resourceClassChangeActivationStatus);
         $auth->addChild($admin, $resourceClass);

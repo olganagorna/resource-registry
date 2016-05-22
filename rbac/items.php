@@ -9,6 +9,9 @@ return [
     'community/view' => [
         'type' => 2,
     ],
+    'community/update' => [
+        'type' => 2,
+    ],
     'resource/view' => [
         'type' => 2,
     ],
@@ -102,6 +105,7 @@ return [
             'community/addcomm',
             'community/show',
             'community/view',
+            'community/update',
             'resource_class/search',
             'resource_class/changeactivationstatus',
             'resource_class/index',
