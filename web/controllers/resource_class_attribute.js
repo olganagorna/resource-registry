@@ -11,8 +11,8 @@
         $rootScope.resourceAttributes = [];
         // $rootScope.searchByClassId;
 
-        ($scope.getData = function() {
-            return $http.get('rest.php/attribute_class_views')
+        ($scope.getAttr = function(class_id) {
+            return $http.get('rest.php/attribute_class_views/attribute?value=' + class_id)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
@@ -24,9 +24,9 @@
             }
         })();
 
-        $scope.refreshData = function() {
-            $scope.getData();
-        }
+        // $scope.refreshData = function() {
+        //     $scope.getData();
+        // }
 
         // $scope.searchByClassId = function(class_id) {
         //     return $http.get('rest.php/attribute_class_views/attribute?value=' + class_id)

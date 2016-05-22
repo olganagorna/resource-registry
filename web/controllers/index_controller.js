@@ -64,40 +64,40 @@
         };
 
         // Pagination start
-        $scope.currentPage = PaginationService.currentPage;
-        $scope.getPages = function(pageCount) {
-            return PaginationService.getPages(pageCount);
-        };
+        // $scope.currentPage = PaginationService.currentPage;
+        // $scope.getPages = function(pageCount) {
+        //     return PaginationService.getPages(pageCount);
+        // };
 
-        $scope.switchPage = function(index) {
-            if($scope.request) {
-                PaginationService.switchPage(index, constant.resource_classesQuery + '/search?' + buildQuery($scope.request)+ '&')
-                    .then(function(result) {
-                        $scope.xmlData = result.data;
-                        $scope.currentPage = PaginationService.currentPage;
-                });
-            }  else if ($scope.searchingDone) {
-                PaginationService.switchPage(index, 'resource_classes?value=' + $scope.searchingDone + "&page=" + index + "&per-page=" + constant.perPage)
-                    .then(function(result) {
-                        $scope.xmlData = result.data;
-                        $scope.currentPage = PaginationService.currentPage;
-                });
-            } else {
-                PaginationService.switchPage(index, constant.resource_classesQuery + '?')
-                    .then(function(result) {
-                        $scope.xmlData = result.data;
-                        $scope.currentPage = PaginationService.currentPage;
-                });
-            }
-        };
-        $scope.switchPage($scope.currentPage);
-        $scope.setPage = function(pageLink, pageType) {
-            PaginationService.setPage(pageLink, pageType, $scope.xmlData._meta.pageCount)
-                .then(function(data) {
-                    $scope.xmlData = data.data;
-                    $scope.currentPage = PaginationService.currentPage;
-            });
-        };
+        // $scope.switchPage = function(index) {
+        //     if($scope.request) {
+        //         PaginationService.switchPage(index, constant.resource_classesQuery + '/search?' + buildQuery($scope.request)+ '&')
+        //             .then(function(result) {
+        //                 $scope.xmlData = result.data;
+        //                 $scope.currentPage = PaginationService.currentPage;
+        //         });
+        //     }  else if ($scope.searchingDone) {
+        //         PaginationService.switchPage(index, 'resource_classes?value=' + $scope.searchingDone + "&page=" + index + "&per-page=" + constant.perPage)
+        //             .then(function(result) {
+        //                 $scope.xmlData = result.data;
+        //                 $scope.currentPage = PaginationService.currentPage;
+        //         });
+        //     } else {
+        //         PaginationService.switchPage(index, constant.resource_classesQuery + '?')
+        //             .then(function(result) {
+        //                 $scope.xmlData = result.data;
+        //                 $scope.currentPage = PaginationService.currentPage;
+        //         });
+        //     }
+        // };
+        // $scope.switchPage($scope.currentPage);
+        // $scope.setPage = function(pageLink, pageType) {
+        //     PaginationService.setPage(pageLink, pageType, $scope.xmlData._meta.pageCount)
+        //         .then(function(data) {
+        //             $scope.xmlData = data.data;
+        //             $scope.currentPage = PaginationService.currentPage;
+        //     });
+        // };
         //Pagination end
 
         $scope.changeActivationStatus = function(activation_status, class_id) {

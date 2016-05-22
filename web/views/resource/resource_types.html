@@ -31,8 +31,8 @@
                     </li>
                     <li class="list-group-item row">
                         <div ng-repeat="data in xmlData.items">
-                            <div>
-                                <div class="btn btn-md btn-primary collapsed col-md-10" data-toggle="collapse" data-target="{{'#demo' + data.class_id}}">
+                            <div ng-controller="ResClassAttrCtrl">
+                                <div class="btn btn-md btn-primary collapsed col-md-10" data-toggle="collapse" data-target="{{'#demo' + data.class_id}}" ng-click="getAttr(data.class_id)">
                                     <div class="col-md-4 text-center">{{data.class_id}}</div> 
                                     <div class="col-md-6 text-center">{{data.name}}</div>
                                 </div>    
@@ -57,9 +57,9 @@
                                             </span>
                                             <input type="text" class="form-control" ng-model="types.addClassInput" placeholder="назва нового атрибуту">
                                         </div>
-                                        <div ng-controller="ResClassAttrCtrl">
-                                            <div class="col-md-12" ng-repeat="data in resourceAttributes.items | filter:searchByClassId(data.class_id)">
-                                                <span>{{data.attribute_id}}</span><span style="float: right">{{data.class_id}}</span>
+                                        <div >
+                                            <div class="col-md-12" ng-repeat="data in resourceAttributes.items">
+                                                <span>{{data.name}}</span><span style="float: right">{{data.class_id}}</span>
                                             </div>
                                         </div>
                                     </div>

@@ -54,18 +54,17 @@ class Attribute_class_viewController extends AppController
     {
         $request = \Yii::$app->request->get();
         $getdata = AttributeClassView::find();
-        // print($getdata);
         if(isset($request['value'])){
-            $getdata->select(['view_id','class_id','attribute_id'])
+            $getdata->select(['view_id','class_id','attribute_class_view.attribute_id as attr_id', 'name'])
             ->andFilterWhere(['like', 'class_id', $request['value']])
-            // ->innerJoinWith('resourceAttribute')->innerJoinWith('attribute_id')
+            ->innerJoinWith('resourceAttribute')
             ->asArray();
-            return self::buildPagination($getdata, 10); 
+            return self::buildPagination($getdata,false); 
         }else{
-            $getdata->select(['view_id','class_id','attribute_id'])
-            // ->innerJoinWith('resourceAttribute')->innerJoinWith('attribute_id')
+            $getdata->select(['view_id','class_id','attribute_class_view.attribute_id as attr_id', 'name'])
+            ->innerJoinWith('resourceAttribute')
             ->asArray();
-            return self::buildPagination($getdata, 10); 
+            return self::buildPagination($getdata, false); 
         }
     }
 }
