@@ -12,10 +12,6 @@
     function config($locationProvider, $routeProvider, $httpProvider) {
 
     $routeProvider
-        .when('/site/admin', {
-            templateUrl: 'views/site/admin.html'
-
-        })
         .when('/resource/resource', {
             templateUrl: 'views/resource/resource.html'
         })

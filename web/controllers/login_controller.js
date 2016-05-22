@@ -51,7 +51,7 @@
                     sessionStorage.setItem('user',angular.toJson(result.data));
                     $rootScope.currentUser = angular.fromJson(sessionStorage.getItem('user'));
                     if (result.data.role == 'admin') {
-                        $location.path('/site/admin');
+                        $location.path('/site/users');
                     } else {
                         $location.path('/resource/index');
                     }

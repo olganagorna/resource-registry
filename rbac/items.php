@@ -78,16 +78,10 @@ return [
         'ruleName' => 'userGroup',
         'children' => [
             'user',
-            'user/userdata',
-            'user/getrole',
-            'user/changeactivationstatus',
-            'user/changerole',
             'request/showrequest',
             'request/addreq',
-            'resource_class/search',
-            'resource_class/changeactivationstatus',
-            'resource_class/index',
             'search/search',
+            'resource_class/index',
         ],
     ],
     'commissioner' => [
@@ -101,6 +95,10 @@ return [
         'type' => 1,
         'ruleName' => 'userGroup',
         'children' => [
+            'user/userdata',
+            'user/getrole',
+            'user/changeactivationstatus',
+            'user/changerole',
             'community/addcomm',
             'community/show',
             'community/view',
