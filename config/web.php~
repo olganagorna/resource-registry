@@ -79,8 +79,8 @@ $config = [
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.gmail.com',
-                'username' => 'resourceregistry@gmail.com',
-                'password' => 'resourceregistry1111',
+                'username' => 'andrew.khrobak@gmail.com',
+                'password' => 'andrewadmin1995S',
                 'port' => '465',
                 'encryption' => 'ssl',
             ],

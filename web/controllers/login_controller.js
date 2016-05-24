@@ -73,11 +73,11 @@
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(result) {
-                alert('Повідомлення успішно відправлено на вашу електронну скриньку!');
+                alert('Повідомлення успішно відправлено на вашу електронну скриньку! Слідуйте інструкціям');
                 $location.path('/site/login');
             }
             function errorHandler(result){
-                alert(result.data.message);
+                alert("Виникли проблеми при спробі обробки запиту, обновіть сторінку та спробуйте ще раз");
                 console.log(result.data.message);
             }
 
@@ -99,7 +99,7 @@
                 $location.path('/site/login');
             }
             function errorHandler(result){
-                alert(result.data.message);
+                alert("Виникли проблеми при спробі обробки запиту, обновіть сторінку та спробуйте ще раз");
                 console.log(result.data.message);
             }
 

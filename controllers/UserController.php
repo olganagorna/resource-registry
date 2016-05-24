@@ -101,13 +101,14 @@ class UserController extends AppController {
         }
 
         $model->generatePasswordResetToken();
-        $url = 'http://resource/site/restorepassword?u=' . $model->username . '&p=' . $model->password_reset_token;
+        $recover_link = 'http://rr.com/site/restorepassword?u=' . $model->username . '&p=' . $model->password_reset_token;
+        $acc = $post['username'];
         \Yii::$app->mailer->compose()
-            ->setFrom('localhost@gmail.com')
+            ->setFrom('resourceregistry@gmail.com')
             ->setTo($model->email)
-            ->setSubject('Відновлення паролю')
+            ->setSubject('Відновлення паролю на сайті rr.com')
             ->setTextBody('')
-            ->setHtmlBody("<b><a href=\"$url\">$url</a></b>")
+            ->setHtmlBody("Ви зробили запит на відновлення пароля для акаунту: \"$acc\" Перейдіть за посиланням, щоб скинути старий пароль, та встановити новий:<b> <a href=\"$recover_link\">Ссилка для відновлення паролю</a> </b>")
             ->send();
         $model->save();
         return true;
@@ -125,8 +126,7 @@ class UserController extends AppController {
         return $model;
     }
     public function actionChangepass() {
-        /*echo \Yii::$app->session->get('role');
-        exit('d');*/
+        /*echo \Yii::$app->session->get('role');*/
         if (!$post = \Yii::$app->getRequest()->getBodyParams()) {
             throw new \yii\web\HttpException(400, 'Дані не отримані');
         }
