@@ -19,6 +19,7 @@
                 commEdit.community.name = result.data.name;
                 commEdit.community.prefix = result.data.prefix;
                 commEdit.community.notes = result.data.notes;
+                commEdit.community.isactive = result.data.isactive;
             }
             function errorHandler(result){
                 console.log("Error:"+result);

@@ -23,12 +23,6 @@
             }
         }());
 
-
-
-
-
-
-
         $scope.searchCommunity = function(community_name) {
 
             $scope.searchingVal = $scope.communitySearch;
@@ -44,8 +38,19 @@
             }
         };
 
+        $scope.chngActiveStatus = function(data, status) {
+            data.isactive = status;
+            var post = $http.put('rest.php/communities/'+data.community_id, data)
+            .then(successHandler)
+            .catch(errorHandler);
 
-
+            function successHandler(result) {
+                //$location.path('/resource/community');;
+            }
+            function errorHandler(result){
+                console.log("Error:"+result);
+            }
+        };
 
         //Pagination start
 
@@ -82,11 +87,7 @@
             }
 
         };
-
-
-        
-
-
+      
         $scope.switchPage($scope.currentPage);
 
         $scope.setPage = function(pageLink, pageType){
