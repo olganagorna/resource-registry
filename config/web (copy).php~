@@ -1,7 +1,0 @@
-<?phpreturn [
-   'class' => 'yii\db\Connection',
-   'dsn' => 'mysql:host=localhost;dbname=resource_registry',
-   'username' => 'root',
-   'password' => 'root',
-   'charset' => 'utf8',
-];
