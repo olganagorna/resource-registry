@@ -39,16 +39,13 @@
         };
 
         $scope.chngActiveStatus = function(data, status) {
+            var prev_stat = data.isactive;
             data.isactive = status;
             var post = $http.put('rest.php/communities/'+data.community_id, data)
-            .then(successHandler)
             .catch(errorHandler);
 
-            function successHandler(result) {
-                //$location.path('/resource/community');;
-            }
             function errorHandler(result){
-                console.log("Error:"+result);
+                data.isactive = prev_stat;
             }
         };
 
