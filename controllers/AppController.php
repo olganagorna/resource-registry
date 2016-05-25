@@ -12,7 +12,7 @@ class AppController extends ActiveController {
     		$action = $action->id;
 	        $controller = \Yii::$app->controller->id;
 	        $route = "$controller/$action";
-	        if ($route == "user/login" || $route == "user/logout") {
+	        if ($route == "user/login" || $route == "user/logout" || $route == "user/restorepass" || $route == "user/changepass") {
 	        	return true;
 	        } elseif (\Yii::$app->user->isGuest) {
 	        	throw new \yii\web\UnauthorizedHttpException('Please log in');

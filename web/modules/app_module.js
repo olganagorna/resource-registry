@@ -12,15 +12,11 @@
     function config($locationProvider, $routeProvider, $httpProvider) {
 
     $routeProvider
-        .when('/site/admin', {
-            controller: 'index',
-            templateUrl: 'views/site/admin.html'
-        })
         .when('/resource/resource', {
             templateUrl: 'views/resource/resource.html'
         })
         .when('/site/logs', {
-             templateUrl: 'views/site/logs.html'
+            templateUrl: 'views/site/logs.html'
         })
         .when('/site/contact', {
             templateUrl: 'views/site/contact.html'
@@ -63,15 +59,10 @@
             templateUrl: 'views/site/registration.html',
             controllerAs: 'vm'
         })
-	.when('/resource/type', {
+	    .when('/resource/type', {
             controller: 'IndexCtrl',
             // controllerAs: 'pp',
             templateUrl: 'views/resource/resource_types.html'
-        })
-        .when('/resource/type/attributes', {
-            // controller: 'IndexCtrl',
-            // controllerAs: 'pp',
-            templateUrl: 'views/resource/resource_type_attributes.html'
         })
         .when('/site/users', {
             controller: 'UsersController',
@@ -89,9 +80,9 @@
             controllerAs: 'usersCtrl'
         })
         .when('/community/update/:communityId', {
-            controller: 'CommissionerCtrl',
-            templateUrl: 'views/site/set_commissioner.html',
-            controllerAs: 'commissCtrl'
+            controller: 'CommEditCtrl',
+            templateUrl: 'views/site/community_edit.html',
+            controllerAs: 'commEdit'
         })
         .when('/community/communityadd', {
             controller: 'communityAddCtrl',
@@ -119,11 +110,23 @@
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             var test = localStorage.getItem('username');
-            /*if (!test) {
-             $location.path('/site/login');
-             }*/
-            console.log('change');
         });
     }
-
+///
+/*.run(function ($rootScope, AUTH_EVENTS, AuthService) {
+  $rootScope.$on('$stateChangeStart', function (event, next) {
+    var authorizedRoles = next.data.authorizedRoles;
+    if (!AuthService.isAuthorized(authorizedRoles)) {
+      event.preventDefault();
+      if (AuthService.isAuthenticated()) {
+        // user is not allowed
+        $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+      } else {
+        // user is not logged in
+        $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+      }
+    }
+  });
+})*/
+///
 })();

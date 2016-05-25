@@ -2,10 +2,10 @@
 -- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
--- Хост: localhost
--- Час створення: Трв 12 2016 р., 21:18
--- Версія сервера: 5.5.49-0ubuntu0.14.04.1
--- Версія PHP: 5.5.9-1ubuntu4.16
+-- Host: localhost
+-- Generation Time: May 24, 2016 at 11:24 AM
+-- Server version: 5.5.49-0ubuntu0.14.04.1
+-- PHP Version: 5.5.9-1ubuntu4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,12 +17,12 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- База даних: `resource_registry`
+-- Database: `resource_registry`
 --
 
 DELIMITER $$
 --
--- Функції
+-- Functions
 --
 CREATE DEFINER=`root`@`localhost` FUNCTION `distance`(lat1 FLOAT, lng1 FLOAT, lat2 FLOAT, lng2 FLOAT) RETURNS float
 BEGIN
@@ -55,7 +55,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `attribute_class_view`
+-- Table structure for table `attribute_class_view`
 --
 
 CREATE TABLE IF NOT EXISTS `attribute_class_view` (
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `attribute_class_view` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
--- Дамп даних таблиці `attribute_class_view`
+-- Dumping data for table `attribute_class_view`
 --
 
 INSERT INTO `attribute_class_view` (`view_id`, `class_id`, `attribute_id`) VALUES
@@ -85,7 +85,7 @@ INSERT INTO `attribute_class_view` (`view_id`, `class_id`, `attribute_id`) VALUE
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `community`
+-- Table structure for table `community`
 --
 
 CREATE TABLE IF NOT EXISTS `community` (
@@ -93,22 +93,25 @@ CREATE TABLE IF NOT EXISTS `community` (
   `name` varchar(50) DEFAULT NULL,
   `prefix` varchar(50) DEFAULT NULL,
   `notes` text,
+  `isactive` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`community_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Дамп даних таблиці `community`
+-- Dumping data for table `community`
 --
 
-INSERT INTO `community` (`community_id`, `name`, `prefix`, `notes`) VALUES
-(1, 'second_community', '10000254:001', 'Town of Lviv'),
-(2, 'first_community', '10000254:002', 'Town of Ivano-Frankivsk'),
-(3, 'third_community', '10000255:001', 'Town of Uzhhorod');
+INSERT INTO `community` (`community_id`, `name`, `prefix`, `notes`, `isactive`) VALUES
+(1, 'second_community', '10000254:001', 'Town of Lviv', 1),
+(2, 'first_community', '10000254:002', 'Town of Ivano-Frankivsk city free', 1),
+(3, 'third_community', '10000255:001', 'Town of Uzhhorod', 1),
+(4, 'gromada_php', '000:00:00:002', 'донна', 1),
+(5, 'Тест громада', '000:00:00:035', 'Громада для тестування', 1);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `coordinates`
+-- Table structure for table `coordinates`
 --
 
 CREATE TABLE IF NOT EXISTS `coordinates` (
@@ -123,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `coordinates` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
 
 --
--- Дамп даних таблиці `coordinates`
+-- Dumping data for table `coordinates`
 --
 
 INSERT INTO `coordinates` (`coord_id`, `lat`, `lng`, `registration_number`) VALUES
@@ -154,7 +157,7 @@ INSERT INTO `coordinates` (`coord_id`, `lat`, `lng`, `registration_number`) VALU
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `operation`
+-- Table structure for table `operation`
 --
 
 CREATE TABLE IF NOT EXISTS `operation` (
@@ -171,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `operation` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
--- Дамп даних таблиці `operation`
+-- Dumping data for table `operation`
 --
 
 INSERT INTO `operation` (`operation_id`, `date_log`, `type_id`, `user_id`, `resource_id`, `before_change`) VALUES
@@ -186,7 +189,7 @@ INSERT INTO `operation` (`operation_id`, `date_log`, `type_id`, `user_id`, `reso
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `operation_type`
+-- Table structure for table `operation_type`
 --
 
 CREATE TABLE IF NOT EXISTS `operation_type` (
@@ -196,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `operation_type` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп даних таблиці `operation_type`
+-- Dumping data for table `operation_type`
 --
 
 INSERT INTO `operation_type` (`type_id`, `name`) VALUES
@@ -207,7 +210,7 @@ INSERT INTO `operation_type` (`type_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `parameter`
+-- Table structure for table `parameter`
 --
 
 CREATE TABLE IF NOT EXISTS `parameter` (
@@ -221,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `parameter` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=276 ;
 
 --
--- Дамп даних таблиці `parameter`
+-- Dumping data for table `parameter`
 --
 
 INSERT INTO `parameter` (`parameter_id`, `value`, `resource_id`, `attribute_id`) VALUES
@@ -233,7 +236,7 @@ INSERT INTO `parameter` (`parameter_id`, `value`, `resource_id`, `attribute_id`)
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `personal_data`
+-- Table structure for table `personal_data`
 --
 
 CREATE TABLE IF NOT EXISTS `personal_data` (
@@ -249,7 +252,7 @@ CREATE TABLE IF NOT EXISTS `personal_data` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=174 ;
 
 --
--- Дамп даних таблиці `personal_data`
+-- Dumping data for table `personal_data`
 --
 
 INSERT INTO `personal_data` (`personal_data_id`, `last_name`, `first_name`, `middle_name`, `passport_series`, `passport_number`, `address`, `registrar_key`) VALUES
@@ -352,7 +355,6 @@ INSERT INTO `personal_data` (`personal_data_id`, `last_name`, `first_name`, `mid
 
 -- --------------------------------------------------------
 
-
 --
 -- Table structure for table `request`
 --
@@ -386,9 +388,10 @@ INSERT INTO `request` (`req_id`, `res_id`, `type`, `sender`, `create_time`, `rec
 (8, NULL, 1, 22, 1462876968, 31, 1462877100, 2),
 (9, NULL, 1, 22, 1462876968, 31, 1462877100, 2);
 
+-- --------------------------------------------------------
 
 --
--- Структура таблиці `resource`
+-- Table structure for table `resource`
 --
 
 CREATE TABLE IF NOT EXISTS `resource` (
@@ -411,7 +414,7 @@ CREATE TABLE IF NOT EXISTS `resource` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=244 ;
 
 --
--- Дамп даних таблиці `resource`
+-- Dumping data for table `resource`
 --
 
 INSERT INTO `resource` (`resource_id`, `name`, `class_id`, `coordinates`, `coords_center_lat`, `coords_center_lng`, `owner_data_id`, `reason`, `date`, `registrar_data_id`, `registration_number`) VALUES
@@ -426,7 +429,7 @@ INSERT INTO `resource` (`resource_id`, `name`, `class_id`, `coordinates`, `coord
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `resource_attribute`
+-- Table structure for table `resource_attribute`
 --
 
 CREATE TABLE IF NOT EXISTS `resource_attribute` (
@@ -437,7 +440,7 @@ CREATE TABLE IF NOT EXISTS `resource_attribute` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
--- Дамп даних таблиці `resource_attribute`
+-- Dumping data for table `resource_attribute`
 --
 
 INSERT INTO `resource_attribute` (`attribute_id`, `name`, `is_global`) VALUES
@@ -458,7 +461,7 @@ INSERT INTO `resource_attribute` (`attribute_id`, `name`, `is_global`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `resource_class`
+-- Table structure for table `resource_class`
 --
 
 CREATE TABLE IF NOT EXISTS `resource_class` (
@@ -469,7 +472,7 @@ CREATE TABLE IF NOT EXISTS `resource_class` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
--- Дамп даних таблиці `resource_class`
+-- Dumping data for table `resource_class`
 --
 
 INSERT INTO `resource_class` (`class_id`, `name`, `activation_status`) VALUES
@@ -487,7 +490,7 @@ INSERT INTO `resource_class` (`class_id`, `name`, `activation_status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `role`
+-- Table structure for table `role`
 --
 
 CREATE TABLE IF NOT EXISTS `role` (
@@ -497,7 +500,7 @@ CREATE TABLE IF NOT EXISTS `role` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Дамп даних таблиці `role`
+-- Dumping data for table `role`
 --
 
 INSERT INTO `role` (`role_id`, `name`) VALUES
@@ -509,7 +512,7 @@ INSERT INTO `role` (`role_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
@@ -530,11 +533,11 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
 
 --
--- Дамп даних таблиці `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`user_id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `user_data_id`, `role_id`, `community_id`, `activation_status`) VALUES
-(1, 'admin', 'mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', NULL, 'demo@mail.net', 1, 3, NULL, 0),
+(1, 'admin', 'mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', NULL, 'demo@mail.net', 1, 3, NULL, 1),
 (3, 'registrar1', 'pdw6JM5azks9n-Fkx9EYmPLobHQJkMV7', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', 'F7NFSAPun1hooVGJGpUGgaUpPcJ4iEEu_1444824168', 'zhenyast@yandex.ru', 2, 2, 2, 1),
 (7, 'admin1', 'sBZlLkpEbikELmURWCopgN-lYiqU7UYu', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', NULL, 'zhenyast@yandex.ru', 170, 3, NULL, 1),
 (8, 'user1', 'LTrS-nd6GOp4NAuWsqLPMGRmTXyhnRoR', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', NULL, 'test@gmail.com', 65, 1, 1, 1),
@@ -557,36 +560,36 @@ INSERT INTO `user` (`user_id`, `username`, `auth_key`, `password_hash`, `passwor
 (27, 'registrar4', 'Fxl0xfdMGVrzpPj8c1_uNtAwAAf5t90T', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', NULL, 'gtrgrt@ya.ru', 109, 2, 1, 1),
 (28, 'registrar5', 'kq1OSpQweIhZ3kfF5f6fAM2_kM9H5h3E', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', NULL, 'registerresource@gmail.com', 167, 2, 2, 1),
 (29, 'registrar', 'nh1R7g-MHLNcBOFuP_Jn8N0q_9E3K50z', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', NULL, 'test69@mail.ru', 113, 2, 1, 1),
-(30, 'registrar6', 'r9ZSVEms7lozWO7Guo_K3ZiyaxRyQD3M', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', NULL, 'gith@gmail.com', 122, 2, 3, 0),
+(30, 'registrar6', 'r9ZSVEms7lozWO7Guo_K3ZiyaxRyQD3M', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', NULL, 'gith@gmail.com', 122, 2, 3, 1),
 (31, 'commissioner', 'mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', NULL, 'first_commissioner@mail.ru', 115, 4, 1, 1),
 (38, 'commissioner1', 'mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', NULL, 'second_commissioner@mail.ru', 116, 4, 2, 1),
 (40, 'commissioner2', 'mPLobHQJkMV7pdw6JM5azks9n-Fkx9EY', '$2y$13$/qKMqvRxreJoaI2Zpqee2.TjYGI57vsSbkzGOAZSYUp.DyoerZrEO', NULL, 'third_commissioner@mail.ru', 117, 4, 3, 1);
 
 --
--- Обмеження зовнішнього ключа збережених таблиць
+-- Constraints for dumped tables
 --
 
 --
--- Обмеження зовнішнього ключа таблиці `attribute_class_view`
+-- Constraints for table `attribute_class_view`
 --
 ALTER TABLE `attribute_class_view`
   ADD CONSTRAINT `fk_attribute_class_view_resource_attribute1` FOREIGN KEY (`attribute_id`) REFERENCES `resource_attribute` (`attribute_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_attribute_class_view_resource_class1` FOREIGN KEY (`class_id`) REFERENCES `resource_class` (`class_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Обмеження зовнішнього ключа таблиці `coordinates`
+-- Constraints for table `coordinates`
 --
 ALTER TABLE `coordinates`
   ADD CONSTRAINT `fk_registration_number` FOREIGN KEY (`registration_number`) REFERENCES `resource` (`registration_number`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Обмеження зовнішнього ключа таблиці `operation`
+-- Constraints for table `operation`
 --
 ALTER TABLE `operation`
   ADD CONSTRAINT `fk_transactions_transaction_type1` FOREIGN KEY (`type_id`) REFERENCES `operation_type` (`type_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Обмеження зовнішнього ключа таблиці `parameter`
+-- Constraints for table `parameter`
 --
 ALTER TABLE `parameter`
   ADD CONSTRAINT `fk_stats_resources1` FOREIGN KEY (`resource_id`) REFERENCES `resource` (`resource_id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -601,14 +604,14 @@ ALTER TABLE `request`
   ADD CONSTRAINT `fk_req_sender` FOREIGN KEY (`sender`) REFERENCES `user` (`user_id`);
 
 --
--- Обмеження зовнішнього ключа таблиці `resource`
+-- Constraints for table `resource`
 --
 ALTER TABLE `resource`
   ADD CONSTRAINT `fk_resource_personal_data1` FOREIGN KEY (`owner_data_id`) REFERENCES `personal_data` (`personal_data_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_resource_resource_class1` FOREIGN KEY (`class_id`) REFERENCES `resource_class` (`class_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Обмеження зовнішнього ключа таблиці `user`
+-- Constraints for table `user`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `fk_user_community` FOREIGN KEY (`community_id`) REFERENCES `community` (`community_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,

@@ -1,6 +1,6 @@
 (function () {
 
     angular.module('restApp')
-        .constant('rrVersion', {version: '0.01'}
+        .constant('rrVersion', {version: 'v0.03'}
     );
 })();

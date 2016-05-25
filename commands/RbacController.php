@@ -23,10 +23,14 @@ class RbacController extends Controller
         // Create simple, based on controller and action{$NAME} permissions
         // Add permissions in Yii::$app->authManager
 
-        $show = $auth->createPermission('community/show'); 
-        $auth->add($show); 
-        $addcomm = $auth->createPermission('community/addcomm'); 
-        $auth->add($addcomm); 
+        $commShow = $auth->createPermission('community/show'); 
+        $auth->add($commShow); 
+        $commAdd = $auth->createPermission('community/addcomm'); 
+        $auth->add($commAdd);
+        $commView = $auth->createPermission('community/view'); 
+        $auth->add($commView);
+        $commUpdt = $auth->createPermission('community/update'); 
+        $auth->add($commUpdt); 
         $view = $auth->createPermission('resource/view'); 
         $auth->add($view); 
         $resIndex = $auth->createPermission('resource/index'); 
@@ -90,29 +94,26 @@ class RbacController extends Controller
  
         // registrar
         $auth->addChild($registrar, $user);
-        $auth->addChild($registrar, $show);
-        $auth->addChild($registrar, $userdata);
-        $auth->addChild($registrar, $userGetRole);
-        $auth->addChild($registrar, $userChngActSt);
-        $auth->addChild($registrar, $userChngRole);
         $auth->addChild($registrar, $reqShow);
         $auth->addChild($registrar, $reqAdd);
-        $auth->addChild($registrar, $resourceClassSearch);
-        $auth->addChild($registrar, $resourceClassChangeActivationStatus);
-        $auth->addChild($registrar, $resourceClass);
         $auth->addChild($registrar, $search);
+        $auth->addChild($registrar, $resourceClass);
 
-
-        
-        
+       
         // commissioner
         $auth->addChild($commissioner, $user);
  
         // admin
-        $auth->addChild($admin, $addcomm);
+        $auth->addChild($admin, $userdata);
+        $auth->addChild($admin, $userGetRole);
+        $auth->addChild($admin, $userChngActSt);
+        $auth->addChild($admin, $userChngRole);
+        $auth->addChild($admin, $commAdd);
+        $auth->addChild($admin, $commShow);
+        $auth->addChild($admin, $commView);
+        $auth->addChild($admin, $commUpdt);        
         $auth->addChild($admin, $resourceClassSearch);
         $auth->addChild($admin, $resourceClassChangeActivationStatus);
         $auth->addChild($admin, $resourceClass);
-
     }
 }

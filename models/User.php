@@ -57,23 +57,23 @@ class User extends ActiveRecord implements IdentityInterface
     }
     public static function findByPasswordResetToken($token)
     {
-        if (!static::isPasswordResetTokenValid($token)) {
-            return null;
-        }
+        // if (!static::isPasswordResetTokenValid($token)) {
+        //     return null;
+        // }
         return static::findOne([
             'password_reset_token' => $token,
         ]);
     }
-    public static function isPasswordResetTokenValid($token)
-    {
-        if (empty($token)) {
-            return false;
-        }
-        $expire = Yii::$app->modules['auth'][passwordResetTokenExpire];
-        $parts = explode('_', $token);
-        $timestamp = (int) end($parts);
-        return $timestamp + $expire >= time();
-    }
+    // public static function isPasswordResetTokenValid($token)
+    // {
+    //     if (empty($token)) {
+    //         return false;
+    //     }
+    //     $expire = Yii::$app->modules['auth'][passwordResetTokenExpire];
+    //     $parts = explode('_', $token);
+    //     $timestamp = (int) end($parts);
+    //     return $timestamp + $expire >= time();
+    // }
     public function getId()
     {
         return $this->getPrimaryKey();

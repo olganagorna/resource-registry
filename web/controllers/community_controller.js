@@ -16,23 +16,17 @@
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
-                $scope.communities = data.data;console.log("lets start");
+                $scope.communities = data.data;
             }
             function errorHandler(data){
                 console.log("Can't render list!");
             }
         }());
 
-
-
-
-
-
-
         $scope.searchCommunity = function(community_name) {
 
             $scope.searchingVal = $scope.communitySearch;
-            console.log($scope.searchingVal);
+
             $http.get('http://rr.com/rest.php/communities/show?value='+ $scope.communitySearch)
                 .then(successHandler)
                 .catch(errorHandler);
@@ -44,8 +38,16 @@
             }
         };
 
+        $scope.chngActiveStatus = function(data, status) {
+            var prev_stat = data.isactive;
+            data.isactive = status;
+            var post = $http.put('rest.php/communities/'+data.community_id, data)
+            .catch(errorHandler);
 
-
+            function errorHandler(result){
+                data.isactive = prev_stat;
+            }
+        };
 
         //Pagination start
 
@@ -82,11 +84,7 @@
             }
 
         };
-
-
-        
-
-
+      
         $scope.switchPage($scope.currentPage);
 
         $scope.setPage = function(pageLink, pageType){
