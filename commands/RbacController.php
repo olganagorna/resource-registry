@@ -87,6 +87,7 @@ class RbacController extends Controller
         $auth->addChild($user, $view);
         $auth->addChild($user, $resIndex);
         $auth->addChild($user, $resSearch);
+        $auth->addChild($user, $resourceClass);
         $auth->addChild($user, $getRgKey);
         $auth->addChild($user, $resCreate);
         $auth->addChild($user, $resGettingdata);
@@ -97,8 +98,6 @@ class RbacController extends Controller
         $auth->addChild($registrar, $reqShow);
         $auth->addChild($registrar, $reqAdd);
         $auth->addChild($registrar, $search);
-        $auth->addChild($registrar, $resourceClass);
-
        
         // commissioner
         $auth->addChild($commissioner, $user);

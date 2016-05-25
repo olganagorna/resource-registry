@@ -70,6 +70,7 @@ return [
             'resource/view',
             'resource/index',
             'resource/search',
+            'resource_class/index',
             'resource/getregisterkey',
             'resource/create',
             'resource/gettingdata',
@@ -84,7 +85,6 @@ return [
             'request/showrequest',
             'request/addreq',
             'search/search',
-            'resource_class/index',
         ],
     ],
     'commissioner' => [
