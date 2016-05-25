@@ -89,3 +89,6 @@ sudo add-apt-repository ppa:ondrej/php5-5.6
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get install php5
+nano /etc/php5/apache2/php.ini
+add ~E_NOTICE in "error handler and logging" section if necessary
+service apache2 restart
