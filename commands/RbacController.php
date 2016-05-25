@@ -65,8 +65,10 @@ class RbacController extends Controller
         $auth->add($search);
         $resClassAttr = $auth->createPermission('attribute_class_view/index'); 
         $auth->add($resClassAttr);
-        $resAttr = $auth->createPermission('attribute_class_view/attribute'); 
+        $resAttr = $auth->createPermission('resource_class/attribute'); 
         $auth->add($resAttr);
+        $resAttr2 = $auth->createPermission('attribute_class_view/attribute'); 
+        $auth->add($resAttr2);
 
 
         // Add rule, based on UserExt->group === $user->group
@@ -120,6 +122,8 @@ class RbacController extends Controller
         $auth->addChild($admin, $resourceClass);
         $auth->addChild($admin, $resClassAttr);
         $auth->addChild($admin, $resAttr);
+        $auth->addChild($admin, $resAttr2);
+        
         
     }
 }

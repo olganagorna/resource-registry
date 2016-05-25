@@ -55,14 +55,14 @@ class Attribute_class_viewController extends AppController
         $request = \Yii::$app->request->get();
         $getdata = AttributeClassView::find();
         if(isset($request['value'])){
-            $getdata->select(['view_id','class_id','attribute_class_view.attribute_id as attr_id', 'name'])
-            ->andFilterWhere(['like', 'class_id', $request['value']])
-            ->innerJoinWith('resourceAttribute')
+            $getdata->select(['view_id','resource_class.class_id as class_ID','attribute_class_view.attribute_id as attr_id', 'resource_attribute.name as attr_name', 'resource_class.name as class_name'])
+            ->andFilterWhere(['like', 'resource_class.class_id', $request['value']])
+            ->innerJoinWith('resourceAttribute')->innerJoinWith('resourceClass')
             ->asArray();
-            return self::buildPagination($getdata,false); 
+            return self::buildPagination($getdata, false); 
         }else{
-            $getdata->select(['view_id','class_id','attribute_class_view.attribute_id as attr_id', 'name'])
-            ->innerJoinWith('resourceAttribute')
+            $getdata->select(['view_id','resource_class.class_id as class_ID','attribute_class_view.attribute_id as attr_id', 'resource_attribute.name as attr_name', 'resource_class.name as class_name'])
+            ->innerJoinWith('resourceAttribute')->innerJoinWith('resourceClass')
             ->asArray();
             return self::buildPagination($getdata, false); 
         }
