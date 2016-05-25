@@ -65,7 +65,10 @@
         .when('/site/users', {
             controller: 'UsersController',
             controllerAs: 'list',
-            templateUrl: 'views/site/users.html'
+            templateUrl: 'views/site/users.html',
+            data: {
+                authRoles: ['admin']
+            }
         })
         .when('/site/restorepassword', {
             controller: 'LoginController',
@@ -106,8 +109,10 @@
     run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];
     function run($rootScope, $location, $cookieStore, $http) {
 
-        $rootScope.$on('$locationChangeStart', function (event, next, current) {
-            var test = localStorage.getItem('username');
+        $rootScope.$on('$routeChangeStart', function (event, next, current) {
+            //if (loginedUser.role != next.data.authRoles) {}
+            //console.log(test+' chenge his route to');
+            console.log(next);
         });
     }
 ///
