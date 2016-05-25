@@ -1,33 +1,42 @@
 (function () {
-   'use strict';
+    'use strict';
+    angular
+        .module('restApp')
+        .controller('CommEditCtrl', CommEditCtrl);
+    
+    CommEditCtrl.$inject = ['$location', '$http', '$routeParams'];
+    function CommEditCtrl($location, $http, $routeParams) {
+        var commEdit = this;
+        commEdit.community = {};
+        commEdit.community.communId = $routeParams.communityId;
+        commEdit.community.name = 'error';
 
-   angular
-       .module('restApp')
-       .controller('CommEditCtrl', CommEditCtrl);
+        (function(){
+            var get = $http.get('rest.php/communities/'+commEdit.community.communId)
+                .then(successHandler)
+                .catch(errorHandler);
+            function successHandler(result) {
+                commEdit.community.name = result.data.name;
+                commEdit.community.prefix = result.data.prefix;
+                commEdit.community.notes = result.data.notes;
+                commEdit.community.isactive = result.data.isactive;
+            }
+            function errorHandler(result){
+                console.log("Error:"+result);
+            }
+        }());
 
-   CommEditCtrl.$inject = ['$scope', '$http', '$routeParams'];
-   function CommEditCtrl($scope, $http, $routeParams) {
-       var commEdit = this;
-       commEdit.communId = $routeParams.communityId;
-       commEdit.name = 'error';
+        commEdit.updateComm = function () {
+            var post = $http.put('rest.php/communities/'+commEdit.community.communId, commEdit.community)
+            .then(successHandler)
+            .catch(errorHandler);
 
-       (function(){
-           var get = $http.get('rest.php/communities/'+commEdit.communId)
-               .then(successHandler)
-               .catch(errorHandler);
-           function successHandler(result) {
-                  commEdit.name = result.data.name;
-                  commEdit.prefix = result.data.prefix;
-                  commEdit.notes = result.data.notes;
-
-           }
-           function errorHandler(result){
-               alert(result.data[0].message);
-               //console.log(result.data[0].message);
-           }
-
-       }());
-            
-
-   }
+            function successHandler(result) {
+                $location.path('/resource/community');;
+            }
+            function errorHandler(result){
+                console.log("Error:"+result);
+            }
+        }
+    }
 })();

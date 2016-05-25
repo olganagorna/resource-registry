@@ -23,12 +23,6 @@
             }
         }());
 
-
-
-
-
-
-
         $scope.searchCommunity = function(community_name) {
 
             $scope.searchingVal = $scope.communitySearch;
@@ -44,8 +38,16 @@
             }
         };
 
+        $scope.chngActiveStatus = function(data, status) {
+            var prev_stat = data.isactive;
+            data.isactive = status;
+            var post = $http.put('rest.php/communities/'+data.community_id, data)
+            .catch(errorHandler);
 
-
+            function errorHandler(result){
+                data.isactive = prev_stat;
+            }
+        };
 
         //Pagination start
 
@@ -82,11 +84,7 @@
             }
 
         };
-
-
-        
-
-
+      
         $scope.switchPage($scope.currentPage);
 
         $scope.setPage = function(pageLink, pageType){

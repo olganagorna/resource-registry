@@ -33,8 +33,9 @@ class Community extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'prefix'], 'string', 'max' => 50],
-            [['notes'], 'string']
+            [['notes'], 'string'],
+            [['isactive'], 'integer'],
+            [['name', 'prefix'], 'string', 'max' => 50]
         ];
     }
 
@@ -48,6 +49,7 @@ class Community extends \yii\db\ActiveRecord
             'name' => 'Name',
             'prefix' => 'Prefix',
             'notes' => 'Notes',
+            'isactive' => 'Isactive',
         ];
     }
 

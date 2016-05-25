@@ -9,6 +9,9 @@ return [
     'community/view' => [
         'type' => 2,
     ],
+    'community/update' => [
+        'type' => 2,
+    ],
     'resource/view' => [
         'type' => 2,
     ],
@@ -76,6 +79,7 @@ return [
             'resource/view',
             'resource/index',
             'resource/search',
+            'resource_class/index',
             'resource/getregisterkey',
             'resource/create',
             'resource/gettingdata',
@@ -87,15 +91,8 @@ return [
         'ruleName' => 'userGroup',
         'children' => [
             'user',
-            'user/userdata',
-            'user/getrole',
-            'user/changeactivationstatus',
-            'user/changerole',
             'request/showrequest',
             'request/addreq',
-            'resource_class/search',
-            'resource_class/changeactivationstatus',
-            'resource_class/index',
             'search/search',
         ],
     ],
@@ -110,9 +107,14 @@ return [
         'type' => 1,
         'ruleName' => 'userGroup',
         'children' => [
+            'user/userdata',
+            'user/getrole',
+            'user/changeactivationstatus',
+            'user/changerole',
             'community/addcomm',
             'community/show',
             'community/view',
+            'community/update',
             'resource_class/search',
             'resource_class/changeactivationstatus',
             'resource_class/index',

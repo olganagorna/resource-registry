@@ -12,10 +12,6 @@
     function config($locationProvider, $routeProvider, $httpProvider) {
 
     $routeProvider
-        .when('/site/admin', {
-            templateUrl: 'views/site/admin.html'
-
-        })
         .when('/resource/resource', {
             templateUrl: 'views/resource/resource.html'
         })
@@ -114,5 +110,21 @@
             var test = localStorage.getItem('username');
         });
     }
-
+///
+/*.run(function ($rootScope, AUTH_EVENTS, AuthService) {
+  $rootScope.$on('$stateChangeStart', function (event, next) {
+    var authorizedRoles = next.data.authorizedRoles;
+    if (!AuthService.isAuthorized(authorizedRoles)) {
+      event.preventDefault();
+      if (AuthService.isAuthenticated()) {
+        // user is not allowed
+        $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+      } else {
+        // user is not logged in
+        $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+      }
+    }
+  });
+})*/
+///
 })();
