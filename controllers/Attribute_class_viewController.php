@@ -2,11 +2,15 @@
 
 namespace app\controllers;
 
-use yii\rest\ActiveController;
+use app\controllers\AppController;
+use app\models\ResourceAttribute;
+use app\models\AttributeClassView;
 
-class Attribute_class_viewController extends ActiveController
+class Attribute_class_viewController extends AppController
 {
     public $modelClass = 'app\models\AttributeClassView';
+    public $resourceClass = 'app\models\ResourceClass';
+    public $resourceAttribute = 'app\models\ResourceAttribute';
     
     public function behaviors()
     {
@@ -44,5 +48,23 @@ class Attribute_class_viewController extends ActiveController
     	} else {
     		throw new \yii\web\HttpException(400, 'There are no query string');
     	}
+    }
+
+    public function actionAttribute() 
+    {
+        $request = \Yii::$app->request->get();
+        $getdata = AttributeClassView::find();
+        if(isset($request['value'])){
+            $getdata->select(['view_id','resource_class.class_id as class_ID','attribute_class_view.attribute_id as attr_id', 'resource_attribute.name as attr_name', 'resource_class.name as class_name'])
+            ->andFilterWhere(['like', 'resource_class.class_id', $request['value']])
+            ->innerJoinWith('resourceAttribute')->innerJoinWith('resourceClass')
+            ->asArray();
+            return self::buildPagination($getdata, false); 
+        }else{
+            $getdata->select(['view_id','resource_class.class_id as class_ID','attribute_class_view.attribute_id as attr_id', 'resource_attribute.name as attr_name', 'resource_class.name as class_name'])
+            ->innerJoinWith('resourceAttribute')->innerJoinWith('resourceClass')
+            ->asArray();
+            return self::buildPagination($getdata, false); 
+        }
     }
 }

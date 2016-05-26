@@ -3,7 +3,8 @@
 
     angular
         .module('restApp')
-        .factory('AuthInterceptor', AuthInterceptor);
+        .factory('AuthInterceptor', AuthInterceptor)
+        .factory('AuthService', AuthService);
 
     AuthInterceptor.$inject = ['$rootScope', '$q', 'AUTH_EVENTS'];
     function AuthInterceptor($rootScope, $q, AUTH_EVENTS) {
@@ -17,4 +18,33 @@
             }
         };
     }
+
+    AuthService.$inject = ['$rootScope'];
+    function AuthService($rootScope) {
+
+        var authService = {};
+
+        authService.init = function () {
+            if (!sessionStorage.getItem('user')) {
+                var user = {
+                    "username":"",
+                    "role":"guest",
+                    "isLogined":false,
+                    "userDataID":0
+                };
+                sessionStorage.setItem('user',angular.toJson(user));
+
+            }
+            $rootScope.currentUser = angular.fromJson(sessionStorage.getItem('user'));
+        };
+
+        authService.isAuthorized = function (authorizedRoles) {
+            if (!angular.isArray(authorizedRoles)) {
+                authorizedRoles = [authorizedRoles];
+            }
+            return authorizedRoles.indexOf($rootScope.currentUser.role) !== -1;
+        };
+        return authService;
+    }
+
 })();

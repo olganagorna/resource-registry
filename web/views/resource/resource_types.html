@@ -1,4 +1,4 @@
-<div class="container-fluid" ng-if="currentUser.role === 'admin'">
+<div class="container-fluid" ng-if="currentUser.role === 'admin'" ng-controller="IndexCtrl">
     
     <style>
         input {  text-indent: 1.5em;}
@@ -30,11 +30,11 @@
                         </div>
                     </li>
                     <li class="list-group-item row">
-                        <div ng-repeat="data in xmlData.items">
+                        <div ng-repeat="data in xmlData">
                             <div>
-                                <div class="btn btn-md btn-primary collapsed col-md-10" data-toggle="collapse" data-target="{{'#demo' + data.class_id}}">
-                                    <div class="col-md-4 text-center">{{data.class_id}}</div> 
-                                    <div class="col-md-6 text-center">{{data.name}}</div>
+                                <div class="btn btn-md btn-primary collapsed col-md-10" data-toggle="collapse" data-target="{{'#demo' + data.main.class_ID}}" ng-click="">
+                                    <div class="col-md-4 text-center">{{data.main.class_ID}}</div> 
+                                    <div class="col-md-6 text-center">{{data.main.res_name}}</div>
                                 </div>    
                                 <div class="btn-group text-center">
                                     <a class="btn btn-primary ng-scope" title="Редагувати" ng-if="currentUser.role === 'admin' &amp;&amp; currentUser.isLogined">
@@ -50,7 +50,10 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-10">
-                                    <div id="{{'demo' + data.class_id}}" class="collapse">
+                                    <div id="{{'demo' + data.main.class_ID}}" class="collapse">
+                                        <span class="btn btn-default btn-xs btn-raised" ng-repeat="attr in data.attr">
+                                            <span>{{attr}}</span>
+                                        </span>
                                         <div  class="input-group">
                                             <span class="input-group-btn">
                                                 <a class="btn btn-material-amber-400" type="button" ng-click="" href="">ДОДАТИ <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
@@ -60,12 +63,13 @@
                                     </div>
                                 </div>
                                 <div class="col-md-2"></div>
+                                
                             </div>    
                         </div>
                     </li>
                 </ul>
             </div>
-            <ul class="pagination pagination-sm">
+            <!-- <ul class="pagination pagination-sm">
                 <li ng-if="xmlData._links.first">
                     <a href="" ng-click="setPage(xmlData._links.first.href, 'first')">&laquo;</a>
                 </li>
@@ -83,9 +87,10 @@
                 <li ng-if="xmlData._links.last">
                     <a href="" ng-click="setPage(xmlData._links.last.href, 'last')">&raquo;</a>
                 </li>
-            </ul>
+            </ul> -->
         </div>
     </div>
+    <!-- <div class="col-md-6"></div> -->
 </div>
 
 <div ng-show="resources.length === 0">

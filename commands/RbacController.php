@@ -65,6 +65,13 @@ class RbacController extends Controller
         $auth->add($reqAdd);
         $search = $auth->createPermission('search/search'); 
         $auth->add($search);
+        $resClassAttr = $auth->createPermission('attribute_class_view/index'); 
+        $auth->add($resClassAttr);
+        $resAttr = $auth->createPermission('resource_class/attribute'); 
+        $auth->add($resAttr);
+        $resAttr2 = $auth->createPermission('attribute_class_view/attribute'); 
+        $auth->add($resAttr2);
+
 
         // Add rule, based on UserExt->group === $user->group
         $userGroupRule = new UserGroupRule();
@@ -87,6 +94,7 @@ class RbacController extends Controller
         $auth->addChild($user, $view);
         $auth->addChild($user, $resIndex);
         $auth->addChild($user, $resSearch);
+        $auth->addChild($user, $resourceClass);
         $auth->addChild($user, $getRgKey);
         $auth->addChild($user, $resCreate);
         $auth->addChild($user, $resGettingdata);
@@ -97,8 +105,6 @@ class RbacController extends Controller
         $auth->addChild($registrar, $reqShow);
         $auth->addChild($registrar, $reqAdd);
         $auth->addChild($registrar, $search);
-        $auth->addChild($registrar, $resourceClass);
-
        
         // commissioner
         $auth->addChild($commissioner, $user);
@@ -115,5 +121,10 @@ class RbacController extends Controller
         $auth->addChild($admin, $resourceClassSearch);
         $auth->addChild($admin, $resourceClassChangeActivationStatus);
         $auth->addChild($admin, $resourceClass);
+        $auth->addChild($admin, $resClassAttr);
+        $auth->addChild($admin, $resAttr);
+        $auth->addChild($admin, $resAttr2);
+        
+        
     }
 }

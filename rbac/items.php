@@ -63,6 +63,15 @@ return [
     'search/search' => [
         'type' => 2,
     ],
+    'attribute_class_view/index' => [
+        'type' => 2,
+    ],
+    'resource_class/attribute' => [
+        'type' => 2,
+    ],
+    'attribute_class_view/attribute' => [
+        'type' => 2,
+    ],
     'user' => [
         'type' => 1,
         'ruleName' => 'userGroup',
@@ -70,6 +79,7 @@ return [
             'resource/view',
             'resource/index',
             'resource/search',
+            'resource_class/index',
             'resource/getregisterkey',
             'resource/create',
             'resource/gettingdata',
@@ -84,7 +94,6 @@ return [
             'request/showrequest',
             'request/addreq',
             'search/search',
-            'resource_class/index',
         ],
     ],
     'commissioner' => [
@@ -109,6 +118,9 @@ return [
             'resource_class/search',
             'resource_class/changeactivationstatus',
             'resource_class/index',
+            'attribute_class_view/index',
+            'resource_class/attribute',
+            'attribute_class_view/attribute',
         ],
     ],
 ];
