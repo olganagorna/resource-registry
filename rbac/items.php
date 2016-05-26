@@ -75,6 +75,9 @@ return [
     'attribute_class_view/addattribute' => [
         'type' => 2,
     ],
+    'attribute_class_view/findlastattributeid' => [
+        'type' => 2,
+    ],
     'user' => [
         'type' => 1,
         'ruleName' => 'userGroup',
@@ -125,6 +128,7 @@ return [
             'resource_class/attribute',
             'attribute_class_view/attribute',
             'attribute_class_view/addattribute',
+            'attribute_class_view/findlastattributeid',
         ],
     ],
 ];

@@ -60,4 +60,10 @@ class ResourceAttribute extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Parameter::className(), ['attribute_id' => 'attribute_id']);
     }
+
+    public static function findByAttributeName($attribute_name)
+    {
+        //find Community in DB by Name
+        return static::findOne(['name' => $attribute_name]);
+    }
 }

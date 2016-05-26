@@ -67,28 +67,45 @@ class Attribute_class_viewController extends AppController
             return self::buildPagination($getdata, false); 
         }
     }
-
+    // public static function actionFindlastattributeid()
+    // {
+    //     $last_id = ResourceAttribute::find()
+    //     ->where(['attribute_id' => ResourceAttribute::find()->max('attribute_id')])
+    //     ->one();
+    //     var_dump($last_id);
+    //     $get_class_id->select(['attribute_id'])
+    //     ->asArray();
+    //     return self::buildPagination($get_class_id, false); 
+    // }
     public function actionAddattribute()
     {
-        // if (!$post = \Yii::$app->getRequest()->getBodyParams()) {
-        //     throw new \yii\web\HttpException(400, 'Дані не отримані');
-        // }
-        // $attributeckassviewModel = new AttributeClassView();
-        // if ($attributeckassviewModel->findByCommunityName($post['com_name'])){
-        //     throw new \yii\web\HttpException(400, 'Користувач з таким логіном уже існує');
-        // }
-        // $com_name = $post['com_name'];
-        // $com_num = $post['com_num'];
-        // $com_adds = $post['com_adds'];
-
-        // $attributeckassviewModel->name = $com_name;
-        // $attributeckassviewModel->prefix = $com_num;
-        // $attributeckassviewModel->notes = $com_adds;
-        // if (!$attributeckassviewModel->save()){
-        //     foreach($attributeckassviewModel->errors as $key){
-        //         $errorMessage .= $key[0];
-        //     }
-        //     throw new \yii\web\HttpException(422,$errorMessage);
-        // }
+        $last_id = ResourceAttribute::find()->select(['attribute_id'])->orderBy(['attribute_id' => SORT_DESC])->one();
+        $attribute_id = $last_id->attribute_id + 1;
+        if (!$post = \Yii::$app->getRequest()->getBodyParams()) {
+            throw new \yii\web\HttpException(400, 'Дані не отримані');
+        }
+        $resourceAttributeModel = new resourceAttribute();
+        if ($resourceAttributeModel->findByAttributeName($post['attribute_name'])){
+            throw new \yii\web\HttpException(400, 'Такий атрибут уже існує');
+        }
+        $attribute_name = $post['attribute_name'];
+        $resourceAttributeModel->name = $attribute_name;
+        $resourceAttributeModel->is_global = 0;
+        if (!$resourceAttributeModel->save()){
+            foreach($resourceAttributeModel->errors as $key){
+                $errorMessage .= $key[0];
+            }
+            throw new \yii\web\HttpException(422,$errorMessage);
+        }
+        $attributeclassviewModel = new AttributeClassView();
+        $class_id = $post['class_id'];
+        $attributeclassviewModel->class_id = $class_id;
+        $attributeclassviewModel->attribute_id = $attribute_id;
+        if (!$attributeclassviewModel->save()){
+            foreach($attributeclassviewModel->errors as $key){
+                $errorMessage .= $key[0];
+            }
+            throw new \yii\web\HttpException(422,$errorMessage);
+        }
     }
 }

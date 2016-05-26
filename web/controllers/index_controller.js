@@ -59,6 +59,7 @@
                 function successHandler(result) {
                     console.log(attribute);
                     console.log('Реєстрація пройшла успішно!');
+                    $scope.getData();
                 }
                 function errorHandler(result){
                     console.log("Error:"+result);
