@@ -14,16 +14,10 @@ class CommunityController extends AppController
 		$request= \Yii::$app->request->get();
 		$community = Community::find();
 		
-		if(isset($request['value'])){
-			$community->select(['name', 'prefix', 'notes', 'community_id', 'isactive'])
-            ->andFilterWhere(['like', 'name', $request['value']])
-            ->orderBy('name')
-            ->asArray();	
-		}else{
-			$community->select(['name', 'prefix', 'notes', 'community_id', 'isactive'])
-            ->orderBy('name')
-			->asArray();
-		}
+		$community->select(['name', 'prefix', 'notes', 'community_id', 'isactive'])
+        ->andFilterWhere(['like', 'name', $request['value']])
+        ->orderBy('name')
+        ->asArray();
 
         return self::buildPagination($community);
 	}
@@ -45,6 +39,7 @@ class CommunityController extends AppController
         $communityModel->name = $com_name;
         $communityModel->prefix = $com_num;
         $communityModel->notes = $com_adds;
+        $communityModel->isactive = 1;
         if (!$communityModel->save()){
             foreach($communityModel->errors as $key){
                 $errorMessage .= $key[0];
