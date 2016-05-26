@@ -12,22 +12,10 @@
     function config($locationProvider, $routeProvider, $httpProvider) {
 
     $routeProvider
-        .when('/resource/resource', {
-            templateUrl: 'views/resource/resource.html',
-            data: {
-                authRoles: ['user', 'registrar']
-            }
-        })
         .when('/site/logs', {
             templateUrl: 'views/site/logs.html',
             data: {
                 authRoles: 'registrar'
-            }
-        })
-        .when('/site/contact', {
-            templateUrl: 'views/site/contact.html',
-            data: {
-                authRoles: ['admin']
             }
         })
         .when('/site/user_reg', {
