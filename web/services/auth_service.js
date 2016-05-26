@@ -24,13 +24,26 @@
 
         var authService = {};
 
+        authService.init = function () {
+            if (!sessionStorage.getItem('user')) {
+                var user = {
+                    "username":"",
+                    "role":"guest",
+                    "isLogined":false,
+                    "userDataID":0
+                };
+                sessionStorage.setItem('user',angular.toJson(user));
+
+            }
+            $rootScope.currentUser = angular.fromJson(sessionStorage.getItem('user'));
+        };
+
         authService.isAuthorized = function (authorizedRoles) {
             if (!angular.isArray(authorizedRoles)) {
                 authorizedRoles = [authorizedRoles];
-                }
-            return (authService.isAuthenticated() &&
-      authorizedRoles.indexOf(Session.userRole) !== -1);     
-    };
+            }
+            return authorizedRoles.indexOf($rootScope.currentUser.role) !== -1;
+        };
         return authService;
     }
 

@@ -2,8 +2,7 @@
     'use strict';
     angular.module('restApp')
 
-        .controller('MainCtrl', ['$scope', '$rootScope', '$http', '$location', 'rrVersion', function($scope, $rootScope, $http, $location, rrVersion) {
-            $rootScope.currentUser = angular.fromJson(sessionStorage.getItem('user'));
+        .controller('MainCtrl', ['$scope', 'rrVersion', function($scope, rrVersion) {
             $scope.rrVersion = rrVersion.version;
        }]);
 
