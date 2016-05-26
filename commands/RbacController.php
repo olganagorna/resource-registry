@@ -113,6 +113,10 @@ class RbacController extends Controller
        
         // commissioner
         $auth->addChild($commissioner, $user);
+        $auth->addChild($commissioner, $userdata);
+        $auth->addChild($commissioner, $userGetRole);
+        $auth->addChild($commissioner, $userChngActSt);
+        $auth->addChild($commissioner, $userChngRole);
  
         // admin
         $auth->addChild($admin, $userdata);

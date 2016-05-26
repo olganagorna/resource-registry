@@ -107,6 +107,10 @@ return [
         'ruleName' => 'userGroup',
         'children' => [
             'user',
+            'user/userdata',
+            'user/getrole',
+            'user/changeactivationstatus',
+            'user/changerole',
         ],
     ],
     'admin' => [
