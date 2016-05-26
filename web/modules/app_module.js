@@ -18,13 +18,6 @@
                 authRoles: 'registrar'
             }
         })
-        .when('/site/user_reg', {
-            templateUrl: 'views/site/about.html',
-            controller: 'index',
-            data: {
-                authRoles: ['admin']
-            }
-        })
         .when('/resource/index', {
             templateUrl: 'views/resource/resource.html',
             controller: 'index',
