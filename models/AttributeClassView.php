@@ -62,4 +62,10 @@ class AttributeClassView extends \yii\db\ActiveRecord
     {
         return $this->hasMany(ResourceClass::className(), ['class_id' => 'class_id']);
     }
+
+    public static function findByAttributeName($attribute_name)
+    {
+        //find Community in DB by Name
+        return static::findOne(['name' => $attribute_name]);
+    }
 }

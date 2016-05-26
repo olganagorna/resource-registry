@@ -56,7 +56,8 @@ $config = [
                     'GET changerole' => 'changerole',
                     'GET changeactivationstatus' => 'changeactivationstatus',
                     'GET getrole' => 'getrole',
-                    'GET attribute' => 'attribute'
+                    'GET attribute' => 'attribute',
+                    'POST addattribute' => 'addattribute'
                     ],
                 ],
             ],

@@ -71,6 +71,8 @@ class RbacController extends Controller
         $auth->add($resAttr);
         $resAttr2 = $auth->createPermission('attribute_class_view/attribute'); 
         $auth->add($resAttr2);
+        $addAttr = $auth->createPermission('attribute_class_view/addattribute'); 
+        $auth->add($addAttr);
 
 
         // Add rule, based on UserExt->group === $user->group
@@ -124,6 +126,8 @@ class RbacController extends Controller
         $auth->addChild($admin, $resClassAttr);
         $auth->addChild($admin, $resAttr);
         $auth->addChild($admin, $resAttr2);
+        $auth->addChild($admin, $addAttr);
+        
         
         
     }

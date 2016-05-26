@@ -67,4 +67,28 @@ class Attribute_class_viewController extends AppController
             return self::buildPagination($getdata, false); 
         }
     }
+
+    public function actionAddattribute()
+    {
+        // if (!$post = \Yii::$app->getRequest()->getBodyParams()) {
+        //     throw new \yii\web\HttpException(400, 'Дані не отримані');
+        // }
+        // $attributeckassviewModel = new AttributeClassView();
+        // if ($attributeckassviewModel->findByCommunityName($post['com_name'])){
+        //     throw new \yii\web\HttpException(400, 'Користувач з таким логіном уже існує');
+        // }
+        // $com_name = $post['com_name'];
+        // $com_num = $post['com_num'];
+        // $com_adds = $post['com_adds'];
+
+        // $attributeckassviewModel->name = $com_name;
+        // $attributeckassviewModel->prefix = $com_num;
+        // $attributeckassviewModel->notes = $com_adds;
+        // if (!$attributeckassviewModel->save()){
+        //     foreach($attributeckassviewModel->errors as $key){
+        //         $errorMessage .= $key[0];
+        //     }
+        //     throw new \yii\web\HttpException(422,$errorMessage);
+        // }
+    }
 }

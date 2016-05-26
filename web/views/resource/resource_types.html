@@ -54,12 +54,14 @@
                                         <span class="btn btn-default btn-xs btn-raised" ng-repeat="attr in data.attr">
                                             <span>{{attr}}</span>
                                         </span>
-                                        <div  class="input-group">
-                                            <span class="input-group-btn">
-                                                <a class="btn btn-material-amber-400" type="button" ng-click="" href="">ДОДАТИ <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
-                                            </span>
-                                            <input type="text" class="form-control" ng-model="types.addClassInput" placeholder="назва нового атрибуту">
-                                        </div>
+                                        <form name="myForm" role="form" ng-submit="addAttribute(addAttr, data.main.class_ID)">
+                                            <div  class="input-group">
+                                                <input type="text" name="attribute" id="attribute" class="form-control" ng-model="addAttr" placeholder="назва нового атрибуту" required />
+                                                <div class="form-actions">
+                                                    <button type="submit"  class="btn btn-material-amber-400" type="button">ДОДАТИ <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                                 <div class="col-md-2"></div>

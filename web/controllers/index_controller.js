@@ -8,8 +8,7 @@
     function IndexCtrl(RestService, $route, $routeParams, $location, constant, $filter , $rootScope, $scope, $http, PaginationService) {
         $scope.obj = 1;
         $scope.xmlData = [];
-        $rootScope.resourceAttributes = [];
-
+        $scope.addAttr;
 
         ($scope.getData = function() {
             return $http.get('rest.php/resource_classes/attribute')
@@ -44,41 +43,27 @@
             }
             function errorHandler(result){
                 alert(result.data[0].message);
-                console.log(result.data[0].message);
             }
         })();
 
-        // ($scope.getData = function() {
-        //     return $http.get('rest.php/resource_classes')
-        //         .then(successHandler)
-        //         .catch(errorHandler);
-        //     function successHandler(result) {
-        //         $scope.xmlData = result.data;
-        //         console.log(result.data);
-        //     }
-        //     function errorHandler(result){
-        //         alert(result.data[0].message);
-        //         console.log(result.data[0].message);
-        //     }
-        // })();
-
-        
-        // ($scope.getAttr = function(class_name) {
-        //     return $http.get('rest.php/resource_classes/attribute?name=' + class_name)
-        //         .then(successHandler)
-        //         .catch(errorHandler);
-        //     function successHandler(data) {
-        //         $rootScope.resourceAttributes = data.data;
-        //         console.log($rootScope.resourceAttributes);
-        //     }
-        //     function errorHandler(data) {
-        //         console.log("Can't reload list!");
-        //     }
-        // })();
-
-
-        $scope.refreshData = function() {
-            $scope.getData();
+        $scope.addAttribute = function(attribute, class_id) {
+            $scope.attribute = {
+                attribute_name: attribute,
+                class_id: class_id,
+            }
+            console.log($scope.attribute);
+            (function() {
+                $http.post('rest.php/attribute_class_views/addattribute', JSON.stringify($scope.attribute))
+                    .then(successHandler)
+                    .catch(errorHandler);
+                function successHandler(result) {
+                    console.log(attribute);
+                    console.log('Реєстрація пройшла успішно!');
+                }
+                function errorHandler(result){
+                    console.log("Error:"+result);
+                }
+            })();
         };
 
         $scope.del = function(id){
@@ -166,7 +151,33 @@
                 console.log("Can't change activation status!");
             }
         };
-    };
+
+        
+
+        // addAttr.addAttribute = function() {
+        //     alert(1);
+        //     var attribute_data = {
+        //         attr_name: addAttr.attribute.name,
+        //     };
+        //     (function() {
+        //     var post = $http.post('rest.php/communities/addattribute', JSON.stringify(attribute_data))
+        //         .then(successHandler)
+        //         .catch(errorHandler);
+        //         function successHandler(result) {
+        //             console.log('Реєстрація пройшла успішно!');
+        //             console.log(addAttr.attribute.name);
+        //             $('.alert-success').toggle(); // show success alert
+        //             addAttr.attribute = null;
+        //             $scope.$setPristine(true);
+
+
+        //         }
+        //         function errorHandler(result){
+        //           console.log("Error:"+result);
+        //         }
+        //     })();
+        // };
+    }
 
 
 })();
