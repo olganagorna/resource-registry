@@ -44,7 +44,7 @@
                 <li ng-if="currentUser.role === 'registrar' "><a href="resource/index">РЕСУРСИ</a></li>
                 <li ng-if="currentUser.role === 'registrar'"><a href="site/logs">ЖУРНАЛ</a></li>
                 <li ng-if="currentUser.role === 'registrar' "><a href="resource/search">ПОШУК</a></li>
-                <li ng-if="currentUser.role === 'admin' "><a href="site/users">КОРИСТУВАЧІ</a></li>
+                <li ng-if="currentUser.role === 'admin' || currentUser.role === 'commissioner'"><a href="site/users">КОРИСТУВАЧІ</a></li>
                 <li ng-if="currentUser.role === 'admin' "><a href="resource/community">ГРОМАДИ</a></li>
                 <li ng-if="currentUser.role === 'admin' "><a href="resource/type">ТИПИ РЕСУРСІВ</a></li>
             </ul> 
