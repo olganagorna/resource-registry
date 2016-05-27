@@ -63,6 +63,24 @@ return [
     'search/search' => [
         'type' => 2,
     ],
+    'attribute_class_view/index' => [
+        'type' => 2,
+    ],
+    'resource_class/attribute' => [
+        'type' => 2,
+    ],
+    'attribute_class_view/attribute' => [
+        'type' => 2,
+    ],
+    'attribute_class_view/addattribute' => [
+        'type' => 2,
+    ],
+    'attribute_class_view/findlastattributeid' => [
+        'type' => 2,
+    ],
+    'attribute_class_view/deleteattribute' => [
+        'type' => 2,
+    ],
     'user' => [
         'type' => 1,
         'ruleName' => 'userGroup',
@@ -70,10 +88,13 @@ return [
             'resource/view',
             'resource/index',
             'resource/search',
+            'resource_class/index',
             'resource/getregisterkey',
             'resource/create',
             'resource/gettingdata',
             'resource/additiondata',
+            'request/showrequest',
+            'request/addreq',
         ],
     ],
     'registrar' => [
@@ -81,10 +102,7 @@ return [
         'ruleName' => 'userGroup',
         'children' => [
             'user',
-            'request/showrequest',
-            'request/addreq',
             'search/search',
-            'resource_class/index',
         ],
     ],
     'commissioner' => [
@@ -92,6 +110,10 @@ return [
         'ruleName' => 'userGroup',
         'children' => [
             'user',
+            'user/userdata',
+            'user/getrole',
+            'user/changeactivationstatus',
+            'user/changerole',
         ],
     ],
     'admin' => [
@@ -109,6 +131,12 @@ return [
             'resource_class/search',
             'resource_class/changeactivationstatus',
             'resource_class/index',
+            'attribute_class_view/index',
+            'resource_class/attribute',
+            'attribute_class_view/attribute',
+            'attribute_class_view/addattribute',
+            'attribute_class_view/findlastattributeid',
+            'attribute_class_view/deleteattribute',
         ],
     ],
 ];

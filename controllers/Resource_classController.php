@@ -1,14 +1,19 @@
 <?php
 namespace app\controllers;
 
-use yii\rest\ActiveController;
+use app\controllers\AppController;
 use yii\data\ActiveDataProvider;
 use app\models\ResourceClass;
+use app\models\AttributeClassView;
+use app\models\ResourceAttribute;
 
 class Resource_classController extends AppController
 {
     public $modelClass = 'app\models\ResourceClass';
+    public $attrClassView = 'app\models\AttributeClassView';
+    public $resAttribute = 'app\models\ResourceAttribute';
     
+
     public function behaviors()
     {
         return 
@@ -46,7 +51,7 @@ class Resource_classController extends AppController
     		throw new \yii\web\HttpException(400, 'There are no query string');
     	}
     }
-     public function actionChangeactivationstatus() 
+    public function actionChangeactivationstatus() 
     {
         $request= \Yii::$app->request->get();
         $resource_class = ResourceClass::findOne(['class_id' => $request['class_id']]);
@@ -54,29 +59,23 @@ class Resource_classController extends AppController
         $resource_class->update();
     }
 
-    public function actionAddresourcetype()
+        public function actionAttribute() 
     {
-        // add Resource type
-
-        // if (!$post = \Yii::$app->getRequest()->getBodyParams()) {
-        //     throw new \yii\web\HttpException(400, 'Дані не отримані');
-        // }
+        $request = \Yii::$app->request->get();
+        $getdata = ResourceClass::find();
         
-        // $resourceClassModel = new ResourceClass();
-
-        // if ($resourceClassModel->findByResourceClassName($post['res_class_name'])){
-        //     throw new \yii\web\HttpException(400, 'Тип ресурсів з такою назвою уже існує');
-        // }
-
-        // $res_class_name = $post['res_class_name'];
-
-        // $resourceClassModel->name = $res_class_name;
-
-        // if (!$resourceClassModel->save()){
-        //     foreach($resourceClassModel->errors as $key){
-        //         $errorMessage .= $key[0];
-        //     }
-        //     throw new \yii\web\HttpException(422,$errorMessage);
-        // }
+        if(isset($request['value'])){
+            $getdata->SELECT(['resource_class.class_id as class_ID','resource_class.name as res_name', 'resource_attribute.name as attr_name', 'resource_class.activation_status', 'resource_attribute.attribute_id as attr_id'])
+            ->andFilterWhere(['like', 'resource_class.class_id', $request['value']])
+            ->joinwith(['attributeClassView', 'attributeClassView.resourceAttribute'])
+            ->asArray();
+            return self::buildPagination($getdata,false); 
+        }else{
+            $getdata->select(['resource_class.class_id as class_ID','resource_class.name as res_name', 'resource_attribute.name as attr_name', 'resource_class.activation_status', 'resource_attribute.attribute_id as attr_id'])
+            ->joinWith(['attributeClassView', 'attributeClassView.resourceAttribute'])
+            ->asArray();
+            return self::buildPagination($getdata, false); 
+        }
     }
+    
 }

@@ -65,6 +65,21 @@ class RbacController extends Controller
         $auth->add($reqAdd);
         $search = $auth->createPermission('search/search'); 
         $auth->add($search);
+        $resClassAttr = $auth->createPermission('attribute_class_view/index'); 
+        $auth->add($resClassAttr);
+        $resAttr = $auth->createPermission('resource_class/attribute'); 
+        $auth->add($resAttr);
+        $resAttr2 = $auth->createPermission('attribute_class_view/attribute'); 
+        $auth->add($resAttr2);
+        $addAttr = $auth->createPermission('attribute_class_view/addattribute'); 
+        $auth->add($addAttr);
+        $findAttrId = $auth->createPermission('attribute_class_view/findlastattributeid'); 
+        $auth->add($findAttrId);
+        $deleteAttrId = $auth->createPermission('attribute_class_view/deleteattribute'); 
+        $auth->add($deleteAttrId);
+        
+        
+
 
         // Add rule, based on UserExt->group === $user->group
         $userGroupRule = new UserGroupRule();
@@ -87,21 +102,24 @@ class RbacController extends Controller
         $auth->addChild($user, $view);
         $auth->addChild($user, $resIndex);
         $auth->addChild($user, $resSearch);
+        $auth->addChild($user, $resourceClass);
         $auth->addChild($user, $getRgKey);
         $auth->addChild($user, $resCreate);
         $auth->addChild($user, $resGettingdata);
         $auth->addChild($user, $resAdditiondata);
- 
+        $auth->addChild($user, $reqShow);
+        $auth->addChild($user, $reqAdd);
+         
         // registrar
         $auth->addChild($registrar, $user);
-        $auth->addChild($registrar, $reqShow);
-        $auth->addChild($registrar, $reqAdd);
         $auth->addChild($registrar, $search);
-        $auth->addChild($registrar, $resourceClass);
-
        
         // commissioner
         $auth->addChild($commissioner, $user);
+        $auth->addChild($commissioner, $userdata);
+        $auth->addChild($commissioner, $userGetRole);
+        $auth->addChild($commissioner, $userChngActSt);
+        $auth->addChild($commissioner, $userChngRole);
  
         // admin
         $auth->addChild($admin, $userdata);
@@ -115,5 +133,16 @@ class RbacController extends Controller
         $auth->addChild($admin, $resourceClassSearch);
         $auth->addChild($admin, $resourceClassChangeActivationStatus);
         $auth->addChild($admin, $resourceClass);
+        $auth->addChild($admin, $resClassAttr);
+        $auth->addChild($admin, $resAttr);
+        $auth->addChild($admin, $resAttr2);
+        $auth->addChild($admin, $addAttr);
+        $auth->addChild($admin, $findAttrId);
+        $auth->addChild($admin, $deleteAttrId);
+        
+        
+        
+        
+        
     }
 }

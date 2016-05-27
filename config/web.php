@@ -56,7 +56,11 @@ $config = [
                     'GET changerole' => 'changerole',
                     'GET changeactivationstatus' => 'changeactivationstatus',
                     'GET getrole' => 'getrole',
-                    'POST addresourcetype' => 'addresourcetype'
+                    'POST addresourcetype' => 'addresourcetype',
+                    'GET attribute' => 'attribute',
+                    'POST addattribute' => 'addattribute',
+                    'GET findlastattributeid' => 'findlastattributeid',
+                    'GET deleteattribute' => 'deleteattribute'
                     ],
                 ],
             ],
@@ -80,8 +84,8 @@ $config = [
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.gmail.com',
-                'username' => 'testmailthx@gmail.com',
-                'password' => '199145war',
+                'username' => 'resourceregistry@gmail.com',
+                'password' => 'resourceregistry1111',
                 'port' => '465',
                 'encryption' => 'ssl',
             ],

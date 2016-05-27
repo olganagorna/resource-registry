@@ -3,7 +3,7 @@
 namespace app\models;
 
 use Yii;
-
+use yii\db\ActiveRecord;
 /**
  * This is the model class for table "resource_class".
  *
@@ -48,7 +48,7 @@ class ResourceClass extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAttributeClassViews()
+    public function getAttributeClassView()
     {
         return $this->hasMany(AttributeClassView::className(), ['class_id' => 'class_id']);
     }
@@ -56,7 +56,7 @@ class ResourceClass extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getResources()
+    public function getResource()
     {
         return $this->hasMany(Resource::className(), ['class_id' => 'class_id']);
     }

@@ -28,6 +28,7 @@
     // };    
 
     comAdd.addCommunity = function() {
+      console.log(comAdd);
       // add new community controller
       var dataMain = {
         com_name: comAdd.community.name,
