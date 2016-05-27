@@ -6,6 +6,7 @@ use app\models\User;
 use app\models\LoginForm;
 use app\models\Role;
 use app\models\PersonalData;
+use app\models\Community;
 use yii\web\Session;
 use app\controllers\AppController;
 
@@ -164,7 +165,7 @@ class UserController extends AppController {
                 'or',
                 ['like', 'first_name', $words[0]],
                 ['like', 'last_name', $words[0]],
-                ['like', 'name', $words[0]]
+                ['like', 'role.name', $words[0]]
             ];
         } else {
             $filters = ['or', [
@@ -178,8 +179,8 @@ class UserController extends AppController {
             ]];
         }
         $getdata = User::find()
-        ->select(['user_id','username','last_name','first_name','name as role_name','activation_status'])
-        ->innerJoinWith('personalData')->innerJoinWith('userRole')
+        ->select(['user_id','username','last_name','first_name','passport_series','passport_number','role.name as role_name','community.name as community_name','activation_status'])
+        ->joinWith('personalData')->joinWith('userRole')->joinWith('community')
         ->andFilterWhere($filters)
         ->andFilterWhere(['like', 'activation_status', $request['activation_status']])
         ->orderBy($sort)
@@ -197,7 +198,7 @@ class UserController extends AppController {
 
     public function actionGetrole() {
         $getrole = Role::find()
-        ->select(['role_id','name as role_name'])
+        ->select(['role_id','role.name as role_name'])
         ->asArray();
         return self::buildPagination($getrole, 5); 
     }
