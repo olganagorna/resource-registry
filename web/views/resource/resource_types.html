@@ -12,12 +12,22 @@
                     <li class="list-group-item row">
                         <div class="row">
                             <div class="col-md-10">
+                                <!-- <div class="input-group">
+                                    <form name="myForm" role="form" ng-submit="addResourceClass(addClassName)">
+                                        <div class="form-actions" >
+                                            <span class="input-group-btn">
+                                                <a for="resource_class_name" class="btn btn-material-amber-400" type="submit" >ДОДАТИ <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+                                            </span>  
+                                            <input type="text" name="resource_class_name" id="resource_class_name" class="form-control" ng-model="addClassName" required placeholder="назва нового типу">
+                                        </div> 
+                                    </form>
+                                </div> -->
                                 <form name="myForm" role="form" ng-submit="addResourceClass(data.main.class_ID, data.main.res_name)">
                                     <div class="input-group">
                                         <span class="input-group-btn">
                                             <button type="submit"  class="btn btn-material-amber-400" type="button">ДОДАТИ <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                                         </span>
-                                        <input type="text" name="resource_class" id="resource_class" class="form-control" ng-model="addClassName" placeholder="назва нового типу ресурсу" required/>                                        
+                                        <input type="text" name="resource_class" id="resource_class" class="form-control" ng-model="addClassName" placeholder="назва нового типу ресурсу" required/>
                                     </div>
                                 </form>
                             </div> 
@@ -35,7 +45,7 @@
                         <div ng-repeat="data in xmlData.items">
                             <div>
                                 <div class="btn btn-md btn-primary collapsed col-md-10" data-toggle="collapse" data-target="{{'#demo' + data.class_id}}">
-                                    <div class="col-md-4 text-center">{{data.class_id}}</div> 
+                                    <div class="col-md-4 text-center">{{data.class_id}}</div>
                                     <div class="col-md-6 text-center">{{data.name}}</div>
                                 </div>    
                                 <div class="btn-group text-center">

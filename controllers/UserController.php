@@ -180,7 +180,7 @@ class UserController extends AppController {
         }
         $getdata = User::find()
         ->select(['user_id','username','last_name','first_name','passport_series','passport_number','role.name as role_name','community.name as community_name','activation_status'])
-        ->innerJoinWith('personalData')->innerJoinWith('userRole')->innerJoinWith('community')
+        ->joinWith('personalData')->joinWith('userRole')->joinWith('community')
         ->andFilterWhere($filters)
         ->andFilterWhere(['like', 'activation_status', $request['activation_status']])
         ->orderBy($sort)
