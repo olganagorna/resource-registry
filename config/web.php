@@ -56,9 +56,11 @@ $config = [
                     'GET changerole' => 'changerole',
                     'GET changeactivationstatus' => 'changeactivationstatus',
                     'GET getrole' => 'getrole',
+                    'POST addresourcetype' => 'addresourcetype',
                     'GET attribute' => 'attribute',
                     'POST addattribute' => 'addattribute',
-                    'GET findlastattributeid' => 'findlastattributeid'
+                    'GET findlastattributeid' => 'findlastattributeid',
+                    'GET deleteattribute' => 'deleteattribute'
                     ],
                 ],
             ],
