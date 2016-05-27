@@ -93,6 +93,8 @@ return [
             'resource/create',
             'resource/gettingdata',
             'resource/additiondata',
+            'request/showrequest',
+            'request/addreq',
         ],
     ],
     'registrar' => [
@@ -100,8 +102,6 @@ return [
         'ruleName' => 'userGroup',
         'children' => [
             'user',
-            'request/showrequest',
-            'request/addreq',
             'search/search',
         ],
     ],
