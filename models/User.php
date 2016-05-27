@@ -20,6 +20,10 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->hasOne(PersonalData::className(), ['personal_data_id' => 'user_data_id']);
     }
+    public function getCommunity() 
+    {
+        return $this->hasOne(Community::className(), ['community_id' => 'community_id']);
+    }
     public function rules()
     {
         return [
@@ -35,7 +39,8 @@ class User extends ActiveRecord implements IdentityInterface
             'id',
             'username',
             'user_data_id',
-            'role_id'
+            'role_id',
+            'community_id'
         ];
     }
     public static function findIdentity($id)

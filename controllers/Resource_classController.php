@@ -53,4 +53,30 @@ class Resource_classController extends AppController
         $resource_class->activation_status=$request['activation_status'];
         $resource_class->update();
     }
+
+    public function actionAddresourcetype()
+    {
+        // add Resource type
+
+        // if (!$post = \Yii::$app->getRequest()->getBodyParams()) {
+        //     throw new \yii\web\HttpException(400, 'Дані не отримані');
+        // }
+        
+        // $resourceClassModel = new ResourceClass();
+
+        // if ($resourceClassModel->findByResourceClassName($post['res_class_name'])){
+        //     throw new \yii\web\HttpException(400, 'Тип ресурсів з такою назвою уже існує');
+        // }
+
+        // $res_class_name = $post['res_class_name'];
+
+        // $resourceClassModel->name = $res_class_name;
+
+        // if (!$resourceClassModel->save()){
+        //     foreach($resourceClassModel->errors as $key){
+        //         $errorMessage .= $key[0];
+        //     }
+        //     throw new \yii\web\HttpException(422,$errorMessage);
+        // }
+    }
 }

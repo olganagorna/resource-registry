@@ -8,6 +8,7 @@
     function IndexCtrl(RestService, $route, $routeParams, $location, constant, $filter , $rootScope, $scope, $http, PaginationService) {
         $scope.obj = 1;
         $scope.xmlData = [];
+        $scope.addClassName;
 
         ($scope.getData = function() {
             return $http.get('rest.php/resource_classes')
@@ -110,6 +111,47 @@
             function errorHandler() {
                 console.log("Can't change activation status!");
             }
+        };
+
+        // $scope.addResourceClass = function(name) {
+        //     alert(1);
+        //     $scope.className = {
+        //         class_name: name
+        //     }
+        //     console.log($scope.className);
+        //     (function() {
+        //         $http.post('rest.php/resource_classes/addresourcetype', JSON.stringify($scope.className))
+        //             .then(successHandler)
+        //             .catch(errorHandler);
+        //         function successHandler(result) {
+        //             console.log(scope.className);
+        //             console.log('Реєстрація пройшла успішно!');
+        //         }
+        //         function errorHandler(result){
+        //             console.log("Error:"+result);
+        //         }
+        //     })();
+        // };
+
+        $scope.addAttribute = function(attribute, class_id) {
+            $scope.attribute = {
+                attribute_name: attribute,
+                class_id: class_id,
+            }
+            console.log($scope.attribute);
+            (function() {
+                $http.post('rest.php/attribute_class_views/addattribute', JSON.stringify($scope.attribute))
+                    .then(successHandler)
+                    .catch(errorHandler);
+                function successHandler(result) {
+                    console.log(attribute);
+                    console.log('Реєстрація пройшла успішно!');
+                    $scope.getData();
+                }
+                function errorHandler(result){
+                    console.log("Error:"+result);
+                }
+            })();
         };
     };
 

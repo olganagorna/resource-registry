@@ -17,7 +17,7 @@
 
         $scope.modifyRoleName = function() {
             var toEquate = {
-                    "user": "Користувач",
+                    "user": "Співвласник",
                     "registrar": "Реєстратор",
                     "admin": "Адміністратор",
                     "commissioner": "Уповноважений"
@@ -162,7 +162,7 @@
                 $scope.roleFound = data.data.items;
 
                 var toEquate = {
-                    "user": "Користувач",
+                    "user": "Співвласник",
                     "registrar": "Реєстратор",
                     "admin": "Адміністратор",
                     "commissioner": "Уповноважений"

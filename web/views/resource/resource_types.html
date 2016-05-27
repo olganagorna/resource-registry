@@ -1,4 +1,4 @@
-<div class="container-fluid" ng-if="currentUser.role === 'admin'">
+<div class="container-fluid" ng-if="currentUser.role === 'admin'" ng-controller="IndexCtrl">
     
     <style>
         input {  text-indent: 1.5em;}
@@ -12,19 +12,21 @@
                     <li class="list-group-item row">
                         <div class="row">
                             <div class="col-md-10">
-                                <div class="input-group">
-                                    <span class="input-group-btn">
-                                        <a class="btn btn-material-amber-400" type="button" ng-click="types.addClass()" href="">ДОДАТИ <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
-                                    </span>
-                                    <input type="text" class="form-control" ng-model="types.addClassInput" placeholder="назва нового класу">
-                                </div>
+                                <form name="myForm" role="form" ng-submit="addResourceClass(data.main.class_ID, data.main.res_name)">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button type="submit"  class="btn btn-material-amber-400" type="button">ДОДАТИ <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                                        </span>
+                                        <input type="text" name="resource_class" id="resource_class" class="form-control" ng-model="addClassName" placeholder="назва нового типу ресурсу" required/>                                        
+                                    </div>
+                                </form>
                             </div> 
                             <div class="col-md-2"></div>                                    
                         </div>
                         <div class="row">
                             <div class="col-md-10">
-                                <div class="col-md-4 text-center"><h4>Ідентифікатор</h4></div>
-                                <div class="col-md-6 text-center"><h4>Назва класу</h4></div>
+                                <div class="col-md-4 text-center"><h4></h4></div>
+                                <div class="col-md-6 text-center"><h4>Назва типу</h4></div>
                             </div>
                             <div class="col-md-2"><h4>Дія</h4></div>
                         </div>
@@ -158,3 +160,5 @@
 <div ng-show="resources.length === 0">
     There are no resources
 </div> -->
+
+

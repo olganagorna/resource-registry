@@ -55,7 +55,8 @@ $config = [
                     'GET userdata' => 'userdata',
                     'GET changerole' => 'changerole',
                     'GET changeactivationstatus' => 'changeactivationstatus',
-                    'GET getrole' => 'getrole'
+                    'GET getrole' => 'getrole',
+                    'POST addresourcetype' => 'addresourcetype'
                     ],
                 ],
             ],
