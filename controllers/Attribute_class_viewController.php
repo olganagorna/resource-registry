@@ -107,5 +107,15 @@ class Attribute_class_viewController extends AppController
             }
             throw new \yii\web\HttpException(422,$errorMessage);
         }
+
+
+    }
+    public function actionDeleteattribute()
+    {
+        $request = \Yii::$app->request->get();
+        $getdata = AttributeClassView::find()->where(['attribute_id'=>$request['attr_id']])->one();
+        if($getdata){
+            $getdata->delete();
+        }
     }
 }

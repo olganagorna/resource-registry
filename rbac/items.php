@@ -78,6 +78,9 @@ return [
     'attribute_class_view/findlastattributeid' => [
         'type' => 2,
     ],
+    'attribute_class_view/deleteattribute' => [
+        'type' => 2,
+    ],
     'user' => [
         'type' => 1,
         'ruleName' => 'userGroup',
@@ -133,6 +136,7 @@ return [
             'attribute_class_view/attribute',
             'attribute_class_view/addattribute',
             'attribute_class_view/findlastattributeid',
+            'attribute_class_view/deleteattribute',
         ],
     ],
 ];

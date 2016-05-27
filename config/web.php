@@ -58,7 +58,8 @@ $config = [
                     'GET getrole' => 'getrole',
                     'GET attribute' => 'attribute',
                     'POST addattribute' => 'addattribute',
-                    'GET findlastattributeid' => 'findlastattributeid'
+                    'GET findlastattributeid' => 'findlastattributeid',
+                    'GET deleteattribute' => 'deleteattribute'
                     ],
                 ],
             ],

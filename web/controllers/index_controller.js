@@ -15,36 +15,74 @@
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(result) {
-                var temparrRN = [];
+                var temparrResClName = [];
                 var temparr = [];
                 for (var i = 0; i < result.data.items.length; i++) {
-                    if (temparrRN.indexOf(result.data.items[i].res_name) == -1)
+                    if (temparrResClName.indexOf(result.data.items[i].res_name) == -1)
                     {
                         var tObj = {};
                         tObj.main = result.data.items[i];
-                        tObj.attr = [];
+                        tObj.attr = {};
                         if (result.data.items[i].attr_name != null) {
-                           tObj.attr.push(result.data.items[i].attr_name); 
+                           tObj.attr[result.data.items[i].attr_id] = result.data.items[i].attr_name;
                         }
-                        temparrRN.push(result.data.items[i].res_name);
+                        temparrResClName.push(result.data.items[i].res_name);
                         temparr.push(tObj);
                     }
                     else {
                         if (result.data.items[i].attr_name != null) {
                             for (var j = 0; j< temparr.length; j++) {
                                if (temparr[j].main.res_name == result.data.items[i].res_name) {
-                                    temparr[j].attr.push(result.data.items[i].attr_name); 
+                                    temparr[j].attr[result.data.items[i].attr_id] = result.data.items[i].attr_name;
                                }
                             }
                         }
                     }
                 }
                 $scope.xmlData = temparr;
+                console.log($scope.xmlData);
             }
             function errorHandler(result){
                 alert(result.data[0].message);
             }
         })();
+
+        // ($scope.getData = function() {
+        //     return $http.get('rest.php/resource_classes/attribute')
+        //         .then(successHandler)
+        //         .catch(errorHandler);
+        //     function successHandler(result) {
+        //         var temparrResClName = [];
+        //         var temparr = [];
+        //         for (var i = 0; i < result.data.items.length; i++) {
+        //             if (temparrResClName.indexOf(result.data.items[i].res_name) == -1)
+        //             {
+        //                 var tObj = {};
+        //                 tObj.main = result.data.items[i];
+        //                 tObj.attr = [];
+        //                 if (result.data.items[i].attr_name != null) {
+        //                    tObj.attr.push(result.data.items[i].attr_name); 
+        //                 }
+        //                 temparrResClName.push(result.data.items[i].res_name);
+        //                 temparr.push(tObj);
+        //             }
+        //             else {
+        //                 if (result.data.items[i].attr_name != null) {
+        //                     for (var j = 0; j< temparr.length; j++) {
+        //                        if (temparr[j].main.res_name == result.data.items[i].res_name) {
+        //                             temparr[j].attr.push(result.data.items[i].attr_name); 
+        //                        }
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //         $scope.xmlData = temparr;
+        //         console.log($scope.xmlData);
+        //     }
+        //     function errorHandler(result){
+        //         alert(result.data[0].message);
+        //     }
+        // })();
 
         $scope.addAttribute = function(attribute, class_id) {
             $scope.attribute = {
@@ -58,7 +96,7 @@
                     .catch(errorHandler);
                 function successHandler(result) {
                     console.log(attribute);
-                    console.log('Реєстрація пройшла успішно!');
+                    console.log('Додано новий атрибут!');
                     $scope.getData();
                 }
                 function errorHandler(result){
@@ -67,15 +105,15 @@
             })();
         };
 
-        $scope.del = function(id){
+        $scope.del = function(attr_id){
             (function(){
-                return $http.delete('rest.php/resource_classes/' + id)
+                return $http.get('rest.php/attribute_class_views/deleteattribute?attr_id=' + attr_id)
                     .then(successHandler)
                     .catch(errorHandler);
                 function successHandler(result) {
                     console.log(result);
-                    alert('Êëàñ óñï³øíî âèäàëåíèé');
-                    $route.reload();
+                    console.log('Атрибут видалено!');
+                    $scope.getData();
                 }
                 function errorHandler(result){
                     alert(result.data[0].message);
@@ -152,32 +190,6 @@
                 console.log("Can't change activation status!");
             }
         };
-
-        
-
-        // addAttr.addAttribute = function() {
-        //     alert(1);
-        //     var attribute_data = {
-        //         attr_name: addAttr.attribute.name,
-        //     };
-        //     (function() {
-        //     var post = $http.post('rest.php/communities/addattribute', JSON.stringify(attribute_data))
-        //         .then(successHandler)
-        //         .catch(errorHandler);
-        //         function successHandler(result) {
-        //             console.log('Реєстрація пройшла успішно!');
-        //             console.log(addAttr.attribute.name);
-        //             $('.alert-success').toggle(); // show success alert
-        //             addAttr.attribute = null;
-        //             $scope.$setPristine(true);
-
-
-        //         }
-        //         function errorHandler(result){
-        //           console.log("Error:"+result);
-        //         }
-        //     })();
-        // };
     }
 
 

@@ -65,27 +65,17 @@ class Resource_classController extends AppController
         $getdata = ResourceClass::find();
         
         if(isset($request['value'])){
-            $getdata->SELECT(['resource_class.class_id as class_ID','resource_class.name as res_name', 'resource_attribute.name as attr_name'])
+            $getdata->SELECT(['resource_class.class_id as class_ID','resource_class.name as res_name', 'resource_attribute.name as attr_name', 'resource_class.activation_status', 'resource_attribute.attribute_id as attr_id'])
             ->andFilterWhere(['like', 'resource_class.class_id', $request['value']])
             ->joinwith(['attributeClassView', 'attributeClassView.resourceAttribute'])
             ->asArray();
             return self::buildPagination($getdata,false); 
         }else{
-            $getdata->select(['resource_class.class_id as class_ID','resource_class.name as res_name', 'resource_attribute.name as attr_name'])
+            $getdata->select(['resource_class.class_id as class_ID','resource_class.name as res_name', 'resource_attribute.name as attr_name', 'resource_class.activation_status', 'resource_attribute.attribute_id as attr_id'])
             ->joinWith(['attributeClassView', 'attributeClassView.resourceAttribute'])
             ->asArray();
             return self::buildPagination($getdata, false); 
         }
     }
-    // public function actionAttribute()
-    // {
-    //     $request= \Yii::$app->request->get();
-    //     $attributes = [':name' => $request['name']];
-    //     $sql = "SELECT name as attr_name FROM resource_attribute WHERE attribute_id IN (SELECT attribute_id FROM attribute_class_view, resource_class WHERE resource_class.class_id = attribute_class_view.class_id AND name=:name)";
-    //     $data = \Yii::$app->db
-    //         ->createCommand($sql)
-    //         ->bindValues($attributes)
-    //         ->queryAll();
-    //     return $data;
-    // }
+    
 }
