@@ -18,10 +18,11 @@
                 var temparrResClName = [];
                 var temparr = [];
                 for (var i = 0; i < result.data.items.length; i++) {
-                    if (temparrResClName.indexOf(result.data.items[i].res_name) == -1)
-                    {
+                    if (temparrResClName.indexOf(result.data.items[i].res_name) == -1) {
+                        //if not exist - create new item object
                         var tObj = {};
                         tObj.main = result.data.items[i];
+                        console.log(tObj.main);
                         tObj.attr = {};
                         if (result.data.items[i].attr_name != null) {
                            tObj.attr[result.data.items[i].attr_id] = result.data.items[i].attr_name;
@@ -46,43 +47,6 @@
                 alert(result.data[0].message);
             }
         })();
-
-        // ($scope.getData = function() {
-        //     return $http.get('rest.php/resource_classes/attribute')
-        //         .then(successHandler)
-        //         .catch(errorHandler);
-        //     function successHandler(result) {
-        //         var temparrResClName = [];
-        //         var temparr = [];
-        //         for (var i = 0; i < result.data.items.length; i++) {
-        //             if (temparrResClName.indexOf(result.data.items[i].res_name) == -1)
-        //             {
-        //                 var tObj = {};
-        //                 tObj.main = result.data.items[i];
-        //                 tObj.attr = [];
-        //                 if (result.data.items[i].attr_name != null) {
-        //                    tObj.attr.push(result.data.items[i].attr_name); 
-        //                 }
-        //                 temparrResClName.push(result.data.items[i].res_name);
-        //                 temparr.push(tObj);
-        //             }
-        //             else {
-        //                 if (result.data.items[i].attr_name != null) {
-        //                     for (var j = 0; j< temparr.length; j++) {
-        //                        if (temparr[j].main.res_name == result.data.items[i].res_name) {
-        //                             temparr[j].attr.push(result.data.items[i].attr_name); 
-        //                        }
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //         $scope.xmlData = temparr;
-        //         console.log($scope.xmlData);
-        //     }
-        //     function errorHandler(result){
-        //         alert(result.data[0].message);
-        //     }
-        // })();
 
         $scope.addAttribute = function(attribute, class_id) {
             $scope.attribute = {

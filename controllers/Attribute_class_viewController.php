@@ -50,33 +50,6 @@ class Attribute_class_viewController extends AppController
     	}
     }
 
-    public function actionAttribute() 
-    {
-        $request = \Yii::$app->request->get();
-        $getdata = AttributeClassView::find();
-        if(isset($request['value'])){
-            $getdata->select(['view_id','resource_class.class_id as class_ID','attribute_class_view.attribute_id as attr_id', 'resource_attribute.name as attr_name', 'resource_class.name as class_name'])
-            ->andFilterWhere(['like', 'resource_class.class_id', $request['value']])
-            ->innerJoinWith('resourceAttribute')->innerJoinWith('resourceClass')
-            ->asArray();
-            return self::buildPagination($getdata, false); 
-        }else{
-            $getdata->select(['view_id','resource_class.class_id as class_ID','attribute_class_view.attribute_id as attr_id', 'resource_attribute.name as attr_name', 'resource_class.name as class_name'])
-            ->innerJoinWith('resourceAttribute')->innerJoinWith('resourceClass')
-            ->asArray();
-            return self::buildPagination($getdata, false); 
-        }
-    }
-    // public static function actionFindlastattributeid()
-    // {
-    //     $last_id = ResourceAttribute::find()
-    //     ->where(['attribute_id' => ResourceAttribute::find()->max('attribute_id')])
-    //     ->one();
-    //     var_dump($last_id);
-    //     $get_class_id->select(['attribute_id'])
-    //     ->asArray();
-    //     return self::buildPagination($get_class_id, false); 
-    // }
     public function actionAddattribute()
     {
         $last_id = ResourceAttribute::find()->select(['attribute_id'])->orderBy(['attribute_id' => SORT_DESC])->one();
@@ -107,9 +80,8 @@ class Attribute_class_viewController extends AppController
             }
             throw new \yii\web\HttpException(422,$errorMessage);
         }
-
-
     }
+    
     public function actionDeleteattribute()
     {
         $request = \Yii::$app->request->get();
