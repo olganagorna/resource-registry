@@ -22,23 +22,19 @@
 			border-radius: 5px;
 			border: 1px solid #e3e3e3;
 		}
-
 		.sort {
 			color: rgba(0,0,0,.84);
 		}
-
 		a:hover {
 			text-decoration: none;
 		}
-
 	</style>
 
 	<div class="container well">
 		<div class="row">
 			<div class="col-lg-10 col-md-8 col-sm-8">
 				<ng-form>
-					<span>Пошук користувачів &nbsp</span>
-					<input type="text" class="community-search" ng-model="userSearch" ng-enter="searchUser(userSearch)" placeholder="по прізвищу, імені та громаді" size="30px"/>
+					<input type="text" class="community-search" ng-model="userSearch" ng-enter="searchUser(userSearch)" placeholder="Пошук по прізвищу та імені" size="30px"/>
 					<input class="btn btn-primary" type="submit" value="Пошук" ng-click="searchUser(userSearch)"/>
 				</ng-form>
 			</div>
