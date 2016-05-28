@@ -17,7 +17,7 @@
 
         $scope.modifyRoleName = function() {
             var toEquate = {
-                    "user": "Користувач",
+                    "user": "Співвласник",
                     "registrar": "Реєстратор",
                     "admin": "Адміністратор",
                     "commissioner": "Уповноважений"
@@ -53,8 +53,7 @@
 
         $scope.switchPage = function(index) {
             var intervalID = setInterval(function(){
-                $rootScope.xmlDataLength = $rootScope.xmlData.length;
-                if ($rootScope.xmlData._meta.perPage) {
+                if ($rootScope.xmlData) {
                     if($scope.request) {
                         PaginationServicee.switchPage(index, constant.usersQuery + '/search?' + buildQuery($scope.request)+ '&')
                             .then(function(data) {
@@ -82,6 +81,7 @@
 
             },10);
         };
+
         $scope.switchPage($scope.currentPage);
         $scope.setPage = function(pageLink, pageType) {
             PaginationServicee.setPage(pageLink, pageType, $rootScope.xmlData._meta.pageCount)
@@ -162,7 +162,7 @@
                 $scope.roleFound = data.data.items;
 
                 var toEquate = {
-                    "user": "Користувач",
+                    "user": "Співвласник",
                     "registrar": "Реєстратор",
                     "admin": "Адміністратор",
                     "commissioner": "Уповноважений"

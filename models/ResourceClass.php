@@ -60,4 +60,10 @@ class ResourceClass extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Resource::className(), ['class_id' => 'class_id']);
     }
+
+    public static function findByResourceClassName($resource_class_name)
+    {
+        //find ResourceClass in DB by Name
+        return static::findOne(['name' => $resource_class_name]);
+    }
 }

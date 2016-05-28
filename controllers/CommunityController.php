@@ -12,20 +12,16 @@ class CommunityController extends AppController
 	public function actionShow()
 	{
 		$request= \Yii::$app->request->get();
-		$community = Community::find();
+        $order = 'name ' . $request['order'];
+		$query = Community::find()->select(['name', 'prefix', 'notes', 'community_id', 'isactive']);
 		
-		if(isset($request['value'])){
-			$community->select(['name', 'prefix', 'notes', 'community_id', 'isactive'])
-            ->andFilterWhere(['like', 'name', $request['value']])
-            ->orderBy('name')
-            ->asArray();	
+        if(isset($request['search'])){
+			$query->andFilterWhere(['like', 'name', $request['search']])->orderBy($order);
 		}else{
-			$community->select(['name', 'prefix', 'notes', 'community_id', 'isactive'])
-            ->orderBy('name')
-			->asArray();
+			$query->orderBy($order);
 		}
 
-        return self::buildPagination($community);
+        return self::buildPagination($query);
 	}
 
 	public function actionAddcomm()
