@@ -112,4 +112,15 @@ class Attribute_class_viewController extends AppController
             $getdata->delete();
         }
     }
+    public function actionFindfilteredattributes()
+    {
+        $request= \Yii::$app->request->get();
+        $attributes = [':name' => $request['name']];
+        $sql = "SELECT name, attribute_id FROM resource_attribute WHERE attribute_id IN (SELECT attribute_id FROM attribute_class_view, resource_class WHERE resource_class.class_id = attribute_class_view.class_id AND name=:name)";
+        $data = \Yii::$app->db
+                ->createCommand($sql)
+                ->bindValues($attributes)
+                ->queryAll();
+        return $data;
+    }
 }

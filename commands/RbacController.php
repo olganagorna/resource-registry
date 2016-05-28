@@ -77,6 +77,10 @@ class RbacController extends Controller
         $auth->add($findAttrId);
         $deleteAttrId = $auth->createPermission('attribute_class_view/deleteattribute'); 
         $auth->add($deleteAttrId);
+        $findGlobalAttr = $auth->createPermission('resource_attribute/findglobalattributes'); 
+        $auth->add($findGlobalAttr);
+        $findFilteredAttr = $auth->createPermission('attribute_class_view/findfilteredattributes'); 
+        $auth->add($findFilteredAttr);
         
         
 
@@ -139,7 +143,8 @@ class RbacController extends Controller
         $auth->addChild($admin, $addAttr);
         $auth->addChild($admin, $findAttrId);
         $auth->addChild($admin, $deleteAttrId);
-        
+        $auth->addChild($admin, $findGlobalAttr);
+        $auth->addChild($admin, $findFilteredAttr);
         
         
         

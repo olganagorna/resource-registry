@@ -81,6 +81,12 @@ return [
     'attribute_class_view/deleteattribute' => [
         'type' => 2,
     ],
+    'resource_attribute/findglobalattributes' => [
+        'type' => 2,
+    ],
+    'attribute_class_view/findfilteredattributes' => [
+        'type' => 2,
+    ],
     'user' => [
         'type' => 1,
         'ruleName' => 'userGroup',
@@ -137,6 +143,8 @@ return [
             'attribute_class_view/addattribute',
             'attribute_class_view/findlastattributeid',
             'attribute_class_view/deleteattribute',
+            'resource_attribute/findglobalattributes',
+            'attribute_class_view/findfilteredattributes',
         ],
     ],
 ];

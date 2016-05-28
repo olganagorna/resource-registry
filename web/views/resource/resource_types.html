@@ -32,11 +32,11 @@
                         </div>
                     </li>
                     <li class="list-group-item row">
-                        <div ng-repeat="data in xmlData">
+                        <div ng-repeat="data in xmlData.items">
                             <div>
-                                <div class="btn btn-md btn-primary collapsed col-md-10" data-toggle="collapse" data-target="{{'#demo' + data.main.class_ID}}" ng-click="">
-                                    <div class="col-md-4 text-center">{{data.main.class_ID}}</div> 
-                                    <div class="col-md-6 text-center">{{data.main.res_name}}</div>
+                                <div class="btn btn-md btn-primary collapsed col-md-10" data-toggle="collapse" data-target="{{'#demo' + data.class_id}}" ng-click="getAttributes(data.name)">
+                                    <div class="col-md-4 text-center">{{data.class_id}}</div> 
+                                    <div class="col-md-6 text-center">{{data.name}}</div>
                                 </div>    
                                 <div class="btn-group text-center">
                                     <a class="btn btn-primary ng-scope" title="Редагувати" ng-if="currentUser.role === 'admin' &amp;&amp; currentUser.isLogined">
@@ -52,10 +52,10 @@
                             </div>
                             <div class="row">
                             <div class="col-md-10">
-                                    <div id="{{'demo' + data.main.class_ID}}" class="collapse">
+                                    <div id="{{'demo' + data.class_id}}" class="collapse">
                                         <span>
-                                            <span class="btn btn-default btn-xs btn-raised" ng-repeat="(key, value) in data.attr">
-                                                <span>{{value}} <a class="close" ng-click="del(key)">&times;</a></span>
+                                            <span class="btn btn-default btn-xs btn-raised" ng-repeat="data in localAttributes">
+                                                <span>{{data.attribute_id}}{{data.name}} <a class="close" ng-click="del(key)">&times;</a></span>
                                             </span>
                                         </span>
                                         <form name="myForm" role="form" ng-submit="addAttribute(addAttr, data.main.class_ID)">

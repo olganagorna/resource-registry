@@ -16,7 +16,7 @@
             <select class="form-control" id="class"
                     ng-init="resource.class_id = 1"
                     ng-model="resource.class_id"
-                    ng-options="class.class_id as class.name for class in resource_classes">
+                    ng-options="class.class_id as class.name for class in resource_classes.items">
             </select>
         </div>
         <div class="form-group">

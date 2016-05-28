@@ -44,4 +44,11 @@ class Resource_attributeController extends ActiveController
     		throw new \yii\web\HttpException(400, 'There are no query string');
     	}
     }
+    public function actionFindglobalattributes()
+    {
+        // $request = \Yii::$app->request->get();
+        // $getdata = ResourceAttribute::find()->SELECT(['name']->where('is_global' == 1))
+        // ->asArray();
+        // return self::buildPagination($getdata,false); 
+    }
 }
