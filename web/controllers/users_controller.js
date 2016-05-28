@@ -142,9 +142,11 @@
 
         // activate or deactivate user
         $scope.changeActivationStatus = function(activation_status, user_id) {
-            $http.get('rest.php/users/changeactivationstatus?user_id='+ user_id + '&' + 'activation_status=' + activation_status)
-                .then(successHandler)
-                .catch(errorHandler);
+            if (confirm("Ви справді бажаєте змінити статус активації цього користувача?") == true) {
+                $http.get('rest.php/users/changeactivationstatus?user_id='+ user_id + '&' + 'activation_status=' + activation_status)
+                    .then(successHandler)
+                    .catch(errorHandler);
+            }
             function successHandler() {
                 $scope.refreshData();
             }
