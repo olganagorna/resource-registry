@@ -14,12 +14,14 @@
                     <li class="list-group-item row">
                         <div class="row">
                             <div class="col-md-10">
-                                <div class="input-group">
-                                    <span class="input-group-btn">
-                                        <a class="btn btn-material-amber-400" type="button" ng-click="types.addClass()" href="">ДОДАТИ <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
-                                    </span>
-                                    <input type="text" class="form-control" ng-model="types.addClassInput" placeholder="назва нового класу">
-                                </div>
+                                <form name="myForm" role="form" ng-submit="addResourceClass(addResClass)">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button type="submit" class="btn btn-material-amber-400" type="button">ДОДАТИ <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                                        </span>
+                                        <input type="text" name="resource class" id="attribute" class="form-control" ng-model="addResClass" placeholder="назва нового типу ресурсів" required />
+                                    </div>     
+                                </form>
                             </div> 
                             <div class="col-md-2"></div>                                    
                         </div>
@@ -54,8 +56,8 @@
                             <div class="col-md-10">
                                     <div id="{{'demo' + data.main.class_ID}}" class="collapse">
                                         <span>
-                                            <span class="btn btn-default btn-xs btn-raised" ng-repeat="(key, value) in data.attr">
-                                                <span>{{value}} <a class="close" ng-click="del(key)">&times;</a></span>
+                                            <span class="btn btn-default btn-sm btn-raised" ng-repeat="(key, value) in data.attr">
+                                                <span title="Видалити">{{value}} <a class="close" ng-click="del(key)">&times;</a></span>
                                             </span>
                                         </span>
                                         <form name="myForm" role="form" ng-submit="addAttribute(addAttr, data.main.class_ID)">
@@ -83,8 +85,7 @@
                                         </form>
                                     </div>
                                 </div> -->
-                                <div class="col-md-2"></div>
-                                
+                                <div class="col-md-2"></div> 
                             </div>    
                         </div>
                     </li>

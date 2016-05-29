@@ -29,7 +29,7 @@ class ResourceClass extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name','activation_status'], 'required'],
             [['name'], 'string', 'max' => 40]
         ];
     }
@@ -42,6 +42,7 @@ class ResourceClass extends \yii\db\ActiveRecord
         return [
             'class_id' => 'Class ID',
             'name' => 'Name',
+            'activation_status' => 'Activation Status'
         ];
     }
 
@@ -61,9 +62,9 @@ class ResourceClass extends \yii\db\ActiveRecord
         return $this->hasMany(Resource::className(), ['class_id' => 'class_id']);
     }
 
-    public static function findByResourceClassName($resource_class_name)
+    public static function findByResourceClassName($res_class_name)
     {
         //find ResourceClass in DB by Name
-        return static::findOne(['name' => $resource_class_name]);
+        return static::findOne(['name' => $res_class_name]);
     }
 }
