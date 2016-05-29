@@ -16,7 +16,6 @@
                 scope.visible = false;
                 scope.$on(AUTH_EVENTS.routeChng, hideDialog);
                 scope.$on(AUTH_EVENTS.notAuthorized, showDialog);
-                scope.$on(AUTH_EVENTS.notAuthenticated, showDialog);
             }
         };
     })
