@@ -21,7 +21,7 @@
                 console.log($scope.xmlData);
             }
             function errorHandler(data) {
-                // console.log("Can't reload list!");
+                console.log("Can't reload list!");
             }
         })();
 
@@ -85,43 +85,6 @@
         //     }());
         // };
 
-        // Pagination start
-        // $scope.currentPage = PaginationService.currentPage;
-        // $scope.getPages = function(pageCount) {
-        //     return PaginationService.getPages(pageCount);
-        // };
-
-        // $scope.switchPage = function(index) {
-        //     if($scope.request) {
-        //         PaginationService.switchPage(index, constant.resource_classesQuery + '/search?' + buildQuery($scope.request)+ '&')
-        //             .then(function(result) {
-        //                 $scope.xmlData = result.data;
-        //                 $scope.currentPage = PaginationService.currentPage;
-        //         });
-        //     }  else if ($scope.searchingDone) {
-        //         PaginationService.switchPage(index, 'resource_classes?value=' + $scope.searchingDone + "&page=" + index + "&per-page=" + constant.perPage)
-        //             .then(function(result) {
-        //                 $scope.xmlData = result.data;
-        //                 $scope.currentPage = PaginationService.currentPage;
-        //         });
-        //     } else {
-        //         PaginationService.switchPage(index, constant.resource_classesQuery + '?')
-        //             .then(function(result) {
-        //                 $scope.xmlData = result.data;
-        //                 $scope.currentPage = PaginationService.currentPage;
-        //         });
-        //     }
-        // };
-        // $scope.switchPage($scope.currentPage);
-        // $scope.setPage = function(pageLink, pageType) {
-        //     PaginationService.setPage(pageLink, pageType, $scope.xmlData._meta.pageCount)
-        //         .then(function(data) {
-        //             $scope.xmlData = data.data;
-        //             $scope.currentPage = PaginationService.currentPage;
-        //     });
-        // };
-        //Pagination end
-
         $scope.changeActivationStatus = function(activation_status, class_id) {
             $http.get('rest.php/resource_classes/changeactivationstatus?class_id='+ class_id + '&' + 'activation_status=' + activation_status)
                 .then(successHandler)
@@ -133,26 +96,6 @@
                 console.log("Can't change activation status!");
             }
         };
-
-        // $scope.addResourceClass = function(name) {
-        //     alert(1);
-        //     $scope.className = {
-        //         class_name: name
-        //     }
-        //     console.log($scope.className);
-        //     (function() {
-        //         $http.post('rest.php/resource_classes/addresourcetype', JSON.stringify($scope.className))
-        //             .then(successHandler)
-        //             .catch(errorHandler);
-        //         function successHandler(result) {
-        //             console.log(scope.className);
-        //             console.log('Реєстрація пройшла успішно!');
-        //         }
-        //         function errorHandler(result){
-        //             console.log("Error:"+result);
-        //         }
-        //     })();
-        // };
 
         ($scope.getGlobalattributes = function() {
             return $http.get('rest.php/resource_attributes/findglobalattributes')
