@@ -77,7 +77,12 @@
 				        		<option ng-repeat="item in roleFound" value="{{item.role_id}}" ng-hide="data.role_name == item.role_name">{{item.role_name}}</option>
 				        	</select>
 				        </div>
-				        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{data.community_name}}
+				        <!-- <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{data.community_name}} </div>-->
+				        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+							<select id="community-role-selector" ng-model="changeComId" ng-change="changeCommunity(changeComId, data.user_id)" ng-hide="!data.community_name">
+				        		<option value="{{item.community_id}}" selected hidden>{{data.community_name}}</option>
+				        		<option ng-repeat="item in communityFound" value="{{item.community_id}}" ng-hide="data.community_name == item.name">{{item.name}}</option>
+				        	</select>
 				        </div>
 						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 							<div class="btn-group">

@@ -50,6 +50,8 @@ class RbacController extends Controller
         $resourceClassSearch = $auth->createPermission('resource_class/search'); 
         $auth->add($resourceClassSearch);
         $resourceClassChangeActivationStatus = $auth->createPermission('resource_class/changeactivationstatus');
+        $addResClass = $auth->createPermission('resource_class/addresourceclass'); 
+        $auth->add($addResClass);
         $auth->add($resourceClassChangeActivationStatus);
         $userdata = $auth->createPermission('user/userdata'); 
         $auth->add($userdata);
@@ -59,6 +61,8 @@ class RbacController extends Controller
         $auth->add($userChngActSt);
         $userChngRole = $auth->createPermission('user/changerole'); 
         $auth->add($userChngRole);
+        $userChngCommunity = $auth->createPermission('user/changecommunity'); 
+        $auth->add($userChngCommunity);
         $reqShow = $auth->createPermission('request/showrequest'); 
         $auth->add($reqShow);
         $reqAdd = $auth->createPermission('request/addreq'); 
@@ -77,11 +81,6 @@ class RbacController extends Controller
         $auth->add($findAttrId);
         $deleteAttrId = $auth->createPermission('attribute_class_view/deleteattribute'); 
         $auth->add($deleteAttrId);
-        $addResClass = $auth->createPermission('resource_class/addresourceclass'); 
-        $auth->add($addResClass);
-        
-        
-
 
         // Add rule, based on UserExt->group === $user->group
         $userGroupRule = new UserGroupRule();
@@ -128,10 +127,12 @@ class RbacController extends Controller
         $auth->addChild($admin, $userGetRole);
         $auth->addChild($admin, $userChngActSt);
         $auth->addChild($admin, $userChngRole);
+        $auth->addChild($admin, $userChngCommunity);
         $auth->addChild($admin, $commAdd);
         $auth->addChild($admin, $commShow);
         $auth->addChild($admin, $commView);
-        $auth->addChild($admin, $commUpdt);        
+        $auth->addChild($admin, $commUpdt);
+        $auth->addChild($admin, $addResClass);        
         $auth->addChild($admin, $resourceClassSearch);
         $auth->addChild($admin, $resourceClassChangeActivationStatus);
         $auth->addChild($admin, $resourceClass);
@@ -140,12 +141,7 @@ class RbacController extends Controller
         $auth->addChild($admin, $resAttr2);
         $auth->addChild($admin, $addAttr);
         $auth->addChild($admin, $findAttrId);
-        $auth->addChild($admin, $deleteAttrId);
-        $auth->addChild($admin, $addResClass);
-        
-        
-        
-        
+        $auth->addChild($admin, $deleteAttrId);        
         
     }
 }

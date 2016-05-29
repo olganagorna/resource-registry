@@ -53,14 +53,15 @@ $config = [
                     'POST getuser' => 'getuser',
                     'POST addcomm' => 'addcomm',
                     'GET userdata' => 'userdata',
-                    'GET changerole' => 'changerole',
+                    'POST changerole' => 'changerole',
                     'GET changeactivationstatus' => 'changeactivationstatus',
                     'GET getrole' => 'getrole',
                     'POST addresourceclass' => 'addresourceclass',
                     'GET attribute' => 'attribute',
                     'POST addattribute' => 'addattribute',
                     'GET findlastattributeid' => 'findlastattributeid',
-                    'GET deleteattribute' => 'deleteattribute'
+                    'GET deleteattribute' => 'deleteattribute',
+                    'POST changecommunity' => 'changecommunity'
                     ],
                 ],
             ],
