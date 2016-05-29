@@ -54,15 +54,17 @@
                         <!-- <a href="site/home" class="ng-home"  >
                             <span class="glyphicon glyphicon glyphicon-log-in btn-mater" aria-hidden="true" ></span> {{currentUser.username}}
                         </a> -->
-                        <span class="glyphicon glyphicon-user btn-mater" aria-hidden="true" ></span> 
-                        <span class="glyphicon glyphicon-cog btn-mater" aria-hidden="true" ></span> 
+                        <span class="glyphicon glyphicon-user btn-mater" aria-hidden="true" ></span> &nbsp;
+                         
                         {{currentUser.username}}
-                        <span class="glyphicon glyphicon-log-in btn-mater" aria-hidden="true" ></span> 
+                         
                     </li>
-                    <li> <span><a class="col-md-6" ng-controller="LoginController">
-                        <a href="site/login"><button ng-if="!currentUser.isLogined" class="btn btn-material-amber-400"  >УВІЙТИ</button></a>
-                        <button ng-if="currentUser.isLogined" class="btn btn-material-grey-200" ng-click="logout()">ВИЙТИ</button>
-                    </a></span>
+                    <li ng-controller="LoginController">
+                        <a href="site/login"><button ng-if="!currentUser.isLogined" class="btn btn-material-amber-400"  >УВІЙТИ &nbsp; <span class="glyphicon glyphicon-log-in btn-mater" aria-hidden="true" ></span></button></a>
+
+                        <button ng-if="currentUser.isLogined" class="btn btn-material-grey-200" ng-click="logout()"><span class="glyphicon glyphicon-cog btn-mater" aria-hidden="true" ></span></button>
+
+                        <button ng-if="currentUser.isLogined" class="btn btn-material-grey-200" ng-click="logout()">ВИЙТИ &nbsp; <span class="glyphicon glyphicon-log-out btn-mater" aria-hidden="true" ></span></button>
                     </li>
                 </ul>
             </div>
