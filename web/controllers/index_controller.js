@@ -25,8 +25,6 @@
             }
         })();
 
-
-
         $scope.addAttribute = function(attribute, class_id) {
             $scope.attribute = {
                 attribute_name: attribute,
@@ -64,31 +62,13 @@
                 }
             }());
         };
-        // $scope.addClass = function(){
-        //     console.log($scope.addClassInput);
-        //     var classObj = {
-        //         name: $scope.addClassInput
-        //     };
-        //     (function(){
-        //         return $http.post('rest.php/resource_classes',classObj)
-        //             .then(successHandler)
-        //             .catch(errorHandler);
-        //         function successHandler(result) {
-        //             console.log(result);
-        //             alert('Êëàñ óñï³øíî Äîäàíèé');
-        //             $route.reload();
-        //         }
-        //         function errorHandler(result){
-        //             alert(result.data[0].message);
-        //             console.log(result.data[0].message);
-        //         }
-        //     }());
-        // };
 
         $scope.changeActivationStatus = function(activation_status, class_id) {
-            $http.get('rest.php/resource_classes/changeactivationstatus?class_id='+ class_id + '&' + 'activation_status=' + activation_status)
-                .then(successHandler)
-                .catch(errorHandler);
+            if (confirm("Ви справді бажаєте змінити статус активації для даного типу ресурів?") == true) {
+                $http.get('rest.php/resource_classes/changeactivationstatus?class_id='+ class_id + '&' + 'activation_status=' + activation_status)
+                    .then(successHandler)
+                    .catch(errorHandler);
+            }
             function successHandler() {
                 $scope.getData();
             }
@@ -124,7 +104,33 @@
                 // console.log("Can't reload list!");
             }
         })();
-    }
 
+        $scope.addResourceClass = function(name) {
+            $scope.resource_class = {
+                res_class_name: name
+            }                   
+            if (confirm("Ви справді бажаєте додати тип ресурсів - " + $scope.resource_class.res_class_name + " ?") == true) {
+                $http.post('rest.php/resource_classes/addresourceclass', JSON.stringify($scope.resource_class))
+                    .then(successHandler)
+                    .catch(errorHandler);
+            }
+            function successHandler() {
+                alert($scope.resource_class.res_class_name + " додано!");
+                $scope.addResClass = "";
+                $scope.getData();
+            }
+            function errorHandler() {
+                    alert('Неможливо додати новий тип ресурсу!');
+            }
+        };
+
+        $scope.createMember = function(member) {
+            var membersService = new Members(member);
+            membersService.$create(function(member) {
+                $scope.members.push(member);
+                $scope.member = '';
+            });
+        };
+    }
 
 })();

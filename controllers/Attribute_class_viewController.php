@@ -105,7 +105,7 @@ class Attribute_class_viewController extends AppController
         }
     }
     public function actionFindfilteredattributes()
-    {
+    {   
         $request= \Yii::$app->request->get();
 
         $preRequest = "SELECT name, class_id , activation_status FROM resource_class";

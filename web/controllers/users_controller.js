@@ -53,8 +53,7 @@
 
         $scope.switchPage = function(index) {
             var intervalID = setInterval(function(){
-                $rootScope.xmlDataLength = $rootScope.xmlData.length;
-                if ($rootScope.xmlData._meta.perPage) {
+                if ($rootScope.xmlData) {
                     if($scope.request) {
                         PaginationServicee.switchPage(index, constant.usersQuery + '/search?' + buildQuery($scope.request)+ '&')
                             .then(function(data) {
@@ -82,6 +81,7 @@
 
             },10);
         };
+
         $scope.switchPage($scope.currentPage);
         $scope.setPage = function(pageLink, pageType) {
             PaginationServicee.setPage(pageLink, pageType, $rootScope.xmlData._meta.pageCount)
@@ -142,9 +142,11 @@
 
         // activate or deactivate user
         $scope.changeActivationStatus = function(activation_status, user_id) {
-            $http.get('rest.php/users/changeactivationstatus?user_id='+ user_id + '&' + 'activation_status=' + activation_status)
-                .then(successHandler)
-                .catch(errorHandler);
+            if (confirm("Ви справді бажаєте змінити статус активації цього користувача?") == true) {
+                $http.get('rest.php/users/changeactivationstatus?user_id='+ user_id + '&' + 'activation_status=' + activation_status)
+                    .then(successHandler)
+                    .catch(errorHandler);
+            }
             function successHandler() {
                 $scope.refreshData();
             }
