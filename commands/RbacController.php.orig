@@ -77,17 +77,18 @@ class RbacController extends Controller
         $auth->add($findAttrId);
         $deleteAttrId = $auth->createPermission('attribute_class_view/deleteattribute'); 
         $auth->add($deleteAttrId);
-        $addResClass = $auth->createPermission('resource_class/addresourceclass'); 
-        $auth->add($addResClass);
+<<<<<<< HEAD
+        $findGlobalAttr = $auth->createPermission('resource_attribute/findglobalattributes'); 
+        $auth->add($findGlobalAttr);
         $findFilteredAttr = $auth->createPermission('attribute_class_view/findfilteredattributes'); 
         $auth->add($findFilteredAttr);
         $findFilteredAttrbyResourceClass = $auth->createPermission('attribute_class_view/findfilteredattributesforeachresourceclass'); 
         $auth->add($findFilteredAttrbyResourceClass);
-        $findGlobalAttr = $auth->createPermission('resource_attribute/findglobalattributes'); 
-        $auth->add($findGlobalAttr);
+        
+=======
         $addResClass = $auth->createPermission('resource_class/addresourceclass'); 
         $auth->add($addResClass);
-        
+>>>>>>> 78f5283637b482a4a9ee6ce28e13a104d622ebe0
         
         
 
@@ -153,10 +154,13 @@ class RbacController extends Controller
         $auth->addChild($admin, $addAttr);
         $auth->addChild($admin, $findAttrId);
         $auth->addChild($admin, $deleteAttrId);
-        $auth->addChild($admin, $addResClass);
+<<<<<<< HEAD
         $auth->addChild($admin, $findGlobalAttr);
         $auth->addChild($admin, $findFilteredAttr);
-        $auth->addChild($admin, $findFilteredAttrbyResourceClass);
+=======
+        $auth->addChild($admin, $addResClass);
+        
+>>>>>>> 78f5283637b482a4a9ee6ce28e13a104d622ebe0
         
         
         

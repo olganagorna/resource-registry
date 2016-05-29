@@ -63,16 +63,8 @@ class Attribute_class_viewController extends AppController
             return self::buildPagination($getdata, false); 
         }
     }
-    // public static function actionFindlastattributeid()
-    // {
-    //     $last_id = ResourceAttribute::find()
-    //     ->where(['attribute_id' => ResourceAttribute::find()->max('attribute_id')])
-    //     ->one();
-    //     var_dump($last_id);
-    //     $get_class_id->select(['attribute_id'])
-    //     ->asArray();
-    //     return self::buildPagination($get_class_id, false); 
-    // }
+
+
     public function actionAddattribute()
     {
         $last_id = ResourceAttribute::find()->select(['attribute_id'])->orderBy(['attribute_id' => SORT_DESC])->one();
@@ -112,4 +104,53 @@ class Attribute_class_viewController extends AppController
             $getdata->delete();
         }
     }
+    public function actionFindfilteredattributes()
+    {   
+        $request= \Yii::$app->request->get();
+
+        $preRequest = "SELECT name, class_id , activation_status FROM resource_class";
+
+
+        $preData = \Yii::$app->db->createCommand($preRequest)->queryAll();
+
+        $preArray = [];
+
+        for($i = 0; $i < count($preData); $i++) {
+            array_push($preArray, $preData[$i][name]);
+        }
+
+        $attributes = $preArray;
+
+        $sql = "SELECT name, attribute_id 
+                FROM resource_attribute 
+                WHERE attribute_id IN (SELECT attribute_id 
+                                        FROM attribute_class_view, resource_class 
+                                        WHERE resource_class.class_id = attribute_class_view.class_id AND name=:name)";
+        $arr = [];
+        $array = [];
+        for($i = 0; $i < count($attributes); $i++){
+            $data = \Yii::$app->db
+                ->createCommand($sql)
+                ->bindValues([':name' => $attributes[$i]])
+                ->queryAll();
+            array_push($array, [$preData[$i]]);
+            array_push($array[$i], $data);
+
+        }
+        array_push($arr, $array);
+        return $arr;
+    }
+
+    public function actionFindfilteredattributesforeachresourceclass()
+    {
+        $request= \Yii::$app->request->get();
+        $attributes = [':class_id' => $request['class_id']];
+        $sql = "SELECT name, attribute_id FROM resource_attribute WHERE attribute_id IN (SELECT attribute_id FROM attribute_class_view, resource_class WHERE resource_class.class_id = attribute_class_view.class_id AND resource_class.class_id=:class_id)";
+        $data = \Yii::$app->db
+                ->createCommand($sql)
+                ->bindValues($attributes)
+                ->queryAll();
+        return $data;
+    }
+
 }

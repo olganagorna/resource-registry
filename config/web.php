@@ -60,7 +60,10 @@ $config = [
                     'GET attribute' => 'attribute',
                     'POST addattribute' => 'addattribute',
                     'GET findlastattributeid' => 'findlastattributeid',
-                    'GET deleteattribute' => 'deleteattribute'
+                    'GET deleteattribute' => 'deleteattribute',
+                    'GET findglobalattributes' => 'findglobalattributes',
+                    'GET findfilteredattributes' => 'findfilteredattributes',
+                    'GET findfilteredattributesforeachresourceclass' => 'findfilteredattributesforeachresourceclass'
                     ],
                 ],
             ],
