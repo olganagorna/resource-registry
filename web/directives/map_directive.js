@@ -27,6 +27,7 @@
 			$scope.xmlData = [];
 			$scope.partOfList = [];
 			$scope.listCacheArray = [];
+			$scope.listCacheArrayLength = Math.ceil($scope.listLength/$scope.listRange);
 
 						/*array for resources on map*/
 						var resourcesOnMap = [];
@@ -58,13 +59,13 @@
 				$scope.xmlData.length = 0;
 				$scope.partOfList.length = 0;
 				$scope.listCacheArray.length = 0;
+				$scope.listCacheArrayLength = 0;
 			}
 
 			$scope.cut = function() {					   	
 				$scope.listLength = $scope.xmlData.length;
 				$scope.listRange = 4;
 				$scope.paginationRange = 5;
-				$scope.listCacheArrayLength = Math.ceil($scope.listLength/$scope.listRange);
 				$scope.currentPage = 1;
 				(function() {
 					if ($scope.listLength > $scope.listRange) {
