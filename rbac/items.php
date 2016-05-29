@@ -87,6 +87,9 @@ return [
     'attribute_class_view/findfilteredattributes' => [
         'type' => 2,
     ],
+    'attribute_class_view/findfilteredattributesforeachresourceclass' => [
+        'type' => 2,
+    ],
     'user' => [
         'type' => 1,
         'ruleName' => 'userGroup',
@@ -109,6 +112,9 @@ return [
         'children' => [
             'user',
             'search/search',
+            'resource_attribute/findglobalattributes',
+            'attribute_class_view/findfilteredattributes',
+            'attribute_class_view/findfilteredattributesforeachresourceclass',
         ],
     ],
     'commissioner' => [

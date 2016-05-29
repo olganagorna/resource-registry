@@ -81,6 +81,9 @@ class RbacController extends Controller
         $auth->add($findGlobalAttr);
         $findFilteredAttr = $auth->createPermission('attribute_class_view/findfilteredattributes'); 
         $auth->add($findFilteredAttr);
+        $findFilteredAttrbyResourceClass = $auth->createPermission('attribute_class_view/findfilteredattributesforeachresourceclass'); 
+        $auth->add($findFilteredAttrbyResourceClass);
+        
         
         
 
@@ -117,6 +120,9 @@ class RbacController extends Controller
         // registrar
         $auth->addChild($registrar, $user);
         $auth->addChild($registrar, $search);
+        $auth->addChild($registrar, $findGlobalAttr);
+        $auth->addChild($registrar, $findFilteredAttr);
+        $auth->addChild($registrar, $findFilteredAttrbyResourceClass);
        
         // commissioner
         $auth->addChild($commissioner, $user);

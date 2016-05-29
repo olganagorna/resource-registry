@@ -1,9 +1,10 @@
 <?php
 namespace app\controllers;
 
-use yii\rest\ActiveController;
+use app\controllers\AppController;
+use app\models\ResourceAttribute;
 
-class Resource_attributeController extends ActiveController
+class Resource_attributeController extends AppController
 {
     public $modelClass = 'app\models\ResourceAttribute';
     
@@ -47,8 +48,8 @@ class Resource_attributeController extends ActiveController
     public function actionFindglobalattributes()
     {
         // $request = \Yii::$app->request->get();
-        // $getdata = ResourceAttribute::find()->SELECT(['name']->where('is_global' == 1))
-        // ->asArray();
-        // return self::buildPagination($getdata,false); 
+        $getglobalattributes = ResourceAttribute::find()->where(['is_global' => '1'])
+        ->asArray();
+        return self::buildPagination($getglobalattributes,false); 
     }
 }

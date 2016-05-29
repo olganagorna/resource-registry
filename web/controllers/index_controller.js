@@ -8,53 +8,12 @@
     function IndexCtrl(RestService, $route, $routeParams, $location, constant, $filter , $rootScope, $scope, $http, PaginationService) {
         $scope.obj = 1;
         $scope.xmlData = [];
-        $scope.localAttributes = [];
+        $rootScope.localAttributes = [];
         $scope.addAttr;
         $scope.globalAttributes = [];
 
-        // ($scope.getData = function() {
-        //     return $http.get('rest.php/resource_classes/attribute')
-        //         .then(successHandler)
-        //         .catch(errorHandler);
-        //     function successHandler(result) {
-        //         var temparrResClName = [];
-        //         var temparr = [];
-        //         for (var i = 0; i < result.data.items.length; i++) {
-        //             if (temparrResClName.indexOf(result.data.items[i].res_name) == -1) {
-        //                 //if not exist - create new item object
-        //                 var tObj = {};
-        //                 tObj.main = result.data.items[i];
-        //                 console.log(tObj.main);
-        //                 tObj.attr = {};
-        //                 if (result.data.items[i].attr_name != null) {
-        //                    tObj.attr[result.data.items[i].attr_id] = result.data.items[i].attr_name;
-        //                 }
-        //                 temparrResClName.push(result.data.items[i].res_name);
-        //                 temparr.push(tObj);
-        //             }
-        //             else {
-        //                 if (result.data.items[i].attr_name != null) {
-        //                     for (var j = 0; j< temparr.length; j++) {
-        //                        if (temparr[j].main.res_name == result.data.items[i].res_name) {
-        //                             temparr[j].attr[result.data.items[i].attr_id] = result.data.items[i].attr_name;
-        //                        }
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //         $scope.xmlData = temparr;
-        //         console.log($scope.xmlData);
-        //     }
-        //     function errorHandler(result){
-        //         alert(result.data[0].message);
-        //     }
-        // })();
-
-
-
-
         ($scope.getData = function() {
-            return $http.get('rest.php/resource_classes')
+            return $http.get('rest.php/attribute_class_views/findfilteredattributes')
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
@@ -62,60 +21,49 @@
                 console.log($scope.xmlData);
             }
             function errorHandler(data) {
-                console.log("Can't reload list!");
+                // console.log("Can't reload list!");
             }
         })();
 
-        ($scope.getAttributes = function(class_name) {
-            return $http.get('rest.php/attribute_class_views/findfilteredattributes?name=' + class_name)
-                .then(successHandler)
-                .catch(errorHandler);
-            function successHandler(data) {
-                $scope.localAttributes = data.data;
-                console.log($scope.localAttributes);
-            }
-            function errorHandler(data) {
-                console.log("Can't reload list!");
-            }
-        })();
 
-        // $scope.addAttribute = function(attribute, class_id) {
-        //     $scope.attribute = {
-        //         attribute_name: attribute,
-        //         class_id: class_id,
-        //     }
-        //     console.log($scope.attribute);
-        //     (function() {
-        //         $http.post('rest.php/attribute_class_views/addattribute', JSON.stringify($scope.attribute))
-        //             .then(successHandler)
-        //             .catch(errorHandler);
-        //         function successHandler(result) {
-        //             console.log(attribute);
-        //             console.log('Додано новий атрибут!');
-        //             $scope.getData();
-        //         }
-        //         function errorHandler(result){
-        //             console.log("Error:"+result);
-        //         }
-        //     })();
-        // };
 
-        // $scope.del = function(attr_id){
-        //     (function(){
-        //         return $http.get('rest.php/attribute_class_views/deleteattribute?attr_id=' + attr_id)
-        //             .then(successHandler)
-        //             .catch(errorHandler);
-        //         function successHandler(result) {
-        //             console.log(result);
-        //             console.log('Атрибут видалено!');
-        //             $scope.getData();
-        //         }
-        //         function errorHandler(result){
-        //             alert(result.data[0].message);
-        //             console.log(result.data[0].message);
-        //         }
-        //     }());
-        // };
+        $scope.addAttribute = function(attribute, class_id) {
+            $scope.attribute = {
+                attribute_name: attribute,
+                class_id: class_id,
+            }
+            console.log($scope.attribute);
+            (function() {
+                $http.post('rest.php/attribute_class_views/addattribute', JSON.stringify($scope.attribute))
+                    .then(successHandler)
+                    .catch(errorHandler);
+                function successHandler(result) {
+                    console.log(attribute);
+                    console.log('Додано новий атрибут!');
+                    $scope.getData();
+                }
+                function errorHandler(result){
+                    console.log("Error:"+result);
+                }
+            })();
+        };
+
+        $scope.deleteAttribute = function(attr_id){
+            (function(){
+                return $http.get('rest.php/attribute_class_views/deleteattribute?attr_id=' + attr_id)
+                    .then(successHandler)
+                    .catch(errorHandler);
+                function successHandler(result) {
+                    console.log(result);
+                    console.log('Атрибут видалено!');
+                    $scope.getData();
+                }
+                function errorHandler(result){
+                    alert(result.data[0].message);
+                    console.log(result.data[0].message);
+                }
+            }());
+        };
         // $scope.addClass = function(){
         //     console.log($scope.addClassInput);
         //     var classObj = {
@@ -206,39 +154,33 @@
         //     })();
         // };
 
-        // $scope.addAttribute = function(attribute, class_id) {
-        //     $scope.attribute = {
-        //         attribute_name: attribute,
-        //         class_id: class_id,
-        //     }
-        //     console.log($scope.attribute);
-        //     (function() {
-        //         $http.post('rest.php/attribute_class_views/addattribute', JSON.stringify($scope.attribute))
-        //             .then(successHandler)
-        //             .catch(errorHandler);
-        //         function successHandler(result) {
-        //             console.log(attribute);
-        //             console.log('Реєстрація пройшла успішно!');
-        //             $scope.getData();
-        //         }
-        //         function errorHandler(result){
-        //             console.log("Error:"+result);
-        //         }
-        //     })();
-        // };
+        ($scope.getGlobalattributes = function() {
+            return $http.get('rest.php/resource_attributes/findglobalattributes')
+                .then(successHandler)
+                .catch(errorHandler);
+            function successHandler(data) {
+                $scope.globalAttributes = data.data;
+                console.log($scope.globalAttributes);
+            }
+            function errorHandler(data) {
+                console.log("Can't reload list!");
+            }
+        })();
 
-        // ($scope.getGlobalattributes = function() {
-        //     return $http.get('rest.php/resource_attributes')
-        //         .then(successHandler)
-        //         .catch(errorHandler);
-        //     function successHandler(data) {
-        //         $scope.globalAttributes = data.data;
-        //         console.log($scope.globalAttributes);
-        //     }
-        //     function errorHandler(data) {
-        //         console.log("Can't reload list!");
-        //     }
-        // })();
+
+        ($rootScope.getLocalAttributes = function(class_id) {
+            return $http.get('rest.php/attribute_class_views/findfilteredattributesforeachresourceclass?class_id=' + class_id)
+                .then(successHandler)
+                .catch(errorHandler);
+            function successHandler(data) {
+                $rootScope.localAttributes = data.data;
+                console.log($scope.localAttributes);
+                
+            }
+            function errorHandler(data) {
+                // console.log("Can't reload list!");
+            }
+        })();
     }
 
 
