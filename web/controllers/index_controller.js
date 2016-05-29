@@ -8,7 +8,6 @@
     function IndexCtrl(RestService, $route, $routeParams, $location, constant, $filter , $rootScope, $scope, $http, PaginationService) {
         $scope.obj = 1;
         $scope.xmlData = [];
-        $scope.addAttr;
 
         ($scope.getData = function() {
             return $http.get('rest.php/resource_classes/attribute')
@@ -144,9 +143,11 @@
         //Pagination end
 
         $scope.changeActivationStatus = function(activation_status, class_id) {
-            $http.get('rest.php/resource_classes/changeactivationstatus?class_id='+ class_id + '&' + 'activation_status=' + activation_status)
-                .then(successHandler)
-                .catch(errorHandler);
+            if (confirm("Ви справді бажаєте змінити статус активації для даного типу ресурів?") == true) {
+                $http.get('rest.php/resource_classes/changeactivationstatus?class_id='+ class_id + '&' + 'activation_status=' + activation_status)
+                    .then(successHandler)
+                    .catch(errorHandler);
+            }
             function successHandler() {
                 $scope.getData();
             }
@@ -155,47 +156,33 @@
             }
         };
 
-        // $scope.addResourceClass = function(name) {
-        //     alert(1);
-        //     $scope.className = {
-        //         class_name: name
-        //     }
-        //     console.log($scope.className);
-        //     (function() {
-        //         $http.post('rest.php/resource_classes/addresourcetype', JSON.stringify($scope.className))
-        //             .then(successHandler)
-        //             .catch(errorHandler);
-        //         function successHandler(result) {
-        //             console.log(scope.className);
-        //             console.log('Реєстрація пройшла успішно!');
-        //         }
-        //         function errorHandler(result){
-        //             console.log("Error:"+result);
-        //         }
-        //     })();
-        // };
-
-        $scope.addAttribute = function(attribute, class_id) {
-            $scope.attribute = {
-                attribute_name: attribute,
-                class_id: class_id,
-            }
-            console.log($scope.attribute);
-            (function() {
-                $http.post('rest.php/attribute_class_views/addattribute', JSON.stringify($scope.attribute))
+        $scope.addResourceClass = function(name) {
+            $scope.resource_class = {
+                res_class_name: name
+            }                   
+            if (confirm("Ви справді бажаєте додати тип ресурсів - " + $scope.resource_class.res_class_name + " ?") == true) {
+                $http.post('rest.php/resource_classes/addresourceclass', JSON.stringify($scope.resource_class))
                     .then(successHandler)
                     .catch(errorHandler);
-                function successHandler(result) {
-                    console.log(attribute);
-                    console.log('Реєстрація пройшла успішно!');
-                    $scope.getData();
-                }
-                function errorHandler(result){
-                    console.log("Error:"+result);
-                }
-            })();
+            }
+            function successHandler() {
+                alert($scope.resource_class.res_class_name + " додано!");
+                $scope.addResClass = "";
+                $scope.getData();
+            }
+            function errorHandler() {
+                    alert('Неможливо додати новий тип ресурсу!');
+            }
         };
-    }
 
+        $scope.createMember = function(member) {
+            var membersService = new Members(member);
+            membersService.$create(function(member) {
+                $scope.members.push(member);
+                $scope.member = '';
+            });
+        };
+
+    }
 
 })();

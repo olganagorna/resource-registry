@@ -77,6 +77,8 @@ class RbacController extends Controller
         $auth->add($findAttrId);
         $deleteAttrId = $auth->createPermission('attribute_class_view/deleteattribute'); 
         $auth->add($deleteAttrId);
+        $addResClass = $auth->createPermission('resource_class/addresourceclass'); 
+        $auth->add($addResClass);
         
         
 
@@ -139,6 +141,7 @@ class RbacController extends Controller
         $auth->addChild($admin, $addAttr);
         $auth->addChild($admin, $findAttrId);
         $auth->addChild($admin, $deleteAttrId);
+        $auth->addChild($admin, $addResClass);
         
         
         

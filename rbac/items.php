@@ -81,6 +81,9 @@ return [
     'attribute_class_view/deleteattribute' => [
         'type' => 2,
     ],
+    'resource_class/addresourceclass' => [
+        'type' => 2,
+    ],
     'user' => [
         'type' => 1,
         'ruleName' => 'userGroup',
@@ -137,6 +140,7 @@ return [
             'attribute_class_view/addattribute',
             'attribute_class_view/findlastattributeid',
             'attribute_class_view/deleteattribute',
+            'resource_class/addresourceclass',
         ],
     ],
 ];

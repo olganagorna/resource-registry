@@ -1,7 +1,6 @@
 <?php
 namespace app\controllers;
 use app\controllers\AppController;
-use yii\data\ActiveDataProvider;
 use app\models\ResourceClass;
 use app\models\AttributeClassView;
 use app\models\ResourceAttribute;
@@ -60,7 +59,7 @@ class Resource_classController extends AppController
     {
         $request = \Yii::$app->request->get();
         $getdata = ResourceClass::find()->SELECT(['resource_class.class_id as class_ID','resource_class.name as res_name', 'resource_attribute.name as attr_name', 'resource_class.activation_status', 'resource_attribute.attribute_id as attr_id'])
-            ->joinwith(['attributeClassView', 'attributeClassView.resourceAttribute']);
+            ->joinWith(['attributeClassView', 'attributeClassView.resourceAttribute']);
         
         if(isset($request['value'])){
             $getdata->andFilterWhere(['like', 'resource_class.class_id', $request['value']])
@@ -71,6 +70,32 @@ class Resource_classController extends AppController
             ->asArray();
             return self::buildPagination($getdata, false); 
         }
+    }
+
+    // add new resource class
+    public function actionAddresourceclass() 
+    {        
+        if (!$post = \Yii::$app->getRequest()->getBodyParams()) 
+        {
+            throw new \yii\web\HttpException(204, 'Дані не отримані');
+        }
+        $resourceClassModel = new ResourceClass();
+        if ($resourceClassModel->findByResourceClassName($post['res_class_name'])){
+            throw new \yii\web\HttpException(400, 'Тип ресурсу з такою назвою вже існує');
+        }
+        $res_class_name = $post['res_class_name'];
+        $last_class_id = ResourceClass::find()->select(['class_id'])->orderBy(['class_id' => SORT_DESC])->one();
+        $new_class_id = $last_class_id -> class_id + 1;
+        $resourceClassModel->class_id = $new_class_id;
+        $resourceClassModel->name = $res_class_name;
+        $resourceClassModel->activation_status = 1;
+        if (!$resourceClassModel->save()){
+            foreach($resourceClassModel->errors as $key){
+                $errorMessage .= $key[0];
+            }
+            throw new \yii\web\HttpException(422,$errorMessage);
+        }
+        
     }
     
 }
