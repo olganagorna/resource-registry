@@ -1,0 +1,94 @@
+Run
+	sudo su
+	
+then enter your password.	
+
+Download project from
+
+	https://github.com/litvinchuck/resource-registry/archive/master.zip
+
+Unzip 'resource-registry-master' directory to
+
+	/var/www/
+
+and rename it to 'rr.com'.
+
+Configure database like it's described in '/var/www/rr.com/README.md'
+
+Run
+	chmod -R 755 /var/www
+
+Copy '/etc/apache2/sites-available/000-default.conf' file to '/home/[username]/Documents/'
+directory.
+Rename it to 'rr.com.conf'
+Open 'rr.com.conf' with an editor.
+Replace all lines by following:
+
+<VirtualHost *:80>
+       ServerAdmin admin@example.com
+       ServerAlias rr.com
+       ServerName rr.com
+       DocumentRoot /var/www/rr.com/web
+       ErrorLog ${APACHE_LOG_DIR}/error.log
+       CustomLog ${APACHE_LOG_DIR}/access.log combined
+  <Directory /var/www/>
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        allow from all
+        Require all granted
+ 	</Directory>
+</VirtualHost>
+
+Save and close editor.
+Run next commands:
+	cp /home/[username]/Documents/rr.com.conf /etc/apache2/sites-available/
+	a2ensite rr.com.conf
+	a2enmod rewrite
+	service apache2 restart
+
+Edit hosts file:
+	
+	nano /etc/hosts
+	
+Add line:
+	
+	127.0.0.1	rr.com
+
+Save and close editor
+
+Now project is available by URL:
+
+	http://rr.com
+
+In some cases it's necessary to adjust PHP error reporting parameter.
+
+Find in
+ 
+etc/php5/apache2/php.ini
+
+uncommented string starting:
+
+error_reporting = ...
+
+append to it
+
+& ~E_NOTICE
+
+save changes
+restart apache:
+
+service apache2 restart
+
+===========================================
+Upgrade php to php 5.6
+===========================================
+
+sudo apt-get install software-properties-common
+sudo add-apt-repository ppa:ondrej/php5-5.6
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install php5
+nano /etc/php5/apache2/php.ini
+add ~E_NOTICE in "error handler and logging" section if necessary
+service apache2 restart

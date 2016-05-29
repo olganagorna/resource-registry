@@ -1,0 +1,144 @@
+<div class="container-fluid resource-log" ng-controller="resourceLogCtrl" ng-if="currentUser.role === 'registrar'" >
+
+    <form role="form" name="log_form">
+        <div class="col-md-5 text-center"><h4>Виберіть тип операції</h4>
+            <div class="col-md-4">
+                        <span class="checkbox">
+                                <label for="log_res_create">
+                                    <input type="checkbox" id="log_res_create" name="operation.type" ng-model="operation.type.created">
+                                    <span class="checkbox-material"><span class="check"></span></span>  <b>Створення</b>
+                                </label>
+                        </span>
+                <button ng-click="findResourceLog(operation);"
+                        type="submit" class="btn btn-primary">Показати
+                </button>
+            </div>
+            <div class="col-md-4">
+                        <span class="checkbox">
+                                <label for="log_res_update">
+                                    <input type="checkbox" id="log_res_update" name="operation.type" ng-model="operation.type.updated">
+                                    <span class="checkbox-material"><span class="check"></span></span>  <b>Редагування</b>
+                                </label>
+                        </span>
+                <a href="resource/index" class="btn btn-material-grey-300">Скасувати</a>
+            </div>
+            <div class="col-md-4">
+                        <span class="checkbox">
+                                <label for="log_res_delete">
+                                    <input type="checkbox" id="log_res_delete" name="operation.type" ng-model="operation.type.deleted">
+                                    <span class="checkbox-material"><span class="check"></span></span>  <b>Видалення</b>
+                                </label>
+                        </span>
+            </div>
+        </div>
+        <div class="col-md-2 text-center"><h4>Ресурс</h4>
+            <input type="text" id="log_res_name" class="form-control" name="operation.resource" ng-model="operation.resource.name" placeholder="найменування об'єкту">
+        </div>
+        <div class="col-md-1 text-center">
+
+            <h4 class="md-glyphicon-time">
+                <span class="glyphicon glyphicon-time"></span>
+            </h4>
+            <div class="togglebutton" >
+                <label class="md-toggle" >
+                    <input type="checkbox" ng-click="toggleTimeInterval(operation.interval)" ng-model="operation.interval"><span class="toggle"></span>
+                </label>
+            </div>
+
+        </div>
+        <div class="col-md-4 text-center" ng-show="operation.interval === true"><h4>Вкажіть інтервал</h4>
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <datetimepicker ng-model="operation.date.dateStart"
+                                    name="operation.date"
+                                    min-date="minDate"
+                                    max-date="maxDateStart"
+                                    hour-step="hourStep"
+                                    minute-step="minuteStep"
+                                    show-meridian="showMeridian"
+                                    date-format="dd-MMM-yyyy"
+                                    date-options="dateOptions"
+                                    date-disabled="disabled(date, mode)"
+                                    clear-text="Вийти"
+                                    close-text="Вибрати"
+                                    current-text="Сьогодні"
+                                    readonly-date="false"
+                                    show-spinners="true"
+                                    readonly-time="false">
+                    </datetimepicker>
+                </div>
+                <div class="col-md-6">
+                    <datetimepicker ng-model="operation.date.dateEnd"
+                                    name="operation.date"
+                                    min-date="minDate"
+                                    max-date="maxDateEnd"
+                                    hour-step="hourStep"
+                                    minute-step="minuteStep"
+                                    show-meridian="showMeridian"
+                                    date-format="dd-MMM-yyyy"
+                                    date-options="dateOptions"
+                                    date-disabled="disabled(date, mode)"
+                                    clear-text="Вийти"
+                                    close-text="Вибрати"
+                                    current-text="Сьогодні"
+                                    readonly-date="false"
+                                    show-spinners="true"
+                                    readonly-time="false">
+                    </datetimepicker>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="col-md-12 center" >
+        <div ng-show="operation_log.items.length > 0" >
+            <h4 class="text-center operation-show-head pagination-log">Здійснені операції</h4>
+            <ul class="pagination pagination-sm pagination-log" ng-if="operation_log._meta.pageCount > 1">
+                <li ng-if="operation_log._links.first">
+                    <a href="" ng-click="setPage(operation_log._links.first.href, 'first')">&laquo;</a>
+                </li>
+                <li ng-if="operation_log._links.prev">
+                    <a href="" ng-click="setPage(operation_log._links.prev.href, 'prev')" >‹</a>
+                </li>
+                <li ng-repeat="page in getPages(operation_log._meta.pageCount) track by $index"
+                    ng-click="switchPage(page)" ng-class="{active: page == currentPage}"
+                    ng-if="page">
+                    <span>{{page}}</span>
+                </li>
+                <li ng-if="operation_log._links.next">
+                    <a href="" ng-click="setPage(operation_log._links.next.href, 'next')" >›</a>
+                </li>
+                <li ng-if="operation_log._links.last">
+                    <a href="" ng-click="setPage(operation_log._links.last.href, 'last')">&raquo;</a>
+                </li>
+
+            </ul>
+            <div class="md-list-group pagination-log">
+                <ul class="list-group">
+                    <li class="list-group-item row">
+                        <div class="row" >
+                            <div class="col-md-1 text-center"><h4 class="md-h4-type">Тип</h4></div>
+                            <div class="col-md-2 text-center"><h4>Найменування об'єкту</h4></div>
+                            <div class="col-md-2 text-center"><h4>Реестратор</h4></div>
+                            <div class="col-md-2 text-center"><h4>Час</h4></div>
+                            <div class="col-md-5 text-center"><h4>Опис</h4></div>
+                        </div>
+                    </li>
+                    <li class="list-group-item shadow-z-1 md-list row pagination-log" ng-repeat="data in operation_log.items">
+                        <div class="col-md-1 ">{{data.type}}</div>
+                        <div class="col-md-2 ">{{data.resource_name}}</div>
+                        <div class="col-md-2 ">{{data.user_id| newLine}}</div>
+                        <div class="col-md-2 ">{{data.date_log}}</div>
+                        <div class="col-md-5 text-left"><textarea autoheight-adjust="true" ng-trim="false" readonly="true" required cols="80" class="text-left">{{data.before_change | newLine}}
+                            </textarea>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12  text-center" ng-show="operation_log.items.length === 0">
+        <h4 class="md-h4-type">По даному запиту немає даних</h4>
+    </div>
+</div>

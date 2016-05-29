@@ -1,0 +1,4 @@
+config/db.php
+runtime/**
+assets/**
+.orig

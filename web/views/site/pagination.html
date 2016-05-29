@@ -1,0 +1,19 @@
+<ul class="pagination pagination-sm" ng-if="xmlData._meta.pageCount > 1">
+    <li ng-if="xmlData._links.first">
+        <a href="" ng-click="setPage(xmlData._links.first.href, 'first')">&laquo;</a>
+    </li>
+    <li ng-if="xmlData._links.prev">
+        <a href="" ng-click="setPage(xmlData._links.prev.href, 'prev')" >‹</a>
+    </li>
+    <li ng-repeat="page in getPages() track by $index"
+        ng-click="switchPage(page)" ng-class="{active: page == currentPage}"
+        ng-if="page">
+        <span>{{page}}</span>
+    </li>
+    <li ng-if="xmlData._links.next">
+        <a href="" ng-click="setPage(xmlData._links.next.href, 'next')" >›</a>
+    </li>
+    <li ng-if="xmlData._links.last">
+        <a href="" ng-click="setPage(xmlData._links.last.href, 'last')">&raquo;</a>
+    </li>
+</ul>

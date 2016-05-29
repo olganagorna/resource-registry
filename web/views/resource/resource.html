@@ -1,0 +1,31 @@
+<div class="container-fluid" ng-controller="MapCtrl" >
+    <div ng-controller="SearchController">
+        <div id="top">
+            <div class="container-fluid clearfix">
+                
+                    <div class="col-sm-12 main-resource-class-btn">
+                        <div class="col-sm-2 class-div-highlight" ng-repeat="data in classes.items"  ng-repeat="elem in classes.items"
+                             ng-mouseover="elem.over=true" ng-mouseleave="elem.over=false" ng-click="select(elem)">
+                            <div class="class-div-highlight-allight">
+                                <div class="class-div-highlight-margin" ng-class="{blink: elem.over, highlight:isSelected(elem)}">
+
+                                    <a ng-click="addClassId(data.class_id)" class="btn btn-default btn-raised class-id-show normal_btn"
+                                       ng-model="request.class_id">
+                                        {{data.name}}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+            </div>
+            
+        </div>
+        <div id="bottom">
+            <leaflet_map height="500px" width="100%" toggledOn="true" coordinates="true" info="false" interactivity="true" add="false" find="true" point="true" update="options"></leaflet_map>
+	    </div>
+   </div>
+</div>
+<div ng-show="resources.items.length === 0">
+    В данному записі немає ресурсів
+</div>
