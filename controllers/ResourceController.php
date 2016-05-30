@@ -288,11 +288,12 @@ class ResourceController extends AppController
 	public function actionAdditiondata() {
 		$request = file_get_contents("php://input");
 		$data = json_decode($request);
-		for($i = 0; $i < count($data) - 1; $i++){
+		for($i = 0; $i < count($data) - 2; $i++){
 			$coord = new Coordinates();
 			$coord->lat = $data[$i][0];
 			$coord->lng = $data[$i][1];
-			$coord->registration_number = $data[count($data) - 1][0];
+			$coord->registration_number = $data[count($data) - 2][0];
+			$coord->class_id = $data[count($data) - 1][0];
 			$coord->save();
 		}
 	}
