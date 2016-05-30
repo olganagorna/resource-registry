@@ -8,42 +8,20 @@
     function IndexCtrl(RestService, $route, $routeParams, $location, constant, $filter , $rootScope, $scope, $http, PaginationService) {
         $scope.obj = 1;
         $scope.xmlData = [];
+        $rootScope.localAttributes = [];
+        $scope.addAttr;
+        $scope.globalAttributes = [];
 
         ($scope.getData = function() {
-            return $http.get('rest.php/resource_classes/attribute')
+            return $http.get('rest.php/attribute_class_views/findfilteredattributes')
                 .then(successHandler)
                 .catch(errorHandler);
-            function successHandler(result) {
-                var temparrResClName = [];
-                var temparr = [];
-                for (var i = 0; i < result.data.items.length; i++) {
-                    if (temparrResClName.indexOf(result.data.items[i].res_name) == -1) {
-                        //if not exist - create new item object
-                        var tObj = {};
-                        tObj.main = result.data.items[i];
-                        console.log(tObj.main);
-                        tObj.attr = {};
-                        if (result.data.items[i].attr_name != null) {
-                           tObj.attr[result.data.items[i].attr_id] = result.data.items[i].attr_name;
-                        }
-                        temparrResClName.push(result.data.items[i].res_name);
-                        temparr.push(tObj);
-                    }
-                    else {
-                        if (result.data.items[i].attr_name != null) {
-                            for (var j = 0; j< temparr.length; j++) {
-                               if (temparr[j].main.res_name == result.data.items[i].res_name) {
-                                    temparr[j].attr[result.data.items[i].attr_id] = result.data.items[i].attr_name;
-                               }
-                            }
-                        }
-                    }
-                }
-                $scope.xmlData = temparr;
+            function successHandler(data) {
+                $scope.xmlData = data.data;
                 console.log($scope.xmlData);
             }
-            function errorHandler(result){
-                alert(result.data[0].message);
+            function errorHandler(data) {
+                console.log("Can't reload list!");
             }
         })();
 
@@ -68,7 +46,7 @@
             })();
         };
 
-        $scope.del = function(attr_id){
+        $scope.deleteAttribute = function(attr_id){
             (function(){
                 return $http.get('rest.php/attribute_class_views/deleteattribute?attr_id=' + attr_id)
                     .then(successHandler)
@@ -84,63 +62,6 @@
                 }
             }());
         };
-        $scope.addClass = function(){
-            console.log($scope.addClassInput);
-            var classObj = {
-                name: $scope.addClassInput
-            };
-            (function(){
-                return $http.post('rest.php/resource_classes',classObj)
-                    .then(successHandler)
-                    .catch(errorHandler);
-                function successHandler(result) {
-                    console.log(result);
-                    alert('Êëàñ óñï³øíî Äîäàíèé');
-                    $route.reload();
-                }
-                function errorHandler(result){
-                    alert(result.data[0].message);
-                    console.log(result.data[0].message);
-                }
-            }());
-        };
-
-        // Pagination start
-        // $scope.currentPage = PaginationService.currentPage;
-        // $scope.getPages = function(pageCount) {
-        //     return PaginationService.getPages(pageCount);
-        // };
-
-        // $scope.switchPage = function(index) {
-        //     if($scope.request) {
-        //         PaginationService.switchPage(index, constant.resource_classesQuery + '/search?' + buildQuery($scope.request)+ '&')
-        //             .then(function(result) {
-        //                 $scope.xmlData = result.data;
-        //                 $scope.currentPage = PaginationService.currentPage;
-        //         });
-        //     }  else if ($scope.searchingDone) {
-        //         PaginationService.switchPage(index, 'resource_classes?value=' + $scope.searchingDone + "&page=" + index + "&per-page=" + constant.perPage)
-        //             .then(function(result) {
-        //                 $scope.xmlData = result.data;
-        //                 $scope.currentPage = PaginationService.currentPage;
-        //         });
-        //     } else {
-        //         PaginationService.switchPage(index, constant.resource_classesQuery + '?')
-        //             .then(function(result) {
-        //                 $scope.xmlData = result.data;
-        //                 $scope.currentPage = PaginationService.currentPage;
-        //         });
-        //     }
-        // };
-        // $scope.switchPage($scope.currentPage);
-        // $scope.setPage = function(pageLink, pageType) {
-        //     PaginationService.setPage(pageLink, pageType, $scope.xmlData._meta.pageCount)
-        //         .then(function(data) {
-        //             $scope.xmlData = data.data;
-        //             $scope.currentPage = PaginationService.currentPage;
-        //     });
-        // };
-        //Pagination end
 
         $scope.changeActivationStatus = function(activation_status, class_id) {
             if (confirm("Ви справді бажаєте змінити статус активації для даного типу ресурів?") == true) {
@@ -155,6 +76,34 @@
                 console.log("Can't change activation status!");
             }
         };
+
+        ($scope.getGlobalattributes = function() {
+            return $http.get('rest.php/resource_attributes/findglobalattributes')
+                .then(successHandler)
+                .catch(errorHandler);
+            function successHandler(data) {
+                $scope.globalAttributes = data.data;
+                console.log($scope.globalAttributes);
+            }
+            function errorHandler(data) {
+                console.log("Can't reload list!");
+            }
+        })();
+
+
+        ($rootScope.getLocalAttributes = function(class_id) {
+            return $http.get('rest.php/attribute_class_views/findfilteredattributesforeachresourceclass?class_id=' + class_id)
+                .then(successHandler)
+                .catch(errorHandler);
+            function successHandler(data) {
+                $rootScope.localAttributes = data.data;
+                console.log($scope.localAttributes);
+                
+            }
+            function errorHandler(data) {
+                // console.log("Can't reload list!");
+            }
+        })();
 
         $scope.addResourceClass = function(name) {
             $scope.resource_class = {
@@ -182,7 +131,6 @@
                 $scope.member = '';
             });
         };
-
     }
 
 })();
