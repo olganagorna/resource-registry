@@ -9,7 +9,6 @@
     function RegisterController($location, $rootScope, $scope, $http) {
         var vm = this;
 
-
         vm.user = {
             username: '',
             password: '',
@@ -22,6 +21,19 @@
             address: '',
             community: ''
         };
+
+        (function(){
+            return $http.get('rest.php/communities')
+
+                .then(successHandler)
+                .catch(errorHandler);
+            function successHandler(data) {
+                vm.communities = data.data;
+            }
+            function errorHandler(data){
+                console.log("Can't render list!");
+            }
+        }());
 
         vm.registration = function(){
             console.log('test');
@@ -45,7 +57,7 @@
                     console.log(result);
                    // localStorage.setItem('username',vm.username);
                     alert('Реєстрація пройшла успішно!');
-                   $location.path('/site/login');
+                   //$location.path('/site/login');
 
                 }
                 function errorHandler(result){

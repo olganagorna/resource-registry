@@ -5,23 +5,23 @@
         <form name="form" role="form">
             <div class="form-group" >
                 <label for="username">Логін</label>
-                <input type="text" name="username" id="username" class="form-control" ng-model="vm.username"  />
+                <input type="text" name="username" id="username" class="form-control" ng-model="vm.username" required/>
             </div>
             <div class="form-group" >
                 <label for="password">Пароль</label>
-                <input type="password" name="password" id="password" class="form-control" ng-model="vm.password"  />
+                <input type="password" name="password" id="password" class="form-control" ng-model="vm.password" required />
             </div>
             <div class="form-group" >
                 <label for="email">Поштова скринька</label>
-                <input type="text" name="firstName" id="email" class="form-control" ng-model="vm.email"  />
+                <input type="text" name="firstName" id="email" class="form-control" ng-model="vm.email" required />
             </div>
             <div class="form-group" >
                 <label for="lastName">Прізвище</label>
-                <input type="text" name="lastName" id="lastName" class="form-control" ng-model="vm.last_name"  />
+                <input type="text" name="lastName" id="lastName" class="form-control" ng-model="vm.last_name" required />
             </div>
             <div class="form-group" >
                 <label for="firstName">Ім'я</label>
-                <input type="text" name="lastName" id="firstName" class="form-control" ng-model="vm.first_name"  />
+                <input type="text" name="lastName" id="firstName" class="form-control" ng-model="vm.first_name" required />
             </div>
             <div class="form-group" >
                 <label for="secondName">По-батькові</label>
@@ -29,23 +29,24 @@
             </div>
             <div class="form-group" >
                 <label for="passportSeries">Серія паспорта</label>
-                <input type="text" name="lastName" id="passportSeries" class="form-control" ng-model="vm.passport_series"  />
+                <input type="text" name="lastName" id="passportSeries" class="form-control" ng-model="vm.passport_series" required />
             </div>
             <div class="form-group" >
                 <label for="passportNumber">Номер паспорта</label>
-                <input type="text" name="lastName" id="passportNumber" class="form-control" ng-model="vm.passport_number"  />
+                <input type="text" name="lastName" id="passportNumber" class="form-control" ng-model="vm.passport_number" required />
             </div>
             <div class="form-group" >
                 <label for="address">Адреса</label>
-                <input type="text" name="lastName" id="address" class="form-control" ng-model="vm.address"  />
+                <input type="text" name="lastName" id="address" class="form-control" ng-model="vm.address" required />
             </div>
             <div class="form-group" >
                 <label for="community">Громада</label>
                 <input type="text" name="lastName" id="community" class="form-control" ng-model="vm.community"  />
+                <dropdown-list></dropdown-list>
             </div>
             <div class="form-actions">
                 <button type="submit" ng-click="vm.registration()" class="btn btn-primary">Зареєструватись</button>
-                <a href="site/login" class="btn btn-link">Відмінити</a>
+                <a href="site/users" class="btn btn-link">Відмінити</a>
             </div>
         </form>
     </div>

@@ -84,7 +84,7 @@
             controllerAs: 'list',
             templateUrl: 'views/site/users.html',
             data: {
-                authRoles: 'admin'
+                authRoles: ['admin', 'commissioner']
             }
         })
         .when('/site/restorepassword', {
