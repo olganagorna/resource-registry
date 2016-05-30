@@ -141,17 +141,28 @@
         ]);
     }
 
-    run.$inject = ['$rootScope', '$location', 'AuthService'];
-    function run($rootScope, $location, AuthService) {
+    run.$inject = ['$rootScope', 'AuthService', 'AUTH_EVENTS'];
+    function run($rootScope, AuthService, AUTH_EVENTS) {
 
         AuthService.init();
 
+        $rootScope.$on(AUTH_EVENTS.notAuthenticated, function () {
+            AuthService.logOut();
+        });
+
         $rootScope.$on('$routeChangeStart', function (event, next, current) {
+            $rootScope.$broadcast(AUTH_EVENTS.routeChng);
             var authRoles = next.data.authRoles;
             if (!AuthService.isAuthorized(authRoles)) {
-                //event.preventDefault();
-                console.log('unauthorized!');
+                event.preventDefault();
+                if ($rootScope.currentUser.isLogined) {
+                    $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+                } else {
+                    $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+                }
             }
         });
+
+
     }
 })();

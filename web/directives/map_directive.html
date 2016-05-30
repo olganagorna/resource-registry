@@ -1,9 +1,81 @@
+<style>
+    .nav-tabs li {
+        width: 49.8%;
+        cursor: pointer;
+        border: 1px solid #999999;
+        border-bottom: 1px solid transparent;
+        padding: 10px 0px;
+        text-align: center;
+        color: #999999;
+        bottom: 0px;
+        margin-right: .4%;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 4px;
+    }
+    .nav-tabs li:nth-child(2) {
+        margin-right: 0;
+    }
+    .nav-tabs li.active {
+        border: 1px solid #009688;
+        border-bottom: 1px solid #eee;
+        color: #009688;
+    }
+    .tab-content {
+        padding: 15px 10px;
+        border: 1px solid #009688;
+    }
+    .nav-tabs {
+        border-bottom: none;
+    }
+    .map-tab_left {
+        margin-right: 20px;
+    }
+    .map-setting p {
+        height: 40px;
+    }
+</style>
+
             <div class="container-fluid">
                 <div class="col-md-7" >
-                    <p>
-                        Введіть радіус пошуку (по замовчанню 500м) &nbsp; <input type="text" ng-model="circleRadius" placeholder="500">
-                    </p>
-                    <div id="map"></div>
+
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" >
+                        <li ng-click="changeTab(1)" ng-class="{active:activeTab == 1}">Пошук по карті</li>
+                        <li ng-click="changeTab(2)" ng-class="{active:activeTab == 2}">Пошук по параметрам</li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div ng-show="activeTab == 1">
+                         <div class="map-setting clearfix">
+                            <p class="pull-left map-tab_left">
+
+
+
+
+                                <select class="resource-select" ng-options="list.name for list in resourceClassesArray" ng-change="startFilterByClass(filterByClass.name)" ng-model="filterByClass">
+                                    <option value="">Всі ресурси</option>
+                                </select>
+
+
+
+                            </p>
+                             <p class="pull-left map-tab_left">
+                                <input ng-change="clearMap()" ng-model="findingType" value="1" type="radio" name="method-change" id="radio-1" checked/> <label for="radio-1">По кліку</label> &nbsp;
+                                <input ng-change="clearMap()" ng-model="findingType" value="2" type="radio" name="method-change" id="radio-2"/> <label for="radio-2">По радіусу</label> 
+                            </p>
+                             <p ng-if="findingType == 2" class="pull-left">
+                                Радіус пошуку (по замовчанню 500м) &nbsp; <input type="text" ng-model="circleRadius" placeholder="500">
+                            </p>
+                         </div>
+                            
+                           
+                            <div id="map"></div>    
+                        </div>
+                        <div ng-show="activeTab == 2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat magni, fugit labore asperiores minima ut deleniti in temporibus velit corrupti numquam corporis, hic, illum. Quas assumenda voluptas, optio sint unde.</div>
+                    </div>
+
+                    
                 </div>
                 <div class="col-md-5">
                     <div>
@@ -23,6 +95,7 @@
                                         <a title="Очистити пошук" href="#" ng-click="cancelSearch()" class="btn btn-md nav-search-ctrl btn_mg"><span class="glyphicon glyphicon-remove-circle"></span></a>
                                     </div>
                                 </div>
+                                <p  ng-show="partOfList.length == 0">Список ресурсів порожній. Клікніть по карті щоб знайти те що вас цікавить!</p>
                                 <ul class="list-group result" >      
                                     <li class="list-group-item shadow-z-1 md-list row " ng-repeat="data in partOfList" ng-if="xmlData">
                                         <div class="col-md-5 text-align-left res_vert_allight_list">{{data.registration_number}}</div>
@@ -46,8 +119,6 @@
                                         </div>
                                     </li>
                                 </ul>
-
-
 
                             </div>
                         </div>

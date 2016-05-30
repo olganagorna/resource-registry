@@ -5,22 +5,14 @@
         .module('restApp')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$location', '$scope', '$http', '$rootScope'];
-    function LoginController($location, $scope, $http, $rootScope) {
+    LoginController.$inject = ['$location', '$scope', '$http', '$rootScope', 'AuthService'];
+    function LoginController($location, $scope, $http, $rootScope, AuthService) {
 
         $rootScope.logout = function (){
 
             $http.get('rest.php/users/logout')
                 .then(function(response){
-                    var user = {
-                        "username":"",
-                        "role":"guest",
-                        "isLogined":false,
-                        "userDataID":0
-                    };
-                    sessionStorage.setItem('user',angular.toJson(user));
-                    $rootScope.currentUser = angular.fromJson(sessionStorage.getItem('user'));
-                    $location.path('site/login');
+                    AuthService.logOut();
                 });
         };
 

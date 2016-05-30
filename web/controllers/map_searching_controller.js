@@ -1,11 +1,9 @@
-(function () {
+(function(){
 
-	'use strict';
-
-	angular.module('restApp').directive("leafletMap", function ($http) {
-
-
-		var link = function ($scope, $element, attrs, $rootScope) {
+    'use strict';
+    angular.module('restApp')
+        .controller('MapSearchingController', ['$scope', 'attrs', function($scope, attrs) {
+        	console.log("controller");
 
 			var defaults = {
 				height: '500px',
@@ -18,145 +16,17 @@
 			};
 			$scope.xmlData = [];
 			$scope.resourcesWithNames = [];
-			$scope.resourceClassesArray = [];
 			$scope.mapCreated = false;
 			$scope.resourcesGeoJsonOn = false;
 			$scope.markerList = [];
 			$scope.activeTab = 1;
 			$scope.findingType = 1;
-			$scope.initClearing = 0;
-			$scope.xmlData = [];
-			$scope.partOfList = [];
-			$scope.listCacheArray = [];
-			$scope.filterByClass = 0;
-			$scope.listCacheArrayLength = Math.ceil($scope.listLength/$scope.listRange);
-			$scope.filterByClassName = "";
 
 
-
-						/*array for resources on map*/
-						var resourcesOnMap = [];
-
-						/*array for markers*/
-						var markersOnMap = [];
-
-						/*radius of circle*/
-						var radius = 500;
-
-						/*drawing circle*/
-						var circle = L.circle(L.latLng(49.83587885628228, 23.99765968322754), radius, {
-							opacity: 1,
-							weight: 1,
-							fillOpacity: 0
-						});
-
-			(function() {
-							$http.get('rest.php/resource_classes')
-								.then(successHandler)
-								.catch(errorHandler);
-							function successHandler(data) {
-								$scope.resourceClassesArray = data.data.items;
-								console.log($scope.resourceClassesArray);
-							}
-							function errorHandler() {
-								console.log("Can't load the list!")				
-							}
-						}());
-			$scope.startFilterByClass = function(name) {
-				if (name === undefined) {
-					$scope.filterByClassName = "";
-					console.log($scope.filterByClassName);
-				} else {
-					$scope.filterByClassName = name;
-					console.log($scope.filterByClassName);
-				}
-			}
 			$scope.changeTab = function(number) {
 				$scope.activeTab = number;
 			}
-			$scope.initClear = function(value) {
-				$scope.initClearing = value;
-			}
-			$scope.clearMap = function() {
-				$scope.map.removeLayer(circle);
-				$scope.deleteItems(resourcesOnMap);
-				$scope.deleteItems(markersOnMap);
-				$scope.xmlData.length = 0;
-				$scope.partOfList.length = 0;
-				$scope.listCacheArray.length = 0;
-				$scope.listCacheArrayLength = 0;
-			}
 
-			$scope.cut = function() {					   	
-				$scope.listLength = $scope.xmlData.length;
-				$scope.listRange = 4;
-				$scope.paginationRange = 5;
-				$scope.currentPage = 1;
-				(function() {
-					if ($scope.listLength > $scope.listRange) {
-						for (var i = 0; i < $scope.listCacheArrayLength; i++) {
-							$scope.listCacheArray.push([]);
-							for(var j = 0; j < $scope.listRange; j++) {
-								if ($scope.xmlData.length) $scope.listCacheArray[i].push($scope.xmlData.shift());
-							}
-						}
-						$scope.switchPage(1);
-					}
-					else {
-						for (var i = 0; i < $scope.xmlData.length; i++) {
-							for(var j = 0; j < $scope.listRange; j++) {
-								if ($scope.xmlData.length) $scope.partOfList.push($scope.xmlData.shift());
-							}
-						}
-					}
-				}());
-			}
-
-
-							/*showing resources on the map*/
-							function showResources(resources) {
-								if(resources.length == 0) return;
-								for(var i = 0; i < resources.length; i++){
-									$scope.map.addLayer(resources[i]);
-								}
-							}
-
-							function showMarkers(resources) {
-								if(resources.length == 0) return;
-								for(var i = 0; i < resources.length; i++){
-									$scope.map.addLayer(resources[i].bindPopup($scope.markerList[i]));
-								}
-							}
-									
-							/*deleting resources from the map*/
-							$scope.deleteItems = function(resources) {
-							    if(resources.length == 0) return;
-							    for(var i = 0; i < resources.length; i++){
-								   	$scope.map.removeLayer(resources[i]);
-								}
-								resources.length = 0;
-							}
-
-							/*definition of the centroid of a closed polygon*/		
-									function getCentroid(arr) {
-									    var twoTimesSignedArea = 0;
-									    var cxTimes6SignedArea = 0;
-									    var cyTimes6SignedArea = 0;
-
-									    var length = arr.length
-
-									    var x = function (i) { return arr[i % length][0] };
-									    var y = function (i) { return arr[i % length][1] };
-
-									    for ( var i = 0; i < arr.length; i++) {
-									        var twoSA = x(i) * y(i + 1) - x(i + 1) * y(i);
-									        twoTimesSignedArea += twoSA;
-									        cxTimes6SignedArea += (x(i) + x(i + 1)) * twoSA;
-									        cyTimes6SignedArea += (y(i) + y(i + 1)) * twoSA;
-									    }
-									    var sixSignedArea = 3 * twoTimesSignedArea;
-									    return [ cxTimes6SignedArea / sixSignedArea, cyTimes6SignedArea / sixSignedArea];        
-									}
 
 			// Map init
 
@@ -291,7 +161,6 @@
 				initInteractivity();
 				initAdding();
 				initFinding();
-				initPointing();
 				initSearch();
 				initGeojson();
 
@@ -437,118 +306,9 @@
 					}
 				}
 
-				function calculatingCoordinates(clickEvent) {
-					$scope.clickData = [clickEvent.latlng.lat, clickEvent.latlng.lng];
-					$scope.coordCompare = {
-						'44' : 80.208,
-						'45' : 78.848,
-						'46' : 77.465,
-						'47' : 76.057,
-						'48' : 74.627,
-						'49' : 73.173,
-						'50' : 71.697,
-						'51' : 70.199,
-						'52' : 68.679
-					};
-					$scope.range = 10;
-					$rootScope.y1 = $scope.clickData[0] - (0.00900009 * $scope.range);
-					$rootScope.y2 = $scope.clickData[0] + (0.00900009 * $scope.range);
-					$rootScope.x1 = $scope.clickData[1] - ((1 / $scope.coordCompare[Math.round($scope.clickData[0])]) * $scope.range);
-					$rootScope.x2 = $scope.clickData[1] + ((1 / $scope.coordCompare[Math.round($scope.clickData[0])]) * $scope.range);
-
-				}
-
-
-				function initPointing() {
-					if (attrs.point === 'true') {
-
-
-					/*point inside a polygon*/
-					function inside(point, vs) {
-					    var x = point[0], y = point[1];
-
-					    var inside = false;
-					    for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
-					        var xi = vs[i][0], yi = vs[i][1];
-					        var xj = vs[j][0], yj = vs[j][1];
-
-					        var intersect = ((yi > y) != (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
-					        if (intersect) inside = !inside;
-					    }
-
-					    return inside;
-					}
-
-
-						$scope.map.on('click', function(click) {
-							if ($scope.findingType == 1) {
-								$scope.xmlData.length = 0;
-								$scope.partOfList.length = 0;
-								$scope.listCacheArray.length = 0;
 
 
 
-
-
-								calculatingCoordinates(click); //calculating <---------------------
-
-								$scope.xmlReturn = [];
-								$scope.xmlReturn.length = 0;
-
-							
-								$http.get('rest.php/resources/gettingdata?min_lat=' + $rootScope.y1 + '&max_lat=' + $rootScope.y2 + '&min_lng=' + $rootScope.x1 + '&max_lng=' + $rootScope.x2 + '&name=' + $scope.filterByClassName)
-									   .then(successHandler)
-									   .catch(errorHandler);
-								function successHandler(data) {
-
-									$scope.xmlReturn = data.data;
-
-
-								  	var resources = [];
-								  	
-								  	$scope.markerList.length = 0;
-								  	$scope.resourcesWithNames = [];
-								  	$scope.resourcesWithNames.length = 0;
-									for (var i = 0; i < $scope.xmlReturn.length; i++) {
-										var cache = $scope.xmlReturn[i].coordinates;
-										resources.push(JSON.parse(cache));
-										$scope.resourcesWithNames.push($scope.xmlReturn[i].name);
-
-									}
-
-
-									$scope.deleteItems(markersOnMap);
-								    $scope.deleteItems(resourcesOnMap);
-
-									var centroid, marker;
-									for(var k = 0; k < resources.length; k++){
-										if(inside([click.latlng.lat, click.latlng.lng], resources[k])){
-											resourcesOnMap.push(L.polygon(resources[k]));
-											centroid = getCentroid(resources[k]);
-											marker = new L.marker([centroid[0], centroid[1]]);
-										    markersOnMap.push(marker);
-										    $scope.markerList.push($scope.xmlReturn[k].name);
-										    $scope.xmlData.push($scope.xmlReturn[k]);
-										}
-									}
-
-									showResources(resourcesOnMap);
-									showMarkers(markersOnMap);
-									$scope.cut();
-
-								}
-
-								function errorHandler() {
-
-								}
-
-
-
-
-							}
-						});
-					}
-				}
 
 				
 
@@ -558,7 +318,21 @@
 					
 
 					if (attrs.find === 'true') {
-						
+						/*array for resources on map*/
+						var resourcesOnMap = [];
+
+						/*array for markers*/
+						var markersOnMap = [];
+
+						/*radius of circle*/
+						var radius = 500;
+
+						/*drawing circle*/
+						var circle = L.circle(L.latLng(49.83587885628228, 23.99765968322754), radius, {
+							opacity: 1,
+							weight: 1,
+							fillOpacity: 0
+						});
 						function getRadius() {
 			            	(function() {
 			            		var value = parseInt($scope.circleRadius);
@@ -573,22 +347,67 @@
 						$scope.map.on('click', function(click) {
 
 						if ($scope.findingType == 2) {
-							$scope.xmlData.length = 0;
-							$scope.partOfList.length = 0;
-							$scope.listCacheArray.length = 0;
-								
-								calculatingCoordinates(click); //calculating <---------------------
+							
+							/*showing resources on the map*/
+							function showResources(resources) {
+								if(resources.length == 0) return;
+								for(var i = 0; i < resources.length; i++){
+									$scope.map.addLayer(resources[i]);
+								}
+							}
 
-								$scope.xmlReturn = [];
-								$scope.xmlReturn.length = 0;
+							function showMarkers(resources) {
+								if(resources.length == 0) return;
+								for(var i = 0; i < resources.length; i++){
+									$scope.map.addLayer(resources[i].bindPopup($scope.markerList[i]));
+								}
+							}
+									
+							/*deleting resources from the map*/
+							$scope.deleteResources = function(resources) {
+							    if(resources.length == 0) return;
+							    for(var i = 0; i < resources.length; i++){
+								   	$scope.map.removeLayer(resources[i]);
+								}
+								resources.length = 0;
+							}
+								var click = click;
+								$scope.clickData = [click.latlng.lat, click.latlng.lng];
+								console.log($scope.clickData);
+								$scope.coordCompare = {
+									'44' : 80.208,
+									'45' : 78.848,
+									'46' : 77.465,
+									'47' : 76.057,
+									'48' : 74.627,
+									'49' : 73.173,
+									'50' : 71.697,
+									'51' : 70.199,
+									'52' : 68.679
+								};
+								$scope.range = 10;
+								$rootScope.y1 = $scope.clickData[0] - (0.00900009 * $scope.range);
+								$rootScope.y2 = $scope.clickData[0] + (0.00900009 * $scope.range);
+								$rootScope.x1 = $scope.clickData[1] - ((1 / $scope.coordCompare[Math.round($scope.clickData[0])]) * $scope.range);
+								$rootScope.x2 = $scope.clickData[1] + ((1 / $scope.coordCompare[Math.round($scope.clickData[0])]) * $scope.range);
+								console.log($rootScope.y1, $rootScope.y2, $rootScope.x1, $rootScope.x2);
+
+								// $scope.resources = [];
 
 							
-								$http.get('rest.php/resources/gettingdata?min_lat=' + $rootScope.y1 + '&max_lat=' + $rootScope.y2 + '&min_lng=' + $rootScope.x1 + '&max_lng=' + $rootScope.x2 + '&name=' + $scope.filterByClassName)
-									   .then(successHandler)
-									   .catch(errorHandler);
-								function successHandler(data) {
-
-									$scope.xmlReturn = data.data;
+								// $http.get('rest.php/resources/gettingdata' + $rootScope.y1 + '&max_lat=' + $rootScope.y2 + '&min_lng=' + $rootScope.x1 + '&max_lng=' + $rootScope.x2)
+								// 	   .then(successHandler)
+								// 	   .catch(errorHandler);
+								// function successHandler(data) {
+								// 	   $scope.resources = data.data;
+								// }
+								// function errorHandler(data){
+								// 	   console.log("Can't reload list!");
+								// }
+								$scope.xmlReturn = [];
+								$scope.xmlReturn.length = 0;
+								$.get( 'rest.php/resources/gettingdata?min_lat=' + $rootScope.y1 + '&max_lat=' + $rootScope.y2 + '&min_lng=' + $rootScope.x1 + '&max_lng=' + $rootScope.x2, function(data) {
+								  	$scope.xmlReturn = data;
 								  	var resources = [];
 								  	$scope.resourcesWithNames.length = 0;
 									for (var i = 0; i < $scope.xmlReturn.length; i++) {
@@ -599,15 +418,32 @@
 									}
 
 
-
-
 									/*latitude and longitude(the centroid of a closed polygon)*/
 									var items = [];
 
 									/*array for markers*/
 									var marker = [];
 
-									
+									/*definition of the centroid of a closed polygon*/		
+									function getCentroid(arr) {
+									    var twoTimesSignedArea = 0;
+									    var cxTimes6SignedArea = 0;
+									    var cyTimes6SignedArea = 0;
+
+									    var length = arr.length
+
+									    var x = function (i) { return arr[i % length][0] };
+									    var y = function (i) { return arr[i % length][1] };
+
+									    for ( var i = 0; i < arr.length; i++) {
+									        var twoSA = x(i) * y(i + 1) - x(i + 1) * y(i);
+									        twoTimesSignedArea += twoSA;
+									        cxTimes6SignedArea += (x(i) + x(i + 1)) * twoSA;
+									        cyTimes6SignedArea += (y(i) + y(i + 1)) * twoSA;
+									    }
+									    var sixSignedArea = 3 * twoTimesSignedArea;
+									    return [ cxTimes6SignedArea / sixSignedArea, cyTimes6SignedArea / sixSignedArea];        
+									}
 
 									/*pushing coordinates into array(items)*/
 									function fillItems(array) {
@@ -627,15 +463,13 @@
 									fillItems(resources);
 
 									itemWrap(items);
-
-
 									function showResourcesOnMap(clickEvent) {
 										getRadius();
 			    						circle.setRadius(radius);
 									    circle.setLatLng(clickEvent.latlng);
 									    circle.addTo($scope.map);
-									    $scope.deleteItems(resourcesOnMap);
-									    $scope.deleteItems(markersOnMap);
+									    $scope.deleteResources(resourcesOnMap);
+									    $scope.deleteResources(markersOnMap);
 									    $scope.xmlData.length = 0;
 									    $scope.markerList.length = 0;
 									   	for(var i = 0; i < marker.length; i++){
@@ -654,15 +488,14 @@
 									    		showMarkers(markersOnMap);
 										    }
 									   	}
-
-
 									   	
 									   	// PAGINATION
 
-									   	
+									   	$scope.partOfList = [];
 									   	$scope.listLength = $scope.xmlData.length;
 									   	$scope.listRange = 4;
 									   	$scope.paginationRange = 5;
+									   	$scope.listCacheArray = [];
 									   	$scope.listCacheArrayLength = Math.ceil($scope.listLength/$scope.listRange);
 									   	$scope.currentPage = 1;
 									
@@ -697,7 +530,7 @@
 							                }
 
 
-							              
+							                console.log($scope.pages, 'first');
 
 
 							                for (var i = 0; i<=$scope.pages.length-1; i++) {
@@ -707,39 +540,44 @@
 							                        $scope.pages.shift();
 							                    }
 							                }
-							               
+							                console.log($scope.pages, 'second');
 							                
 							                while ($scope.pages.length > paginationRange) $scope.pages.pop();
-							           
+							                console.log($scope.pages, 'third');
 							                if ($scope.pages[0]!=1 && currentPage - beforeCenter >= 0) $scope.pages[0] = "...";
-							       
+							                console.log($scope.pages, 'fourth');
 							                if ($scope.pages[$scope.pages.length-1]!=pageCount) $scope.pages[$scope.pages.length-1] = "...";
-							               
+							                console.log($scope.pages, 'fifth');        
 							                return $scope.pages;
 							            };
 
-									   	
+									   	(function() {
+									   		if ($scope.listLength > $scope.listRange) {
+									   			for (var i = 0; i < $scope.listCacheArrayLength; i++) {
+									   				$scope.listCacheArray.push([]);
+									   				for(var j = 0; j < $scope.listRange; j++) {
+									   					if ($scope.xmlData.length) $scope.listCacheArray[i].push($scope.xmlData.shift());
+									   				}
+									   			}
+									   			$scope.switchPage(1);
+									   		}
+									   		else {
+									   			for (var i = 0; i < $scope.xmlData.length; i++) {
+									   				for(var j = 0; j < $scope.listRange; j++) {
+									   					if ($scope.xmlData.length) $scope.partOfList.push($scope.xmlData.shift());
+									   				}
+									   			}
+									   		}
+									   	}());
 
-									   	$scope.cut();
+									   	$scope.$apply();
+
 
 									};
 
 									showResourcesOnMap(click);
 
-
-
-
-
-
-
-								}
-								function errorHandler(data){
-									   console.log("Can't reload list!");
-								}
-
-
-								
-								
+								});
 						}
 						});
 					}
@@ -857,21 +695,10 @@
 			function toggleResources () {
 				$scope.options.resources.showResources = true;
 			}
-		};
 
-		return {
-			restrict: 'E',
-			templateUrl: 'directives/map_directive.html',
-			controller: 'MapCtrl',
-			scope: {
-				bind: '=bind',
-				options: '=update'
-			},
-			link: link
-		};
-
-	});
-
+        }]);
 
 
 })();
+
+			

@@ -61,7 +61,10 @@ $config = [
                     'POST addattribute' => 'addattribute',
                     'GET findlastattributeid' => 'findlastattributeid',
                     'GET deleteattribute' => 'deleteattribute',
-                    'POST changecommunity' => 'changecommunity'
+                    'POST changecommunity' => 'changecommunity',
+                    'GET findglobalattributes' => 'findglobalattributes',
+                    'GET findfilteredattributes' => 'findfilteredattributes',
+                    'GET findfilteredattributesforeachresourceclass' => 'findfilteredattributesforeachresourceclass'
                     ],
                 ],
             ],
