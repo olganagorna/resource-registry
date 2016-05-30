@@ -27,10 +27,10 @@
             $scope.coord_center = {};
 
             $scope.params = {
-                                3:{value:constant.DEFAULT_SQUAERE_VAL},
-                                6:{value:constant.DEFAULT_PERIM_VAL}
+                                // 3:{value:constant.DEFAULT_SQUAERE_VAL},
+                                // 6:{value:constant.DEFAULT_PERIM_VAL}
                             };
-
+            $rootScope.allAttributes = [];
 
             $scope.resource = {};
             
@@ -342,6 +342,41 @@
                     $scope.show_search_result = false;
                 }
             };
+
+            $scope.getAllAttributes = function(class_id) {
+                return $http.get('rest.php/attribute_class_views/findallattributes?class_id=' + class_id)
+                    .then(successHandler)
+                    .catch(errorHandler);
+                function successHandler(data) {
+                    $rootScope.allAttributes = data.data;
+                    console.log($rootScope.allAttributes);
+                    
+                    // for (var i = 0; i < data.data.items.length; i++) {
+                    //     $rootScope.paramObj = {}
+                    //     $scope.params[data.data.items[i].name] = i;
+                    //     $rootScope.params.push($rootScope.paramObj);
+                    //     console.log($scope.params);
+                    // }
+                }
+                function errorHandler(data) {
+                    console.log("Can't reload list!");
+                }
+            };
+
+
+            // $rootScope.getLocalAttributes = function(class_id) {
+            //     return $http.get('rest.php/attribute_class_views/findfilteredattributesforeachresourceclass?class_id=' + class_id)
+            //         .then(successHandler)
+            //         .catch(errorHandler);
+            //     function successHandler(data) {
+            //         $rootScope.localAttributes = data.data;
+            //         console.log($scope.localAttributes);
+                    
+            //     }
+            //     function errorHandler(data) {
+            //         // console.log("Can't reload list!");
+            //     }
+            // };
 
         $scope.ownerUpdate = false;
 

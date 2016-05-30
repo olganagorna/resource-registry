@@ -11,9 +11,9 @@
             <label>Клас об’єкту</label>
             <br> природний ресурс
         </div>
-        <div class="form-group" ng-controller="IndexCtrl">
+        <div class="form-group" ng-init="getAllAttributes(1)">
             <label>Підклас об’єкту</label>
-            <select class="form-control" id="class" ng-change="getLocalAttributes(resource.class_id)"
+            <select class="form-control" id="class" ng-change="getAllAttributes(resource.class_id)"
                     ng-init="resource.class_id = 1"
                     ng-model="resource.class_id"
                     ng-options="class.class_id as class.name for class in resource_classes.items">
@@ -74,26 +74,17 @@
         </div>
 
         <div class="panel panel-primary">
-            <button class="col-md-12 panel-heading" type="button" data-toggle="collapse" data-target="#collapseParams" aria-expanded="false" aria-controls="collapseExample">
+            <button class="col-md-12 panel-heading" type="button" data-toggle="collapse" data-target="#collapseParams" aria-expanded="false" aria-controls="collapseExample" ng-click="getGlobalattributes()">
                 <h3 class="panel-title">Параметри</h3>
             </button>
-            <div ng-controller="IndexCtrl">
+            <div >
                 <div class="collapse panel-body" id="collapseParams">
-                    <div class="form-group" ng-repeat="data in globalAttributes.items">
+                    <div class="form-group" ng-repeat="data in allAttributes">
                         <label>{{data.name}}</label>
                         <div>
-                            <input name="{{data.name}}" ng-model="params[i].value" type= "text" class= "form-control" placeholder="{{data.name}}"/>
+                            <input name="{{data.name}}"  type= "text" class= "form-control" placeholder="{{data.name}}"/>
                         </div>
                     </div>
-                    <div class="form-group" ng-repeat="data in localAttributes">
-                        <div >
-                            <label>{{data.name}}</label>
-                            <div>
-                                <input name="{{data.name}}" ng-model="params[i].value" type= "text" class= "form-control" placeholder="{{data.name}}"/>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>

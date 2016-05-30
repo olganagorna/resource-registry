@@ -93,6 +93,9 @@ return [
     'resource_attribute/findglobalattributes' => [
         'type' => 2,
     ],
+    'attribute_class_view/findallattributes' => [
+        'type' => 2,
+    ],
     'user' => [
         'type' => 1,
         'ruleName' => 'userGroup',
@@ -118,6 +121,7 @@ return [
             'resource_attribute/findglobalattributes',
             'attribute_class_view/findfilteredattributes',
             'attribute_class_view/findfilteredattributesforeachresourceclass',
+            'attribute_class_view/findallattributes',
         ],
     ],
     'commissioner' => [

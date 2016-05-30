@@ -141,7 +141,7 @@ class Attribute_class_viewController extends AppController
         return $arr;
     }
 
-    public function actionFindfilteredattributesforeachresourceclass()
+    public function actionFindallattributes()
     {
         $request= \Yii::$app->request->get();
         $attributes = [':class_id' => $request['class_id']];
@@ -150,7 +150,13 @@ class Attribute_class_viewController extends AppController
                 ->createCommand($sql)
                 ->bindValues($attributes)
                 ->queryAll();
-        return $data;
+        $getglobalattributes = ResourceAttribute::find()->where(['is_global' => '1'])
+        ->asArray()->all();
+        for($i = 0; $i < count($data); $i++){
+            array_push($getglobalattributes, $data[$i]);
+        }
+        return $getglobalattributes;
     }
+
 
 }
