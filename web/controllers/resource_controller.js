@@ -74,24 +74,13 @@
                         $scope.sixSignedArea = 3 * $scope.twoTimesSignedArea;
 
                         $scope.cachCoordArray.push([ $scope.cxTimes6SignedArea / $scope.sixSignedArea, $scope.cyTimes6SignedArea / $scope.sixSignedArea]);
-                        $scope.cachCoordArray.push([$scope.resource.registration_number]);
+                        $scope.cachCoordArray.push([$scope.resource.registration_number]);z
 
                     }($scope.cachCoordArray));
                 }
 
             });
 
-            $scope.additionData = function(){
-                $http.post('rest.php/resources/additiondata', JSON.stringify($scope.cachCoordArray))
-                    .then(successHandler)
-                    .catch(errorHandler);
-                function successHandler(data) {
-                    console.log("success!!!");
-                }
-                function errorHandler(data){
-                    console.log("Can't reload list!");
-                }
-            };
 
             $scope.createCoords = function(lat, lng){
                 var lat = CoordsService.convertDMSToDD(lat.deg,lat.min, lat.sec).toFixed(8);
@@ -359,12 +348,8 @@
             resource.coords_center_lat = $scope.coord_center.lat;
             resource.coords_center_lng = $scope.coord_center.lng;
 
-            console.log($scope.coord_center.lng);
-            console.log($scope.coord_center.lat);
-
             if (!owner || Object.keys(owner).length < constant.paramsNumber || !isDataForObject(owner)) {
                     //'Create Resource without owner'
-
                     RestService.createData(resource, constant.resourcesQuery)
                          .then(function(response){
                              createParameters(params, response.data.resource_id);
@@ -372,8 +357,8 @@
 
                 } else if ($scope.ownerUpdate) {
                             //Create with actual  owner - owner ID
-
                             resource.owner_data_id = owner.personal_data_id;
+                            $scope.cachCoordArray.push([resource.class_id]);
 
                             RestService.createData(resource, constant.resourcesQuery)
                                 .then(function(response){
@@ -383,7 +368,7 @@
                 }else{
                        //create owner AND RESOURCE
 
-                       RestService.createData(owner, constant.personal_datasQuery)
+                        RestService.createData(owner, constant.personal_datasQuery)
                            .then(function (response) {
                                resource.owner_data_id = response.data.personal_data_id;
                                return RestService.createData(resource, constant.resourcesQuery);
@@ -394,6 +379,19 @@
                 }
                     $route.reload();
                     $location.path('resource/index');
+
+            };
+
+            $scope.additionData = function(){
+                $http.post('rest.php/resources/additiondata', JSON.stringify($scope.cachCoordArray))
+                    .then(successHandler)
+                    .catch(errorHandler);
+                function successHandler(data) {
+                    console.log("success!!!");
+                }
+                function errorHandler(data){
+                    console.log("Can't reload list!");
+                }
             };
 
 

@@ -12,13 +12,14 @@
         $scope.searchingVal = "";
         console.log($scope.searchingVal + "<-");
         $scope.orderBy = "ASC";
+
         (function(){
             return $http.get('rest.php/communities/show')
-
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
                 $scope.communities = data.data;
+                console.log($scope.communities);
             }
             function errorHandler(data){
                 console.log("Can't render list!");
@@ -117,5 +118,6 @@
                     $scope.currentPage = PaginationService.currentPage;
             });
         };
+
     }
 })();

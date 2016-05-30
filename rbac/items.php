@@ -42,6 +42,9 @@ return [
     'resource_class/search' => [
         'type' => 2,
     ],
+    'resource_class/addresourceclass' => [
+        'type' => 2,
+    ],
     'resource_class/changeactivationstatus' => [
         'type' => 2,
     ],
@@ -55,6 +58,9 @@ return [
         'type' => 2,
     ],
     'user/changerole' => [
+        'type' => 2,
+    ],
+    'user/changecommunity' => [
         'type' => 2,
     ],
     'request/showrequest' => [
@@ -82,9 +88,6 @@ return [
         'type' => 2,
     ],
     'attribute_class_view/deleteattribute' => [
-        'type' => 2,
-    ],
-    'resource_class/addresourceclass' => [
         'type' => 2,
     ],
     'attribute_class_view/findfilteredattributes' => [
@@ -143,11 +146,13 @@ return [
             'user/getrole',
             'user/changeactivationstatus',
             'user/changerole',
+            'user/changecommunity',
             'community/addcomm',
             'community/show',
             'community/view',
             'community/update',
             'community/index',
+            'resource_class/addresourceclass',
             'resource_class/search',
             'resource_class/changeactivationstatus',
             'resource_class/index',
@@ -157,7 +162,6 @@ return [
             'attribute_class_view/addattribute',
             'attribute_class_view/findlastattributeid',
             'attribute_class_view/deleteattribute',
-            'resource_class/addresourceclass',
             'resource_attribute/findglobalattributes',
             'attribute_class_view/findfilteredattributes',
             'attribute_class_view/findfilteredattributesforeachresourceclass',
