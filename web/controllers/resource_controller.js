@@ -74,7 +74,7 @@
                         $scope.sixSignedArea = 3 * $scope.twoTimesSignedArea;
 
                         $scope.cachCoordArray.push([ $scope.cxTimes6SignedArea / $scope.sixSignedArea, $scope.cyTimes6SignedArea / $scope.sixSignedArea]);
-                        $scope.cachCoordArray.push([$scope.resource.registration_number]);
+                        $scope.cachCoordArray.push([$scope.resource.registration_number]);z
 
                     }($scope.cachCoordArray));
                 }
@@ -358,9 +358,7 @@
 
             resource.coords_center_lat = $scope.coord_center.lat;
             resource.coords_center_lng = $scope.coord_center.lng;
-
-            console.log($scope.coord_center.lng);
-            console.log($scope.coord_center.lat);
+            console.log(resource);
 
             if (!owner || Object.keys(owner).length < constant.paramsNumber || !isDataForObject(owner)) {
                     //'Create Resource without owner'
