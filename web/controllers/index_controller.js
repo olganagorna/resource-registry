@@ -77,6 +77,16 @@
             }
         };
 
+        function alertPopup(argument) {
+            if(argument==200) {
+                alert($scope.resource_class.res_class_name + " додано!");    
+            } else if(argument==400) {
+                alert('Тип ресурсу з такою назвою вже існує.');    
+            } else {
+                alert('Неможливо додати новий тип ресурсу!');
+            }   
+        }
+
         ($scope.getGlobalattributes = function() {
             return $http.get('rest.php/resource_attributes/findglobalattributes')
                 .then(successHandler)
@@ -113,15 +123,16 @@
                 $http.post('rest.php/resource_classes/addresourceclass', JSON.stringify($scope.resource_class))
                     .then(successHandler)
                     .catch(errorHandler);
+                function successHandler(status) {
+                    alertPopup(status.status);
+                    $scope.addResClass = "";
+                    $scope.getData();
+                }
+                function errorHandler(status) {
+                    alertPopup(status.status);
+                }
             }
-            function successHandler() {
-                alert($scope.resource_class.res_class_name + " додано!");
-                $scope.addResClass = "";
-                $scope.getData();
-            }
-            function errorHandler() {
-                    alert('Неможливо додати новий тип ресурсу!');
-            }
+
         };
 
         $scope.createMember = function(member) {
