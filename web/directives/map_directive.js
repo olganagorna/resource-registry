@@ -18,6 +18,7 @@
 			};
 			$scope.xmlData = [];
 			$scope.resourcesWithNames = [];
+			$scope.resourceClassesArray = [];
 			$scope.mapCreated = false;
 			$scope.resourcesGeoJsonOn = false;
 			$scope.markerList = [];
@@ -27,7 +28,11 @@
 			$scope.xmlData = [];
 			$scope.partOfList = [];
 			$scope.listCacheArray = [];
+			$scope.filterByClass = 0;
 			$scope.listCacheArrayLength = Math.ceil($scope.listLength/$scope.listRange);
+			$scope.filterByClassName = "";
+
+
 
 						/*array for resources on map*/
 						var resourcesOnMap = [];
@@ -45,7 +50,27 @@
 							fillOpacity: 0
 						});
 
-
+			(function() {
+							$http.get('rest.php/resource_classes')
+								.then(successHandler)
+								.catch(errorHandler);
+							function successHandler(data) {
+								$scope.resourceClassesArray = data.data.items;
+								console.log($scope.resourceClassesArray);
+							}
+							function errorHandler() {
+								console.log("Can't load the list!")				
+							}
+						}());
+			$scope.startFilterByClass = function(name) {
+				if (name === undefined) {
+					$scope.filterByClassName = "";
+					console.log($scope.filterByClassName);
+				} else {
+					$scope.filterByClassName = name;
+					console.log($scope.filterByClassName);
+				}
+			}
 			$scope.changeTab = function(number) {
 				$scope.activeTab = number;
 			}
@@ -471,7 +496,7 @@
 								$scope.xmlReturn.length = 0;
 
 							
-								$http.get('rest.php/resources/gettingdata?min_lat=' + $rootScope.y1 + '&max_lat=' + $rootScope.y2 + '&min_lng=' + $rootScope.x1 + '&max_lng=' + $rootScope.x2)
+								$http.get('rest.php/resources/gettingdata?min_lat=' + $rootScope.y1 + '&max_lat=' + $rootScope.y2 + '&min_lng=' + $rootScope.x1 + '&max_lng=' + $rootScope.x2 + '&name=' + $scope.filterByClassName)
 									   .then(successHandler)
 									   .catch(errorHandler);
 								function successHandler(data) {
@@ -558,7 +583,7 @@
 								$scope.xmlReturn.length = 0;
 
 							
-								$http.get('rest.php/resources/gettingdata?min_lat=' + $rootScope.y1 + '&max_lat=' + $rootScope.y2 + '&min_lng=' + $rootScope.x1 + '&max_lng=' + $rootScope.x2)
+								$http.get('rest.php/resources/gettingdata?min_lat=' + $rootScope.y1 + '&max_lat=' + $rootScope.y2 + '&min_lng=' + $rootScope.x1 + '&max_lng=' + $rootScope.x2 + '&name=' + $scope.filterByClassName)
 									   .then(successHandler)
 									   .catch(errorHandler);
 								function successHandler(data) {
@@ -672,7 +697,7 @@
 							                }
 
 
-							                console.log($scope.pages, 'first');
+							              
 
 
 							                for (var i = 0; i<=$scope.pages.length-1; i++) {
@@ -682,14 +707,14 @@
 							                        $scope.pages.shift();
 							                    }
 							                }
-							                console.log($scope.pages, 'second');
+							               
 							                
 							                while ($scope.pages.length > paginationRange) $scope.pages.pop();
-							                console.log($scope.pages, 'third');
+							           
 							                if ($scope.pages[0]!=1 && currentPage - beforeCenter >= 0) $scope.pages[0] = "...";
-							                console.log($scope.pages, 'fourth');
+							       
 							                if ($scope.pages[$scope.pages.length-1]!=pageCount) $scope.pages[$scope.pages.length-1] = "...";
-							                console.log($scope.pages, 'fifth');        
+							               
 							                return $scope.pages;
 							            };
 

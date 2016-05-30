@@ -48,6 +48,18 @@
                     <div class="tab-content">
                         <div ng-show="activeTab == 1">
                          <div class="map-setting clearfix">
+                            <p class="pull-left map-tab_left">
+
+
+
+
+                                <select class="resource-select" ng-options="list.name for list in resourceClassesArray" ng-change="startFilterByClass(filterByClass.name)" ng-model="filterByClass">
+                                    <option value="">Всі ресурси</option>
+                                </select>
+
+
+
+                            </p>
                              <p class="pull-left map-tab_left">
                                 <input ng-change="clearMap()" ng-model="findingType" value="1" type="radio" name="method-change" id="radio-1" checked/> <label for="radio-1">По кліку</label> &nbsp;
                                 <input ng-change="clearMap()" ng-model="findingType" value="2" type="radio" name="method-change" id="radio-2"/> <label for="radio-2">По радіусу</label> 
@@ -65,7 +77,6 @@
 
                     
                 </div>
-
                 <div class="col-md-5">
                     <div>
                         <div>

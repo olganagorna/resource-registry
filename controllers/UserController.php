@@ -178,6 +178,7 @@ class UserController extends AppController {
                 ['like', 'last_name', $words[0]]
             ]];
         }
+
         $getdata = User::find()
         ->select(['user_id','username','last_name','first_name','passport_series','passport_number','role.name as role_name','community.name as community_name','activation_status'])
         ->joinWith('personalData')->joinWith('userRole')->joinWith('community')
@@ -186,7 +187,7 @@ class UserController extends AppController {
         ->orderBy($sort)
         ->asArray();
         
-        return self::buildPagination($getdata, 10); 
+            return self::buildPagination($getdata, 10); 
     }
 
     public function actionChangeactivationstatus() {
@@ -204,9 +205,17 @@ class UserController extends AppController {
     }
     
     public function actionChangerole() {
-        $request= \Yii::$app->request->get();
+        $request= \Yii::$app->request->post();
         $user = User::findOne(['user_id' => $request['user_id']]);
         $user->role_id=$request['role_id'];
         $user->update();
     }
+
+    public function actionChangecommunity() {
+        $request= \Yii::$app->request->post();
+        $user = User::findOne(['user_id' => $request['user_id']]);
+        $user->community_id=$request['community_id'];
+        $user->update();
+    }
+
 }

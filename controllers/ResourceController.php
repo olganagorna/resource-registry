@@ -288,22 +288,27 @@ class ResourceController extends AppController
 	public function actionAdditiondata() {
 		$request = file_get_contents("php://input");
 		$data = json_decode($request);
-		for($i = 0; $i < count($data) - 1; $i++){
+		for($i = 0; $i < count($data) - 2; $i++){
 			$coord = new Coordinates();
 			$coord->lat = $data[$i][0];
 			$coord->lng = $data[$i][1];
-			$coord->registration_number = $data[count($data) - 1][0];
+			$coord->registration_number = $data[count($data) - 2][0];
+			$coord->class_id = $data[count($data) - 1][0];
 			$coord->save();
 		}
 	}
 	public function actionGettingdata(){
 		$request= \Yii::$app->request->get();
 		$params = [':min_lat' => $request['min_lat'], ':max_lat' => $request['max_lat'], ':min_lng' => $request['min_lng'], ':max_lng' => $request['max_lng']];
-		$sql = "SELECT name, coordinates, registration_number FROM resource WHERE registration_number IN (SELECT registration_number FROM coordinates WHERE lat BETWEEN :min_lat AND :max_lat UNION SELECT registration_number FROM coordinates WHERE lng BETWEEN :min_lng AND :max_lng)";
-		$data = \Yii::$app->db
-        		->createCommand($sql)
-        		->bindValues($params)
-       			->queryAll();
+		$sql1 = "SELECT name, coordinates, registration_number FROM resource WHERE registration_number IN (SELECT registration_number FROM coordinates WHERE lat BETWEEN :min_lat AND :max_lat UNION SELECT registration_number FROM coordinates WHERE lng BETWEEN :min_lng AND :max_lng)";
+		$sql2 = "SELECT name, coordinates, registration_number FROM resource WHERE registration_number IN (SELECT registration_number FROM coordinates WHERE lat BETWEEN :min_lat AND :max_lat AND class_id = :class_id UNION SELECT registration_number FROM coordinates WHERE lng BETWEEN :min_lng AND :max_lng AND class_id = :class_id)";
+		if(strlen($request['name'])){
+			$class_id = ResourceClass::find()->select(['class_id'])->where(['name' => $request['name']])->asArray()->one();
+			$params[':class_id'] = $class_id['class_id'];
+			$data = \Yii::$app->db->createCommand($sql2)->bindValues($params)->queryAll();
+		}else{
+			$data = \Yii::$app->db->createCommand($sql1)->bindValues($params)->queryAll();
+		}
         return $data;
 	}
 

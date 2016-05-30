@@ -19,21 +19,14 @@
         };
     }
 
-    AuthService.$inject = ['$rootScope'];
-    function AuthService($rootScope) {
+    AuthService.$inject = ['$rootScope', '$location'];
+    function AuthService($rootScope, $location) {
 
         var authService = {};
 
         authService.init = function () {
             if (!sessionStorage.getItem('user')) {
-                var user = {
-                    "username":"",
-                    "role":"guest",
-                    "isLogined":false,
-                    "userDataID":0
-                };
-                sessionStorage.setItem('user',angular.toJson(user));
-
+                authService.setGuest();
             }
             $rootScope.currentUser = angular.fromJson(sessionStorage.getItem('user'));
         };
@@ -44,6 +37,23 @@
             }
             return authorizedRoles.indexOf($rootScope.currentUser.role) !== -1;
         };
+
+        authService.setGuest = function () {
+            var user = {
+                    "username":"",
+                    "role":"guest",
+                    "isLogined":false,
+                    "userDataID":0
+                };
+                sessionStorage.setItem('user',angular.toJson(user));
+        };
+
+        authService.logOut = function () {
+            authService.setGuest();
+            $rootScope.currentUser = angular.fromJson(sessionStorage.getItem('user'));
+            $location.path('site/login');
+        }
+
         return authService;
     }
 
