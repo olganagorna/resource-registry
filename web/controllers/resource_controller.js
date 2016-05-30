@@ -25,12 +25,9 @@
             $scope.lat = {};
             $scope.lng = {};
             $scope.coord_center = {};
-
-            $scope.params = {
-                                // 3:{value:constant.DEFAULT_SQUAERE_VAL},
-                                // 6:{value:constant.DEFAULT_PERIM_VAL}
-                            };
-            $rootScope.allAttributes = [];
+            $scope.addParameter;
+            $scope.params = [];
+            $scope.allAttributes = {};
 
             $scope.resource = {};
             
@@ -348,15 +345,8 @@
                     .then(successHandler)
                     .catch(errorHandler);
                 function successHandler(data) {
-                    $rootScope.allAttributes = data.data;
-                    console.log($rootScope.allAttributes);
-                    
-                    // for (var i = 0; i < data.data.items.length; i++) {
-                    //     $rootScope.paramObj = {}
-                    //     $scope.params[data.data.items[i].name] = i;
-                    //     $rootScope.params.push($rootScope.paramObj);
-                    //     console.log($scope.params);
-                    // }
+                    $scope.allAttributes = data.data;
+                    console.log($scope.allAttributes);
                 }
                 function errorHandler(data) {
                     console.log("Can't reload list!");
@@ -364,19 +354,7 @@
             };
 
 
-            // $rootScope.getLocalAttributes = function(class_id) {
-            //     return $http.get('rest.php/attribute_class_views/findfilteredattributesforeachresourceclass?class_id=' + class_id)
-            //         .then(successHandler)
-            //         .catch(errorHandler);
-            //     function successHandler(data) {
-            //         $rootScope.localAttributes = data.data;
-            //         console.log($scope.localAttributes);
-                    
-            //     }
-            //     function errorHandler(data) {
-            //         // console.log("Can't reload list!");
-            //     }
-            // };
+
 
         $scope.ownerUpdate = false;
 
@@ -432,20 +410,29 @@
             };
 
 
-            function createParameters  (params, resourceId) {
+            // function createParameters  (params, resourceId) {
 
-                for (var i in params) {
+            //     for (var i in params) {
 
-                    if (params[i]) {
-                        params[i].resource_id = resourceId;
-                        params[i].attribute_id = parseInt(i) + 1;
-                        if (params[i]['attribute_id']===constant.SQUARE_ID){
-                            params[i]['value'] = toSquareMeters(params[i]['value']);
-                        }
-                        RestService.createData(params[i], constant.parametersQuery)
-                    }
-                }
-            };
+            //         if (params[i]) {
+            //             params[i].resource_id = resourceId;
+            //             params[i].attribute_id = parseInt(i) + 1;
+            //             if (params[i]['attribute_id']===constant.SQUARE_ID){
+            //                 params[i]['value'] = toSquareMeters(params[i]['value']);
+            //             }
+            //             RestService.createData(params[i], constant.parametersQuery)
+            //         }
+            //     }
+            // };
+
+            $scope.addParameters = function(value, attribute_id) {
+                // for (var i = 0; i < $scope.allAttributes.length; i++) {
+                //     $scope.params[[$scope.allAttributes[i].name]] = value[i];
+                    //$scope.params[[i]].push({attribute_id : $scope.allAttributes[i].attribute_id});
+                    console.log($scope.params);
+                    // $scope.params.shift();
+                // }
+            }
 
             function getArea(zones) {
                 var currzonecoords = [];
