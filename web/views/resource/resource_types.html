@@ -32,7 +32,7 @@
                 <li class="list-group-item row">
                     <div ng-repeat="data in xmlData[0]">
                         <div>
-                            <div class="btn btn-md btn-primary collapsed col-md-10" data-toggle="collapse" data-target="{{'#demo' + data[0].class_id}}">
+                            <div class="btn btn-md btn-primary collapsed col-md-10" ng-class="{'btn-disabled' : data[0].activation_status == 0}" ng-attr-data-toggle="{{data[0].activation_status == 1 ? 'collapse' : 'notcollapse'}}" data-target="{{'#demo' + data[0].class_id}}">
                                 <div class="col-md-10">{{data[0].name}}</div>
                             </div>    
                             <div class="btn-group text-left">
