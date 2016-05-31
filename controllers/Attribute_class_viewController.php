@@ -66,40 +66,54 @@ class Attribute_class_viewController extends AppController
 
 
     public function actionAddattribute()
-    {
+    {   
+        $request= \Yii::$app->request->post();
         $last_id = ResourceAttribute::find()->select(['attribute_id'])->orderBy(['attribute_id' => SORT_DESC])->one();
         $attribute_id = $last_id->attribute_id + 1;
         if (!$post = \Yii::$app->getRequest()->getBodyParams()) {
             throw new \yii\web\HttpException(400, 'Дані не отримані');
         }
         $resourceAttributeModel = new resourceAttribute();
-        if ($resourceAttributeModel->findByAttributeName($post['attribute_name'])){
-            throw new \yii\web\HttpException(400, 'Такий атрибут уже існує');
-        }
-        $attribute_name = $post['attribute_name'];
-        $resourceAttributeModel->name = $attribute_name;
-        $resourceAttributeModel->is_global = 0;
-        if (!$resourceAttributeModel->save()){
-            foreach($resourceAttributeModel->errors as $key){
-                $errorMessage .= $key[0];
+            if ($resourceAttributeModel->findByAttributeName($post['attribute_name'])){
+                throw new \yii\web\HttpException(400, 'Такий атрибут уже існує');
             }
-            throw new \yii\web\HttpException(422,$errorMessage);
-        }
-        $attributeclassviewModel = new AttributeClassView();
-        $class_id = $post['class_id'];
-        $attributeclassviewModel->class_id = $class_id;
-        $attributeclassviewModel->attribute_id = $attribute_id;
-        if (!$attributeclassviewModel->save()){
-            foreach($attributeclassviewModel->errors as $key){
-                $errorMessage .= $key[0];
+            if(isset($request['attribute_name'])){
+                $attribute_name = $post['attribute_name'];
+            } else{
+                throw new \yii\web\HttpException(400, 'Дані не отримані');
             }
-            throw new \yii\web\HttpException(422,$errorMessage);
-        }
+            $resourceAttributeModel->name = $attribute_name;
+            $resourceAttributeModel->is_global = 0;
+            if (!$resourceAttributeModel->save()){
+                foreach($resourceAttributeModel->errors as $key){
+                    $errorMessage .= $key[0];
+                }
+                throw new \yii\web\HttpException(422,$errorMessage);
+            }
+            $attributeclassviewModel = new AttributeClassView();
+            if(isset($request['class_id'])){
+                $class_id = $post['class_id'];
+            } else{
+                throw new \yii\web\HttpException(400, 'Дані не отримані');
+            }
+            $attributeclassviewModel->class_id = $class_id;
+            $attributeclassviewModel->attribute_id = $attribute_id;
+            if (!$attributeclassviewModel->save()){
+                foreach($attributeclassviewModel->errors as $key){
+                    $errorMessage .= $key[0];
+                }
+                throw new \yii\web\HttpException(422,$errorMessage);
+            }
+        // }
     }
     public function actionDeleteattribute()
     {
         $request = \Yii::$app->request->get();
-        $getdata = AttributeClassView::find()->where(['attribute_id'=>$request['attr_id']])->one();
+        if(isset($request['attr_id'])){
+            $getdata = AttributeClassView::find()->where(['attribute_id'=>$request['attr_id']])->one();
+        } else{
+            throw new \yii\web\HttpException(400, 'Дані не отримані');
+        }
         if($getdata){
             $getdata->delete();
         }
@@ -107,20 +121,13 @@ class Attribute_class_viewController extends AppController
     public function actionFindfilteredattributes()
     {   
         $request= \Yii::$app->request->get();
-
         $preRequest = "SELECT name, class_id , activation_status FROM resource_class";
-
-
         $preData = \Yii::$app->db->createCommand($preRequest)->queryAll();
-
         $preArray = [];
-
         for($i = 0; $i < count($preData); $i++) {
             array_push($preArray, $preData[$i][name]);
         }
-
         $attributes = $preArray;
-
         $sql = "SELECT name, attribute_id 
                 FROM resource_attribute 
                 WHERE attribute_id IN (SELECT attribute_id 
@@ -135,7 +142,6 @@ class Attribute_class_viewController extends AppController
                 ->queryAll();
             array_push($array, [$preData[$i]]);
             array_push($array[$i], $data);
-
         }
         array_push($arr, $array);
         return $arr;
