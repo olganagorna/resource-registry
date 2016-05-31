@@ -22,13 +22,15 @@
             community: ''
         };
 
+        vm.community = {community_id: 0};
+
         (function(){
             return $http.get('rest.php/communities')
 
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
-                vm.communities = data.data;
+                vm.itemsList = data.data.items;
             }
             function errorHandler(data){
                 console.log("Can't render list!");
@@ -36,18 +38,8 @@
         }());
 
         vm.registration = function(){
-            console.log('test');
 
-            vm.user.username = vm.username;
-            vm.user.password = vm.password;
-            vm.user.email = vm.email;
-            vm.user.last_name = vm.last_name;
-            vm.user.first_name =  vm.first_name;
-            vm.user.middle_name = vm.middle_name;
-            vm.user.passport_series =  vm.passport_series;
-            vm.user.passport_number = vm.passport_number;
-            vm.user.address = vm.address;
-            vm.user.community = vm.community;
+            vm.user.community = vm.community.community_id;
 
             vm.send = function () {
                 return $http.post('rest.php/users/adduser', vm.user)
@@ -65,12 +57,9 @@
                     console.log(result);
                 }
             };
-            vm.send();
+            //vm.send();
+            console.log(vm.user);
         };
-
-
-
     }
-
 })();
 
