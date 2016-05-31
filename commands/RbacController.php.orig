@@ -128,10 +128,14 @@ class RbacController extends Controller
         $auth->addChild($user, $resGettingdata);
         $auth->addChild($user, $resAdditiondata);
         $auth->addChild($user, $reqShow);
+<<<<<<< HEAD
+ 
+=======
         $auth->addChild($user, $reqAdd);
         $auth->addChild($user, $creatingRequest);
 
          
+>>>>>>> 7089806ba77cd2b8440ac03e2681b40750a43341
         // registrar
         $auth->addChild($registrar, $user);
         $auth->addChild($registrar, $search);

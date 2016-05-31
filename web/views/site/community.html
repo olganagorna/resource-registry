@@ -15,7 +15,6 @@
 			line-height: 56px;
 		}
 		.community-container .community-search {
-			_width: 100%;
 			height: 35px;
 			line-height: 35px;
 			padding: 0 10px;
@@ -26,6 +25,13 @@
 		.off-ng-animation.ng-animate {
 			transition: 0s;
 		}
+		.sorting-link {
+			color: #000;
+		}
+		.sorting-link:hover, .sorting-link:active, .sorting-link:focus {
+			text-decoration: none;
+			color: #000;
+		}
 	</style>
 
 
@@ -33,8 +39,7 @@
 		<div class="row">
 			<div class="col-lg-10">
 				<ng-form>
-					<span>Пошук по громаді &nbsp</span>
-					<input type="text" class="community-search" ng-model="communitySearch" />
+					<input type="text" class="community-search" ng-model="communitySearch" placeholder="Пошук по назві громади" size="30px"/>
 					<input class="btn btn-primary" type="submit" value="Пошук" ng-click="searchCommunity(community_name)"></input>
 					{{$scope.searchingVal}}
 				</ng-form>
@@ -49,7 +54,9 @@
 			<ul class="list-group">
 				<li class="list-group-item">
 					<div class="row">
-						<div class="col-lg-4">Назва громади</div>
+						<div class="col-lg-4">
+							<a href="#" ng-click="changeOrder()" class="sorting-link">Назва громади <span class="glyphicon glyphicon-sort-by-attributes"></span></a>
+						</div>
 						<div class="col-lg-2">Номер тому</div>
 						<div class="col-lg-4">Примітки</div>
 						<div class="col-lg-2">Дії</div>
@@ -76,44 +83,41 @@
 					</div>
 				</li>
 			</ul>
-			
-
-
 			<div class="col-md-8 margin_bottom">          
-                    <ul class="pagination pagination-sm" ng-if="communities._meta.pageCount > 1">
-
-                        <li ng-if="communities._links.first">
-                            <a href="" ng-click="setPage(communities._links.first.href, 'first')">&laquo;</a>
-                        </li>
-                        <li ng-if="communities._links.prev">
-                            <a href="" ng-click="setPage(communities._links.prev.href, 'prev')" >‹</a>
-                        </li>
-
-
-
-                        <li ng-repeat="page in getPages(communities._meta.pageCount) track by $index"
-                            ng-click="switchPage(page)" ng-class="{active: page == currentPage}"
-                            ng-if="page">
-                            <span>{{page}}</span>
-                        </li>
-
-					
-
-                        <li ng-if="communities._links.next">
-                            <a href="" ng-click="setPage(communities._links.next.href, 'next')" >›</a>
-                        </li>
-                        <li ng-if="communities._links.last">
-                            <a href="" ng-click="setPage(communities._links.last.href, 'last')">&raquo;</a>
-                        </li>
-                    </ul>
+                <ul class="pagination pagination-sm" ng-if="communities._meta.pageCount > 1">
+                    <li ng-if="communities._links.first">
+                        <a href="" ng-click="setPage(communities._links.first.href, 'first')">&laquo;</a>
+                    </li>
+                    <li ng-if="communities._links.prev">
+                        <a href="" ng-click="setPage(communities._links.prev.href, 'prev')" >‹</a>
+                    </li>
+                    <li ng-repeat="page in getPages(communities._meta.pageCount) track by $index"
+                        ng-click="switchPage(page)" ng-class="{active: page == currentPage}"
+                        ng-if="page">
+                        <span>{{page}}</span>
+                    </li>
+                    <li ng-if="communities._links.next">
+                        <a href="" ng-click="setPage(communities._links.next.href, 'next')" >›</a>
+                    </li>
+                    <li ng-if="communities._links.last">
+                        <a href="" ng-click="setPage(communities._links.last.href, 'last')">&raquo;</a>
+                    </li>
+                </ul>
            </div>  
 		</div>
 	</div>
-
-
-
-
-
-
-
 </div>
+<script>
+	$(document).ready(function() {
+		$(".sorting-link").click(function(e) {
+			e.preventDefault();
+			if ($(this).children("span").hasClass("glyphicon-sort-by-attributes")) {
+				$(this).children("span").removeClass("glyphicon-sort-by-attributes");
+				$(this).children("span").addClass("glyphicon-sort-by-attributes-alt");
+			} else {
+				$(this).children("span").removeClass("glyphicon-sort-by-attributes-alt");
+				$(this).children("span").addClass("glyphicon-sort-by-attributes");
+			}
+		});
+	});
+</script>

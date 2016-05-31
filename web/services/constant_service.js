@@ -49,7 +49,7 @@
         }
 
         ).constant('AUTH_EVENTS', {
-            sessionTimeout: 'auth-session-timeout',
+            routeChng: 'route-changes',
             notAuthenticated: 'auth-not-authenticated',
             notAuthorized: 'auth-not-authorized'
         });

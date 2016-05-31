@@ -13,11 +13,11 @@
         $scope.userSearch;
         $scope.sortingDone;
         $scope.roleFound = [];
-
+        $scope.communityFound = [];
 
         $scope.modifyRoleName = function() {
             var toEquate = {
-                    "user": "Користувач",
+                    "user": "Співвласник",
                     "registrar": "Реєстратор",
                     "admin": "Адміністратор",
                     "commissioner": "Уповноважений"
@@ -53,8 +53,7 @@
 
         $scope.switchPage = function(index) {
             var intervalID = setInterval(function(){
-                $rootScope.xmlDataLength = $rootScope.xmlData.length;
-                if ($rootScope.xmlData._meta.perPage) {
+                if ($rootScope.xmlData) {
                     if($scope.request) {
                         PaginationServicee.switchPage(index, constant.usersQuery + '/search?' + buildQuery($scope.request)+ '&')
                             .then(function(data) {
@@ -82,6 +81,7 @@
 
             },10);
         };
+
         $scope.switchPage($scope.currentPage);
         $scope.setPage = function(pageLink, pageType) {
             PaginationServicee.setPage(pageLink, pageType, $rootScope.xmlData._meta.pageCount)
@@ -142,9 +142,11 @@
 
         // activate or deactivate user
         $scope.changeActivationStatus = function(activation_status, user_id) {
-            $http.get('rest.php/users/changeactivationstatus?user_id='+ user_id + '&' + 'activation_status=' + activation_status)
-                .then(successHandler)
-                .catch(errorHandler);
+            if (confirm("Ви справді бажаєте змінити статус активації цього користувача?") == true) {
+                $http.get('rest.php/users/changeactivationstatus?user_id='+ user_id + '&' + 'activation_status=' + activation_status)
+                    .then(successHandler)
+                    .catch(errorHandler);
+            }
             function successHandler() {
                 $scope.refreshData();
             }
@@ -162,7 +164,7 @@
                 $scope.roleFound = data.data.items;
 
                 var toEquate = {
-                    "user": "Користувач",
+                    "user": "Співвласник",
                     "registrar": "Реєстратор",
                     "admin": "Адміністратор",
                     "commissioner": "Уповноважений"
@@ -178,11 +180,13 @@
             }
         }());
 
-        
-
         // change user role
         $scope.changeRole = function (changeRoleId, user_id) {
-            $http.get("rest.php/users/changerole?" + "user_id=" + user_id + "&role_id=" + changeRoleId)
+            $scope.role = {
+                role_id: changeRoleId,
+                user_id: user_id
+            }
+            $http.post('rest.php/users/changerole', JSON.stringify($scope.role))
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler() {
@@ -192,6 +196,36 @@
                 console.log("Can't reload list!");
             }
         };
+
+        // get list of communities
+        (function(){
+            return $http.get('rest.php/communities/show')
+                .then(successHandler)
+                .catch(errorHandler);
+            function successHandler(data) {
+                $scope.communityFound = data.data.items;             
+            }
+            function errorHandler(data) {
+                console.log("Can't reload list!");
+            }
+        }());
+
+        // change user community
+        $scope.changeCommunity = function(changeComId, user_id) {
+            $scope.community = {
+                community_id: changeComId,
+                user_id: user_id
+            }
+            $http.post('rest.php/users/changecommunity', JSON.stringify($scope.community))
+                .then(successHandler)
+                .catch(errorHandler);
+            function successHandler() {
+                $scope.refreshData();
+            }
+            function errorHandler() {
+                console.log("Can't reload list!");
+            }
+        }
     }
 })();
 

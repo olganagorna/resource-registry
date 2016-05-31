@@ -9,14 +9,17 @@
     function UsersCommunity($scope, $http, PaginationService, constant, $location) {
 
         $scope.communities = [];
-        $scope.searchingVal;
+        $scope.searchingVal = "";
+        console.log($scope.searchingVal + "<-");
+        $scope.orderBy = "ASC";
+
         (function(){
             return $http.get('rest.php/communities/show')
-
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
                 $scope.communities = data.data;
+                console.log($scope.communities);
             }
             function errorHandler(data){
                 console.log("Can't render list!");
@@ -24,10 +27,14 @@
         }());
 
         $scope.searchCommunity = function(community_name) {
+            if ($scope.communitySearch) {
+                $scope.searchingVal = $scope.communitySearch;
+            } else {
+                $scope.searchingVal = "";
+            }
 
-            $scope.searchingVal = $scope.communitySearch;
 
-            $http.get('http://rr.com/rest.php/communities/show?value='+ $scope.communitySearch)
+            $http.get('rest.php/communities/show?search='+ $scope.searchingVal + "&order=" + $scope.orderBy)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
@@ -57,7 +64,24 @@
             return PaginationService.getPages(pageCount);
         };
 
+        $scope.changeOrder = function() {
+            if ($scope.orderBy == "ASC") {
+                $scope.orderBy = "DESC";
 
+            } else {
+                $scope.orderBy = "ASC";
+            }
+
+            $http.get('rest.php/communities/show?search='+ $scope.searchingVal + "&order=" + $scope.orderBy)
+                .then(successHandler)
+                .catch(errorHandler);
+            function successHandler(data) {
+                $scope.communities = data.data;
+            }
+            function errorHandler(data){
+                console.log("Can't reload list!");
+            }
+        };
 
         $scope.switchPage = function(index){
             if($scope.request){
@@ -69,7 +93,7 @@
                 });
             } else if ($scope.searchingVal) {
                  console.log(constant.perPage);
-                PaginationService.switchPage(index, "communities/show?value=" + $scope.searchingVal + "&page=" + index + "&per-page=" + constant.perPage)
+                PaginationService.switchPage(index, 'communities/show?search='+ $scope.searchingVal + "&order=" + $scope.orderBy + "&page=" + index + "&per-page=" + constant.perPage)
                     .then(function(data){
                         $scope.communities = data.data;
                         $scope.currentPage = PaginationService.currentPage;
@@ -94,5 +118,6 @@
                     $scope.currentPage = PaginationService.currentPage;
             });
         };
+
     }
 })();

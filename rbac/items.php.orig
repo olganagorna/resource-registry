@@ -112,7 +112,10 @@ return [
             'resource/gettingdata',
             'resource/additiondata',
             'request/showrequest',
+<<<<<<< HEAD
+=======
             'request/addreq',
+>>>>>>> 7089806ba77cd2b8440ac03e2681b40750a43341
         ],
     ],
     'registrar' => [

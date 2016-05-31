@@ -62,4 +62,6 @@ class AttributeClassView extends \yii\db\ActiveRecord
     {
         return $this->hasMany(ResourceClass::className(), ['class_id' => 'class_id']);
     }
+
+    
 }

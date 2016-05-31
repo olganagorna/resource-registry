@@ -25,12 +25,9 @@
             $scope.lat = {};
             $scope.lng = {};
             $scope.coord_center = {};
-
-            $scope.params = {
-                                3:{value:constant.DEFAULT_SQUAERE_VAL},
-                                6:{value:constant.DEFAULT_PERIM_VAL}
-                            };
-
+            $scope.addParameter;
+            $scope.params = [];
+            $scope.allAttributes = {};
 
             $scope.resource = {};
             
@@ -81,17 +78,6 @@
 
             });
 
-            $scope.additionData = function(){
-                $http.post('rest.php/resources/additiondata', JSON.stringify($scope.cachCoordArray))
-                    .then(successHandler)
-                    .catch(errorHandler);
-                function successHandler(data) {
-                    console.log("success!!!");
-                }
-                function errorHandler(data){
-                    console.log("Can't reload list!");
-                }
-            };
 
             $scope.createCoords = function(lat, lng){
                 var lat = CoordsService.convertDMSToDD(lat.deg,lat.min, lat.sec).toFixed(8);
@@ -343,6 +329,22 @@
                 }
             };
 
+            $scope.getAllAttributes = function(class_id) {
+                return $http.get('rest.php/attribute_class_views/findallattributes?class_id=' + class_id)
+                    .then(successHandler)
+                    .catch(errorHandler);
+                function successHandler(data) {
+                    $scope.allAttributes = data.data;
+                    console.log($scope.allAttributes);
+                }
+                function errorHandler(data) {
+                    console.log("Can't reload list!");
+                }
+            };
+
+
+
+
         $scope.ownerUpdate = false;
 
         $scope.createResource = function(resource, owner, params) {
@@ -359,12 +361,8 @@
             resource.coords_center_lat = $scope.coord_center.lat;
             resource.coords_center_lng = $scope.coord_center.lng;
 
-            console.log($scope.coord_center.lng);
-            console.log($scope.coord_center.lat);
-
             if (!owner || Object.keys(owner).length < constant.paramsNumber || !isDataForObject(owner)) {
                     //'Create Resource without owner'
-
                     RestService.createData(resource, constant.resourcesQuery)
                          .then(function(response){
                              createParameters(params, response.data.resource_id);
@@ -372,18 +370,36 @@
 
                 } else if ($scope.ownerUpdate) {
                             //Create with actual  owner - owner ID
-
                             resource.owner_data_id = owner.personal_data_id;
+                            $scope.cachCoordArray.push([resource.class_id]);
+                            console.log(resource);
 
                             RestService.createData(resource, constant.resourcesQuery)
                                 .then(function(response){
                                     createParameters(params, response.data.resource_id);
-                                })
+                            })
+                            (function() {
+                                $scope.requestParams = {};
+                                $scope.requestParams.user_id = resource.registrar_data_id;
+                                $scope.requestParams.registrar_id = resource.owner_data_id;
+                                $scope.requestParams.registration_number = $scope.resource.registration_number;
+                                $scope.requestParams.requetType = 0;
+
+                                $http.post('rest.php/resources/creatingrequest', JSON.stringify($scope.requestParams))
+                                    .then(successHandler)
+                                    .catch(errorHandler);
+                                function successHandler(data) {
+                                    console.log("success!!!");
+                                }
+                                function errorHandler(data){
+                                    console.log("Bad answer!");
+                                } 
+                            })();
 
                 }else{
                        //create owner AND RESOURCE
 
-                       RestService.createData(owner, constant.personal_datasQuery)
+                        RestService.createData(owner, constant.personal_datasQuery)
                            .then(function (response) {
                                resource.owner_data_id = response.data.personal_data_id;
                                return RestService.createData(resource, constant.resourcesQuery);
@@ -394,23 +410,45 @@
                 }
                     $route.reload();
                     $location.path('resource/index');
+
             };
 
-
-            function createParameters  (params, resourceId) {
-
-                for (var i in params) {
-
-                    if (params[i]) {
-                        params[i].resource_id = resourceId;
-                        params[i].attribute_id = parseInt(i) + 1;
-                        if (params[i]['attribute_id']===constant.SQUARE_ID){
-                            params[i]['value'] = toSquareMeters(params[i]['value']);
-                        }
-                        RestService.createData(params[i], constant.parametersQuery)
-                    }
+            $scope.additionData = function(){
+                $http.post('rest.php/resources/additiondata', JSON.stringify($scope.cachCoordArray))
+                    .then(successHandler)
+                    .catch(errorHandler);
+                function successHandler(data) {
+                    console.log("success!!!");
+                }
+                function errorHandler(data){
+                    console.log("Can't reload list!");
                 }
             };
+
+
+            // function createParameters  (params, resourceId) {
+
+            //     for (var i in params) {
+
+            //         if (params[i]) {
+            //             params[i].resource_id = resourceId;
+            //             params[i].attribute_id = parseInt(i) + 1;
+            //             if (params[i]['attribute_id']===constant.SQUARE_ID){
+            //                 params[i]['value'] = toSquareMeters(params[i]['value']);
+            //             }
+            //             RestService.createData(params[i], constant.parametersQuery)
+            //         }
+            //     }
+            // };
+
+            $scope.addParameters = function(value, attribute_id) {
+                // for (var i = 0; i < $scope.allAttributes.length; i++) {
+                //     $scope.params[[$scope.allAttributes[i].name]] = value[i];
+                    //$scope.params[[i]].push({attribute_id : $scope.allAttributes[i].attribute_id});
+                    console.log($scope.params);
+                    // $scope.params.shift();
+                // }
+            }
 
             function getArea(zones) {
                 var currzonecoords = [];

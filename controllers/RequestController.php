@@ -57,10 +57,10 @@ class RequestController extends AppController
     {
         // Add request action. Variables should be changed
         $requestModel = new Request();
-        $type = 1;
-        $sender = 28;
+        $type = 0;
+        $sender = 29;
         $reciever = 3; 
-        $status = 1;
+        $status = 0;
 
         $requestModel->type = $type;
         $requestModel->sender = $sender;
