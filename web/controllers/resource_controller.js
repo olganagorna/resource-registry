@@ -71,7 +71,7 @@
                         $scope.sixSignedArea = 3 * $scope.twoTimesSignedArea;
 
                         $scope.cachCoordArray.push([ $scope.cxTimes6SignedArea / $scope.sixSignedArea, $scope.cyTimes6SignedArea / $scope.sixSignedArea]);
-                        $scope.cachCoordArray.push([$scope.resource.registration_number]);z
+                        $scope.cachCoordArray.push([$scope.resource.registration_number]);
 
                     }($scope.cachCoordArray));
                 }
