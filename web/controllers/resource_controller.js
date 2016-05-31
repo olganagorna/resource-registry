@@ -372,11 +372,29 @@
                             //Create with actual  owner - owner ID
                             resource.owner_data_id = owner.personal_data_id;
                             $scope.cachCoordArray.push([resource.class_id]);
+                            console.log(resource);
 
                             RestService.createData(resource, constant.resourcesQuery)
                                 .then(function(response){
                                     createParameters(params, response.data.resource_id);
-                                })
+                            })
+                            (function() {
+                                $scope.requestParams = {};
+                                $scope.requestParams.user_id = resource.registrar_data_id;
+                                $scope.requestParams.registrar_id = resource.owner_data_id;
+                                $scope.requestParams.registration_number = $scope.resource.registration_number;
+                                $scope.requestParams.requetType = 0;
+
+                                $http.post('rest.php/resources/creatingrequest', JSON.stringify($scope.requestParams))
+                                    .then(successHandler)
+                                    .catch(errorHandler);
+                                function successHandler(data) {
+                                    console.log("success!!!");
+                                }
+                                function errorHandler(data){
+                                    console.log("Bad answer!");
+                                } 
+                            })();
 
                 }else{
                        //create owner AND RESOURCE

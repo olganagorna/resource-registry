@@ -43,6 +43,8 @@ class RbacController extends Controller
         $auth->add($resCreate);
         $resGettingdata = $auth->createPermission('resource/gettingdata'); 
         $auth->add($resGettingdata);
+        $creatingRequest = $auth->createPermission('resource/creatingrequest'); 
+        $auth->add($creatingRequest);
         $resAdditiondata = $auth->createPermission('resource/additiondata');
         $auth->add($resAdditiondata); 
         $resourceClass = $auth->createPermission('resource_class/index'); 
@@ -127,6 +129,8 @@ class RbacController extends Controller
         $auth->addChild($user, $resAdditiondata);
         $auth->addChild($user, $reqShow);
         $auth->addChild($user, $reqAdd);
+        $auth->addChild($user, $creatingRequest);
+
          
         // registrar
         $auth->addChild($registrar, $user);

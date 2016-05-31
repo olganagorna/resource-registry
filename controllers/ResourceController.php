@@ -297,6 +297,12 @@ class ResourceController extends AppController
 			$coord->save();
 		}
 	}
+
+    public function actionCreatingrequest () {
+		$request = file_get_contents("php://input");
+		$data = json_decode($request);
+	}
+	
 	public function actionGettingdata(){
 		$request= \Yii::$app->request->get();
 		$params = [':min_lat' => $request['min_lat'], ':max_lat' => $request['max_lat'], ':min_lng' => $request['min_lng'], ':max_lng' => $request['max_lng']];
