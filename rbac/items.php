@@ -84,6 +84,7 @@ return [
             'resource/create',
             'resource/gettingdata',
             'resource/additiondata',
+            'request/showrequest',
         ],
     ],
     'registrar' => [

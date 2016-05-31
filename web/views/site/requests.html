@@ -32,10 +32,10 @@
 	</style>
 
 	<div class="container well">
-		<div class="row">
+		<div class="row">{{currentUser}}
 			<div class="col-lg-10">
 				<ng-form>
-					<span>Пошук запитів з відправників &nbsp</span>
+					<span>Пошук запитів <span ng-hide="currentUser.role == 'registrar'">по реєстраторам &nbsp</span><span ng-show="currentUser.role == 'registrar'">з відправників &nbsp</span></span>
 					<input type="text" class="requests-search" ng-model="requestSearch" ng-enter="searchRequest(requestSearch)" />
 					<input class="btn btn-primary" type="submit" value="Пошук" ng-click="searchRequest(requestSearch)"></input>
 					{{$scope.searchingVal}}
@@ -49,19 +49,19 @@
 				<li class="list-group-item">
 					<div class="row">
 						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6"><span class="glyphicon glyphicon-list-alt"></span> Тип</div>
-						<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs"><span class="glyphicon glyphicon-user"></span> Відправив</div>
-						<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs"><span class="glyphicon glyphicon-send"></span> Час створення</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs"><span class="glyphicon glyphicon-send"></span> Відправив</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs"><span class="glyphicon glyphicon-time"></span> Час створення</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs"><span class="glyphicon glyphicon-book"></span> Обробив</div>
-						<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs"><span class="glyphicon glyphicon-floppy-saved"></span> Час обробки</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs"><span class="glyphicon glyphicon-time"></span> Час обробки</div>
 						<div class="col-lg-1 col-md-1">Статус</div>
 					</div>
 				</li>
 				<li class="list-group-item" ng-repeat="data in xmlData.items">
 					<div class="row">
 						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6"><span ng-show="data.type == 0">"додати ресурс"</span><span ng-show="data.type == 1">"запит на витяг"</span></div>
-						<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">{{data.first_name_s | limitTo:1 }}. {{data.last_name_s}}  <span ng-hide="data.username_s == data.username_r">({{data.username_s}})	</span></div>
+						<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">{{data.first_name_s | limitTo:1 }}. {{data.last_name_s | limitTo:7}}<span ng-if="data.last_name_s.length > 7">&hellip;</span> (<span ng-if="data.username_s.length > 11">&hellip;</span>{{data.username_s | limitTo: -11}})</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">{{data.create_time * 1000 | date:'yyyy-MM-dd @ HH:mm'}}</div>
-						<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">{{data.first_name_r | limitTo:1 }}. {{data.last_name_r}} ({{data.username_r}})</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">{{data.first_name_r | limitTo:1 }}. {{data.last_name_r | limitTo:7}}<span ng-if="data.last_name_r.length > 7">&hellip;</span> (<span ng-if="data.username_r.length > 11">&hellip;</span>{{data.username_r | limitTo: -11}})</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs"><span ng-hide="data.complete_time == null">{{data.complete_time * 1000 | date:'yyyy-MM-dd @ HH:mm'}}</span></div>
 						<!-- {{data.complete_time * 1000 | date:'yyyy-MM-dd HH:mm:ss Z'}} -->
 						<div class="col-lg-1 col-md-1 col-sm-1"><div class="circular status-{{data.status}}"></div></div>

@@ -26,8 +26,8 @@
             }
         }());
 
+        // search by senders username
         $scope.searchRequest = function(requestSearch) {
-            console.log($scope.searchingVal);
             $http.get('rest.php/'+ $rootScope.requestQuery + '?value='+ $scope.requestSearch)
                 .then(successHandler)
                 .catch(errorHandler);
@@ -40,16 +40,11 @@
         };
 
         // $scope.addRequest = function() {
-        //   // add new community controller
         //   var data = {
-        //     // type: $scope.requests.type,
-        //     // sender: $scope.requests.sender,
-        //     // reciever: $scope.requests.reciever,
-        //     // status: $scope.requests.status
-        //     type: '2',
-        //     sender: '25',
-        //     reciever: '31',
-        //     status: '2'
+            // type: $scope.requests.type,
+            // sender: $scope.requests.sender,
+            // reciever: $scope.requests.reciever,
+            // status: $scope.requests.status
         //   };
 
         //   (function() {
