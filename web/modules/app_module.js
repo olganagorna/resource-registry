@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('restApp', ['ngRoute', 'restApp.map', 'ngCookies', 'calendar', 'datePicker', 'ui.bootstrap'])
+        .module('restApp', ['ngRoute', 'restApp.map', 'ngCookies', 'calendar', 'datePicker', 'ui.bootstrap', 'angular-toArrayFilter'])
         .config(config)
         .run(run);
 

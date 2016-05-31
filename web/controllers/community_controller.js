@@ -19,7 +19,6 @@
                 .catch(errorHandler);
             function successHandler(data) {
                 $scope.communities = data.data;
-                console.log($scope.communities);
             }
             function errorHandler(data){
                 console.log("Can't render list!");

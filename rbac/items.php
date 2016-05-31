@@ -9,6 +9,9 @@ return [
     'community/view' => [
         'type' => 2,
     ],
+    'community/index' => [
+        'type' => 2,
+    ],
     'community/update' => [
         'type' => 2,
     ],
@@ -132,6 +135,7 @@ return [
             'user/getrole',
             'user/changeactivationstatus',
             'user/changerole',
+            'community/index',
         ],
     ],
     'admin' => [
@@ -147,6 +151,7 @@ return [
             'community/show',
             'community/view',
             'community/update',
+            'community/index',
             'resource_class/addresourceclass',
             'resource_class/search',
             'resource_class/changeactivationstatus',
