@@ -37,14 +37,13 @@ class RequestController extends AppController
         // request value is used for search options 
             // for user search by registrar
             // for registrar search by user
-        $info->select(['req_id','type', 'u2.username as username_s', 'create_time', 'user.username as username_r', 'complete_time', 'status'])
-        ->innerJoinWith('sender')
-        ->innerJoinWith('reciever')
-        ->andFilterWhere(['like', 'u2.username', $request['value']])
+        $info->select(['req_id', 'type', 'pd_s.last_name as last_name_s', 'pd_s.first_name as first_name_s', 'u_s.username as username_s', 'create_time', 'pd_r.last_name as last_name_r', 'pd_r.first_name as first_name_r', 'user.username as username_r', 'complete_time', 'status'])
+        ->joinWith(['sender', 'reciever', 'sender.senderPersData', 'reciever.recieverPersData'])
         ->orderBy('status, create_time desc, complete_time desc')
         ->asArray();    
+        if (isset($request['value'])) $info->andFilterWhere(['like', 'u_s.username', $request['value']]);
 
-        return self::buildPagination($info, $paginatio=5);
+        return self::buildPagination($info, $pagination=5);
     }
 
     public function actionAddreq()

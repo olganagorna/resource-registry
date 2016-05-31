@@ -15,9 +15,9 @@ class CommunityController extends AppController
 		$community = Community::find();
 		
 		$community->select(['name', 'prefix', 'notes', 'community_id', 'isactive'])
-        ->andFilterWhere(['like', 'name', $request['value']])
         ->orderBy('name')
         ->asArray();
+        if (isset($request['value'])) $community->andFilterWhere(['like', 'name', $request['value']]);
 
         return self::buildPagination($community);
 	}

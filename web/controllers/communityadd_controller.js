@@ -40,8 +40,6 @@
           .then(successHandler)
           .catch(errorHandler);
         function successHandler(result) {
-          console.log('Реєстрація пройшла успішно!');
-          console.log(comAdd.community.name);
           $('.alert-success').toggle(); // show success alert
           comAdd.community = null;
           $scope.$setPristine(true);
@@ -49,7 +47,7 @@
 
         }
         function errorHandler(result){
-          console.log("Error:"+result);
+          alert("Error:"+result);
         }
       })();
       
