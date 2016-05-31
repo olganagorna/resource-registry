@@ -377,24 +377,24 @@
                             RestService.createData(resource, constant.resourcesQuery)
                                 .then(function(response){
                                     createParameters(params, response.data.resource_id);
-                            })
-                            (function() {
-                                $scope.requestParams = {};
-                                $scope.requestParams.user_id = resource.registrar_data_id;
-                                $scope.requestParams.registrar_id = resource.owner_data_id;
-                                $scope.requestParams.registration_number = $scope.resource.registration_number;
-                                $scope.requestParams.requetType = 0;
+                            });
+                            // (function() {
+                            //     $scope.requestParams = {};
+                            //     $scope.requestParams.user_id = resource.registrar_data_id;
+                            //     $scope.requestParams.registrar_id = resource.owner_data_id;
+                            //     $scope.requestParams.registration_number = $scope.resource.registration_number;
+                            //     $scope.requestParams.requetType = 0;
 
-                                $http.post('rest.php/resources/creatingrequest', JSON.stringify($scope.requestParams))
-                                    .then(successHandler)
-                                    .catch(errorHandler);
-                                function successHandler(data) {
-                                    console.log("success!!!");
-                                }
-                                function errorHandler(data){
-                                    console.log("Bad answer!");
-                                } 
-                            })();
+                            //     $http.post('rest.php/resources/creatingrequest', JSON.stringify($scope.requestParams))
+                            //         .then(successHandler)
+                            //         .catch(errorHandler);
+                            //     function successHandler(data) {
+                            //         console.log("success!!!");
+                            //     }
+                            //     function errorHandler(data){
+                            //         console.log("Bad answer!");
+                            //     } 
+                            // })();
 
                 }else{
                        //create owner AND RESOURCE
@@ -426,29 +426,29 @@
             };
 
 
-            // function createParameters  (params, resourceId) {
+            function createParameters  (params, resourceId) {
 
-            //     for (var i in params) {
+                for (var i in params) {
 
-            //         if (params[i]) {
-            //             params[i].resource_id = resourceId;
-            //             params[i].attribute_id = parseInt(i) + 1;
-            //             if (params[i]['attribute_id']===constant.SQUARE_ID){
-            //                 params[i]['value'] = toSquareMeters(params[i]['value']);
-            //             }
-            //             RestService.createData(params[i], constant.parametersQuery)
-            //         }
-            //     }
-            // };
+                    if (params[i]) {
+                        params[i].resource_id = resourceId;
+                        params[i].attribute_id = parseInt(i) + 1;
+                        if (params[i]['attribute_id']===constant.SQUARE_ID){
+                            params[i]['value'] = toSquareMeters(params[i]['value']);
+                        }
+                        RestService.createData(params[i], constant.parametersQuery)
+                    }
+                }
+            };
 
-            $scope.addParameters = function(value, attribute_id) {
+            // $scope.addParameters = function(value, attribute_id) {
                 // for (var i = 0; i < $scope.allAttributes.length; i++) {
                 //     $scope.params[[$scope.allAttributes[i].name]] = value[i];
                     //$scope.params[[i]].push({attribute_id : $scope.allAttributes[i].attribute_id});
-                    console.log($scope.params);
+                    // console.log($scope.params);
                     // $scope.params.shift();
                 // }
-            }
+            // }
 
             function getArea(zones) {
                 var currzonecoords = [];

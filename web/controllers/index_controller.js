@@ -26,7 +26,7 @@
 
         $scope.addAttribute = function(attribute, class_id) {
             $scope.attribute = {
-                attribute_name: attribute,
+                name: attribute,
                 class_id: class_id,
             }
             console.log($scope.attribute);

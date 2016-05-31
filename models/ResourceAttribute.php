@@ -29,8 +29,9 @@ class ResourceAttribute extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
-            [['name'], 'string', 'max' => 60]
+            ['name', 'required'],
+            ['name', 'unique', 'message' => 'Такий атрибут уже існує'],
+            ['name', 'string', 'max' => 60]
         ];
     }
 
