@@ -75,7 +75,9 @@ class UserController extends AppController {
             }
             $userModel->setPassword($post['password']);
             $userModel->email = $post['email'];
-            $userModel->role_id = 2;
+            $userModel->role_id = $post['role_id'];
+            $userModel->community_id = $post['community_id'];
+            $userModel->activation_status = $post['activation_status'];
             $userModel->user_data_id = $personalDataModel->personal_data_id;
             $userModel->generateAuthKey();
             if (!$userModel->save()) {

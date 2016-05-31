@@ -19,6 +19,8 @@
             passport_series: '',
             passport_number: '',
             address: '',
+            role_id: '1',
+            activation_status: '1',
             community: ''
         };
 
