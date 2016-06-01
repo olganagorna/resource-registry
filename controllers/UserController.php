@@ -27,6 +27,7 @@ class UserController extends AppController {
                 'role' => $roleName->name,
                 'isLogined' => true,
                 'userDataID' => \Yii::$app->user->identity->user_data_id,
+                'communityId' => \Yii::$app->user->identity->community_id
             ];  
         } else {
             return $modelLoginForm;
@@ -42,10 +43,11 @@ class UserController extends AppController {
         if (!$post = \Yii::$app->getRequest()->getBodyParams()) {
             throw new \yii\web\HttpException(400, 'Дані не отримані');
         }
-        $userModel = new User();
-        if ($userModel->findByUsername($post['username'])) {
+        if (User::findByUsername($post['username'])) {
             throw new \yii\web\HttpException(400, 'Користувач з таким логіном уже існує');
         }
+        $userModel = new User();
+
         $transaction = \Yii::$app->db->beginTransaction();
         try {
             $personalDataModel = new PersonalData();

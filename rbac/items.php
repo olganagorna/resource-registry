@@ -54,6 +54,9 @@ return [
     'user/getrole' => [
         'type' => 2,
     ],
+    'user/adduser' => [
+        'type' => 2,
+    ],
     'user/changeactivationstatus' => [
         'type' => 2,
     ],
@@ -135,6 +138,7 @@ return [
             'user/getrole',
             'user/changeactivationstatus',
             'user/changerole',
+            'user/adduser',
             'community/index',
         ],
     ],
@@ -147,6 +151,7 @@ return [
             'user/changeactivationstatus',
             'user/changerole',
             'user/changecommunity',
+            'user/adduser',
             'community/addcomm',
             'community/show',
             'community/view',
