@@ -112,7 +112,10 @@ class Attribute_class_viewController extends AppController
     {
         $request = \Yii::$app->request->get();
         if(isset($request['attr_id'])){
-            $getdata = AttributeClassView::find()->where(['attribute_id'=>$request['attr_id']])->one();
+            $getdata = AttributeClassView::findOne([
+            'attribute_id' => $request['attr_id'],
+            'class_id' => $request['class_id'],
+        ]);
         } else{
             throw new \yii\web\HttpException(400, 'Дані не отримані');
         }

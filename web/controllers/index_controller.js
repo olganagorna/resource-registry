@@ -53,7 +53,7 @@
                     .then(successHandler)
                     .catch(errorHandler);
                 function successHandler(result) {
-                    console.log(result);
+                    console.log(attr_id + class_id);
                     console.log('Атрибут видалено!');
                     $scope.getData();
                 }
