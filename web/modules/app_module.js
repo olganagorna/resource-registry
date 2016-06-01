@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('restApp', ['ngRoute', 'restApp.map', 'ngCookies', 'calendar', 'datePicker', 'ui.bootstrap'])
+        .module('restApp', ['ngRoute', 'restApp.map', 'ngCookies', 'calendar', 'datePicker', 'ui.bootstrap', 'angular-toArrayFilter'])
         .config(config)
         .run(run);
 
@@ -48,7 +48,7 @@
             templateUrl: 'views/resource/search_resource.html',
             controller: 'ExtendedSearchController',
             data: {
-                authRoles: ['admin']
+                authRoles: ['registrar']
             }
         })
         .when('/resource/delete/:resourceId', {
@@ -84,7 +84,7 @@
             controllerAs: 'list',
             templateUrl: 'views/site/users.html',
             data: {
-                authRoles: 'admin'
+                authRoles: ['admin', 'commissioner']
             }
         })
         .when('/site/restorepassword', {

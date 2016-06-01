@@ -71,7 +71,6 @@
                         $scope.sixSignedArea = 3 * $scope.twoTimesSignedArea;
 
                         $scope.cachCoordArray.push([ $scope.cxTimes6SignedArea / $scope.sixSignedArea, $scope.cyTimes6SignedArea / $scope.sixSignedArea]);
-                        $scope.cachCoordArray.push([$scope.resource.registration_number]);
 
                     }($scope.cachCoordArray));
                 }
@@ -198,7 +197,7 @@
                     .then(function(data){
                         $scope.personal_data = data.data;
                         $scope.resource.registrar_data_id = data.data.personal_data_id;
-                        getRegistrationNumber($rootScope.currentUser.userDataID);
+                        //getRegistrationNumber($rootScope.currentUser.userDataID);
 
                     })
             };
@@ -304,8 +303,18 @@
                     
                     RestService.getData(constant.personal_datasQuery + '/search?'+buildQuery(dataSearch))
                         .then(function (result) {
-                            $scope.show_search_result=true;
-                            $scope.owner_data = result.data;
+                            $scope.arrayCleaner = result.data;
+                            $scope.arrayDone = [];
+                            console.log($scope.arrayCleaner);
+                            for (var i = 0; i< $scope.arrayCleaner.length; i++) {
+                                console.log($scope.arrayCleaner[i]);
+                                if ($scope.arrayCleaner[i].role_id == '2' || $scope.arrayCleaner[i].role_id == '4' ) {
+                                    $scope.arrayDone.push($scope.arrayCleaner[$scope.arrayCleaner.length-1]);
+                                }
+                            }
+
+                            $scope.show_search_result = true;
+                            $scope.owner_data = $scope.arrayDone;
                         })
                 }
                 $scope.search.owner = {};
@@ -321,11 +330,15 @@
             };
 
             $scope.confirmOwner = function(data){
+                console.log(data);
+
+                $scope.ownerId = data.user_id;
 
                 if(confirm(constant.MSG_LOAD_USER)){
                     angular.copy(data,$scope.owner);
                     $scope.ownerUpdate = true;
                     $scope.show_search_result = false;
+                    getRegistrationNumber($scope.owner.personal_data_id);
                 }
             };
 
@@ -372,18 +385,20 @@
                             //Create with actual  owner - owner ID
                             resource.owner_data_id = owner.personal_data_id;
                             $scope.cachCoordArray.push([resource.class_id]);
-                            console.log(resource);
 
                             RestService.createData(resource, constant.resourcesQuery)
                                 .then(function(response){
                                     createParameters(params, response.data.resource_id);
-                            })
+                            });
                             (function() {
                                 $scope.requestParams = {};
                                 $scope.requestParams.user_id = resource.registrar_data_id;
-                                $scope.requestParams.registrar_id = resource.owner_data_id;
                                 $scope.requestParams.registration_number = $scope.resource.registration_number;
-                                $scope.requestParams.requetType = 0;
+                                $scope.requestParams.requestType = 0;
+                                $scope.requestParams.reciever_user_id = $scope.ownerId;
+                                $scope.cachCoordArray.push([$scope.resource.registration_number]);
+
+                                console.log(JSON.stringify($scope.requestParams));
 
                                 $http.post('rest.php/resources/creatingrequest', JSON.stringify($scope.requestParams))
                                     .then(successHandler)
@@ -414,6 +429,7 @@
             };
 
             $scope.additionData = function(){
+                console.log($scope.cachCoordArray);
                 $http.post('rest.php/resources/additiondata', JSON.stringify($scope.cachCoordArray))
                     .then(successHandler)
                     .catch(errorHandler);
@@ -463,17 +479,19 @@
 
             function getRegistrationNumber(id){
                 //get last registration number
-                RestService.getData(constant.resourcesQuery + '/getregisterkey?registrar_data_id=' + id)
+                RestService.getData('resources/registrationnumber?user_id=' + id)
                     .then(function(data){
-                        if (data.data.items.length){
-                            $scope.resource.registration_number = nextRegistrationKey(data.data.items[0].registration_number);
-                        }else{
-                            RestService.getData('personal_datas/' + id)
-                                .then(function(data){
-                                    if (data.data){
-                                        $scope.resource.registration_number = nextRegistrationKey(data.data.registrar_key);
-                                }
-                            });
+                        var returnedData = data.data;
+
+                        if (returnedData.length == 1 && returnedData[0] == null) {
+                            console.log("Не належить до жодної громади")
+                        } else if (returnedData.length == 2 && returnedData[1] == null )  {
+                            $scope.resource.registration_number = (returnedData[1] = (returnedData[0] + ":0001"));
+                        }
+
+                        else {
+                            $scope.resource.registration_number = nextRegistrationKey(returnedData[1]);
+
                         }
                     });
 
