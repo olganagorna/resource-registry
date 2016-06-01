@@ -39,8 +39,9 @@ class Request extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['res_id', 'type', 'sender', 'reciever', 'status'], 'integer'],
-            [['type', 'sender', 'status'], 'required'],
+            [['res_id'], 'string'],
+            [['type', 'sender', 'reciever', 'status'], 'integer'],
+            [['type', 'sender'], 'required'],
             [['create_time', 'complete_time'], 'safe']
         ];
     }

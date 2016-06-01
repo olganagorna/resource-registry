@@ -48,7 +48,7 @@
             templateUrl: 'views/resource/search_resource.html',
             controller: 'ExtendedSearchController',
             data: {
-                authRoles: ['admin']
+                authRoles: ['registrar']
             }
         })
         .when('/resource/delete/:resourceId', {

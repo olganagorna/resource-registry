@@ -27,7 +27,13 @@ return [
     'resource/create' => [
         'type' => 2,
     ],
+    'resource/registrationnumber' => [
+        'type' => 2,
+    ],
     'resource/gettingdata' => [
+        'type' => 2,
+    ],
+    'resource/creatingrequest' => [
         'type' => 2,
     ],
     'resource/additiondata' => [
@@ -113,6 +119,8 @@ return [
             'resource/additiondata',
             'request/showrequest',
             'request/addreq',
+            'resource/creatingrequest',
+            'resource/registrationnumber',
         ],
     ],
     'registrar' => [
@@ -125,6 +133,7 @@ return [
             'attribute_class_view/findfilteredattributes',
             'attribute_class_view/findfilteredattributesforeachresourceclass',
             'attribute_class_view/findallattributes',
+            'resource/registrationnumber',
         ],
     ],
     'commissioner' => [
