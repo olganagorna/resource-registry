@@ -71,21 +71,43 @@ class Attribute_class_viewController extends AppController
         $last_id = ResourceAttribute::find()->select(['attribute_id'])->orderBy(['attribute_id' => SORT_DESC])->one();
         $attribute_id = $last_id->attribute_id + 1;
         $post = array_merge(\Yii::$app->getRequest()->getBodyParams(), ['attribute_id' => $attribute_id]);
-
         $resourceAttributeModel = new \app\models\ResourceAttribute();
-        foreach(['resourceAttributeModel' => new \app\models\ResourceAttribute(),
+        $attributeclassviewModel = new \app\models\AttributeClassView();
+
+
+        if ($resourceAttributeModel->findByAttributeName($post['name'])){
+            $repeated_attr_id = ResourceAttribute::find()->select(['attribute_id'])->where(['name' => $post['name']])->asArray()->one();
+            $post = array_merge(\Yii::$app->getRequest()->getBodyParams(), ['attribute_id' => $repeated_attr_id['attribute_id']]);
+
+            foreach(['attributeclassviewModel' => new \app\models\AttributeClassView()] as $key => $value) {
+                $value->setAttributes($post);
+                if (!$value->validate()) {
+                    foreach($value->errors as $key){
+                        $errorMessage .= $key[0];
+                    }
+                    throw new \yii\web\HttpException(422,$errorMessage);
+                } else 
+                    $value->save();
+            }
+            
+        } 
+
+        else{
+            foreach(['resourceAttributeModel' => new \app\models\ResourceAttribute(),
                  'attributeclassviewModel' => new \app\models\AttributeClassView()] as $key => $value) {
-            $value->setAttributes($post);
-            if (!$value->validate()) {
-                foreach($value->errors as $key){
-                    $errorMessage .= $key[0];
-                }
-                throw new \yii\web\HttpException(422,$errorMessage);
-            } else 
-                $value->save();
+                $value->setAttributes($post);
+                if (!$value->validate()) {
+                    foreach($value->errors as $key){
+                        $errorMessage .= $key[0];
+                    }
+                    throw new \yii\web\HttpException(422,$errorMessage);
+                } else 
+                    $value->save();
+            }
         }
-    
+        
     }
+
     public function actionDeleteattribute()
     {
         $request = \Yii::$app->request->get();

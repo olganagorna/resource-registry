@@ -40,14 +40,16 @@
                     $scope.getData();
                 }
                 function errorHandler(result){
-                    console.log("Error:"+result);
+                    if(result.data.message.includes('error42')){
+                        alert('Такий атрибут існує');
+                    }
                 }
             })();
         };
 
-        $scope.deleteAttribute = function(attr_id){
+        $scope.deleteAttribute = function(attr_id, class_id){
             (function(){
-                return $http.get('rest.php/attribute_class_views/deleteattribute?attr_id=' + attr_id)
+                return $http.get('rest.php/attribute_class_views/deleteattribute?attr_id=' + attr_id + '&class_id=' + class_id)
                     .then(successHandler)
                     .catch(errorHandler);
                 function successHandler(result) {

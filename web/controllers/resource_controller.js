@@ -426,29 +426,30 @@
             };
 
 
-            function createParameters  (params, resourceId) {
+            // function createParameters  (params, resourceId) {
 
-                for (var i in params) {
+            //     for (var i in params) {
 
-                    if (params[i]) {
-                        params[i].resource_id = resourceId;
-                        params[i].attribute_id = parseInt(i) + 1;
-                        if (params[i]['attribute_id']===constant.SQUARE_ID){
-                            params[i]['value'] = toSquareMeters(params[i]['value']);
-                        }
-                        RestService.createData(params[i], constant.parametersQuery)
-                    }
+            //         if (params[i]) {
+            //             params[i].resource_id = resourceId;
+            //             params[i].attribute_id = parseInt(i) + 1;
+            //             if (params[i]['attribute_id']===constant.SQUARE_ID){
+            //                 params[i]['value'] = toSquareMeters(params[i]['value']);
+            //             }
+            //             RestService.createData(params[i], constant.parametersQuery)
+            //         }
+            //     }
+            // };
+
+            $scope.addParameters = function(value, attribute_id) {
+                for (var i = 0; i < $scope.allAttributes.length; i++) {
+                    $scope.params[[$scope.allAttributes[i].name]] = value[i];
+                    // $scope.params[[i]].push({attribute_id : $scope.allAttributes[i].attribute_id});
+                    
+                    $scope.params.shift();
                 }
-            };
-
-            // $scope.addParameters = function(value, attribute_id) {
-                // for (var i = 0; i < $scope.allAttributes.length; i++) {
-                //     $scope.params[[$scope.allAttributes[i].name]] = value[i];
-                    //$scope.params[[i]].push({attribute_id : $scope.allAttributes[i].attribute_id});
-                    // console.log($scope.params);
-                    // $scope.params.shift();
-                // }
-            // }
+                console.log($scope.params);
+            }
 
             function getArea(zones) {
                 var currzonecoords = [];
