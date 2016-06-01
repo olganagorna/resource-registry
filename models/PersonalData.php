@@ -40,7 +40,7 @@ class PersonalData extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['last_name', 'first_name', 'middle_name', 'passport_series', 'passport_number', 'address'], 'required', 'message' => "{attribute} не повинен бути пустим.\n"],
+            [['last_name', 'first_name', 'passport_series', 'passport_number', 'address'], 'required', 'message' => "{attribute} не повинен бути пустим.\n"],
             [['last_name', 'first_name', 'middle_name'], 'string', 'max' => 40],
             [['passport_series'], 'string', 'max' => 5],
             [['passport_number'], 'string', 'max' => 10],

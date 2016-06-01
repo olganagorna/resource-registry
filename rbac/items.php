@@ -9,6 +9,9 @@ return [
     'community/view' => [
         'type' => 2,
     ],
+    'community/index' => [
+        'type' => 2,
+    ],
     'community/update' => [
         'type' => 2,
     ],
@@ -55,6 +58,9 @@ return [
         'type' => 2,
     ],
     'user/getrole' => [
+        'type' => 2,
+    ],
+    'user/adduser' => [
         'type' => 2,
     ],
     'user/changeactivationstatus' => [
@@ -145,6 +151,8 @@ return [
             'user/getrole',
             'user/changeactivationstatus',
             'user/changerole',
+            'user/adduser',
+            'community/index',
         ],
     ],
     'admin' => [
@@ -156,10 +164,12 @@ return [
             'user/changeactivationstatus',
             'user/changerole',
             'user/changecommunity',
+            'user/adduser',
             'community/addcomm',
             'community/show',
             'community/view',
             'community/update',
+            'community/index',
             'resource_class/addresourceclass',
             'resource_class/search',
             'resource_class/changeactivationstatus',

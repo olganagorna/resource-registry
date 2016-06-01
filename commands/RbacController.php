@@ -29,6 +29,8 @@ class RbacController extends Controller
         $auth->add($commAdd);
         $commView = $auth->createPermission('community/view'); 
         $auth->add($commView);
+        $commIndex = $auth->createPermission('community/index'); 
+        $auth->add($commIndex);
         $commUpdt = $auth->createPermission('community/update'); 
         $auth->add($commUpdt); 
         $view = $auth->createPermission('resource/view'); 
@@ -61,6 +63,8 @@ class RbacController extends Controller
         $auth->add($userdata);
         $userGetRole = $auth->createPermission('user/getrole'); 
         $auth->add($userGetRole);
+        $userAdduser = $auth->createPermission('user/adduser'); 
+        $auth->add($userAdduser);
         $userChngActSt = $auth->createPermission('user/changeactivationstatus'); 
         $auth->add($userChngActSt);
         $userChngRole = $auth->createPermission('user/changerole'); 
@@ -151,17 +155,21 @@ class RbacController extends Controller
         $auth->addChild($commissioner, $userGetRole);
         $auth->addChild($commissioner, $userChngActSt);
         $auth->addChild($commissioner, $userChngRole);
- 
+        $auth->addChild($commissioner, $userAdduser);
+        $auth->addChild($commissioner, $commIndex);
+
         // admin
         $auth->addChild($admin, $userdata);
         $auth->addChild($admin, $userGetRole);
         $auth->addChild($admin, $userChngActSt);
         $auth->addChild($admin, $userChngRole);
         $auth->addChild($admin, $userChngCommunity);
+        $auth->addChild($admin, $userAdduser);
         $auth->addChild($admin, $commAdd);
         $auth->addChild($admin, $commShow);
         $auth->addChild($admin, $commView);
         $auth->addChild($admin, $commUpdt);
+        $auth->addChild($admin, $commIndex);
         $auth->addChild($admin, $addResClass);        
         $auth->addChild($admin, $resourceClassSearch);
         $auth->addChild($admin, $resourceClassChangeActivationStatus);
