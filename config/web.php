@@ -64,7 +64,8 @@ $config = [
                     'POST changecommunity' => 'changecommunity',
                     'GET findglobalattributes' => 'findglobalattributes',
                     'GET findfilteredattributes' => 'findfilteredattributes',
-                    'GET findfilteredattributesforeachresourceclass' => 'findfilteredattributesforeachresourceclass'
+                    'GET findfilteredattributesforeachresourceclass' => 'findfilteredattributesforeachresourceclass',
+                    'GET getresourceclass' => 'getresourceclass'
                     ],
                 ],
             ],

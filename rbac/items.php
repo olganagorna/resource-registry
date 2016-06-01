@@ -96,6 +96,9 @@ return [
     'resource_attribute/findglobalattributes' => [
         'type' => 2,
     ],
+    'resource_class/getresourceclass' => [
+        'type' => 2,
+    ],
     'user' => [
         'type' => 1,
         'ruleName' => 'userGroup',
@@ -132,6 +135,7 @@ return [
             'user/getrole',
             'user/changeactivationstatus',
             'user/changerole',
+            'community/show',
         ],
     ],
     'admin' => [
@@ -148,6 +152,7 @@ return [
             'community/view',
             'community/update',
             'resource_class/addresourceclass',
+            'resource_class/getresourceclass',
             'resource_class/search',
             'resource_class/changeactivationstatus',
             'resource_class/index',

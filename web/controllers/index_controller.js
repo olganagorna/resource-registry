@@ -11,6 +11,8 @@
         $rootScope.localAttributes = [];
         $scope.addAttr;
         $scope.globalAttributes = [];
+        $scope.searchVal = "";
+        $scope.orderBy = "ASC";
 
         ($scope.getData = function() {
             return $http.get('rest.php/attribute_class_views/findfilteredattributes')
@@ -142,6 +144,26 @@
                 $scope.member = '';
             });
         };
+
+        $scope.searchResClass = function(name) {
+            if ($scope.resClassSearch) {
+                $scope.searchVal = $scope.resClassSearch;
+            } else {
+                $scope.searchVal = "";
+            }
+
+
+            $http.get('rest.php/resource_classes/getresourceclass?search='+ $scope.searchVal + "&order=" + $scope.orderBy)
+                .then(successHandler)
+                .catch(errorHandler);
+            function successHandler(data) {
+                $scope.xmlData = data.data;
+            }
+            function errorHandler(data){
+                console.log("Can't reload list!");
+            }
+        };
+
     }
 
 })();

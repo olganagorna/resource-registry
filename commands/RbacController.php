@@ -89,6 +89,9 @@ class RbacController extends Controller
         $auth->add($findGlobalAttr);
         $addResClass = $auth->createPermission('resource_class/addresourceclass'); 
         $auth->add($addResClass);
+        $getResClass = $auth->createPermission('resource_class/getresourceclass'); 
+        $auth->add($getResClass);
+        
         
         
         
@@ -136,6 +139,9 @@ class RbacController extends Controller
         $auth->addChild($commissioner, $userGetRole);
         $auth->addChild($commissioner, $userChngActSt);
         $auth->addChild($commissioner, $userChngRole);
+        // $auth->addChild($commissioner, $userChngCommunity);
+        $auth->addChild($commissioner, $commShow);
+        
  
         // admin
         $auth->addChild($admin, $userdata);
@@ -147,7 +153,8 @@ class RbacController extends Controller
         $auth->addChild($admin, $commShow);
         $auth->addChild($admin, $commView);
         $auth->addChild($admin, $commUpdt);
-        $auth->addChild($admin, $addResClass);        
+        $auth->addChild($admin, $addResClass);
+        $auth->addChild($admin, $getResClass);         
         $auth->addChild($admin, $resourceClassSearch);
         $auth->addChild($admin, $resourceClassChangeActivationStatus);
         $auth->addChild($admin, $resourceClass);
@@ -160,6 +167,7 @@ class RbacController extends Controller
         $auth->addChild($admin, $findGlobalAttr);
         $auth->addChild($admin, $findFilteredAttr);
         $auth->addChild($admin, $findFilteredAttrbyResourceClass);
+
         
         
         
