@@ -6,6 +6,7 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use app\models\Request;
 use app\models\RequestSearch;
+use app\models\Role;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -34,21 +35,27 @@ class RequestController extends AppController
     {   
         $request = \Yii::$app->request->get();
         $view = \Yii::$app->user->identity->username;
-        $view_registrar = \Yii::$app->user->identity->community_id;
+        $viewRegistrar = \Yii::$app->user->identity->community_id;
+        $roleName = Role::findOne(\Yii::$app->user->identity->role_id);
+        if ($request['option'] == 2) { $username = 'u_s.username';} else { $username = 'user.username';}
         $info = Request::find();
         // request value is used for search options
         $info->select(['req_id', 'type', 'pd_s.last_name as last_name_s', 'pd_s.first_name as first_name_s', 'u_s.username as username_s', 'create_time', 'pd_r.last_name as last_name_r', 'pd_r.first_name as first_name_r', 'user.username as username_r', 'complete_time', 'status'])
         ->joinWith(['sender', 'reciever', 'sender.senderPersData', 'reciever.recieverPersData'])
         ->orderBy('status, create_time desc, complete_time desc')
         ->asArray();
-        if ($roleName = 'registrar') { 
-            $info->andFilterWhere(['and', ['user.community_id' => $view_registrar], ['u_s.community_id' => $view_registrar]]);
-            if (isset($request['value'])) $info->andFilterWhere(['like', 'u_s.username', $request['value']]);
-
+        if ($roleName == is_string('registrar')) { 
+            $info->andFilterWhere(['and', ['user.community_id' => $viewRegistrar], ['u_s.community_id' => $viewRegistrar]]);
+            if (isset($request['value']) && isset($request['option'])) {
+                $info->andFilterWhere(['like', $username, $request['value']]);
+            };
         } else { 
             $info->andFilterWhere(['u_s.username' => $view]);
-            if (isset($request['value'])) $info->andFilterWhere(['like', 'user.username', $request['value']]);
+            if (isset($request['value'])) {
+                $info->andFilterWhere(['like', $username, $request['value']]);
+            };
         };
+        
 
         return self::buildPagination($info, $pagination=5);
     }
@@ -58,8 +65,8 @@ class RequestController extends AppController
         // Add request action. Variables should be changed
         $requestModel = new Request();
         $type = 0;
-        $sender = 29;
-        $reciever = 3; 
+        $sender = 8;
+        $reciever = 27; 
         $status = 0;
 
         $requestModel->type = $type;
