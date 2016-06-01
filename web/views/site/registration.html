@@ -1,7 +1,7 @@
 <div>
     <div class="jumbotron col-md-6 md-login">
         <h2>Реєстрація</h2>
-        <form name="form" role="form">
+        <form name="form" role="form" ng-submit="vm.registration()">
             <div class="form-group" >
                 <label for="username">Логін</label>
                 <input type="text" name="username" class="form-control" ng-model="vm.user.username" required />
@@ -43,7 +43,7 @@
                 <dropdown-list data-items-list="vm.itemsList" data-search-result="vm.community" data-placeholder="пошук"></dropdown-list> 
             </div>
             <div class="form-actions">
-                <button type="submit" ng-click="vm.registration()" class="btn btn-primary">Зареєструватись</button>
+                <button type="submit" class="btn btn-primary">Зареєструватись</button>
                 <a href="site/users" class="btn btn-link">Відмінити</a>
             </div>
         </form>

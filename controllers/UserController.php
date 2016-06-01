@@ -10,17 +10,14 @@ use app\models\Community;
 use yii\web\Session;
 use app\controllers\AppController;
 
-class UserController extends AppController {
+class UserController extends AppController 
+{
     public $modelClass = 'app\models\User';
     public function actionLogin() {
         $modelLoginForm = new LoginForm();
         $post = \Yii::$app->request->post();
         
         if ($modelLoginForm->load($post, '') && $modelLoginForm->login() ) {
-            if (!\Yii::$app->user->identity->activation_status) {
-                // TODO: add some graceful exception or show error
-                return $modelLoginForm;
-            };
             $roleName = Role::findOne(\Yii::$app->user->identity->role_id);
             return [
                 'username' => \Yii::$app->user->identity->username,

@@ -10,7 +10,6 @@
 
         $scope.communities = [];
         $scope.searchingVal = "";
-        console.log($scope.searchingVal + "<-");
         $scope.orderBy = "ASC";
 
         (function(){
@@ -21,7 +20,6 @@
                 $scope.communities = data.data;
             }
             function errorHandler(data){
-                console.log("Can't render list!");
             }
         }());
 
@@ -40,11 +38,13 @@
                 $scope.communities = data.data;
             }
             function errorHandler(data){
-                console.log("Can't reload list!");
             }
         };
 
         $scope.chngActiveStatus = function(data, status) {
+            if (status == 0 && !confirm("Ви дійсно бажаєте дективувати громаду?")) {
+                return;
+            }
             var prev_stat = data.isactive;
             data.isactive = status;
             var post = $http.put('rest.php/communities/'+data.community_id, data)
