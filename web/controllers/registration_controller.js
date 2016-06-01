@@ -5,60 +5,54 @@
         .module('restApp')
         .controller('RegistrationCtrl', RegisterController);
 
-    RegisterController.$inject = ['$location', '$rootScope', '$scope', '$http'];
-    function RegisterController($location, $rootScope, $scope, $http) {
+    RegisterController.$inject = ['$rootScope', '$http'];
+    function RegisterController($rootScope, $http) {
         var vm = this;
-
-
-        vm.user = {
-            username: '',
-            password: '',
-            email: '',
-            last_name: '',
-            first_name: '',
-            middle_name: '',
-            passport_series: '',
-            passport_number: '',
-            address: '',
-            community: ''
-        };
-
-        vm.registration = function(){
-            console.log('test');
-
-            vm.user.username = vm.username;
-            vm.user.password = vm.password;
-            vm.user.email = vm.email;
-            vm.user.last_name = vm.last_name;
-            vm.user.first_name =  vm.first_name;
-            vm.user.middle_name = vm.middle_name;
-            vm.user.passport_series =  vm.passport_series;
-            vm.user.passport_number = vm.passport_number;
-            vm.user.address = vm.address;
-            vm.user.community = vm.community;
-
-            vm.send = function () {
-                return $http.post('rest.php/users/adduser', vm.user)
-                    .then(successHandler)
-                    .catch(errorHandler);
-                function successHandler(result) {
-                    console.log(result);
-                   // localStorage.setItem('username',vm.username);
-                    alert('Реєстрація пройшла успішно!');
-                   $location.path('/site/login');
-
-                }
-                function errorHandler(result){
-                    alert(result.data.message);
-                    console.log(result);
-                }
+        vm.setForm = function () {
+            vm.user = {
+                username: '',
+                password: '',
+                email: '',
+                last_name: '',
+                first_name: '',
+                middle_name: '',
+                passport_series: '',
+                passport_number: '',
+                address: '',
+                role_id: '1',
+                activation_status: '1'
             };
-            vm.send();
+        }
+        vm.setForm();
+        if ($rootScope.currentUser.role === 'commissioner') {
+            vm.user.community_id = $rootScope.currentUser.communityId;
+        } else {
+            vm.community = {community_id: 0};
+            $http.get('rest.php/communities')
+                .then(successHandler);
+            function successHandler(data) {
+                vm.itemsList = data.data.items;
+            }
+        }
+        
+        vm.registration = function(){
+            if ($rootScope.currentUser.role !== 'commissioner') {
+                vm.user.community_id = vm.community.community_id;
+            }
+            if (vm.user.role_id == 3) {
+                delete vm.user.community_id;
+            }
+            $http.post('rest.php/users/adduser', vm.user)
+                .then(successHandler)
+                .catch(errorHandler);
+            function successHandler(result) {
+                alert('Реєстрація пройшла успішно!');
+                vm.setForm();
+            }
+            function errorHandler(result){
+                alert(result.data.message);
+            }
         };
-
-
-
     }
-
 })();
 
