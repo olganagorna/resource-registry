@@ -3,6 +3,16 @@
         <h2>Реєстрація</h2>
         <form name="form" role="form" ng-submit="vm.registration()">
             <div class="form-group" >
+                <input type="radio" name="user" value="1" checked/>
+                <label for="user">Співвласник</label>&nbsp;
+                <input type="radio" name="comm" value="4"/>
+                <label for="comm">Уповноважений</label>&nbsp;
+                <input type="radio" name="reg" value="2"/>
+                <label for="reg">Реєстратор</label>&nbsp;
+                <input type="radio" name="admin" value="3"/> 
+                <label for="admin">Адміністратор</label>
+            </div>
+            <div class="form-group" >
                 <label for="username">Логін</label>
                 <input type="text" name="username" class="form-control" ng-model="vm.user.username" required />
             </div>
