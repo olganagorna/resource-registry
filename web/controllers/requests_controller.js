@@ -11,6 +11,7 @@
         $rootScope.xmlData = [];
         $rootScope.requestQuery = 'requests/showrequest';
         $scope.searchingVal;
+        $scope.requestSearch = [];
         $rootScope.xmlDataLength;
 
         (function(){
@@ -23,12 +24,14 @@
             }
             function errorHandler(result){
                 console.log("Can't render list!");
+                alert (result.data.message);
             }
         }());
 
         // search by senders username
         $scope.searchRequest = function(requestSearch) {
-            $http.get('rest.php/'+ $rootScope.requestQuery + '?value='+ $scope.requestSearch)
+          // if ($scope.searchType == undefined ) {$scope.searchType = 0;}
+            $http.get('rest.php/'+ $rootScope.requestQuery + '?option='+ $scope.searchType + '&value='+ $scope.requestSearch)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {

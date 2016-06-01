@@ -28,7 +28,7 @@
 
         $scope.addAttribute = function(attribute, class_id) {
             $scope.attribute = {
-                attribute_name: attribute,
+                name: attribute,
                 class_id: class_id,
             }
             console.log($scope.attribute);
@@ -42,18 +42,20 @@
                     $scope.getData();
                 }
                 function errorHandler(result){
-                    console.log("Error:"+result);
+                    if(result.data.message.includes('error42')){
+                        alert('Такий атрибут існує');
+                    }
                 }
             })();
         };
 
-        $scope.deleteAttribute = function(attr_id){
+        $scope.deleteAttribute = function(attr_id, class_id){
             (function(){
-                return $http.get('rest.php/attribute_class_views/deleteattribute?attr_id=' + attr_id)
+                return $http.get('rest.php/attribute_class_views/deleteattribute?attr_id=' + attr_id + '&class_id=' + class_id)
                     .then(successHandler)
                     .catch(errorHandler);
                 function successHandler(result) {
-                    console.log(result);
+                    console.log(attr_id + class_id);
                     console.log('Атрибут видалено!');
                     $scope.getData();
                 }
@@ -100,7 +102,7 @@
                     .then(successHandler)
                     .catch(errorHandler);
                 function successHandler(status) {
-                    alertPopup(status.status);
+                    // alertPopup(status.status);
                     $scope.addResClass = "";
                     $scope.getData();
                 }

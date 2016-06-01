@@ -29,8 +29,9 @@ class ResourceAttribute extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
-            [['name'], 'string', 'max' => 60]
+            ['name', 'required'],
+            // ['name', 'unique', 'message' => 'Такий атрибут уже існує'],
+            ['name', 'string', 'max' => 60]
         ];
     }
 
@@ -63,7 +64,10 @@ class ResourceAttribute extends \yii\db\ActiveRecord
 
     public static function findByAttributeName($attribute_name)
     {
-        //find Community in DB by Name
         return static::findOne(['name' => $attribute_name]);
+    }
+    public static function findByAttributeId($attribute_id)
+    {
+        return static::findOne(['attribute_id' => $attribute_id]);
     }
 }
