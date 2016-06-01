@@ -61,7 +61,11 @@ $config = [
                     'POST addattribute' => 'addattribute',
                     'GET findlastattributeid' => 'findlastattributeid',
                     'GET deleteattribute' => 'deleteattribute',
+<<<<<<< HEAD
+=======
                     'POST changecommunity' => 'changecommunity',
+                    'GET findglobalattributes' => 'findglobalattributes',
+>>>>>>> 2b8446e7f3cd578b4c2953f8fc1133cf944b4f46
                     'GET findfilteredattributes' => 'findfilteredattributes',
                     'GET findallattributes' => 'findallattributes'
                     ],

@@ -46,11 +46,4 @@ class Resource_attributeController extends AppController
     		throw new \yii\web\HttpException(400, 'There are no query string');
     	}
     }
-    
-    public function actionFindglobalattributes()
-    {
-        $getglobalattributes = ResourceAttribute::find()->where(['is_global' => '1'])
-        ->asArray();
-        return self::buildPagination($getglobalattributes,false); 
-    }
 }

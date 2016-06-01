@@ -11,24 +11,23 @@
         $rootScope.xmlData = [];
         $rootScope.requestQuery = 'requests/showrequest';
         $scope.searchingVal;
+        $rootScope.xmlDataLength;
 
         (function(){
             return $http.get('rest.php/'+ $rootScope.requestQuery)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
-                console.log("lets start");
-                // console.log(typeof data.data);
                 $rootScope.xmlData = data.data;
-                $scope.requests.create_time = Date(data.data.create_time);
+                $rootScope.xmlData.create_time = Date(data.data.create_time);
             }
             function errorHandler(result){
                 console.log("Can't render list!");
             }
         }());
 
+        // search by senders username
         $scope.searchRequest = function(requestSearch) {
-            console.log($scope.searchingVal);
             $http.get('rest.php/'+ $rootScope.requestQuery + '?value='+ $scope.requestSearch)
                 .then(successHandler)
                 .catch(errorHandler);
@@ -41,16 +40,11 @@
         };
 
         // $scope.addRequest = function() {
-        //   // add new community controller
         //   var data = {
-        //     // type: $scope.requests.type,
-        //     // sender: $scope.requests.sender,
-        //     // reciever: $scope.requests.reciever,
-        //     // status: $scope.requests.status
-        //     type: '2',
-        //     sender: '25',
-        //     reciever: '31',
-        //     status: '2'
+            // type: $scope.requests.type,
+            // sender: $scope.requests.sender,
+            // reciever: $scope.requests.reciever,
+            // status: $scope.requests.status
         //   };
 
         //   (function() {
@@ -74,8 +68,7 @@
 
        $scope.switchPage = function(index) {
            var intervalID = setInterval(function(){
-               $rootScope.xmlDataLength = $rootScope.xmlData.length;
-               if ($rootScope.xmlData.xmlDataLength) {
+               if ($rootScope.xmlData) {
                    if($scope.request) {
                        PaginationServicee.switchPage(index, $rootScope.requestQuery + '/search?' + buildQuery($scope.request)+ '&')
                            .then(function(data) {

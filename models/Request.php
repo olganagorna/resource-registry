@@ -115,7 +115,7 @@ class Request extends \yii\db\ActiveRecord
     public function getSender()
     {
         return $this->hasOne(User::className(), ['user_id' => 'sender'])
-            ->from(User::tableName() . ' u2');  // user table alias as u2, because of ambiguity
+            ->from(User::tableName() . ' u_s');  // user table alias as u2, because of ambiguity
             // ->from(['u2' => User::tableName()]);
     }
 }

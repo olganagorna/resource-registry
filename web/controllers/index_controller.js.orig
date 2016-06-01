@@ -76,6 +76,9 @@
             }
         };
 
+<<<<<<< HEAD
+        
+=======
         function alertPopup(argument) {
             if(argument==200) {
                 alert($scope.resource_class.res_class_name + " додано!");    
@@ -86,7 +89,19 @@
             }   
         }
 
-        
+        ($scope.getGlobalattributes = function() {
+            return $http.get('rest.php/resource_attributes/findglobalattributes')
+                .then(successHandler)
+                .catch(errorHandler);
+            function successHandler(data) {
+                $scope.globalAttributes = data.data;
+                console.log($scope.globalAttributes);
+            }
+            function errorHandler(data) {
+                console.log("Can't reload list!");
+            }
+        })();
+>>>>>>> 2b8446e7f3cd578b4c2953f8fc1133cf944b4f46
 
 
         $scope.addResourceClass = function(name) {
