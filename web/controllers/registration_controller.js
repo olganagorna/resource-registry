@@ -39,6 +39,9 @@
             if ($rootScope.currentUser.role !== 'commissioner') {
                 vm.user.community_id = vm.community.community_id;
             }
+            if (vm.user.role_id == 3) {
+                vm.user.community_id = 0;
+            }
             $http.post('rest.php/users/adduser', vm.user)
                 .then(successHandler)
                 .catch(errorHandler);
