@@ -40,7 +40,7 @@
 						<option value="" selected="true" >ваш вибір &nbsp</option>
 						<option value="1" >з реєстраторів &nbsp</option>
 						<option value="2">з відправників &nbsp</option>
-					</select><span ng-show="currentUser.role == 'registrar'">з реєстраторів &nbsp</span></span>
+					</select><span ng-hide="currentUser.role == 'registrar'">з реєстраторів &nbsp</span></span>
 					<input type="text" class="requests-search" ng-model="requestSearch" ng-enter="searchRequest(requestSearch)" />
 					<input class="btn btn-primary" type="submit" value="Пошук" ng-click="searchRequest(requestSearch)"></input>
 					{{$scope.searchingVal}}

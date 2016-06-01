@@ -28,8 +28,6 @@
     // };    
 
     comAdd.addCommunity = function() {
-      console.log(comAdd);
-      // add new community controller
       var dataMain = {
         com_name: comAdd.community.name,
         com_num: comAdd.community.num,
@@ -44,11 +42,8 @@
           $('.alert-success').toggle(); // show success alert
           comAdd.community = null;
           $scope.$setPristine(true);
-          //window.location.href = '/'; //community list
-
         }
         function errorHandler(result){
-          alert("Error:"+result);
         }
       })();
       
