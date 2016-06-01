@@ -63,7 +63,9 @@ $config = [
                     'GET deleteattribute' => 'deleteattribute',
                     'POST changecommunity' => 'changecommunity',
                     'GET findfilteredattributes' => 'findfilteredattributes',
-                    'GET findallattributes' => 'findallattributes'
+                    'GET findallattributes' => 'findallattributes',
+                    'GET registrationnumber' => 'registrationnumber',
+                    'POST creatingrequest' => 'creatingrequest'
                     ],
                 ],
             ],

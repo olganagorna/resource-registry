@@ -39,10 +39,12 @@ class RbacController extends Controller
         $auth->add($resIndex); 
         $getRgKey = $auth->createPermission('resource/getregisterkey'); 
         $auth->add($getRgKey); 
-        $resSearch = $auth->createPermission('resource/search'); 
+        $resSearch = $auth->createPermission('resource/search');
         $auth->add($resSearch);
         $resCreate = $auth->createPermission('resource/create');
         $auth->add($resCreate);
+        $resNum = $auth->createPermission('resource/registrationnumber');
+        $auth->add($resNum);
         $resGettingdata = $auth->createPermission('resource/gettingdata'); 
         $auth->add($resGettingdata);
         $creatingRequest = $auth->createPermission('resource/creatingrequest'); 
@@ -134,6 +136,7 @@ class RbacController extends Controller
         $auth->addChild($user, $reqShow);
         $auth->addChild($user, $reqAdd);
         $auth->addChild($user, $creatingRequest);
+        $auth->addChild($user, $resNum);
 
          
         // registrar
@@ -143,6 +146,7 @@ class RbacController extends Controller
         $auth->addChild($registrar, $findFilteredAttr);
         $auth->addChild($registrar, $findFilteredAttrbyResourceClass);
         $auth->addChild($registrar, $findAllAttr);
+        $auth->addChild($registrar, $resNum);
         
        
         // commissioner
