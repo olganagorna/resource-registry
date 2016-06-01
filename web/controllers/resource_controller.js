@@ -377,7 +377,7 @@
                             RestService.createData(resource, constant.resourcesQuery)
                                 .then(function(response){
                                     createParameters(params, response.data.resource_id);
-                            })
+                            });
                             (function() {
                                 $scope.requestParams = {};
                                 $scope.requestParams.user_id = resource.registrar_data_id;
