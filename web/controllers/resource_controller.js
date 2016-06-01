@@ -442,7 +442,7 @@
             };
 
 
-            // function createParameters  (params, resourceId) {
+            function createParameters  (params, resourceId) {
 
             //     for (var i in params) {
 
@@ -455,14 +455,14 @@
             //             RestService.createData(params[i], constant.parametersQuery)
             //         }
             //     }
-            // };
+            };
 
             $scope.addParameters = function(value, attribute_id) {
-                for (var i = 0; i < $scope.allAttributes.length; i++) {
-                    $scope.params[[$scope.allAttributes[i].name]] = value[i];
+                // for (var i = 0; i < $scope.allAttributes.length; i++) {
+                //     $scope.params[[$scope.allAttributes[i].name]] = value[i];
                     
-                    $scope.params.shift();
-                }
+                //     $scope.params.shift();
+                // }
                 console.log($scope.params);
             }
 
