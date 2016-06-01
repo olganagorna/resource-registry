@@ -25,12 +25,9 @@
             $scope.lat = {};
             $scope.lng = {};
             $scope.coord_center = {};
-
-            $scope.params = {
-                                3:{value:constant.DEFAULT_SQUAERE_VAL},
-                                6:{value:constant.DEFAULT_PERIM_VAL}
-                            };
-
+            $scope.addParameter;
+            $scope.params = [];
+            $scope.allAttributes = {};
 
             $scope.resource = {};
             
@@ -74,24 +71,12 @@
                         $scope.sixSignedArea = 3 * $scope.twoTimesSignedArea;
 
                         $scope.cachCoordArray.push([ $scope.cxTimes6SignedArea / $scope.sixSignedArea, $scope.cyTimes6SignedArea / $scope.sixSignedArea]);
-                        $scope.cachCoordArray.push([$scope.resource.registration_number]);z
 
                     }($scope.cachCoordArray));
                 }
 
             });
 
-            $scope.additionData = function(){
-                $http.post('rest.php/resources/additiondata', JSON.stringify($scope.cachCoordArray))
-                    .then(successHandler)
-                    .catch(errorHandler);
-                function successHandler(data) {
-                    console.log("success!!!");
-                }
-                function errorHandler(data){
-                    console.log("Can't reload list!");
-                }
-            };
 
             $scope.createCoords = function(lat, lng){
                 var lat = CoordsService.convertDMSToDD(lat.deg,lat.min, lat.sec).toFixed(8);
@@ -212,7 +197,7 @@
                     .then(function(data){
                         $scope.personal_data = data.data;
                         $scope.resource.registrar_data_id = data.data.personal_data_id;
-                        getRegistrationNumber($rootScope.currentUser.userDataID);
+                        //getRegistrationNumber($rootScope.currentUser.userDataID);
 
                     })
             };
@@ -318,8 +303,18 @@
                     
                     RestService.getData(constant.personal_datasQuery + '/search?'+buildQuery(dataSearch))
                         .then(function (result) {
-                            $scope.show_search_result=true;
-                            $scope.owner_data = result.data;
+                            $scope.arrayCleaner = result.data;
+                            $scope.arrayDone = [];
+                            console.log($scope.arrayCleaner);
+                            for (var i = 0; i< $scope.arrayCleaner.length; i++) {
+                                console.log($scope.arrayCleaner[i]);
+                                if ($scope.arrayCleaner[i].role_id == '2' || $scope.arrayCleaner[i].role_id == '4' ) {
+                                    $scope.arrayDone.push($scope.arrayCleaner[$scope.arrayCleaner.length-1]);
+                                }
+                            }
+
+                            $scope.show_search_result = true;
+                            $scope.owner_data = $scope.arrayDone;
                         })
                 }
                 $scope.search.owner = {};
@@ -335,13 +330,33 @@
             };
 
             $scope.confirmOwner = function(data){
+                console.log(data);
+
+                $scope.ownerId = data.user_id;
 
                 if(confirm(constant.MSG_LOAD_USER)){
                     angular.copy(data,$scope.owner);
                     $scope.ownerUpdate = true;
                     $scope.show_search_result = false;
+                    getRegistrationNumber($scope.owner.personal_data_id);
                 }
             };
+
+            $scope.getAllAttributes = function(class_id) {
+                return $http.get('rest.php/attribute_class_views/findallattributes?class_id=' + class_id)
+                    .then(successHandler)
+                    .catch(errorHandler);
+                function successHandler(data) {
+                    $scope.allAttributes = data.data;
+                    console.log($scope.allAttributes);
+                }
+                function errorHandler(data) {
+                    console.log("Can't reload list!");
+                }
+            };
+
+
+
 
         $scope.ownerUpdate = false;
 
@@ -358,11 +373,9 @@
 
             resource.coords_center_lat = $scope.coord_center.lat;
             resource.coords_center_lng = $scope.coord_center.lng;
-            console.log(resource);
 
             if (!owner || Object.keys(owner).length < constant.paramsNumber || !isDataForObject(owner)) {
                     //'Create Resource without owner'
-
                     RestService.createData(resource, constant.resourcesQuery)
                          .then(function(response){
                              createParameters(params, response.data.resource_id);
@@ -370,18 +383,38 @@
 
                 } else if ($scope.ownerUpdate) {
                             //Create with actual  owner - owner ID
-
                             resource.owner_data_id = owner.personal_data_id;
+                            $scope.cachCoordArray.push([resource.class_id]);
 
                             RestService.createData(resource, constant.resourcesQuery)
                                 .then(function(response){
                                     createParameters(params, response.data.resource_id);
-                                })
+                            });
+                            (function() {
+                                $scope.requestParams = {};
+                                $scope.requestParams.user_id = resource.registrar_data_id;
+                                $scope.requestParams.registration_number = $scope.resource.registration_number;
+                                $scope.requestParams.requestType = 0;
+                                $scope.requestParams.reciever_user_id = $scope.ownerId;
+                                $scope.cachCoordArray.push([$scope.resource.registration_number]);
+
+                                console.log(JSON.stringify($scope.requestParams));
+
+                                $http.post('rest.php/resources/creatingrequest', JSON.stringify($scope.requestParams))
+                                    .then(successHandler)
+                                    .catch(errorHandler);
+                                function successHandler(data) {
+                                    console.log("success!!!");
+                                }
+                                function errorHandler(data){
+                                    console.log("Bad answer!");
+                                } 
+                            })();
 
                 }else{
                        //create owner AND RESOURCE
 
-                       RestService.createData(owner, constant.personal_datasQuery)
+                        RestService.createData(owner, constant.personal_datasQuery)
                            .then(function (response) {
                                resource.owner_data_id = response.data.personal_data_id;
                                return RestService.createData(resource, constant.resourcesQuery);
@@ -392,23 +425,46 @@
                 }
                     $route.reload();
                     $location.path('resource/index');
+
             };
 
-
-            function createParameters  (params, resourceId) {
-
-                for (var i in params) {
-
-                    if (params[i]) {
-                        params[i].resource_id = resourceId;
-                        params[i].attribute_id = parseInt(i) + 1;
-                        if (params[i]['attribute_id']===constant.SQUARE_ID){
-                            params[i]['value'] = toSquareMeters(params[i]['value']);
-                        }
-                        RestService.createData(params[i], constant.parametersQuery)
-                    }
+            $scope.additionData = function(){
+                console.log($scope.cachCoordArray);
+                $http.post('rest.php/resources/additiondata', JSON.stringify($scope.cachCoordArray))
+                    .then(successHandler)
+                    .catch(errorHandler);
+                function successHandler(data) {
+                    console.log("success!!!");
+                }
+                function errorHandler(data){
+                    console.log("Can't reload list!");
                 }
             };
+
+
+            // function createParameters  (params, resourceId) {
+
+            //     for (var i in params) {
+
+            //         if (params[i]) {
+            //             params[i].resource_id = resourceId;
+            //             params[i].attribute_id = parseInt(i) + 1;
+            //             if (params[i]['attribute_id']===constant.SQUARE_ID){
+            //                 params[i]['value'] = toSquareMeters(params[i]['value']);
+            //             }
+            //             RestService.createData(params[i], constant.parametersQuery)
+            //         }
+            //     }
+            // };
+
+            $scope.addParameters = function(value, attribute_id) {
+                // for (var i = 0; i < $scope.allAttributes.length; i++) {
+                //     $scope.params[[$scope.allAttributes[i].name]] = value[i];
+                    //$scope.params[[i]].push({attribute_id : $scope.allAttributes[i].attribute_id});
+                    console.log($scope.params);
+                    // $scope.params.shift();
+                // }
+            }
 
             function getArea(zones) {
                 var currzonecoords = [];
@@ -423,17 +479,19 @@
 
             function getRegistrationNumber(id){
                 //get last registration number
-                RestService.getData(constant.resourcesQuery + '/getregisterkey?registrar_data_id=' + id)
+                RestService.getData('resources/registrationnumber?user_id=' + id)
                     .then(function(data){
-                        if (data.data.items.length){
-                            $scope.resource.registration_number = nextRegistrationKey(data.data.items[0].registration_number);
-                        }else{
-                            RestService.getData('personal_datas/' + id)
-                                .then(function(data){
-                                    if (data.data){
-                                        $scope.resource.registration_number = nextRegistrationKey(data.data.registrar_key);
-                                }
-                            });
+                        var returnedData = data.data;
+
+                        if (returnedData.length == 1 && returnedData[0] == null) {
+                            console.log("Не належить до жодної громади")
+                        } else if (returnedData.length == 2 && returnedData[1] == null )  {
+                            $scope.resource.registration_number = (returnedData[1] = (returnedData[0] + ":0001"));
+                        }
+
+                        else {
+                            $scope.resource.registration_number = nextRegistrationKey(returnedData[1]);
+
                         }
                     });
 

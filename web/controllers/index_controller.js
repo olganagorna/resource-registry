@@ -8,9 +8,8 @@
     function IndexCtrl(RestService, $route, $routeParams, $location, constant, $filter , $rootScope, $scope, $http, PaginationService) {
         $scope.obj = 1;
         $scope.xmlData = [];
-        $rootScope.localAttributes = [];
         $scope.addAttr;
-        $scope.globalAttributes = [];
+
         $scope.searchVal = "";
         $scope.orderBy = "ASC";
 
@@ -89,33 +88,8 @@
             }   
         }
 
-        ($scope.getGlobalattributes = function() {
-            return $http.get('rest.php/resource_attributes/findglobalattributes')
-                .then(successHandler)
-                .catch(errorHandler);
-            function successHandler(data) {
-                $scope.globalAttributes = data.data;
-                console.log($scope.globalAttributes);
-            }
-            function errorHandler(data) {
-                console.log("Can't reload list!");
-            }
-        })();
+        
 
-
-        ($rootScope.getLocalAttributes = function(class_id) {
-            return $http.get('rest.php/attribute_class_views/findfilteredattributesforeachresourceclass?class_id=' + class_id)
-                .then(successHandler)
-                .catch(errorHandler);
-            function successHandler(data) {
-                $rootScope.localAttributes = data.data;
-                console.log($scope.localAttributes);
-                
-            }
-            function errorHandler(data) {
-                // console.log("Can't reload list!");
-            }
-        })();
 
         $scope.addResourceClass = function(name) {
             $scope.resource_class = {

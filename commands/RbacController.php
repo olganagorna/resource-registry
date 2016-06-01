@@ -29,6 +29,8 @@ class RbacController extends Controller
         $auth->add($commAdd);
         $commView = $auth->createPermission('community/view'); 
         $auth->add($commView);
+        $commIndex = $auth->createPermission('community/index'); 
+        $auth->add($commIndex);
         $commUpdt = $auth->createPermission('community/update'); 
         $auth->add($commUpdt); 
         $view = $auth->createPermission('resource/view'); 
@@ -37,12 +39,16 @@ class RbacController extends Controller
         $auth->add($resIndex); 
         $getRgKey = $auth->createPermission('resource/getregisterkey'); 
         $auth->add($getRgKey); 
-        $resSearch = $auth->createPermission('resource/search'); 
+        $resSearch = $auth->createPermission('resource/search');
         $auth->add($resSearch);
         $resCreate = $auth->createPermission('resource/create');
         $auth->add($resCreate);
+        $resNum = $auth->createPermission('resource/registrationnumber');
+        $auth->add($resNum);
         $resGettingdata = $auth->createPermission('resource/gettingdata'); 
         $auth->add($resGettingdata);
+        $creatingRequest = $auth->createPermission('resource/creatingrequest'); 
+        $auth->add($creatingRequest);
         $resAdditiondata = $auth->createPermission('resource/additiondata');
         $auth->add($resAdditiondata); 
         $resourceClass = $auth->createPermission('resource_class/index'); 
@@ -57,6 +63,8 @@ class RbacController extends Controller
         $auth->add($userdata);
         $userGetRole = $auth->createPermission('user/getrole'); 
         $auth->add($userGetRole);
+        $userAdduser = $auth->createPermission('user/adduser'); 
+        $auth->add($userAdduser);
         $userChngActSt = $auth->createPermission('user/changeactivationstatus'); 
         $auth->add($userChngActSt);
         $userChngRole = $auth->createPermission('user/changerole'); 
@@ -91,7 +99,11 @@ class RbacController extends Controller
         $auth->add($addResClass);
         $getResClass = $auth->createPermission('resource_class/getresourceclass'); 
         $auth->add($getResClass);
-        
+        $findAllAttr = $auth->createPermission('attribute_class_view/findallattributes'); 
+        $auth->add($findAllAttr);
+
+
+
         
         
         
@@ -125,6 +137,9 @@ class RbacController extends Controller
         $auth->addChild($user, $resAdditiondata);
         $auth->addChild($user, $reqShow);
         $auth->addChild($user, $reqAdd);
+        $auth->addChild($user, $creatingRequest);
+        $auth->addChild($user, $resNum);
+
          
         // registrar
         $auth->addChild($registrar, $user);
@@ -132,6 +147,9 @@ class RbacController extends Controller
         $auth->addChild($registrar, $findGlobalAttr);
         $auth->addChild($registrar, $findFilteredAttr);
         $auth->addChild($registrar, $findFilteredAttrbyResourceClass);
+        $auth->addChild($registrar, $findAllAttr);
+        $auth->addChild($registrar, $resNum);
+        
        
         // commissioner
         $auth->addChild($commissioner, $user);
@@ -139,20 +157,23 @@ class RbacController extends Controller
         $auth->addChild($commissioner, $userGetRole);
         $auth->addChild($commissioner, $userChngActSt);
         $auth->addChild($commissioner, $userChngRole);
-        // $auth->addChild($commissioner, $userChngCommunity);
+        $auth->addChild($commissioner, $userAdduser);
+        $auth->addChild($commissioner, $commIndex);
         $auth->addChild($commissioner, $commShow);
         
- 
+
         // admin
         $auth->addChild($admin, $userdata);
         $auth->addChild($admin, $userGetRole);
         $auth->addChild($admin, $userChngActSt);
         $auth->addChild($admin, $userChngRole);
         $auth->addChild($admin, $userChngCommunity);
+        $auth->addChild($admin, $userAdduser);
         $auth->addChild($admin, $commAdd);
         $auth->addChild($admin, $commShow);
         $auth->addChild($admin, $commView);
         $auth->addChild($admin, $commUpdt);
+        $auth->addChild($admin, $commIndex);
         $auth->addChild($admin, $addResClass);
         $auth->addChild($admin, $getResClass);         
         $auth->addChild($admin, $resourceClassSearch);

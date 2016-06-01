@@ -9,6 +9,9 @@ return [
     'community/view' => [
         'type' => 2,
     ],
+    'community/index' => [
+        'type' => 2,
+    ],
     'community/update' => [
         'type' => 2,
     ],
@@ -27,7 +30,13 @@ return [
     'resource/create' => [
         'type' => 2,
     ],
+    'resource/registrationnumber' => [
+        'type' => 2,
+    ],
     'resource/gettingdata' => [
+        'type' => 2,
+    ],
+    'resource/creatingrequest' => [
         'type' => 2,
     ],
     'resource/additiondata' => [
@@ -49,6 +58,9 @@ return [
         'type' => 2,
     ],
     'user/getrole' => [
+        'type' => 2,
+    ],
+    'user/adduser' => [
         'type' => 2,
     ],
     'user/changeactivationstatus' => [
@@ -99,6 +111,9 @@ return [
     'resource_class/getresourceclass' => [
         'type' => 2,
     ],
+    'attribute_class_view/findallattributes' => [
+        'type' => 2,
+    ],
     'user' => [
         'type' => 1,
         'ruleName' => 'userGroup',
@@ -113,6 +128,8 @@ return [
             'resource/additiondata',
             'request/showrequest',
             'request/addreq',
+            'resource/creatingrequest',
+            'resource/registrationnumber',
         ],
     ],
     'registrar' => [
@@ -124,6 +141,8 @@ return [
             'resource_attribute/findglobalattributes',
             'attribute_class_view/findfilteredattributes',
             'attribute_class_view/findfilteredattributesforeachresourceclass',
+            'attribute_class_view/findallattributes',
+            'resource/registrationnumber',
         ],
     ],
     'commissioner' => [
@@ -135,7 +154,9 @@ return [
             'user/getrole',
             'user/changeactivationstatus',
             'user/changerole',
+            'user/adduser',
             'community/show',
+            'community/index',
         ],
     ],
     'admin' => [
@@ -147,10 +168,12 @@ return [
             'user/changeactivationstatus',
             'user/changerole',
             'user/changecommunity',
+            'user/adduser',
             'community/addcomm',
             'community/show',
             'community/view',
             'community/update',
+            'community/index',
             'resource_class/addresourceclass',
             'resource_class/getresourceclass',
             'resource_class/search',

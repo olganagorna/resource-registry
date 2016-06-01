@@ -10,23 +10,21 @@ use app\models\Community;
 use yii\web\Session;
 use app\controllers\AppController;
 
-class UserController extends AppController {
+class UserController extends AppController 
+{
     public $modelClass = 'app\models\User';
     public function actionLogin() {
         $modelLoginForm = new LoginForm();
         $post = \Yii::$app->request->post();
         
         if ($modelLoginForm->load($post, '') && $modelLoginForm->login() ) {
-            if (!\Yii::$app->user->identity->activation_status) {
-                // TODO: add some graceful exception or show error
-                return $modelLoginForm;
-            };
             $roleName = Role::findOne(\Yii::$app->user->identity->role_id);
             return [
                 'username' => \Yii::$app->user->identity->username,
                 'role' => $roleName->name,
                 'isLogined' => true,
                 'userDataID' => \Yii::$app->user->identity->user_data_id,
+                'communityId' => \Yii::$app->user->identity->community_id
             ];  
         } else {
             return $modelLoginForm;
@@ -42,10 +40,11 @@ class UserController extends AppController {
         if (!$post = \Yii::$app->getRequest()->getBodyParams()) {
             throw new \yii\web\HttpException(400, 'Дані не отримані');
         }
-        $userModel = new User();
-        if ($userModel->findByUsername($post['username'])) {
+        if (User::findByUsername($post['username'])) {
             throw new \yii\web\HttpException(400, 'Користувач з таким логіном уже існує');
         }
+        $userModel = new User();
+
         $transaction = \Yii::$app->db->beginTransaction();
         try {
             $personalDataModel = new PersonalData();
@@ -75,7 +74,9 @@ class UserController extends AppController {
             }
             $userModel->setPassword($post['password']);
             $userModel->email = $post['email'];
-            $userModel->role_id = 2;
+            $userModel->role_id = $post['role_id'];
+            $userModel->community_id = $post['community_id'];
+            $userModel->activation_status = $post['activation_status'];
             $userModel->user_data_id = $personalDataModel->personal_data_id;
             $userModel->generateAuthKey();
             if (!$userModel->save()) {

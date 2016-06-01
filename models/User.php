@@ -124,4 +124,17 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+    public function getSenderPersData()
+    {
+        return $this->hasOne(PersonalData::className(), ['personal_data_id' => 'user_data_id'])
+            ->select(['pd_s.last_name', 'pd_s.first_name'])
+            ->from(PersonalData::tableName() . ' pd_s');
+    }
+    public function getRecieverPersData()
+    {
+        return $this->hasOne(PersonalData::className(), ['personal_data_id' => 'user_data_id'])
+            ->select(['pd_r.last_name', 'pd_r.first_name'])
+            ->from(PersonalData::tableName() . ' pd_r');  // personal_data table alias as pd2, because of ambiguity
+            // ->from(['pd2' => PersonalData::tableName()]);
+    }
 }

@@ -39,8 +39,9 @@ class Request extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['res_id', 'type', 'sender', 'reciever', 'status'], 'integer'],
-            [['type', 'sender', 'status'], 'required'],
+            [['res_id'], 'string'],
+            [['type', 'sender', 'reciever', 'status'], 'integer'],
+            [['type', 'sender'], 'required'],
             [['create_time', 'complete_time'], 'safe']
         ];
     }
@@ -115,7 +116,7 @@ class Request extends \yii\db\ActiveRecord
     public function getSender()
     {
         return $this->hasOne(User::className(), ['user_id' => 'sender'])
-            ->from(User::tableName() . ' u2');  // user table alias as u2, because of ambiguity
+            ->from(User::tableName() . ' u_s');  // user table alias as u2, because of ambiguity
             // ->from(['u2' => User::tableName()]);
     }
 }

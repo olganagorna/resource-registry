@@ -8,6 +8,9 @@ use app\models\ResourceClass;
 use app\models\Parameter;
 use app\models\ResourceAttribute;
 use app\models\Coordinates;
+use app\models\User;
+use app\models\Community;
+use app\models\Request;
 
 class ResourceController extends AppController
 {
@@ -288,13 +291,38 @@ class ResourceController extends AppController
 	public function actionAdditiondata() {
 		$request = file_get_contents("php://input");
 		$data = json_decode($request);
-		for($i = 0; $i < count($data) - 1; $i++){
+		for($i = 0; $i < count($data) - 2; $i++){
 			$coord = new Coordinates();
 			$coord->lat = $data[$i][0];
 			$coord->lng = $data[$i][1];
 			$coord->registration_number = $data[count($data) - 1][0];
+			$coord->class_id = $data[count($data) - 2][0];
 			$coord->save();
 		}
+	}
+
+    public function actionCreatingrequest () {
+		$request_data = file_get_contents("php://input");
+		$data = json_decode($request_data);
+		// $data = json_decode('{"user_id":"9","registration_number":"804:23:17:027:0015","requestType":0,"reciever_user_id":113}');
+		$request = new Request();
+		$request->res_id = $data->registration_number;
+		$request->type = $data->requestType;
+		$request->sender = $data->user_id;
+		$request->reciever = (int) $data->reciever_user_id;
+		$request->save();
+	}
+
+	public function actionRegistrationnumber (){
+		$request= \Yii::$app->request->get();
+		$community_id = User::find()->select(['community_id'])->where(['user_data_id' => $request['user_id']])->asArray()->one();
+		$prefix = Community::find()->select(['prefix'])->where(['community_id' => $community_id])->asArray()->one();
+		$data[] = $prefix['prefix'];
+		if(isset($prefix)){
+			$reg_num = Resource::find()->select(['registration_number'])->andFilterWhere(['like', 'registration_number', $prefix])->orderBy('registration_number DESC')->asArray()->one();
+			$data[] = $reg_num['registration_number'];
+		}
+		return $data;
 	}
 	public function actionGettingdata(){
 		$request= \Yii::$app->request->get();
