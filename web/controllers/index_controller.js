@@ -10,7 +10,6 @@
         $scope.xmlData = [];
         $scope.addAttr;
 
-
         ($scope.getData = function() {
             return $http.get('rest.php/attribute_class_views/findfilteredattributes')
                 .then(successHandler)
@@ -81,9 +80,6 @@
             }   
         }
 
-        
-
-
         $scope.addResourceClass = function(name) {
             $scope.resource_class = {
                 res_class_name: name
@@ -93,7 +89,7 @@
                     .then(successHandler)
                     .catch(errorHandler);
                 function successHandler(status) {
-                    alertPopup(status.status);
+                    // alertPopup(status.status);
                     $scope.addResClass = "";
                     $scope.getData();
                 }
@@ -111,6 +107,7 @@
                 $scope.member = '';
             });
         };
+
     }
 
 })();
