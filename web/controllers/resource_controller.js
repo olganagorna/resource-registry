@@ -348,7 +348,6 @@
                     .catch(errorHandler);
                 function successHandler(data) {
                     $scope.allAttributes = data.data;
-                    console.log($scope.allAttributes);
                 }
                 function errorHandler(data) {
                     console.log("Can't reload list!");
