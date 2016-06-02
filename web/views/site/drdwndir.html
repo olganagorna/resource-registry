@@ -1,23 +1,4 @@
 <input class="form-control" type="text" ng-model="search" placeholder="{{ placeholder }}" required />
-<style>
-	.drpdwn-list {
-    	max-height: 70px;
-		overflow-y: auto;
-		display: none;
-	}
-
-	.drpdwn-list li {
-		cursor: pointer;
-	}
-
-	.drpdwn-list li:hover {
-		background: lightgray;
-	}
-
-	.drpdwn-show .drpdwn-list { 
-		display: block;
-	}
-</style>
 <div class="search-item-list">
 	<ul class="list-group material-list-group drpdwn-list">
         <li class="list-group-item" ng-repeat="item in itemsList | toArray:false | filter:{isactive:1} | filter:search" ng-click="chooseItem(item)">

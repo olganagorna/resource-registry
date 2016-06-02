@@ -18,7 +18,6 @@
                 .catch(errorHandler);
             function successHandler(data) {
                 $rootScope.xmlData = data.data;
-                console.log($rootScope.xmlData);
             }
             function errorHandler(data){
             }
@@ -85,7 +84,7 @@
 
         $scope.switchPage = function(index){
             var intervalID = setInterval(function(){
-                if ($rootScope.xmlData) {
+                if ($rootScope.xmlData.length > 0) {
                     if($scope.request){
                         PaginationServicee.switchPage(index, constant.communitiesQuery + '/search?' + buildQuery($scope.request)+ '&')
                             .then(function(data){

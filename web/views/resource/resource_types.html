@@ -1,88 +1,9 @@
-<div class="community-container container-fluid" ng-if="currentUser.role === 'admin'" ng-controller="IndexCtrl">
-
-    <style>
-
-        .community-container li.list-group-item {
-            border-bottom: 1px solid #e3e3e3;
-        }
-        .list-group-item:nth-child(1) {
-            font-weight: 700;
-        }
-        .community-container .list-group-item:last-child {
-            border-bottom: 0px solid transparent;
-        }
-        .community-container .community-search {
-            height: 35px;
-            line-height: 35px;
-            padding: 0 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #e3e3e3;
-        }
-
-        .off-ng-animation.ng-animate {
-            transition: 0s;
-        }
-        .sorting-link {
-            color: #000;
-        }
-        .sorting-link:hover, .sorting-link:active, .sorting-link:focus {
-            text-decoration: none;
-            color: #000;
-        }
-        
-        .form-control-custom {
-            margin-top: 17px;
-        }
-
-        .form-control-custom1 {
-            margin-top: 17px;
-        }
-
-        .attribute {
-            position: relative; 
-        }
-
-        .btn:hover:not(.btn-link):not(.btn-flat):not(.btn-fab) {
-            box-shadow: none;
-        }
-
-        a, a:hover, a:focus {
-            color: #000000;
-        }
-
-        .button {
-            margin: 5px 5px 5px 0px;
-            padding: 9px 13px;
-            font-size: 13px;
-            font-weight: 400;
-            text-transform: uppercase;
-            text-decoration: none;
-            text-align: center;
-            border-radius: 2px;
-            cursor: pointer;
-            position: relative;
-            display: inline-block;
-            box-shadow: 0 1px 6px 0 rgba(0,0,0,.12),0 1px 6px 0 rgba(0,0,0,.12);
-            transition: box-shadow .28s cubic-bezier(.4,0,.2,1);
-        }
-
-        .attribute-bar {
-            margin: 16px 0px;
-        }
-
-        .header {
-            text-align: center;
-        }
-
-    </style>
-
+<div class="resource-type-container container-fluid" ng-if="currentUser.role === 'admin'" ng-controller="IndexCtrl">
     <div class="container well">
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <ng-form>
-                    <input type="text" class="community-search" ng-model="searchText" placeholder="Пошук типу ресурсів по назві" size="30px"/>
-                    <input class="btn btn-primary" type="submit" value="Пошук" ></input>
+                    <input type="text" class="resource-type-search" ng-model="searchText" placeholder="Пошук типу ресурсів по назві" size="30px"/>
                 </ng-form>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
@@ -101,20 +22,20 @@
     <div class="container well">
         <div class="row">
             <ul class="list-group">
-                <li class="list-group-item">
+                <li class="resource-type-group-item">
                     <div class="row">
-                        <div class="col-md-10">
-                            <div class="col-md-1"></div>
-                            <div class="col-md-11 header"><h4>Назва типу</h4></div>
+                        <div class="col-lg-10 col-md-10 col-sm-10">
+                            <div class="col-lg-1 col-md-1 col-sm-1"></div>
+                            <div class="col-lg-11 col-md-11 col-sm-11 type-header"><h4>Назва типу</h4></div>
                         </div>
-                        <div class="col-md-2"><h4>Дія</h4></div>
+                        <div class="col-lg-2 col-md-2 col-sm-2"><h4>Дія</h4></div>
                     </div>
                 </li>
-                <li class="list-group-item" ng-repeat="data in xmlData[0] | filter:searchText">
+                <li class="resource-type-group-item" ng-repeat="data in xmlData[0] | filter:searchText">
                     <div class="row">
-                        <div class="btn btn-md btn-default collapsed col-md-10" ng-class="{'btn-disabled' : data[0].activation_status == 0}" ng-attr-data-toggle="{{data[0].activation_status == 1 ? 'collapse' : 'notcollapse'}}" data-target="{{'#demo' + data[0].class_id}}">
-                            <div class="col-md-1 accordion-arrow"><span class="glyphicon glyphicon-menu-down"></span></div>
-                            <div class="col-md-11">{{data[0].name}}</div>    
+                        <div class="btn btn-md btn-default collapsed col-lg-10 col-md-10 col-sm-10" ng-class="{'btn-disabled' : data[0].activation_status == 0}" ng-attr-data-toggle="{{data[0].activation_status == 1 ? 'collapse' : 'notcollapse'}}" data-target="{{'#demo' + data[0].class_id}}">
+                            <div class="col-lg-1 col-md-1 col-sm-1 accordion-arrow"><span class="glyphicon glyphicon-menu-down"></span></div>
+                            <div class="col-lg-11 col-md-11 col-sm-11">{{data[0].name}}</div>    
                         </div>    
                         <div class="btn-group text-left">
                             <a class="btn btn-primary ng-scope" title="Редагувати" ng-if="currentUser.role === 'admin' &amp;&amp; currentUser.isLogined">
@@ -129,7 +50,7 @@
                         </div>
                     </div>    
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-lg-10 col-md-10 col-sm-10">
                             <div id="{{'demo' + data[0].class_id}}" class="collapse">
                                 <div class="row">
                                     <form name="myForm" role="form" ng-submit="addAttribute(addAttr, data[0].class_id)">
@@ -147,7 +68,7 @@
                                     <div class="col-lg-1 col-md-1 col-sm-1"></div>
                                     <div class="col-lg-11 col-md-11 col-sm-11 attribute-bar">  
                                         <span ng-repeat="attributes in data[1]">
-                                            <span class="btn-material-blue-grey-50 btn-raised button">
+                                            <span class="btn-material-blue-grey-50 btn-raised button-attr">
                                                 <span>{{attributes.name}} <a ng-click="deleteAttribute(attributes.attribute_id, data[0].class_id)"><span class="glyphicon glyphicon-remove"></span></a></span>
                                             </span>
                                         </span>
@@ -155,7 +76,7 @@
                                 </div>
                             </div>
                         </div>                                   
-                        <div class="col-md-2"></div>                            
+                        <div class="col-lg-2 col-md-2 col-sm-2"></div>                      
                     </div>
                 </li>
             </ul>

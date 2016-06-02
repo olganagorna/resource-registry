@@ -22,7 +22,7 @@
                 commEdit.community.isactive = result.data.isactive;
             }
             function errorHandler(result){
-                console.log("Error:"+result);
+                // handler
             }
         }());
 
@@ -35,7 +35,7 @@
                 $location.path('/resource/community');;
             }
             function errorHandler(result){
-                console.log("Error:"+result);
+                // handler
             }
         }
     }
