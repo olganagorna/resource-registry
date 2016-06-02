@@ -36,7 +36,7 @@ class RequestController extends AppController
         $request = \Yii::$app->request->get();
         $view = \Yii::$app->user->identity->username;
         $viewRegistrar = \Yii::$app->user->identity->community_id;
-        $roleName = Role::findOne(\Yii::$app->user->identity->role_id);
+        $roleName = Role::findOne(\Yii::$app->user->identity->role_id->name);
         if ($request['option'] == 2) { $username = 'u_s.username';} else { $username = 'user.username';}
         $info = Request::find();
         // request value is used for search options
