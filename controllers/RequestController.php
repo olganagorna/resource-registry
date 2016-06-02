@@ -7,6 +7,7 @@ use yii\data\ActiveDataProvider;
 use app\models\Request;
 use app\models\RequestSearch;
 use app\models\Role;
+use app\models\User;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -36,7 +37,8 @@ class RequestController extends AppController
         $request = \Yii::$app->request->get();
         $view = \Yii::$app->user->identity->username;
         $viewRegistrar = \Yii::$app->user->identity->community_id;
-        $roleName = Role::findOne(\Yii::$app->user->identity->role_id->name);
+        $roleName = Role::findOne(\Yii::$app->user->identity->role_id);
+        $roleName = $roleName->name;
         if ($request['option'] == 2) { $username = 'u_s.username';} else { $username = 'user.username';}
         $info = Request::find();
         // request value is used for search options
@@ -44,7 +46,7 @@ class RequestController extends AppController
         ->joinWith(['sender', 'reciever', 'sender.senderPersData', 'reciever.recieverPersData'])
         ->orderBy('status, create_time desc, complete_time desc')
         ->asArray();
-        if ($roleName == is_string('registrar')) { 
+        if ($roleName === 'registrar') { 
             $info->andFilterWhere(['and', ['user.community_id' => $viewRegistrar], ['u_s.community_id' => $viewRegistrar]]);
             if (isset($request['value']) && isset($request['option'])) {
                 $info->andFilterWhere(['like', $username, $request['value']]);
