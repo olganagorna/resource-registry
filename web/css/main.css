@@ -627,8 +627,6 @@ td.form-group{
     margin:0px;
 }
 
-
-
 /* END LOG-RESOURCE-PAGE*/
 
 .normal_btn {
@@ -647,4 +645,111 @@ td.form-group{
 }
 .result {
 	min-height: 390px;
+}
+
+
+/* RESOURCE TYPE PAGE */
+
+.resource-type-container li.resource-type-group-item {
+    border-bottom: 1px solid #e3e3e3;
+}
+.resource-type-group-item:nth-child(1) {
+    font-weight: 700;
+}
+.resource-type-container .resource-type-group-item:last-child {
+    border-bottom: 0px solid transparent;
+}
+.resource-type-container .resource-type-search {
+    height: 35px;
+    line-height: 35px;
+    padding: 0 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #e3e3e3;
+}
+
+.off-ng-animation.ng-animate {
+    transition: 0s;
+}
+.sorting-link {
+    color: #000;
+}
+.sorting-link:hover, .sorting-link:active, .sorting-link:focus {
+    text-decoration: none;
+    color: #000;
+}
+
+.form-control-custom {
+    margin-top: 17px;
+}
+
+.attribute {
+    position: relative; 
+}
+
+.btn:hover:not(.btn-link):not(.btn-flat):not(.btn-fab) {
+    box-shadow: none;
+}
+
+a, a:hover, a:focus {
+    color: #000000;
+}
+
+.button-attr {
+    margin: 5px 5px 5px 0px;
+    padding: 9px 13px;
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    box-shadow: 0 1px 6px 0 rgba(0,0,0,.12),0 1px 6px 0 rgba(0,0,0,.12);
+    transition: box-shadow .28s cubic-bezier(.4,0,.2,1);
+}
+
+.attribute-bar {
+    margin: 16px 0px;
+}
+
+.type-header {
+    text-align: center;
+}
+
+.resource-type-container .list-group{list-style: none;}
+
+/* USER PAGE */
+
+.user-container li.list-group-item {
+    border-bottom: 1px solid #e3e3e3;
+}
+.list-group-item:nth-child(1) {
+    font-weight: 700;
+}
+.user-container .list-group-item:last-child {
+    border-bottom: 0px solid transparent;
+}
+.list-group-item div > div {
+    line-height: 56px;
+}
+.user-container .community-search {
+    height: 35px;
+    line-height: 35px;
+    padding: 0 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #e3e3e3;
+}
+.off-ng-animation.ng-animate {
+    transition: 0s;
+}
+.sorting-link {
+    color: #000;
+}
+.sorting-link:hover, .sorting-link:active, .sorting-link:focus {
+    text-decoration: none;
+    color: #000;
 }
