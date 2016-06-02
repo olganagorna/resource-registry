@@ -14,6 +14,7 @@
         $scope.sortingDone;
         $scope.roleFound = [];
         $scope.communityFound = [];
+        $rootScope.xmlData.items = [];
 
         $scope.modifyRoleName = function() {
             var toEquate = {
