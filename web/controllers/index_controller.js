@@ -17,10 +17,9 @@
                 .catch(errorHandler);
             function successHandler(data) {
                 $scope.xmlData = data.data;
-                console.log($scope.xmlData);
             }
             function errorHandler(data) {
-                console.log("Can't reload list!");
+                //Here will be errorhandler
             }
         })();
 
@@ -29,14 +28,11 @@
                 name: attribute,
                 class_id: class_id,
             }
-            console.log($scope.attribute);
             (function() {
                 $http.post('rest.php/attribute_class_views/addattribute', JSON.stringify($scope.attribute))
                     .then(successHandler)
                     .catch(errorHandler);
                 function successHandler(result) {
-                    console.log(attribute);
-                    console.log('Додано новий атрибут!');
                     $scope.getData();
                 }
                 function errorHandler(result){
@@ -53,13 +49,10 @@
                     .then(successHandler)
                     .catch(errorHandler);
                 function successHandler(result) {
-                    console.log(attr_id + class_id);
-                    console.log('Атрибут видалено!');
                     $scope.getData();
                 }
                 function errorHandler(result){
-                    alert(result.data[0].message);
-                    console.log(result.data[0].message);
+                    //Here will be errorhandler
                 }
             }());
         };
@@ -74,7 +67,7 @@
                 $scope.getData();
             }
             function errorHandler() {
-                console.log("Can't change activation status!");
+                //Here will be errorhandler
             }
         };
 
