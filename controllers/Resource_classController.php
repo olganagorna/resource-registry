@@ -94,8 +94,6 @@ class Resource_classController extends AppController
                 $errorMessage .= $key[0];
             }
             throw new \yii\web\HttpException(422,$errorMessage);
-        }
-        
+        }  
     }
-    
 }

@@ -5,10 +5,10 @@
         .module('restApp')
         .controller('UsersCommunity', UsersCommunity);
 
-    UsersCommunity.$inject = ['$scope', '$http', 'PaginationService', 'constant', '$location'];
-    function UsersCommunity($scope, $http, PaginationService, constant, $location) {
+    UsersCommunity.$inject = ['$scope', '$http', 'PaginationServicee', 'constant', '$location', '$rootScope'];
+    function UsersCommunity($scope, $http, PaginationServicee, constant, $location, $rootScope) {
 
-        $scope.communities = [];
+        $rootScope.xmlData = [];
         $scope.searchingVal = "";
         $scope.orderBy = "ASC";
 
@@ -17,7 +17,8 @@
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
-                $scope.communities = data.data;
+                $rootScope.xmlData = data.data;
+                console.log($rootScope.xmlData);
             }
             function errorHandler(data){
             }
@@ -35,7 +36,7 @@
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
-                $scope.communities = data.data;
+                $rootScope.xmlData = data.data;
             }
             function errorHandler(data){
             }
@@ -57,10 +58,10 @@
 
         //Pagination start
 
-        $scope.currentPage = PaginationService.currentPage;
+        $scope.currentPage = PaginationServicee.currentPage;
 
         $scope.getPages = function(pageCount) {
-            return PaginationService.getPages(pageCount);
+            return PaginationServicee.getPages(pageCount);
         };
 
         $scope.changeOrder = function() {
@@ -75,7 +76,7 @@
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
-                $scope.communities = data.data;
+                $rootScope.xmlData = data.data;
             }
             function errorHandler(data){
                 console.log("Can't reload list!");
@@ -83,38 +84,40 @@
         };
 
         $scope.switchPage = function(index){
-            if($scope.request){
-                console.log("first");
-                PaginationService.switchPage(index, constant.communitiesQuery + '/search?' + buildQuery($scope.request)+ '&')
-                    .then(function(data){
-                        $scope.communities = data.data;
-                        $scope.currentPage = PaginationService.currentPage;
-                });
-            } else if ($scope.searchingVal) {
-                 console.log(constant.perPage);
-                PaginationService.switchPage(index, 'communities/show?search='+ $scope.searchingVal + "&order=" + $scope.orderBy + "&page=" + index + "&per-page=" + constant.perPage)
-                    .then(function(data){
-                        $scope.communities = data.data;
-                        $scope.currentPage = PaginationService.currentPage;
-                });
-            } else {
-                 console.log("third");
-                PaginationService.switchPage(index, constant.communitiesQuery + "/show" + '?')
-                    .then(function(data){
-                        $scope.communities = data.data;
-                        $scope.currentPage = PaginationService.currentPage;
-                });
-            }
-
+            var intervalID = setInterval(function(){
+                if ($rootScope.xmlData) {
+                    if($scope.request){
+                        PaginationServicee.switchPage(index, constant.communitiesQuery + '/search?' + buildQuery($scope.request)+ '&')
+                            .then(function(data){
+                                $rootScope.xmlData = data.data;
+                                $scope.currentPage = PaginationServicee.currentPage;
+                        });
+                    } else if ($scope.searchingVal) {
+                         console.log(constant.perPage);
+                        PaginationServicee.switchPage(index, 'communities/show?search='+ $scope.searchingVal + "&order=" + $scope.orderBy + "&page=" + index + "&per-page=" + constant.perPage)
+                            .then(function(data){
+                                $rootScope.xmlData = data.data;
+                                $scope.currentPage = PaginationServicee.currentPage;
+                        });
+                    } else {
+                        PaginationServicee.switchPage(index, constant.communitiesQuery + "/show" + '?')
+                            .then(function(data){
+                                $rootScope.xmlData = data.data;
+                                $scope.currentPage = PaginationServicee.currentPage;
+                        });
+                    }
+                    clearInterval(intervalID);
+                }
+            },10);
         };
       
         $scope.switchPage($scope.currentPage);
 
         $scope.setPage = function(pageLink, pageType){
-            PaginationService.setPage(pageLink, pageType, $scope.communities._meta.pageCount)
+            PaginationServicee.setPage(pageLink, pageType, $rootScope.xmlData._meta.pageCount)
                 .then(function(data){
-                    $scope.communities = data.data;
-                    $scope.currentPage = PaginationService.currentPage;
+                    $rootScope.xmlData = data.data;
+                    $scope.currentPage = PaginationServicee.currentPage;
             });
         };
 

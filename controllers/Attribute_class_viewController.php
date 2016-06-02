@@ -70,47 +70,52 @@ class Attribute_class_viewController extends AppController
         $request= \Yii::$app->request->post();
         $last_id = ResourceAttribute::find()->select(['attribute_id'])->orderBy(['attribute_id' => SORT_DESC])->one();
         $attribute_id = $last_id->attribute_id + 1;
-        if (!$post = \Yii::$app->getRequest()->getBodyParams()) {
-            throw new \yii\web\HttpException(400, 'Дані не отримані');
+        $post = array_merge(\Yii::$app->getRequest()->getBodyParams(), ['attribute_id' => $attribute_id]);
+        $resourceAttributeModel = new \app\models\ResourceAttribute();
+        $attributeclassviewModel = new \app\models\AttributeClassView();
+
+
+        if ($resourceAttributeModel->findByAttributeName($post['name'])){
+            $repeated_attr_id = ResourceAttribute::find()->select(['attribute_id'])->where(['name' => $post['name']])->asArray()->one();
+            $post = array_merge(\Yii::$app->getRequest()->getBodyParams(), ['attribute_id' => $repeated_attr_id['attribute_id']]);
+
+            foreach(['attributeclassviewModel' => new \app\models\AttributeClassView()] as $key => $value) {
+                $value->setAttributes($post);
+                if (!$value->validate()) {
+                    foreach($value->errors as $key){
+                        $errorMessage .= $key[0];
+                    }
+                    throw new \yii\web\HttpException(422,$errorMessage);
+                } else 
+                    $value->save();
+            }
+            
+        } 
+
+        else{
+            foreach(['resourceAttributeModel' => new \app\models\ResourceAttribute(),
+                 'attributeclassviewModel' => new \app\models\AttributeClassView()] as $key => $value) {
+                $value->setAttributes($post);
+                if (!$value->validate()) {
+                    foreach($value->errors as $key){
+                        $errorMessage .= $key[0];
+                    }
+                    throw new \yii\web\HttpException(422,$errorMessage);
+                } else 
+                    $value->save();
+            }
         }
-        $resourceAttributeModel = new resourceAttribute();
-            if ($resourceAttributeModel->findByAttributeName($post['attribute_name'])){
-                throw new \yii\web\HttpException(400, 'Такий атрибут уже існує');
-            }
-            if(isset($request['attribute_name'])){
-                $attribute_name = $post['attribute_name'];
-            } else{
-                throw new \yii\web\HttpException(400, 'Дані не отримані');
-            }
-            $resourceAttributeModel->name = $attribute_name;
-            $resourceAttributeModel->is_global = 0;
-            if (!$resourceAttributeModel->save()){
-                foreach($resourceAttributeModel->errors as $key){
-                    $errorMessage .= $key[0];
-                }
-                throw new \yii\web\HttpException(422,$errorMessage);
-            }
-            $attributeclassviewModel = new AttributeClassView();
-            if(isset($request['class_id'])){
-                $class_id = $post['class_id'];
-            } else{
-                throw new \yii\web\HttpException(400, 'Дані не отримані');
-            }
-            $attributeclassviewModel->class_id = $class_id;
-            $attributeclassviewModel->attribute_id = $attribute_id;
-            if (!$attributeclassviewModel->save()){
-                foreach($attributeclassviewModel->errors as $key){
-                    $errorMessage .= $key[0];
-                }
-                throw new \yii\web\HttpException(422,$errorMessage);
-            }
-        // }
+        
     }
+
     public function actionDeleteattribute()
     {
         $request = \Yii::$app->request->get();
         if(isset($request['attr_id'])){
-            $getdata = AttributeClassView::find()->where(['attribute_id'=>$request['attr_id']])->one();
+            $getdata = AttributeClassView::findOne([
+            'attribute_id' => $request['attr_id'],
+            'class_id' => $request['class_id'],
+        ]);
         } else{
             throw new \yii\web\HttpException(400, 'Дані не отримані');
         }

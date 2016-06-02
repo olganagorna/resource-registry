@@ -32,6 +32,7 @@
 			text-decoration: none;
 			color: #000;
 		}
+
 	</style>
 
 
@@ -41,7 +42,6 @@
 				<ng-form>
 					<input type="text" class="community-search" ng-model="communitySearch" placeholder="Пошук по назві громади" size="30px"/>
 					<input class="btn btn-primary" type="submit" value="Пошук" ng-click="searchCommunity(community_name)"></input>
-					{{$scope.searchingVal}}
 				</ng-form>
 			</div>
 			<div class="col-lg-2">
@@ -62,7 +62,7 @@
 						<div class="col-lg-2">Дії</div>
 					</div>
 				</li>
-				<li class="list-group-item" ng-repeat="data in communities.items">
+				<li class="list-group-item" ng-repeat="data in xmlData.items">
 					<div class="row">
 						<div class="col-lg-4">{{data.name}}</div>
 						<div class="col-lg-2">{{data.prefix}}</div>
@@ -84,25 +84,7 @@
 				</li>
 			</ul>
 			<div class="col-md-8 margin_bottom">          
-                <ul class="pagination pagination-sm" ng-if="communities._meta.pageCount > 1">
-                    <li ng-if="communities._links.first">
-                        <a href="" ng-click="setPage(communities._links.first.href, 'first')">&laquo;</a>
-                    </li>
-                    <li ng-if="communities._links.prev">
-                        <a href="" ng-click="setPage(communities._links.prev.href, 'prev')" >‹</a>
-                    </li>
-                    <li ng-repeat="page in getPages(communities._meta.pageCount) track by $index"
-                        ng-click="switchPage(page)" ng-class="{active: page == currentPage}"
-                        ng-if="page">
-                        <span>{{page}}</span>
-                    </li>
-                    <li ng-if="communities._links.next">
-                        <a href="" ng-click="setPage(communities._links.next.href, 'next')" >›</a>
-                    </li>
-                    <li ng-if="communities._links.last">
-                        <a href="" ng-click="setPage(communities._links.last.href, 'last')">&raquo;</a>
-                    </li>
-                </ul>
+                <pagination-directive><pagination-directive/>
            </div>  
 		</div>
 	</div>

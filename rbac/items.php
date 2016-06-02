@@ -108,6 +108,9 @@ return [
     'resource_attribute/findglobalattributes' => [
         'type' => 2,
     ],
+    'resource_class/getresourceclass' => [
+        'type' => 2,
+    ],
     'attribute_class_view/findallattributes' => [
         'type' => 2,
     ],
@@ -152,6 +155,7 @@ return [
             'user/changeactivationstatus',
             'user/changerole',
             'user/adduser',
+            'community/show',
             'community/index',
         ],
     ],
@@ -171,6 +175,7 @@ return [
             'community/update',
             'community/index',
             'resource_class/addresourceclass',
+            'resource_class/getresourceclass',
             'resource_class/search',
             'resource_class/changeactivationstatus',
             'resource_class/index',

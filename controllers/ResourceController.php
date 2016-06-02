@@ -304,11 +304,11 @@ class ResourceController extends AppController
     public function actionCreatingrequest () {
 		$request_data = file_get_contents("php://input");
 		$data = json_decode($request_data);
-		// $data = json_decode('{"user_id":"9","registration_number":"804:23:17:027:0015","requestType":0,"reciever_user_id":113}');
+		$user = User::find()->select(['user_id'])->where(['user_data_id' => $data->user_id])->one();
 		$request = new Request();
 		$request->res_id = $data->registration_number;
 		$request->type = $data->requestType;
-		$request->sender = $data->user_id;
+		$request->sender = $user->user_id;
 		$request->reciever = (int) $data->reciever_user_id;
 		$request->save();
 	}
