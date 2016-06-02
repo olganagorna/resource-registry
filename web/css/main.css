@@ -802,3 +802,6 @@ a, a:hover, a:focus {
 .user-container .list-group-item:last-child {
     border-bottom: 0px solid transparent;
 }
+.find-resources .list-group-item:nth-child(1) {
+    font-weight: 400 !important;
+}
