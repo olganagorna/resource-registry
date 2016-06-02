@@ -4,7 +4,6 @@
 
 	angular.module('restApp').directive("leafletMap", function ($http) {
 
-
 		var link = function ($scope, $element, attrs, $rootScope) {
 
 			var defaults = {
@@ -31,44 +30,35 @@
 			$scope.filterByClass = 0;
 			$scope.listCacheArrayLength = Math.ceil($scope.listLength/$scope.listRange);
 			$scope.filterByClassName = "";
-
-
-
-						/*array for resources on map*/
-						var resourcesOnMap = [];
-
-						/*array for markers*/
-						var markersOnMap = [];
-
-						/*radius of circle*/
-						var radius = 500;
-
-						/*drawing circle*/
-						var circle = L.circle(L.latLng(49.83587885628228, 23.99765968322754), radius, {
-							opacity: 1,
-							weight: 1,
-							fillOpacity: 0
-						});
+			/*array for resources on map*/
+			var resourcesOnMap = [];
+			/*array for markers*/
+			var markersOnMap = [];
+			/*radius of circle*/
+			var radius = 500;
+			/*drawing circle*/
+			var circle = L.circle(L.latLng(49.83587885628228, 23.99765968322754), radius, {
+				opacity: 1,
+				weight: 1,
+				fillOpacity: 0
+			});
 
 			(function() {
-							$http.get('rest.php/resource_classes')
-								.then(successHandler)
-								.catch(errorHandler);
-							function successHandler(data) {
-								$scope.resourceClassesArray = data.data.items;
-								console.log($scope.resourceClassesArray);
-							}
-							function errorHandler() {
-								console.log("Can't load the list!")				
-							}
-						}());
+				$http.get('rest.php/resource_classes')
+					.then(successHandler)
+					.catch(errorHandler);
+				function successHandler(data) {
+					$scope.resourceClassesArray = data.data.items;
+				}
+				function errorHandler() {
+					// Error here
+				}
+			}());
 			$scope.startFilterByClass = function(name) {
 				if (name === undefined) {
 					$scope.filterByClassName = "";
-					console.log($scope.filterByClassName);
 				} else {
 					$scope.filterByClassName = name;
-					console.log($scope.filterByClassName);
 				}
 			}
 			$scope.changeTab = function(number) {
@@ -86,7 +76,6 @@
 				$scope.listCacheArray.length = 0;
 				$scope.listCacheArrayLength = 0;
 			}
-
 			$scope.cut = function() {					   	
 				$scope.listLength = $scope.xmlData.length;
 				$scope.listRange = 4;
@@ -111,55 +100,50 @@
 					}
 				}());
 			}
+			/*showing resources on the map*/
+			function showResources(resources) {
+				if(resources.length == 0) return;
+				for(var i = 0; i < resources.length; i++){
+					$scope.map.addLayer(resources[i]);
+				}
+			}
 
-
-							/*showing resources on the map*/
-							function showResources(resources) {
-								if(resources.length == 0) return;
-								for(var i = 0; i < resources.length; i++){
-									$scope.map.addLayer(resources[i]);
-								}
-							}
-
-							function showMarkers(resources) {
-								if(resources.length == 0) return;
-								for(var i = 0; i < resources.length; i++){
-									$scope.map.addLayer(resources[i].bindPopup($scope.markerList[i]));
-								}
-							}
+			function showMarkers(resources) {
+				if(resources.length == 0) return;
+				for(var i = 0; i < resources.length; i++){
+					$scope.map.addLayer(resources[i].bindPopup($scope.markerList[i]));
+				}
+			}
 									
-							/*deleting resources from the map*/
-							$scope.deleteItems = function(resources) {
-							    if(resources.length == 0) return;
-							    for(var i = 0; i < resources.length; i++){
-								   	$scope.map.removeLayer(resources[i]);
-								}
-								resources.length = 0;
-							}
+			/*deleting resources from the map*/
+			$scope.deleteItems = function(resources) {
+							if(resources.length == 0) return;
+							for(var i = 0; i < resources.length; i++){
+								$scope.map.removeLayer(resources[i]);
+				}
+				resources.length = 0;
+			}
 
-							/*definition of the centroid of a closed polygon*/		
-									function getCentroid(arr) {
-									    var twoTimesSignedArea = 0;
-									    var cxTimes6SignedArea = 0;
-									    var cyTimes6SignedArea = 0;
+			/*definition of the centroid of a closed polygon*/		
+			function getCentroid(arr) {
+				var twoTimesSignedArea = 0;
+				var cxTimes6SignedArea = 0;
+				var cyTimes6SignedArea = 0;
+				var length = arr.length
+				var x = function (i) { return arr[i % length][0] };
+				var y = function (i) { return arr[i % length][1] };
 
-									    var length = arr.length
-
-									    var x = function (i) { return arr[i % length][0] };
-									    var y = function (i) { return arr[i % length][1] };
-
-									    for ( var i = 0; i < arr.length; i++) {
-									        var twoSA = x(i) * y(i + 1) - x(i + 1) * y(i);
-									        twoTimesSignedArea += twoSA;
-									        cxTimes6SignedArea += (x(i) + x(i + 1)) * twoSA;
-									        cyTimes6SignedArea += (y(i) + y(i + 1)) * twoSA;
-									    }
-									    var sixSignedArea = 3 * twoTimesSignedArea;
-									    return [ cxTimes6SignedArea / sixSignedArea, cyTimes6SignedArea / sixSignedArea];        
-									}
+				for ( var i = 0; i < arr.length; i++) {
+					var twoSA = x(i) * y(i + 1) - x(i + 1) * y(i);
+					twoTimesSignedArea += twoSA;
+					cxTimes6SignedArea += (x(i) + x(i + 1)) * twoSA;
+					cyTimes6SignedArea += (y(i) + y(i + 1)) * twoSA;
+				}
+				var sixSignedArea = 3 * twoTimesSignedArea;
+				return [ cxTimes6SignedArea / sixSignedArea, cyTimes6SignedArea / sixSignedArea];        
+			}
 
 			// Map init
-
 			$scope.updateMapView = function (position, zoom) {
 				position = angular.fromJson(position);
 				$scope.map.setView(position, zoom);
@@ -224,7 +208,6 @@
 			}
 
 			$scope.$watch('options.showPolygonOnMap.showPolygon', function (val) {
-				console.log(val);
 				if ($scope.mapCreated && val) {
 					$scope.options.showPolygonOnMap.latlngs = angular.fromJson($scope.options.showPolygonOnMap.latlngs);
 					var polygon = L.polygon($scope.options.showPolygonOnMap.latlngs);
@@ -257,7 +240,6 @@
 					}
 					$scope.resourcesGeoJson = [];
 					for (var i = 0; i < $scope.options.resources.objects.length; i++) {
-						console.log($scope.options.resources.objects);
 						var geojson = L.polygon(JSON.parse($scope.options.resources.objects[i].coordinates)).toGeoJSON();
 						geojson.properties.name = $scope.options.resources.objects[i].name;
 						var resource = L.geoJson(geojson, {
@@ -299,7 +281,6 @@
 	              function () {
 	              	$scope.options.resources.center = $scope.map.getCenter();
 	              	$scope.options.resources.getResources = true;
-	              	console.log($scope.options.resources);
 	              	$scope.$apply();
 	              }, '').addTo($scope.map);
 
@@ -329,42 +310,31 @@
 
 						$('#map').css({ 'cursor': 'default' });
 						$(".leaflet-control-zoom").css("visibility", "hidden");
-
 					}
 				}
 
 				function initAdding () {
 
 					// Controlls localisation
-
 					L.drawLocal.draw.toolbar.actions.title = 'Відмінити створювання';
 					L.drawLocal.draw.toolbar.actions.text = 'Відмінити';
-
 					L.drawLocal.draw.toolbar.undo.title = 'Видалити останню точку';
 					L.drawLocal.draw.toolbar.undo.text = 'Видалити останню точку';
-
 					L.drawLocal.draw.toolbar.buttons.polygon = 'Створити багатокутник';
 					L.drawLocal.draw.toolbar.buttons.rectangle = 'Створити прямокутник';
-
 					L.drawLocal.draw.handlers.polygon.tooltip.start = 'Натисніть на карту, щоб почати створювати багатокутник';
 					L.drawLocal.draw.handlers.polygon.tooltip.cont = 'Натисніть на карту, продовжити створювати багатокутник';
 					L.drawLocal.draw.handlers.polygon.tooltip.end = 'Натисніть на першу точку, щоб закінчити створювати багатокутник';
-
 					L.drawLocal.draw.handlers.rectangle.tooltip.start = 'Натисніть і потягніть, щоб створити прямокутник';
-
 					L.drawLocal.edit.toolbar.actions.save.title = 'Зберегти зміни';
 					L.drawLocal.edit.toolbar.actions.save.text = 'Зберегти';
-
 					L.drawLocal.edit.toolbar.actions.cancel.title = 'Відмінити. Видаляє усі зміни';
 					L.drawLocal.edit.toolbar.actions.cancel.text = 'Відмінити';
-
 					L.drawLocal.edit.toolbar.buttons.edit = 'Редагувати об\'єкт';
 					L.drawLocal.edit.toolbar.buttons.editDisabled = 'Відсутні об\'єкти для редагування';
 					L.drawLocal.edit.toolbar.buttons.remove = 'Видалити об\'єкт';
 					L.drawLocal.edit.toolbar.buttons.removeDisabled = 'Відсутні об\'єкти для видалення';
-
 					L.drawLocal.edit.handlers.edit.tooltip.text = 'Переміщайте точки для редагування';
-
 					L.drawLocal.edit.handlers.remove.tooltip.text = 'Натисніть на об\'єкт для видалення';
 
 					if (attrs.add === 'true') {
@@ -388,6 +358,7 @@
 								remove: false
 							}
 						});
+
 						$scope.map.addControl($scope.drawControl);
 
 						$scope.map.on('draw:created', function (e) {
@@ -428,12 +399,6 @@
 							$scope.bind = $scope.drawnItem._latlngs;
 							$scope.$apply();
 						});
-
-				
-
-						
-
-
 					}
 				}
 
@@ -455,29 +420,25 @@
 					$rootScope.y2 = $scope.clickData[0] + (0.00900009 * $scope.range);
 					$rootScope.x1 = $scope.clickData[1] - ((1 / $scope.coordCompare[Math.round($scope.clickData[0])]) * $scope.range);
 					$rootScope.x2 = $scope.clickData[1] + ((1 / $scope.coordCompare[Math.round($scope.clickData[0])]) * $scope.range);
-
 				}
-
 
 				function initPointing() {
 					if (attrs.point === 'true') {
 
+						/*point inside a polygon*/
+						function inside(point, vs) {
+					    	var x = point[0], y = point[1];
 
-					/*point inside a polygon*/
-					function inside(point, vs) {
-					    var x = point[0], y = point[1];
+					    	var inside = false;
+					    	for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
+					        	var xi = vs[i][0], yi = vs[i][1];
+					        	var xj = vs[j][0], yj = vs[j][1];
 
-					    var inside = false;
-					    for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
-					        var xi = vs[i][0], yi = vs[i][1];
-					        var xj = vs[j][0], yj = vs[j][1];
-
-					        var intersect = ((yi > y) != (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
-					        if (intersect) inside = !inside;
-					    }
-
-					    return inside;
-					}
+					        	var intersect = ((yi > y) != (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+					        	if (intersect) inside = !inside;
+					    	}
+					    	return inside;
+						}
 
 
 						$scope.map.on('click', function(click) {
@@ -486,26 +447,17 @@
 								$scope.partOfList.length = 0;
 								$scope.listCacheArray.length = 0;
 
-
-
-
-
-								calculatingCoordinates(click); //calculating <---------------------
+								calculatingCoordinates(click);
 
 								$scope.xmlReturn = [];
 								$scope.xmlReturn.length = 0;
-
 							
 								$http.get('rest.php/resources/gettingdata?min_lat=' + $rootScope.y1 + '&max_lat=' + $rootScope.y2 + '&min_lng=' + $rootScope.x1 + '&max_lng=' + $rootScope.x2 + '&name=' + $scope.filterByClassName)
 									   .then(successHandler)
 									   .catch(errorHandler);
 								function successHandler(data) {
-
 									$scope.xmlReturn = data.data;
-
-
 								  	var resources = [];
-								  	
 								  	$scope.markerList.length = 0;
 								  	$scope.resourcesWithNames = [];
 								  	$scope.resourcesWithNames.length = 0;
@@ -515,7 +467,6 @@
 										$scope.resourcesWithNames.push($scope.xmlReturn[i].name);
 
 									}
-
 
 									$scope.deleteItems(markersOnMap);
 								    $scope.deleteItems(resourcesOnMap);
@@ -531,34 +482,19 @@
 										    $scope.xmlData.push($scope.xmlReturn[k]);
 										}
 									}
-
 									showResources(resourcesOnMap);
 									showMarkers(markersOnMap);
 									$scope.cut();
-
 								}
-
-								function errorHandler() {
-
-								}
-
-
-
-
+								function errorHandler() {}
 							}
 						});
 					}
 				}
 
-				
-
 				function initFinding() {
-
-
-					
-
 					if (attrs.find === 'true') {
-						
+
 						function getRadius() {
 			            	(function() {
 			            		var value = parseInt($scope.circleRadius);
@@ -568,8 +504,6 @@
 			            	}());
 						}
 
-
-
 						$scope.map.on('click', function(click) {
 
 						if ($scope.findingType == 2) {
@@ -577,177 +511,136 @@
 							$scope.partOfList.length = 0;
 							$scope.listCacheArray.length = 0;
 								
-								calculatingCoordinates(click); //calculating <---------------------
+							calculatingCoordinates(click);
 
-								$scope.xmlReturn = [];
-								$scope.xmlReturn.length = 0;
+							$scope.xmlReturn = [];
+							$scope.xmlReturn.length = 0;
 
 							
-								$http.get('rest.php/resources/gettingdata?min_lat=' + $rootScope.y1 + '&max_lat=' + $rootScope.y2 + '&min_lng=' + $rootScope.x1 + '&max_lng=' + $rootScope.x2 + '&name=' + $scope.filterByClassName)
-									   .then(successHandler)
-									   .catch(errorHandler);
-								function successHandler(data) {
+							$http.get('rest.php/resources/gettingdata?min_lat=' + $rootScope.y1 + '&max_lat=' + $rootScope.y2 + '&min_lng=' + $rootScope.x1 + '&max_lng=' + $rootScope.x2 + '&name=' + $scope.filterByClassName)
+								.then(successHandler)
+								.catch(errorHandler);
+							function successHandler(data) {
+								$scope.xmlReturn = data.data;
+								var resources = [];
+								$scope.resourcesWithNames.length = 0;
 
-									$scope.xmlReturn = data.data;
-								  	var resources = [];
-								  	$scope.resourcesWithNames.length = 0;
-									for (var i = 0; i < $scope.xmlReturn.length; i++) {
-										var cache = $scope.xmlReturn[i].coordinates;
-										resources.push(JSON.parse(cache));
-										$scope.resourcesWithNames.push($scope.xmlReturn[i].name);
-
+								for (var i = 0; i < $scope.xmlReturn.length; i++) {
+									var cache = $scope.xmlReturn[i].coordinates;
+									resources.push(JSON.parse(cache));
+									$scope.resourcesWithNames.push($scope.xmlReturn[i].name);
+								}
+								/*latitude and longitude(the centroid of a closed polygon)*/
+								var items = [];
+								/*array for markers*/
+								var marker = [];
+								/*pushing coordinates into array(items)*/
+								function fillItems(array) {
+									for(var i = 0; i < array.length; i++){
+										items.push(getCentroid(array[i]));
 									}
+								}
 
+								/*pushing items into array(marker) each by each and then add markers*/
+								function itemWrap(array) {
+									for(var i = 0; i < array.length; i++){
+										var LamMarker = new L.marker([array[i][0], array[i][1]]);
+										marker.push(LamMarker);
+									}
+								}
 
+								fillItems(resources);
+								itemWrap(items);
 
-
-									/*latitude and longitude(the centroid of a closed polygon)*/
-									var items = [];
-
-									/*array for markers*/
-									var marker = [];
-
-									
-
-									/*pushing coordinates into array(items)*/
-									function fillItems(array) {
-										for(var i = 0; i < array.length; i++){
-											items.push(getCentroid(array[i]));
+								(function showResourcesOnMap(clickEvent) {
+									getRadius();
+			    					circle.setRadius(radius);
+									circle.setLatLng(clickEvent.latlng);
+									circle.addTo($scope.map);
+									$scope.deleteItems(resourcesOnMap);
+									$scope.deleteItems(markersOnMap);
+									$scope.xmlData.length = 0;
+									$scope.markerList.length = 0;
+									for(var i = 0; i < marker.length; i++){
+									    var distance = clickEvent.latlng.distanceTo(L.latLng(marker[i]._latlng.lat, marker[i]._latlng.lng));
+									   	if(distance <= radius){
+									    	for(var j = 0; j < resources.length; j++){
+									    		var centroid = getCentroid(resources[j]);
+									    		if(centroid[0] == marker[i]._latlng.lat && centroid[1] == marker[i]._latlng.lng){
+									    			resourcesOnMap.push(L.polygon(resources[j]));
+									    			markersOnMap.push(new L.marker([centroid[0], centroid[1]]));
+									    			$scope.xmlData.push($scope.xmlReturn[j]);
+									    			$scope.markerList.push($scope.xmlReturn[j].name);
+									    		}
+									    	}
+									    	showResources(resourcesOnMap);
+									    	showMarkers(markersOnMap);
 										}
 									}
+   	
+									// PAGINATION   	
+									$scope.listLength = $scope.xmlData.length;
+									$scope.listRange = 4;
+									$scope.paginationRange = 5;
+									$scope.listCacheArrayLength = Math.ceil($scope.listLength/$scope.listRange);
+									$scope.currentPage = 1;
 
-									/*pushing items into array(marker) each by each and then add markers*/
-									function itemWrap(array) {
-										for(var i = 0; i < array.length; i++){
-										    var LamMarker = new L.marker([array[i][0], array[i][1]]);
-										    marker.push(LamMarker);
-									    }
-									}
-
-									fillItems(resources);
-
-									itemWrap(items);
-
-
-									function showResourcesOnMap(clickEvent) {
-										getRadius();
-			    						circle.setRadius(radius);
-									    circle.setLatLng(clickEvent.latlng);
-									    circle.addTo($scope.map);
-									    $scope.deleteItems(resourcesOnMap);
-									    $scope.deleteItems(markersOnMap);
-									    $scope.xmlData.length = 0;
-									    $scope.markerList.length = 0;
-									   	for(var i = 0; i < marker.length; i++){
-									   		var distance = clickEvent.latlng.distanceTo(L.latLng(marker[i]._latlng.lat, marker[i]._latlng.lng));
-									   		if(distance <= radius){
-									    		for(var j = 0; j < resources.length; j++){
-									    			var centroid = getCentroid(resources[j]);
-									    			if(centroid[0] == marker[i]._latlng.lat && centroid[1] == marker[i]._latlng.lng){
-									    				resourcesOnMap.push(L.polygon(resources[j]));
-									    				markersOnMap.push(new L.marker([centroid[0], centroid[1]]));
-									    				$scope.xmlData.push($scope.xmlReturn[j]);
-									    				$scope.markerList.push($scope.xmlReturn[j].name);
-									    			}
-									    		}
-									    		showResources(resourcesOnMap);
-									    		showMarkers(markersOnMap);
-										    }
-									   	}
-
-
-									   	
-									   	// PAGINATION
-
-									   	
-									   	$scope.listLength = $scope.xmlData.length;
-									   	$scope.listRange = 4;
-									   	$scope.paginationRange = 5;
-									   	$scope.listCacheArrayLength = Math.ceil($scope.listLength/$scope.listRange);
-									   	$scope.currentPage = 1;
-									
-
-									   	$scope.switchPage = function(pageNumber) {
-									   		if (pageNumber != "...") {
-									   			$scope.partOfList.length = 0;
-										   		$scope.currentPage = pageNumber;
-										   		for (var i = 0; i < $scope.listCacheArray[pageNumber-1].length; i++) {
-										   			$scope.partOfList.push($scope.listCacheArray[pageNumber-1][i]);
-										   		}
+									$scope.switchPage = function(pageNumber) {
+										if (pageNumber != "...") {
+									   		$scope.partOfList.length = 0;
+										   	$scope.currentPage = pageNumber;
+										   	for (var i = 0; i < $scope.listCacheArray[pageNumber-1].length; i++) {
+										   		$scope.partOfList.push($scope.listCacheArray[pageNumber-1][i]);
 										   	}
-
-									   	};
-
-
-									   	$scope.getPages = function() {
-							                var pageCount = $scope.listCacheArrayLength, currentPage = $scope.currentPage,
-							                    paginationRange = $scope.paginationRange, beforeCenter, afterCenter;
-							                $scope.pages = [];
-
-							                if (paginationRange%2 == 0) {
-							                    beforeCenter = (paginationRange/2)-1; 
-							                    afterCenter = paginationRange/2;
-							                } else {
-							                    beforeCenter = Math.floor(paginationRange/2);
-							                    afterCenter = beforeCenter;
-							                }
-
-							                for (var i=1; i<=pageCount; i++) {
-							                    if (i >= currentPage - paginationRange && i <= currentPage + paginationRange) $scope.pages.push(i);
-							                }
-
-
-							              
-
-
-							                for (var i = 0; i<=$scope.pages.length-1; i++) {
-							                    if ($scope.pages[$scope.pages.length-1] - currentPage >= afterCenter && currentPage - $scope.pages[0] > beforeCenter  ) {
-							                        $scope.pages.shift();
-							                    } else if ( $scope.pages[$scope.pages.length-1] - currentPage < afterCenter && $scope.pages.length > paginationRange) {
-							                        $scope.pages.shift();
-							                    }
-							                }
-							               
-							                
-							                while ($scope.pages.length > paginationRange) $scope.pages.pop();
-							           
-							                if ($scope.pages[0]!=1 && currentPage - beforeCenter >= 0) $scope.pages[0] = "...";
-							       
-							                if ($scope.pages[$scope.pages.length-1]!=pageCount) $scope.pages[$scope.pages.length-1] = "...";
-							               
-							                return $scope.pages;
-							            };
-
-									   	
-
-									   	$scope.cut();
+										}
 
 									};
 
-									showResourcesOnMap(click);
+									$scope.getPages = function() {
+							            var pageCount = $scope.listCacheArrayLength, currentPage = $scope.currentPage,
+							                paginationRange = $scope.paginationRange, beforeCenter, afterCenter;
+							            $scope.pages = [];
 
+							            if (paginationRange%2 == 0) {
+							                beforeCenter = (paginationRange/2)-1; 
+							                afterCenter = paginationRange/2;
+							            } else {
+							                beforeCenter = Math.floor(paginationRange/2);
+							                afterCenter = beforeCenter;
+							            }
 
+							            for (var i=1; i<=pageCount; i++) {
+							                if (i >= currentPage - paginationRange && i <= currentPage + paginationRange) $scope.pages.push(i);
+							            }
 
+							            for (var i = 0; i<=$scope.pages.length-1; i++) {
+							                if ($scope.pages[$scope.pages.length-1] - currentPage >= afterCenter && currentPage - $scope.pages[0] > beforeCenter  ) {
+							                    $scope.pages.shift();
+							                } else if ( $scope.pages[$scope.pages.length-1] - currentPage < afterCenter && $scope.pages.length > paginationRange) {
+							                    $scope.pages.shift();
+							                }
+							        	}
+							               
+							                
+							            while ($scope.pages.length > paginationRange) $scope.pages.pop();
+							           
+							            if ($scope.pages[0]!=1 && currentPage - beforeCenter >= 0) $scope.pages[0] = "...";
+							                if ($scope.pages[$scope.pages.length-1]!=pageCount) $scope.pages[$scope.pages.length-1] = "...";
+							                return $scope.pages;
+							            };
 
-
-
-
+									   	$scope.cut();
+									})(click);
 								}
 								function errorHandler(data){
-									   console.log("Can't reload list!");
-								}
-
-
-								
-								
-						}
+									// Error here
+								}		
+							}
 						});
-					}
-					
+					}	
 				}
 
 				function initSearch () {
-					
 					$scope.map.addControl( new L.Control.Search({
 						url: 'http://nominatim.openstreetmap.org/search?format=json&q={s}',
 						jsonpParam: 'json_callback',
@@ -763,7 +656,6 @@
 						minLength: 2,
 						zoom:10
 					}) );
-
 				}
 
 				function initGeojson () {
@@ -774,7 +666,6 @@
 			}
 
 			// GeoJson objects styling functions
-
 			function style(feature) {
 				return {
 					fillColor: '#FD8D3C',
@@ -829,7 +720,6 @@
 			}
 
 			// GeoJson functions
-
 			function toGeoJSON(pointsArray) {
 				var geojson = {};
 				geojson['type'] = 'FeatureCollection';
@@ -869,9 +759,5 @@
 			},
 			link: link
 		};
-
 	});
-
-
-
 })();
