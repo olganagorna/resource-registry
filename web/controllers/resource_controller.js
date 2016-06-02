@@ -305,10 +305,8 @@
                         .then(function (result) {
                             $scope.arrayCleaner = result.data;
                             $scope.arrayDone = [];
-                            console.log($scope.arrayCleaner);
                             for (var i = 0; i< $scope.arrayCleaner.length; i++) {
-                                console.log($scope.arrayCleaner[i]);
-                                if ($scope.arrayCleaner[i].role_id == '2' || $scope.arrayCleaner[i].role_id == '4' ) {
+                                if ($scope.arrayCleaner[i].role_id == '2') {
                                     $scope.arrayDone.push($scope.arrayCleaner[$scope.arrayCleaner.length-1]);
                                 }
                             }
@@ -330,7 +328,6 @@
             };
 
             $scope.confirmOwner = function(data){
-                console.log(data);
 
                 $scope.ownerId = data.user_id;
 
@@ -348,7 +345,6 @@
                     .catch(errorHandler);
                 function successHandler(data) {
                     $scope.allAttributes = data.data;
-                    console.log($scope.allAttributes);
                 }
                 function errorHandler(data) {
                     console.log("Can't reload list!");
@@ -398,8 +394,6 @@
                                 $scope.requestParams.reciever_user_id = $scope.ownerId;
                                 $scope.cachCoordArray.push([$scope.resource.registration_number]);
 
-                                console.log(JSON.stringify($scope.requestParams));
-
                                 $http.post('rest.php/resources/creatingrequest', JSON.stringify($scope.requestParams))
                                     .then(successHandler)
                                     .catch(errorHandler);
@@ -429,7 +423,6 @@
             };
 
             $scope.additionData = function(){
-                console.log($scope.cachCoordArray);
                 $http.post('rest.php/resources/additiondata', JSON.stringify($scope.cachCoordArray))
                     .then(successHandler)
                     .catch(errorHandler);
@@ -463,7 +456,6 @@
                     
                 //     $scope.params.shift();
                 // }
-                console.log($scope.params);
             }
 
             function getArea(zones) {
