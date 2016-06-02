@@ -308,7 +308,7 @@
                             console.log($scope.arrayCleaner);
                             for (var i = 0; i< $scope.arrayCleaner.length; i++) {
                                 console.log($scope.arrayCleaner[i]);
-                                if ($scope.arrayCleaner[i].role_id == '2' || $scope.arrayCleaner[i].role_id == '4' ) {
+                                if ($scope.arrayCleaner[i].role_id == '2') {
                                     $scope.arrayDone.push($scope.arrayCleaner[$scope.arrayCleaner.length-1]);
                                 }
                             }
