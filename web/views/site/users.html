@@ -1,39 +1,4 @@
-<div class="community-container">
-
-	<style>
-		.community-container li.list-group-item {
-			border-bottom: 1px solid #e3e3e3;
-		}
-		.list-group-item:nth-child(1) {
-			font-weight: 700;
-		}
-		.community-container .list-group-item:last-child {
-			border-bottom: 0px solid transparent;
-		}
-		.list-group-item div > div {
-			line-height: 56px;
-		}
-		.community-container .community-search {
-			height: 35px;
-			line-height: 35px;
-			padding: 0 10px;
-			margin: 10px 0;
-			border-radius: 5px;
-			border: 1px solid #e3e3e3;
-		}
-		.off-ng-animation.ng-animate {
-			transition: 0s;
-		}
-		.sorting-link {
-			color: #000;
-		}
-		.sorting-link:hover, .sorting-link:active, .sorting-link:focus {
-			text-decoration: none;
-			color: #000;
-		}
-		
-	</style>
-
+<div class="user-container">
 	<div class="container well">
 		<div class="row">
 			<div class="col-lg-10 col-md-8 col-sm-8">
@@ -52,7 +17,7 @@
 		<div class="row">
 			<ul class="list-group">
 				<li class="list-group-item">
-					<div class="row">
+					<div class="row sorting-link">
 						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-if="currentUser.role === 'admin'">
 						<a class="sorting-link" title="Сортувати" ng-click="sortName()">Прізвище та ім'я <span class="glyphicon glyphicon-sort-by-attributes"></span></a>
                         </div>
