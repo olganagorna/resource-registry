@@ -75,7 +75,7 @@
 				<li class="list-group-item" ng-repeat="data in xmlData.items">
 					<a href="resource/update/{{data.res_id}}" class="update-link"><div class="row">
 						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6"><span ng-show="data.type == 0">"додати ресурс"</span><span ng-show="data.type == 1">"запит на витяг"</span></div>
-						<div class="col-lg-1 col-md-1 col-sm-1 hidden-xs"><span ng-if="data.res_id.length > 4">&hellip;</span>{{data.res_id | limitTo:4}}</div>
+						<div class="col-lg-1 col-md-1 col-sm-1 hidden-xs"><span ng-if="data.res_id.length > 4">&hellip;</span>{{data.res_id | limitTo: -4}}</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">{{data.first_name_s | limitTo:1 }}. {{data.last_name_s | limitTo:7}}<span ng-if="data.last_name_s.length > 7">&hellip;</span> (<span ng-if="data.username_s.length > 9">&hellip;</span>{{data.username_s | limitTo: -9}})</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">{{data.create_time * 1000 | date:'yyyy-MM-dd @ HH:mm'}}</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">{{data.first_name_r | limitTo:1 }}. {{data.last_name_r | limitTo:7}}<span ng-if="data.last_name_r.length > 7">&hellip;</span> (<span ng-if="data.username_r.length > 9">&hellip;</span>{{data.username_r | limitTo: -9}})</div>
