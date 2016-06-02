@@ -28,7 +28,7 @@
         <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
         <link href="https://cdn.rawgit.com/zhaber/datetimepicker/master/datetimepicker.css" type="text/css" rel="stylesheet">
     </head>
-    <body ng-controller="MainCtrl" onload="activePills()">
+    <body ng-controller="MainCtrl">
     <div class="navbar navbar-default shadow-z-1">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -40,8 +40,8 @@
         </div>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav nav-pills">
-                <li ng-if="currentUser.role === 'registrar' || currentUser.role === 'commissioner' || currentUser.role === 'user' "><a href="site/requests">ЗАПИТИ</a></li>
                 <li ng-if="currentUser.role === 'registrar' || currentUser.role === 'commissioner' || currentUser.role === 'user'"><a href="resource/index">РЕСУРСИ</a></li>
+                <li ng-if="currentUser.role === 'registrar' || currentUser.role === 'commissioner' || currentUser.role === 'user' "><a href="site/requests">ЗАПИТИ</a></li>
                 <li ng-if="currentUser.role === 'registrar'"><a href="site/logs">ЖУРНАЛ</a></li>
                 <li ng-if="currentUser.role === 'registrar' "><a href="resource/search">ПОШУК</a></li>
                 <li ng-if="currentUser.role === 'admin' || currentUser.role === 'commissioner'"><a href="site/users">КОРИСТУВАЧІ</a></li>
@@ -90,6 +90,7 @@
             $(document).ready(function() {
                 // This command is used to initialize some elements and make them work properly
                 $.material.init();
+                activePills();
             });
         </script>
 
