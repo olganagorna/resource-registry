@@ -63,11 +63,4 @@ class AttributeClassView extends \yii\db\ActiveRecord
     {
         return $this->hasMany(ResourceClass::className(), ['class_id' => 'class_id']);
     }
-
-    // public static function findByAttrIdAndClassId($attribute_id, $class_id)
-    // {
-    //     return AttributeClassView::find()->select(['attribute_id'])->where(['class_id' => $post['class_id']])->where(['attribute_id' => $post['attribute_id']])->asArray()->one();
-    // }
-
-    
 }
