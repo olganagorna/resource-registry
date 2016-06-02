@@ -52,7 +52,6 @@
 
             obj.switchPage = function(index, query){
                 obj.currentPage = index;
-                console.log("done");
                 return $http.get(constant.serviceBase + query + "page=" + index + "&per-page=" + $rootScope.xmlData._meta.perPage);
             };
 

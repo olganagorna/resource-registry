@@ -646,7 +646,70 @@ td.form-group{
 .result {
 	min-height: 390px;
 }
-
+.nav-tabs li {
+    width: 49.8%;
+    cursor: pointer;
+    border: 1px solid #999999;
+    border-bottom: 1px solid transparent;
+    padding: 10px 0px;
+    text-align: center;
+    color: #999999;
+    bottom: 0px;
+    margin-right: .4%;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+.nav-tabs li:nth-child(2) {
+margin-right: 0;
+}
+.nav-tabs li.active {
+border: 1px solid #009688;
+border-bottom: 1px solid #eee;
+color: #009688;
+}
+.tab-content {
+padding: 15px 10px;
+border: 1px solid #009688;
+}
+.nav-tabs {
+border-bottom: none;
+}
+.map-tab_left {
+margin-right: 20px;
+}
+.map-setting p {
+height: 40px;
+}
+.community-container li.list-group-item {
+    border-bottom: 1px solid #e3e3e3;
+}
+.list-group-item:nth-child(1) {
+    font-weight: 700;
+}
+.community-container .list-group-item:last-child {
+    border-bottom: 0px solid transparent;
+}
+.list-group-item div > div {
+    line-height: 56px;
+}
+.community-container .community-search {
+    height: 35px;
+    line-height: 35px;
+    padding: 0 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #e3e3e3;
+}
+.off-ng-animation.ng-animate {
+    transition: 0s;
+}
+.sorting-link {
+    color: #000;
+}
+.sorting-link:hover, .sorting-link:active, .sorting-link:focus {
+    text-decoration: none;
+    color: #000;
+}
 
 /* RESOURCE TYPE PAGE */
 
@@ -666,17 +729,6 @@ td.form-group{
     margin: 10px 0;
     border-radius: 5px;
     border: 1px solid #e3e3e3;
-}
-
-.off-ng-animation.ng-animate {
-    transition: 0s;
-}
-.sorting-link {
-    color: #000;
-}
-.sorting-link:hover, .sorting-link:active, .sorting-link:focus {
-    text-decoration: none;
-    color: #000;
 }
 
 .form-control-custom {
@@ -719,37 +771,16 @@ a, a:hover, a:focus {
     text-align: center;
 }
 
-.resource-type-container .list-group{list-style: none;}
+.resource-type-container .list-group {
+    list-style: none;
+}
 
 /* USER PAGE */
 
 .user-container li.list-group-item {
     border-bottom: 1px solid #e3e3e3;
 }
-.list-group-item:nth-child(1) {
-    font-weight: 700;
-}
+
 .user-container .list-group-item:last-child {
     border-bottom: 0px solid transparent;
-}
-.list-group-item div > div {
-    line-height: 56px;
-}
-.user-container .community-search {
-    height: 35px;
-    line-height: 35px;
-    padding: 0 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #e3e3e3;
-}
-.off-ng-animation.ng-animate {
-    transition: 0s;
-}
-.sorting-link {
-    color: #000;
-}
-.sorting-link:hover, .sorting-link:active, .sorting-link:focus {
-    text-decoration: none;
-    color: #000;
 }

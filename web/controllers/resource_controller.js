@@ -435,28 +435,7 @@
             };
 
 
-            function createParameters  (params, resourceId) {
-
-            //     for (var i in params) {
-
-            //         if (params[i]) {
-            //             params[i].resource_id = resourceId;
-            //             params[i].attribute_id = parseInt(i) + 1;
-            //             if (params[i]['attribute_id']===constant.SQUARE_ID){
-            //                 params[i]['value'] = toSquareMeters(params[i]['value']);
-            //             }
-            //             RestService.createData(params[i], constant.parametersQuery)
-            //         }
-            //     }
-            };
-
-            $scope.addParameters = function(value, attribute_id) {
-                // for (var i = 0; i < $scope.allAttributes.length; i++) {
-                //     $scope.params[[$scope.allAttributes[i].name]] = value[i];
-                    
-                //     $scope.params.shift();
-                // }
-            }
+            function createParameters  (params, resourceId) {};
 
             function getArea(zones) {
                 var currzonecoords = [];
