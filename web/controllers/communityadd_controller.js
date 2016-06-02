@@ -27,7 +27,7 @@
 		        function errorHandler(result){
 		        	if(result.data.message.includes('13 characters')){
                         alert('введіть у форматі 123:45:67:890');
-                    } else alert(result.data.message);
+                    } else alert(result.data.message);	
 	        	}
 	    	})();
 	    }
