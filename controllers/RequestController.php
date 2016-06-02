@@ -40,7 +40,7 @@ class RequestController extends AppController
         if ($request['option'] == 2) { $username = 'u_s.username';} else { $username = 'user.username';}
         $info = Request::find();
         // request value is used for search options
-        $info->select(['req_id', 'type', 'pd_s.last_name as last_name_s', 'pd_s.first_name as first_name_s', 'u_s.username as username_s', 'create_time', 'pd_r.last_name as last_name_r', 'pd_r.first_name as first_name_r', 'user.username as username_r', 'complete_time', 'status'])
+        $info->select(['res_id', 'type', 'pd_s.last_name as last_name_s', 'pd_s.first_name as first_name_s', 'u_s.username as username_s', 'create_time', 'pd_r.last_name as last_name_r', 'pd_r.first_name as first_name_r', 'user.username as username_r', 'complete_time', 'status'])
         ->joinWith(['sender', 'reciever', 'sender.senderPersData', 'reciever.recieverPersData'])
         ->orderBy('status, create_time desc, complete_time desc')
         ->asArray();
@@ -60,26 +60,26 @@ class RequestController extends AppController
         return self::buildPagination($info, $pagination=5);
     }
 
-    public function actionAddreq()
-    {
-        // Add request action. Variables should be changed
-        $requestModel = new Request();
-        $type = 0;
-        $sender = 8;
-        $reciever = 27; 
-        $status = 0;
+    // public function actionAddreq()
+    // {
+    //     // Add request action. Variables should be changed
+    //     $requestModel = new Request();
+    //     $type = 0;
+    //     $sender = 8;
+    //     $reciever = 27; 
+    //     $status = 0;
 
-        $requestModel->type = $type;
-        $requestModel->sender = $sender;
-        $requestModel->reciever = $reciever;
-        $requestModel->status = $status;
-        if (!$requestModel->save()){
-            foreach($requestModel->errors as $key){
-                $errorMessage .= $key[0];
-            }
-            throw new \yii\web\HttpException(422,$errorMessage);
-        }
-    }
+    //     $requestModel->type = $type;
+    //     $requestModel->sender = $sender;
+    //     $requestModel->reciever = $reciever;
+    //     $requestModel->status = $status;
+    //     if (!$requestModel->save()){
+    //         foreach($requestModel->errors as $key){
+    //             $errorMessage .= $key[0];
+    //         }
+    //         throw new \yii\web\HttpException(422,$errorMessage);
+    //     }
+    // }
 
     /**
      * Lists all Request models.
