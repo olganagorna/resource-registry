@@ -39,10 +39,6 @@
             margin-top: 17px;
         }
 
-        input {
-            text-indent: 0;  
-        }
-
         .attribute {
             position: relative; 
         }
@@ -85,9 +81,8 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <ng-form>
-                    <input type="text" class="community-search" id="attribute" ng-model="resClassSearch" placeholder="Пошук типу ресурсів по назві" size="30px"/>
-                    <input class="btn btn-primary" type="submit" value="Пошук" ng-click="searchResClass(name)"></input>
-                    {{$scope.searchVal}}
+                    <input type="text" class="community-search" ng-model="searchText" placeholder="Пошук типу ресурсів по назві" size="30px"/>
+                    <input class="btn btn-primary" type="submit" value="Пошук" ></input>
                 </ng-form>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
@@ -115,9 +110,9 @@
                         <div class="col-md-2"><h4>Дія</h4></div>
                     </div>
                 </li>
-                <li class="list-group-item" ng-repeat="data in xmlData[0]">
+                <li class="list-group-item" ng-repeat="data in xmlData[0] | filter:searchText">
                     <div class="row">
-                        <div class="btn btn-md btn-default collapsed col-md-10" data-toggle="collapse" data-target="{{'#demo' + data[0].class_id}}">
+                        <div class="btn btn-md btn-default collapsed col-md-10" ng-class="{'btn-disabled' : data[0].activation_status == 0}" ng-attr-data-toggle="{{data[0].activation_status == 1 ? 'collapse' : 'notcollapse'}}" data-target="{{'#demo' + data[0].class_id}}">
                             <div class="col-md-1 accordion-arrow"><span class="glyphicon glyphicon-menu-down"></span></div>
                             <div class="col-md-11">{{data[0].name}}</div>    
                         </div>    

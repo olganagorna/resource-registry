@@ -65,7 +65,6 @@ $config = [
                     'GET findfilteredattributes' => 'findfilteredattributes',
                     'GET findallattributes' => 'findallattributes',
                     'GET registrationnumber' => 'registrationnumber',
-                    'GET getresourceclass' => 'getresourceclass',
                     'POST creatingrequest' => 'creatingrequest'
                     ],
                 ],

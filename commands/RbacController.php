@@ -97,8 +97,6 @@ class RbacController extends Controller
         $auth->add($findGlobalAttr);
         $addResClass = $auth->createPermission('resource_class/addresourceclass'); 
         $auth->add($addResClass);
-        $getResClass = $auth->createPermission('resource_class/getresourceclass'); 
-        $auth->add($getResClass);
         $findAllAttr = $auth->createPermission('attribute_class_view/findallattributes'); 
         $auth->add($findAllAttr);
 
@@ -174,8 +172,7 @@ class RbacController extends Controller
         $auth->addChild($admin, $commView);
         $auth->addChild($admin, $commUpdt);
         $auth->addChild($admin, $commIndex);
-        $auth->addChild($admin, $addResClass);
-        $auth->addChild($admin, $getResClass);         
+        $auth->addChild($admin, $addResClass);         
         $auth->addChild($admin, $resourceClassSearch);
         $auth->addChild($admin, $resourceClassChangeActivationStatus);
         $auth->addChild($admin, $resourceClass);

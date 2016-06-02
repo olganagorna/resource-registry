@@ -94,23 +94,6 @@ class Resource_classController extends AppController
                 $errorMessage .= $key[0];
             }
             throw new \yii\web\HttpException(422,$errorMessage);
-        }
-        
-    }
-
-    // get all resource classes
-    public function actionGetresourceclass() 
-    {
-        $request = \Yii::$app->request->get();
-        $order = 'name ' . $request['order'];
-        $getresourceclass = ResourceClass::find()
-        ->select(['name','class_id','activation_status']);
-
-        if(isset($request['search'])){
-            $query->andFilterWhere(['like', 'name', $request['search']])->orderBy($order);
-        } else {
-            $query->orderBy($order);
-        }
-        return self::buildPagination($getresourceclass, 20);  
+        }  
     }
 }

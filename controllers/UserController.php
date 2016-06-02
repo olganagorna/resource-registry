@@ -180,6 +180,26 @@ class UserController extends AppController
             ]];
         }
 
+        
+        // if(currentUser.role="admin") {
+        //     $getdata = User::find()->select(['user_id','username','last_name','first_name','passport_series','passport_number','role.name as role_name','community.name as community_name','activation_status'])
+        //         ->joinWith('personalData')->joinWith('userRole')->joinWith('community')
+        //         ->andFilterWhere($filters)
+        //         ->andFilterWhere(['like', 'activation_status', $request['activation_status']])
+        //         ->orderBy($sort)
+        //         ->asArray(); 
+        //         return self::buildPagination($getdata, 10);   
+        // } else {
+        //     $getdata = User::find()->select(['user_id','username','last_name','first_name','passport_series','passport_number','role.name as role_name','activation_status'])
+        //         ->joinWith('personalData')->joinWith('userRole')
+        //         ->andFilterWhere($filters)
+        //         ->andFilterWhere(['like', 'activation_status', $request['activation_status']])
+        //         ->orderBy($sort)
+        //         ->asArray();
+        //         return self::buildPagination($getdata, 10); 
+        // }
+        
+        
         $getdata = User::find()
         ->select(['user_id','username','last_name','first_name','passport_series','passport_number','role.name as role_name','community.name as community_name','activation_status'])
         ->joinWith('personalData')->joinWith('userRole')->joinWith('community')
