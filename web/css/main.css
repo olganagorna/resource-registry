@@ -712,3 +712,21 @@ td.form-group{
             text-decoration: none;
             color: #000;
         }
+        .drpdwn-list {
+        max-height: 70px;
+        overflow-y: auto;
+        display: none;
+        }
+
+        .drpdwn-list li {
+            font-weight: 400 !important;
+            cursor: pointer;
+        }
+
+        .drpdwn-list li:hover {
+            background: lightgray;
+        }
+
+        .drpdwn-show .drpdwn-list { 
+            display: block;
+        }

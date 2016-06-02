@@ -18,7 +18,6 @@
                 .catch(errorHandler);
             function successHandler(data) {
                 $rootScope.xmlData = data.data;
-                console.log($rootScope.xmlData);
             }
             function errorHandler(data){
             }
