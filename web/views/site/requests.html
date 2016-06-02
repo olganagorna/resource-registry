@@ -48,9 +48,9 @@
 					<span>Пошук запитів 
 					<select ng-show="currentUser.role == 'registrar'" ng-model="searchType">
 						<option value="" selected="true" >ваш вибір &nbsp</option>
-						<option value="1" >з реєстраторів &nbsp</option>
+						<option value="1" >з обробників &nbsp</option>
 						<option value="2">з відправників &nbsp</option>
-					</select><span ng-hide="currentUser.role == 'registrar'">з реєстраторів &nbsp</span></span>
+					</select><span ng-hide="currentUser.role == 'registrar'">з обробників &nbsp</span></span>
 					<input type="text" class="requests-search" ng-model="requestSearch" ng-enter="searchRequest(requestSearch)" />
 					<input class="btn btn-primary" type="submit" value="Пошук" ng-click="searchRequest(requestSearch)"></input>
 					{{$scope.searchingVal}}
@@ -65,9 +65,9 @@
 					<div class="row">
 						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">Тип</div>
 						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-6">Ресурс</div>
-						<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">Відправив</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">Відправник</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">Час створення</div>
-						<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">Обробив</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">Обробник</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">Час обробки</div>
 						<div class="col-lg-1 col-md-1">Статус</div>
 					</div>
