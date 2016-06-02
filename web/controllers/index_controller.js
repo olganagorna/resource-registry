@@ -10,6 +10,7 @@
         $scope.xmlData = [];
         $scope.addAttr;
 
+
         ($scope.getData = function() {
             return $http.get('rest.php/attribute_class_views/findfilteredattributes')
                 .then(successHandler)
@@ -26,7 +27,8 @@
             $scope.attribute = {
                 name: attribute,
                 class_id: class_id,
-            }
+            };
+            
             (function() {
                 $http.post('rest.php/attribute_class_views/addattribute', JSON.stringify($scope.attribute))
                     .then(successHandler)
@@ -80,16 +82,18 @@
             }   
         }
 
+        
+
+
         $scope.addResourceClass = function(name) {
             $scope.resource_class = {
                 res_class_name: name
-            }                   
+            };                   
             if (confirm("Ви справді бажаєте додати тип ресурсів - " + $scope.resource_class.res_class_name + " ?") == true) {
                 $http.post('rest.php/resource_classes/addresourceclass', JSON.stringify($scope.resource_class))
                     .then(successHandler)
                     .catch(errorHandler);
                 function successHandler(status) {
-                    // alertPopup(status.status);
                     $scope.addResClass = "";
                     $scope.getData();
                 }
@@ -107,7 +111,6 @@
                 $scope.member = '';
             });
         };
-
     }
 
 })();
