@@ -14,7 +14,6 @@
 			line-height: 56px;
 		}
 		.community-container .community-search {
-			_width: 100%;
 			height: 35px;
 			line-height: 35px;
 			padding: 0 10px;
@@ -22,12 +21,17 @@
 			border-radius: 5px;
 			border: 1px solid #e3e3e3;
 		}
-		.sort {
-			color: rgba(0,0,0,.84);
+		.off-ng-animation.ng-animate {
+			transition: 0s;
 		}
-		a:hover {
+		.sorting-link {
+			color: #000;
+		}
+		.sorting-link:hover, .sorting-link:active, .sorting-link:focus {
 			text-decoration: none;
+			color: #000;
 		}
+		
 	</style>
 
 	<div class="container well">
@@ -35,7 +39,7 @@
 			<div class="col-lg-10 col-md-8 col-sm-8">
 				<ng-form>
 					<input type="text" class="community-search" ng-model="userSearch" ng-enter="searchUser(userSearch)" placeholder="Пошук по прізвищу та імені" size="30px"/>
-					<input class="btn btn-primary" type="submit" value="Пошук" ng-click="searchUser(userSearch)"/>
+					<button class="btn btn-primary" type="submit" value="Пошук" ng-click="searchUser(userSearch)">Пошук</button>
 				</ng-form>
 			</div>
 			<div class="col-lg-2 col-md-4 col-sm-4">
@@ -49,12 +53,15 @@
 			<ul class="list-group">
 				<li class="list-group-item">
 					<div class="row">
-						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-						<a class="sort ng-scope" title="Сортувати" ng-click="sortName()">Прізвище та ім'я <span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span></a>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-if="currentUser.role === 'admin'">
+						<a class="sorting-link" title="Сортувати" ng-click="sortName()">Прізвище та ім'я <span class="glyphicon glyphicon-sort-by-attributes"></span></a>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-if="currentUser.role === 'commissioner'">
+						<a class="sorting-link" title="Сортувати" ng-click="sortName()">Прізвище та ім'я <span class="glyphicon glyphicon-sort-by-attributes"></span></a>
                         </div>					
 						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Логін</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Паспортні дані</div>
-						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-if="currentUser.role === 'admin'">
 							<select ng-model="roleFilter" ng-change="filterRole(roleFilter)">
 								<option value="">Всі користувачі</option>
 				            	<option value="admin">Адміністратор</option>
@@ -63,23 +70,38 @@
 				            	<option value="commissioner">Уповноважений</option>
 				            </select>
 				        </div>
-				        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Громада</div>
+				        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-if="currentUser.role === 'commissioner'">
+							<select ng-model="roleFilter" ng-change="filterRole(roleFilter)">
+								<option value="">Всі користувачі</option>
+				            	<option value="admin">Адміністратор</option>
+				            	<option value="registrar">Реєстратор</option>
+				            	<option value="user">Співвласник</option>
+				            	<option value="commissioner">Уповноважений</option>
+				            </select>
+				        </div>
+				        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-if="currentUser.role === 'admin'">Громада</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Дії</div>
 					</div>
 				</li>
 				<li class="list-group-item" ng-repeat="data in xmlData.items">
 					<div class="row">
-						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{data.last_name}} {{data.first_name}}</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-if="currentUser.role === 'admin'">{{data.last_name}} {{data.first_name}}</div>
+						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-if="currentUser.role === 'commissioner'">{{data.last_name}} {{data.first_name}}</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{data.username}}</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{data.passport_series}} {{data.passport_number}}</div>
-						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-if="currentUser.role === 'admin'">
 							<select id="user-role-selector" ng-model="changeRoleId" ng-change="changeRole(changeRoleId, data.user_id)">
 				        		<option value="{{item.role_id}}" selected hidden>{{data.role_name}}</option>
 				        		<option ng-repeat="item in roleFound" value="{{item.role_id}}" ng-hide="data.role_name == item.role_name">{{item.role_name}}</option>
 				        	</select>
 				        </div>
-				        <!-- <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{data.community_name}} </div>-->
-				        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+				        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-if="currentUser.role === 'commissioner'">
+							<select id="user-role-selector" ng-model="changeRoleId" ng-change="changeRole(changeRoleId, data.user_id)">
+				        		<option value="{{item.role_id}}" selected hidden>{{data.role_name}}</option>
+				        		<option ng-repeat="item in roleFound" value="{{item.role_id}}" ng-hide="data.role_name == item.role_name">{{item.role_name}}</option>
+				        	</select>
+				        </div>
+				        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-if="currentUser.role === 'admin'">
 							<select id="community-role-selector" ng-model="changeComId" ng-change="changeCommunity(changeComId, data.user_id)" ng-hide="!data.community_name">
 				        		<option value="{{item.community_id}}" selected hidden>{{data.community_name}}</option>
 				        		<option ng-repeat="item in communityFound" value="{{item.community_id}}" ng-hide="data.community_name == item.name">{{item.name}}</option>
@@ -104,3 +126,17 @@
 		</div>
 	</div>
 </div>
+<script>
+	$(document).ready(function() {
+		$(".sorting-link").click(function(e) {
+			e.preventDefault();
+			if ($(this).children("span").hasClass("glyphicon-sort-by-attributes")) {
+				$(this).children("span").removeClass("glyphicon-sort-by-attributes");
+				$(this).children("span").addClass("glyphicon-sort-by-attributes-alt");
+			} else {
+				$(this).children("span").removeClass("glyphicon-sort-by-attributes-alt");
+				$(this).children("span").addClass("glyphicon-sort-by-attributes");
+			}				
+		});
+	});
+</script>
