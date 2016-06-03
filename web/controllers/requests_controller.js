@@ -79,7 +79,7 @@
                                $scope.currentPage = PaginationServicee.currentPage;
                        });
                    }  else if ($scope.searchingDone) {
-                       PaginationServicee.switchPage(index, $rootScope.requestQuery + '?value=' + $scope.searchingDone + "&page=" + index + "&per-page=" + constant.perPage)
+                       PaginationServicee.switchPage(index, $rootScope.requestQuery + '?option='+ $scope.searchType + '&value='+ $scope.requestSearch + "&page=" + index + "&per-page=" + constant.perPage)
                            .then(function(data) {
                                $rootScope.xmlData = data.data;
                                $scope.currentPage = PaginationServicee.currentPage;
