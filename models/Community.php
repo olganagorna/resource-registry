@@ -35,7 +35,10 @@ class Community extends \yii\db\ActiveRecord
         return [
             [['notes'], 'string'],
             [['isactive'], 'integer'],
-            [['name', 'prefix'], 'string', 'max' => 50]
+            [['name'], 'string', 'max' => 50, 'message' => 'введіть строку не більше 50-ти символів'],
+            [['prefix'], 'match', 'pattern' => '/^[0-9:]+$/', 'message' => 'введіть строку з чисел та символу :'],
+            [['prefix'], 'string', 'max' => 13],
+            [['prefix'], 'string', 'min' => 13]
         ];
     }
 
