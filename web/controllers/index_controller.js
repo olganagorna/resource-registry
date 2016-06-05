@@ -82,9 +82,6 @@
             }   
         }
 
-        
-
-
         $scope.addResourceClass = function(name) {
             $scope.resource_class = {
                 res_class_name: name
