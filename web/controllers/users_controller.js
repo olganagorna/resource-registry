@@ -48,8 +48,8 @@
 
         //Pagination start
         $scope.currentPage = PaginationServicee.currentPage;
-        $scope.getPages = function(pageCount) {
-            return PaginationServicee.getPages(pageCount);
+        $scope.getPages = function() {
+            return PaginationServicee.getPages();
         };
 
         $scope.switchPage = function(index) {

@@ -79,6 +79,14 @@
                 authRoles: 'admin'
             }
         })
+        .when('/user/edit/:userId', {
+            controller: 'UserEditCtrl',
+            templateUrl: 'views/site/user_edit.html',
+            controllerAs: 'userEdit',
+            data: {
+                authRoles: ['admin', 'commissioner']
+            }
+        })
         .when('/site/users', {
             controller: 'UsersController',
             controllerAs: 'list',
