@@ -9,6 +9,7 @@
     function UsersCommunity($scope, $http, PaginationServicee, constant, $location, $rootScope) {
 
         $rootScope.xmlData = [];
+	$rootScope.xmlData.items = [];
         $scope.searchingVal = "";
         $scope.orderBy = "ASC";
 
