@@ -8,11 +8,13 @@
         <form name="myForm" role="form" ng-submit="comAdd.addCommunity()">
             <div class="form-group" >
                 <label for="community_name">Назва громади</label>
-                <input type="text" name="community_name" id="community_name" class="form-control" ng-model="comAdd.community.name" required/>
+                <input type="text" name="community_name" id="community_name" class="form-control" ng-model="comAdd.community.name" placeholder="вкажіть назву громади" required/>
             </div>
             <div class="form-group" >
                 <label for="community_num">№ Код громади</label>
-                <input type="text" name="community_num" id="community_num" class="form-control" ng-model="comAdd.community.num" placeholder="000:00:00:000"/>
+                <div class="input-group">
+                    <input type="text" name="community_num" id="community_num" class="form-control" ng-model="comAdd.community.num" placeholder="внесіть номер громади у певному форматі" required/><span class="input-group-addon" id="basic-addon2" style="background-color: #CFCFCF; border-radius: 2px;">приклад: 123:45:67:890</span>
+                </div>
             </div>
             <div class="form-group" >
                 <label for="community_additions">Примітки</label>
