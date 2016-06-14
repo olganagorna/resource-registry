@@ -9,13 +9,13 @@
     function RequestsController($scope, $http, PaginationServicee, constant, $location, $rootScope) {
 
         $rootScope.xmlData = [];
-        $rootScope.requestQuery = 'requests/showrequest';
+        $rootScope.reqQuery = 'requests/showrequest';
         $scope.searchingVal;
         $scope.requestSearch = [];
         $rootScope.xmlDataLength;
 
         (function(){
-            return $http.get('rest.php/'+ $rootScope.requestQuery)
+            return $http.get('rest.php/'+ $rootScope.reqQuery)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
@@ -31,7 +31,7 @@
         // search by senders username
         $scope.searchRequest = function(requestSearch) {
           // if ($scope.searchType == undefined ) {$scope.searchType = 0;}
-            $http.get('rest.php/'+ $rootScope.requestQuery + '?option='+ $scope.searchType + '&value='+ $scope.requestSearch)
+            $http.get('rest.php/'+ $rootScope.reqQuery + '?option='+ $scope.searchType + '&value='+ $scope.requestSearch)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
@@ -73,19 +73,19 @@
            var intervalID = setInterval(function(){
                if ($rootScope.xmlData) {
                    if($scope.request) {
-                       PaginationServicee.switchPage(index, $rootScope.requestQuery + '/search?' + buildQuery($scope.request)+ '&')
+                       PaginationServicee.switchPage(index, $rootScope.reqQuery + '/search?' + buildQuery($scope.request)+ '&')
                            .then(function(data) {
                                $rootScope.xmlData = data.data;
                                $scope.currentPage = PaginationServicee.currentPage;
                        });
                    }  else if ($scope.searchingDone) {
-                       PaginationServicee.switchPage(index, $rootScope.requestQuery + '?option='+ $scope.searchType + '&value='+ $scope.requestSearch + "&page=" + index + "&per-page=" + constant.perPage)
+                       PaginationServicee.switchPage(index, $rootScope.reqQuery + '?option='+ $scope.searchType + '&value='+ $scope.requestSearch + "&page=" + index + "&per-page=" + constant.perPage)
                            .then(function(data) {
                                $rootScope.xmlData = data.data;
                                $scope.currentPage = PaginationServicee.currentPage;
                        });
                    } else {
-                       PaginationServicee.switchPage(index, $rootScope.requestQuery + '?')
+                       PaginationServicee.switchPage(index, $rootScope.reqQuery + '?')
                            .then(function(data) {
                                $rootScope.xmlData = data.data;
                                $scope.currentPage = PaginationServicee.currentPage;
