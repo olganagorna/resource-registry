@@ -12,6 +12,8 @@
         $rootScope.reqQuery = 'requests/showrequest';
         $rootScope.xmlData.items = [];
         $scope.searchingVal;
+        $scope.searchingDone;
+        $scope.searchingDone2;
         $scope.requestSearch = [];
         $rootScope.xmlDataLength;
 
@@ -37,6 +39,8 @@
                 .catch(errorHandler);
             function successHandler(data) {
                 $rootScope.xmlData = data.data;
+                $scope.searchingDone = $scope.searchType;
+                $scope.searchingDone2 = $scope.requestSearch;
             }
             function errorHandler(data){
                 console.log("Can't reload list!");
@@ -79,7 +83,7 @@
                                $rootScope.xmlData = data.data;
                                $scope.currentPage = PaginationServicee.currentPage;
                        });
-                   }  else if ($scope.searchingDone) {
+                   }  else if ($scope.searchingDone || $scope.searchingDone2) {
                        PaginationServicee.switchPage(index, $rootScope.reqQuery + '?option='+ $scope.searchType + '&value='+ $scope.requestSearch + "&page=" + index + "&per-page=" + constant.perPage)
                            .then(function(data) {
                                $rootScope.xmlData = data.data;
