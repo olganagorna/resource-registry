@@ -46,7 +46,11 @@ class RequestController extends AppController
         ->joinWith(['sender', 'reciever', 'sender.senderPersData', 'reciever.recieverPersData'])
         ->orderBy('status, create_time desc, complete_time desc')
         ->asArray();
+<<<<<<< HEAD
         if ($roleName == 'registrar') { 
+=======
+        if ($roleName === 'registrar') { 
+>>>>>>> ed193845f02b1ad13ed1ca507dc1e8c62d304caa
             $info->andFilterWhere(['and', ['user.community_id' => $viewRegistrar], ['u_s.community_id' => $viewRegistrar]]);
             if (isset($request['value']) && isset($request['option'])) {
                 $info->andFilterWhere(['like', $username, $request['value']]);

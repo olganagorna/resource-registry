@@ -14,6 +14,7 @@
         $scope.sortingDone;
         $scope.roleFound = [];
         $scope.communityFound = [];
+        $rootScope.xmlData.items = [];
 
         $scope.modifyRoleName = function() {
             var toEquate = {
@@ -53,7 +54,7 @@
 
         $scope.switchPage = function(index) {
             var intervalID = setInterval(function(){
-                if ($rootScope.xmlData.length > 0) {
+                if ($rootScope.xmlData.items.length > 0) {
                     if($scope.request) {
                         PaginationServicee.switchPage(index, constant.usersQuery + '/search?' + buildQuery($scope.request)+ '&')
                             .then(function(data) {
