@@ -8,7 +8,6 @@
 
             var obj = {};
 
-            $rootScope.xmlData.items = [];
 
             obj.currentPage = 1;
 

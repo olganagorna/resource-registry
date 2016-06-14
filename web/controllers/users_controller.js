@@ -9,12 +9,13 @@
     function UsersController(RestService, $location, constant, $filter , $rootScope, $scope, $http, PaginationServicee) {
 
         $rootScope.xmlData = [];
+	$rootScope.xmlData.items = [];
         $scope.roleFilter;
         $scope.userSearch;
         $scope.sortingDone;
         $scope.roleFound = [];
         $scope.communityFound = [];
-        $rootScope.xmlData.items = [];
+
 
         $scope.modifyRoleName = function() {
             var toEquate = {

@@ -9,8 +9,12 @@
     function RequestsController($scope, $http, PaginationServicee, constant, $location, $rootScope) {
 
         $rootScope.xmlData = [];
+<<<<<<< HEAD
         $rootScope.reqQuery = 'requests/showrequest';
-        $rootScope.xmlData.items = [];
+=======
+	$rootScope.xmlData.items = [];
+        $rootScope.requestQuery = 'requests/showrequest';
+>>>>>>> 27cef38530b65f8c8a7e1d369057e20e796a7afb
         $scope.searchingVal;
         $scope.requestSearch = [];
         $rootScope.xmlDataLength;
