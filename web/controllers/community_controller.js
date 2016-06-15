@@ -9,7 +9,7 @@
     function UsersCommunity($scope, $http, PaginationServicee, constant, $location, $rootScope) {
 
         $rootScope.xmlData = [];
-	$rootScope.xmlData.items = [];
+	    $rootScope.xmlData.items = [];
         $scope.searchingVal = "";
         $scope.orderBy = "ASC";
 
@@ -43,7 +43,7 @@
         };
 
         $scope.chngActiveStatus = function(data, status) {
-            if (status == 0 && !confirm("Ви дійсно бажаєте дективувати громаду?")) {
+            if (status == 0 && !confirm("Ви дійсно бажаєте деактивувати громаду?")) {
                 return;
             }
             var prev_stat = data.isactive;

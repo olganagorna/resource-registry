@@ -9,7 +9,7 @@
     function UsersController(RestService, $location, constant, $filter , $rootScope, $scope, $http, PaginationServicee) {
 
         $rootScope.xmlData = [];
-	$rootScope.xmlData.items = [];
+	    $rootScope.xmlData.items = [];
         $scope.roleFilter;
         $scope.userSearch;
         $scope.sortingDone;
@@ -63,8 +63,8 @@
                                 $scope.modifyRoleName();
                                 $scope.currentPage = PaginationServicee.currentPage;
                         });
-                    }  else if ($scope.searchingDone) {
-                        PaginationServicee.switchPage(index, 'users/userdata?value=' + $scope.searchingDone + "&page=" + index + "&per-page=" + constant.perPage)
+                    }  else if ($scope.sortingDone) {
+                        PaginationServicee.switchPage(index, constant.usersQuery + '?value=' + $scope.sortingDone + "&page=" + index + "&per-page=" + constant.perPage)
                             .then(function(data) {
                                 $rootScope.xmlData = data.data;
                                 $scope.modifyRoleName();

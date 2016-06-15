@@ -9,16 +9,14 @@
     function RequestsController($scope, $http, PaginationServicee, constant, $location, $rootScope) {
 
         $rootScope.xmlData = [];
-        $rootScope.reqQuery = 'requests/showrequest';
         $rootScope.xmlData.items = [];
-        $scope.searchingVal;
-        $scope.searchingDone;
-        $scope.searchingDone2;
-        $scope.requestSearch = [];
-        $rootScope.xmlDataLength;
+        $scope.reqQuery = 'requests/showrequest';
+        $scope.searchType;
+        $scope.requestSearch;
+
 
         (function(){
-            return $http.get('rest.php/'+ $rootScope.reqQuery)
+            return $http.get('rest.php/'+ $scope.reqQuery)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
@@ -34,7 +32,7 @@
         // search by senders username
         $scope.searchRequest = function(requestSearch) {
           // if ($scope.searchType == undefined ) {$scope.searchType = 0;}
-            $http.get('rest.php/'+ $rootScope.reqQuery + '?option='+ $scope.searchType + '&value='+ $scope.requestSearch)
+            $http.get('rest.php/'+ $scope.reqQuery + '?option='+ $scope.searchType + '&value='+ $scope.requestSearch)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
@@ -78,19 +76,19 @@
            var intervalID = setInterval(function(){
                if ($rootScope.xmlData.items.length > 0) {
                    if($scope.request) {
-                       PaginationServicee.switchPage(index, $rootScope.reqQuery + '/search?' + buildQuery($scope.request)+ '&')
+                       PaginationServicee.switchPage(index, $scope.reqQuery + '/search?' + buildQuery($scope.request)+ '&')
                            .then(function(data) {
                                $rootScope.xmlData = data.data;
                                $scope.currentPage = PaginationServicee.currentPage;
                        });
                    }  else if ($scope.searchingDone || $scope.searchingDone2) {
-                       PaginationServicee.switchPage(index, $rootScope.reqQuery + '?option='+ $scope.searchType + '&value='+ $scope.requestSearch + "&page=" + index + "&per-page=" + constant.perPage)
+                       PaginationServicee.switchPage(index, $scope.reqQuery + '?option='+ $scope.searchType + '&value='+ $scope.requestSearch + "&page=" + index + "&per-page=" + constant.perPage)
                            .then(function(data) {
                                $rootScope.xmlData = data.data;
                                $scope.currentPage = PaginationServicee.currentPage;
                        });
                    } else {
-                       PaginationServicee.switchPage(index, $rootScope.reqQuery + '?')
+                       PaginationServicee.switchPage(index, $scope.reqQuery + '?')
                            .then(function(data) {
                                $rootScope.xmlData = data.data;
                                $scope.currentPage = PaginationServicee.currentPage;
@@ -99,7 +97,7 @@
                    clearInterval(intervalID);
                }
 
-           },1000);
+           },10);
        };
        $scope.switchPage($scope.currentPage);
        $scope.setPage = function(pageLink, pageType) {
