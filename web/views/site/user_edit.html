@@ -1,61 +1,59 @@
-<div>
-    <div class="jumbotron col-md-6 md-login">
-        <h2>Редагування користувача</h2>
-        <form name="form" role="form" ng-submit="commEdit.updateUser()">
-            <!-- <div class="form-group" >
-                <input ng-model="vm.user.role_id" type="radio" name="role" value="1"/>
-                <label for="role">Співвласник</label>
-                <input ng-model="vm.user.role_id" type="radio" name="role" value="4"/>
-                <label for="role">Уповноважений</label>
-                <input ng-model="vm.user.role_id" type="radio" name="role" value="2"/>
-                <label for="role">Реєстратор</label>
-                <input ng-model="vm.user.role_id" ng-if="currentUser.role === 'admin'" type="radio" name="role" value="3"/> 
-                <label ng-if="currentUser.role === 'admin'" for="role">Адміністратор</label>
-            </div> -->
-            <div class="form-group">
-                <label for="username">Логін<sup>*</sup></label>
-                <input type="text" name="username" class="form-control" ng-model="userEdit.user.username" required />
-            </div>
-            <!-- <div class="form-group" >
-                <label for="password">Пароль<sup>*</sup></label>
-                <input type="password" name="password" class="form-control" ng-model="vm.user.password" required/>
-            </div> -->
-            <!-- <div class="form-group" >
-                <label for="email">Поштова скринька<sup>*</sup></label>
-                <input type="text" name="firstName" class="form-control" ng-model="vm.user.email" required />
-            </div> -->
-            <div class="form-group" >
-                <label for="lastName">Прізвище<sup>*</sup></label>
-                <input type="text" name="lastName" class="form-control" ng-model="userEdit.user.last_name" required />
-            </div>
-            <div class="form-group" >
-                <label for="firstName">Ім'я<sup>*</sup></label>
-                <input type="text" name="lastName" class="form-control" ng-model="userEdit.user.first_name" required />
-            </div>
-            <div class="form-group" >
-                <label for="secondName">По батькові</label>
-                <input type="text" name="lastName" class="form-control" ng-model="vm.user.middle_name"/>
-            </div>
-            <div class="form-group" >
-                <label for="passportSeries">Серія паспорта<sup>*</sup></label>
-                <input type="text" name="lastName" class="form-control" ng-model="vm.user.passport_series" required />
-            </div>
-            <div class="form-group" >
-                <label for="passportNumber">Номер паспорта<sup>*</sup></label>
-                <input type="text" name="lastName" class="form-control" ng-model="vm.user.passport_number" required />
-            </div>
-            <div class="form-group" >
-                <label for="address">Адреса<sup>*</sup></label>
-                <input type="text" name="lastName" class="form-control" ng-model="vm.user.address" required />
-            </div>
-            <div ng-if="currentUser.role === 'admin' && vm.user.role_id !== '3'" class="form-group" >
-                <label for="community">Громада<sup>*</sup></label>
-                <dropdown-list data-items-list="vm.itemsList" data-search-result="vm.community" data-placeholder="пошук"></dropdown-list> 
-            </div>
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Змінити</button>
-                <a href="site/users" class="btn btn-link">Відмінити</a>
-            </div>
-        </form>
-    </div>
+<div class="jumbotron col-md-6 md-login">
+    <h2>Редагування користувача</h2>
+    <form name="form" role="form" ng-submit="userEdit.updateUser()">
+        <!-- <div class="form-group" >
+            <input ng-model="vm.user.role_id" type="radio" name="role" value="1"/>
+            <label for="role">Співвласник</label>
+            <input ng-model="vm.user.role_id" type="radio" name="role" value="4"/>
+            <label for="role">Уповноважений</label>
+            <input ng-model="vm.user.role_id" type="radio" name="role" value="2"/>
+            <label for="role">Реєстратор</label>
+            <input ng-model="vm.user.role_id" ng-if="currentUser.role === 'admin'" type="radio" name="role" value="3"/> 
+            <label ng-if="currentUser.role === 'admin'" for="role">Адміністратор</label>
+        </div> -->
+        <div class="form-group">
+            <label for="username">Логін<sup>*</sup></label>
+            <input type="text" name="username" class="form-control" ng-model="userEdit.user.username" required />
+        </div>
+        <!-- <div class="form-group" >
+            <label for="password">Пароль<sup>*</sup></label>
+            <input type="password" name="password" class="form-control" ng-model="vm.user.password" required/>
+        </div> -->
+        <!-- <div class="form-group" >
+            <label for="email">Поштова скринька<sup>*</sup></label>
+            <input type="text" name="firstName" class="form-control" ng-model="vm.user.email" required />
+        </div> -->
+        <div class="form-group" >
+            <label for="lastName">Прізвище<sup>*</sup></label>
+            <input type="text" name="lastName" class="form-control" ng-model="userEdit.user.last_name" required />
+        </div>
+        <div class="form-group" >
+            <label for="firstName">Ім'я<sup>*</sup></label>
+            <input type="text" name="firstName" class="form-control" ng-model="userEdit.user.first_name" required />
+        </div>
+        <!-- <div class="form-group" >
+            <label for="secondName">По батькові</label>
+            <input type="text" name="lastName" class="form-control" ng-model="vm.user.middle_name"/>
+        </div>
+        <div class="form-group" >
+            <label for="passportSeries">Серія паспорта<sup>*</sup></label>
+            <input type="text" name="lastName" class="form-control" ng-model="vm.user.passport_series" required />
+        </div>
+        <div class="form-group" >
+            <label for="passportNumber">Номер паспорта<sup>*</sup></label>
+            <input type="text" name="lastName" class="form-control" ng-model="vm.user.passport_number" required />
+        </div>
+        <div class="form-group" >
+            <label for="address">Адреса<sup>*</sup></label>
+            <input type="text" name="lastName" class="form-control" ng-model="vm.user.address" required />
+        </div>
+        <div ng-if="currentUser.role === 'admin' && vm.user.role_id !== '3'" class="form-group" >
+            <label for="community">Громада<sup>*</sup></label>
+            <dropdown-list data-items-list="vm.itemsList" data-search-result="vm.community" data-placeholder="пошук"></dropdown-list> 
+        </div> -->
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Змінити</button>
+            <a href="site/users" class="btn btn-link">Відмінити</a>
+        </div>
+    </form>
 </div>

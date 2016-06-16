@@ -8,19 +8,20 @@
     function UserEditCtrl($location, $http, $routeParams) {
         var userEdit = this;
         userEdit.user = {};
-        userEdit.user.userId = $routeParams.user_id;
+        userEdit.user.userId = $routeParams.userId;
         userEdit.user.username = 'error';
-
+        console.log(userEdit.user);
+        
         (function(){
-            var get = $http.get('rest.php/users/' + userEdit.user.userId)
+            $http.get('rest.php/users/userdata/' + userEdit.user.userId)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(result) {
                 userEdit.user.username = result.data.username;
                 userEdit.user.last_name = result.data.last_name;
                 userEdit.user.first_name = result.data.first_name;
-                userEdit.user.role_name = result.data.role_name;
-                userEdit.user.community_name = result.data.community_name;
+                // userEdit.user.role_name = result.data.role_name;
+                // userEdit.user.community_name = result.data.community_name;
             }
             function errorHandler(result){
                 // handler
@@ -28,7 +29,7 @@
         }());
 
         userEdit.updateUser = function () {
-            var post = $http.put('rest.php/users/' + userEdit.user.userId, userEdit.user)
+            $http.put('rest.php/users/userdata/' + userEdit.user.userId, userEdit.user)
             .then(successHandler)
             .catch(errorHandler);
 

@@ -9,13 +9,13 @@
     function UsersController(RestService, $location, constant, $filter , $rootScope, $scope, $http, PaginationServicee) {
 
         $rootScope.xmlData = [];
-	$rootScope.xmlData.items = [];
+	    $rootScope.xmlData.items = [];
         $scope.roleFilter;
         $scope.userSearch;
         $scope.sortingDone;
         $scope.roleFound = [];
         $scope.communityFound = [];
-
+        $scope.currentCommId = (angular.fromJson(sessionStorage.user)).communityId;
 
         $scope.modifyRoleName = function() {
             var toEquate = {
@@ -30,8 +30,12 @@
                 }
         };
         
+        if($scope.currentCommId === null) {
+            $scope.currentCommId = "";
+        }
+
         ($scope.getData = function() {
-            return $http.get('rest.php/users/userdata')
+            return $http.get('rest.php/' + constant.usersQuery + '?currentCommId=' + $scope.currentCommId)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
@@ -57,21 +61,21 @@
             var intervalID = setInterval(function(){
                 if ($rootScope.xmlData.items.length > 0) {
                     if($scope.request) {
-                        PaginationServicee.switchPage(index, constant.usersQuery + '/search?' + buildQuery($scope.request)+ '&')
+                        PaginationServicee.switchPage(index, constant.usersQuery + '/search?' + buildQuery($scope.request))
                             .then(function(data) {
                                 $rootScope.xmlData = data.data;
                                 $scope.modifyRoleName();
                                 $scope.currentPage = PaginationServicee.currentPage;
                         });
                     }  else if ($scope.searchingDone) {
-                        PaginationServicee.switchPage(index, 'users/userdata?value=' + $scope.searchingDone + "&page=" + index + "&per-page=" + constant.perPage)
+                        PaginationServicee.switchPage(index, constant.usersQuery + '?value=' + $scope.searchingDone + "&page=" + index + "&per-page=" + constant.perPage)
                             .then(function(data) {
                                 $rootScope.xmlData = data.data;
                                 $scope.modifyRoleName();
                                 $scope.currentPage = PaginationServicee.currentPage;
                         });
                     } else {
-                        PaginationServicee.switchPage(index, constant.usersQuery + '?')
+                        PaginationServicee.switchPage(index, constant.usersQuery + '?currentCommId=' + $scope.currentCommId + '&')
                             .then(function(data) {
                                 $rootScope.xmlData = data.data;
                                 $scope.modifyRoleName();
@@ -97,7 +101,7 @@
 
         // filtering by role
         $scope.filterRole = function(role_name) {
-            $http.get('rest.php/users/userdata?value='+ role_name)
+            $http.get('rest.php/' + constant.usersQuery +'?value='+ role_name + '&currentCommId=' + $scope.currentCommId)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
@@ -111,7 +115,7 @@
 
         // searching by first and last name
         $scope.searchUser = function(search_query) {
-            $http.get('rest.php/users/userdata?value='+ search_query)
+            $http.get('rest.php/' + constant.usersQuery + '?value=' + search_query + '&currentCommId=' + $scope.currentCommId)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {
@@ -130,7 +134,7 @@
             } else {
                 $scope.sort_order = "desc";
             }
-            $http.get('rest.php/users/userdata?sort=' + $scope.sort_order)
+            $http.get('rest.php/' + constant.usersQuery + '?sort=' + $scope.sort_order + '&currentCommId=' + $scope.currentCommId)
                 .then(successHandler)
                 .catch(errorHandler);
             function successHandler(data) {

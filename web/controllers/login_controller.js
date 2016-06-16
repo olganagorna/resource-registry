@@ -27,7 +27,7 @@
         vm.user = {
             username: '',
             password: '',
-            rememberMe: 1
+            rememberMe: 1,
         };
 
         vm.logIn = function(){

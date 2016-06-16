@@ -180,14 +180,24 @@ class UserController extends AppController
             ]];
         }
 
-        $getdata = User::find()
-        ->select(['user_id','username','last_name','first_name','passport_series','passport_number','role.name as role_name','community.name as community_name','activation_status'])
-        ->joinWith('personalData')->joinWith('userRole')->joinWith('community')
-        ->andFilterWhere($filters)
-        ->andFilterWhere(['like', 'activation_status', $request['activation_status']])
-        ->orderBy($sort)
-        ->asArray();
-        
+        if(!$request['currentCommId']) {
+            $getdata = User::find()
+            ->select(['user_id','username','last_name','first_name','passport_series','passport_number','role.name as role_name','community.name as community_name','user.community_id as communityId','activation_status'])
+            ->joinWith('personalData')->joinWith('userRole')->joinWith('community')
+            ->andFilterWhere($filters)
+            ->andFilterWhere(['like', 'activation_status', $request['activation_status']])
+            ->orderBy($sort)
+            ->asArray();
+        } else {
+            $getdata = User::find()
+            ->select(['user_id','username','last_name','first_name','passport_series','passport_number','user.community_id as communityId','role.name as role_name','activation_status'])
+            ->joinWith('personalData')->joinWith('userRole')
+            ->andFilterWhere($filters)
+            ->andFilterWhere(['like', 'activation_status', $request['activation_status']])
+            ->andFilterWhere(['like', 'user.community_id', $request['currentCommId']])
+            ->orderBy($sort)
+            ->asArray();
+        }
             return self::buildPagination($getdata, 10); 
     }
 
