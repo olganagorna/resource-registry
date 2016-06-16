@@ -42,11 +42,11 @@ class RequestController extends AppController
         if ($request['option'] == 2) { $username = 'u_s.username';} else { $username = 'user.username';}
         $info = Request::find();
         // request value is used for search options
-        $info->select(['res_id', 'type', 'pd_s.last_name as last_name_s', 'pd_s.first_name as first_name_s', 'u_s.username as username_s', 'create_time', 'pd_r.last_name as last_name_r', 'pd_r.first_name as first_name_r', 'user.username as username_r', 'complete_time', 'status'])
-        ->joinWith(['sender', 'reciever', 'sender.senderPersData', 'reciever.recieverPersData'])
+        $info->select(['res_id', 'type', 'resource.resource_id as resource', 'pd_s.last_name as last_name_s', 'pd_s.first_name as first_name_s', 'u_s.username as username_s', 'create_time', 'pd_r.last_name as last_name_r', 'pd_r.first_name as first_name_r', 'user.username as username_r', 'complete_time', 'status'])
+        ->joinWith(['sender', 'reciever', 'res', 'sender.senderPersData', 'reciever.recieverPersData'])
         ->orderBy('status, create_time desc, complete_time desc')
         ->asArray();
-        if ($roleName === 'registrar') { 
+        if ($roleName == 'registrar') { 
             $info->andFilterWhere(['and', ['user.community_id' => $viewRegistrar], ['u_s.community_id' => $viewRegistrar]]);
             if (isset($request['value']) && isset($request['option'])) {
                 $info->andFilterWhere(['like', $username, $request['value']]);

@@ -2,3 +2,5 @@ config/db.php
 runtime/**
 assets/**
 .orig
+
+tests/_output/*

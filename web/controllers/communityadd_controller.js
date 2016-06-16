@@ -20,9 +20,8 @@
 		        	.then(successHandler)
 		        	.catch(errorHandler);
 		        function successHandler(result) {
-		        	$('.alert-success').toggle(); // show success alert
-		        	comAdd.community = null;
-		        	$scope.$setPristine(true);
+		        	alert('Ви успішно додали нову громаду');
+		        	window.location = "/resource/community";
 		        }
 		        function errorHandler(result){
 		        	if(result.data.message.includes('13 characters')){

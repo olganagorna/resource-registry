@@ -53,22 +53,22 @@
 
         //Pagination start
         $scope.currentPage = PaginationServicee.currentPage;
-        $scope.getPages = function() {
-            return PaginationServicee.getPages();
+        $scope.getPages = function(pageCount) {
+            return PaginationServicee.getPages(pageCount);
         };
 
         $scope.switchPage = function(index) {
             var intervalID = setInterval(function(){
                 if ($rootScope.xmlData.items.length > 0) {
                     if($scope.request) {
-                        PaginationServicee.switchPage(index, constant.usersQuery + '/search?' + buildQuery($scope.request))
+                        PaginationServicee.switchPage(index, constant.usersQuery + '/search?' + buildQuery($scope.request)+ '&')
                             .then(function(data) {
                                 $rootScope.xmlData = data.data;
                                 $scope.modifyRoleName();
                                 $scope.currentPage = PaginationServicee.currentPage;
                         });
-                    }  else if ($scope.searchingDone) {
-                        PaginationServicee.switchPage(index, constant.usersQuery + '?value=' + $scope.searchingDone + "&page=" + index + "&per-page=" + constant.perPage)
+                    }  else if ($scope.sortingDone) {
+                        PaginationServicee.switchPage(index, constant.usersQuery + '?value=' + $scope.sortingDone + "&page=" + index + "&per-page=" + constant.perPage)
                             .then(function(data) {
                                 $rootScope.xmlData = data.data;
                                 $scope.modifyRoleName();

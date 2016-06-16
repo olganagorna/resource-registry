@@ -40,13 +40,13 @@
         </div>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav nav-pills">
-                <li ng-if="currentUser.role === 'registrar' || currentUser.role === 'commissioner' || currentUser.role === 'user'"><a href="resource/index">РЕСУРСИ</a></li>
-                <li ng-if="currentUser.role === 'registrar' || currentUser.role === 'commissioner' || currentUser.role === 'user' "><a href="site/requests">ЗАПИТИ</a></li>
-                <li ng-if="currentUser.role === 'registrar'"><a href="site/logs">ЖУРНАЛ</a></li>
-                <li ng-if="currentUser.role === 'registrar' "><a href="resource/search">ПОШУК</a></li>
-                <li ng-if="currentUser.role === 'admin' || currentUser.role === 'commissioner'"><a href="site/users">КОРИСТУВАЧІ</a></li>
-                <li  ng-if="currentUser.role === 'admin'"><a href="resource/community">ГРОМАДИ</a></li>
-                <li ng-if="currentUser.role === 'admin' "><a href="resource/type">ТИПИ РЕСУРСІВ</a></li>
+                <li ng-class="{active: activePills == '/resource/index'}" ng-if="currentUser.role === 'registrar' || currentUser.role === 'commissioner' || currentUser.role === 'user'"><a ng-click="activatePills()" href="resource/index">РЕСУРСИ</a></li>
+                <li ng-class="{active: activePills == '/site/requests'}" ng-if="currentUser.role === 'registrar' || currentUser.role === 'commissioner' || currentUser.role === 'user' "><a ng-click="activatePills()" href="site/requests">ЗАПИТИ</a></li>
+                <li ng-class="{active: activePills == '/site/logs'}" ng-if="currentUser.role === 'registrar'"><a ng-click="activatePills()" href="site/logs">ЖУРНАЛ</a></li>
+                <li ng-class="{active: activePills == '/resource/search'}" ng-if="currentUser.role === 'registrar' "><a ng-click="activatePills()" href="resource/search">ПОШУК</a></li>
+                <li ng-class="{active: activePills == '/site/users'}" ng-if="currentUser.role === 'admin' || currentUser.role === 'commissioner'" class="user-active"><a ng-click="activatePills()" href="site/users">КОРИСТУВАЧІ</a></li>
+                <li ng-class="{active: activePills == '/resource/community'}" ng-if="currentUser.role === 'admin'"><a ng-click="activatePills()" href="resource/community">ГРОМАДИ</a></li>
+                <li ng-class="{active: activePills == '/resource/type'}" ng-if="currentUser.role === 'admin' "><a ng-click="activatePills()" href="resource/type">ТИПИ РЕСУРСІВ</a></li>
             </ul> 
             <div class="nav navbar-nav navbar-right md-my-room " >
                 <ul class="nav navbar-nav ng-navbar-nav">
@@ -72,7 +72,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
         <script src="js/ion.rangeSlider.js"></script>
 
@@ -86,13 +85,6 @@
         <script src="vendor/bower/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="vendor/bower/bootstrap-material-design/dist/js/ripples.min.js"></script>
         <script src="vendor/bower/bootstrap-material-design/dist/js/material.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                // This command is used to initialize some elements and make them work properly
-                $.material.init();
-                activePills();
-            });
-        </script>
 
         <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry"></script>
         <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
