@@ -43,7 +43,22 @@
                 $scope.modifyRoleName();
             }
             function errorHandler(data) {
-                console.log("Can't reload list!");
+                //Here will be errorhandler
+            }
+        })();
+
+        ($scope.getAtcStat = function() {
+            return $http.get('rest.php/' + constant.usersQuery + '?currentCommId=' + $scope.currentCommId)
+                .then(successHandler)
+                .catch(errorHandler);
+            function successHandler(data) {
+                $scope.xmlData.activation_status = [];
+                for(var i = 0; i<$scope.xmlData.items.length; i++){
+                    $scope.xmlData.activation_status.push($scope.xmlData.items[i].activation_status);
+                }
+            }
+            function errorHandler(data) {
+                //Here will be errorhandler
             }
         })();
 
@@ -109,7 +124,7 @@
                 $scope.modifyRoleName();
             }
             function errorHandler(data) {
-                console.log("Can't reload list!");
+                //Here will be errorhandler
             }
         };
 
@@ -123,7 +138,7 @@
                 $scope.modifyRoleName();
             }
             function errorHandler(data) {
-                console.log("Can't reload list!");
+                //Here will be errorhandler
             }
         };
 
@@ -142,22 +157,22 @@
                 $scope.modifyRoleName();
             }
             function errorHandler(data) {
-                console.log("Can't reload list!");
+                //Here will be errorhandler
             }
         };
 
         // activate or deactivate user
-        $scope.changeActivationStatus = function(activation_status, user_id) {
+        $scope.changeActivationStatus = function(activation_status, user_id, role_id, community_id) {
             if (confirm("Ви справді бажаєте змінити статус активації цього користувача?") == true) {
-                $http.get('rest.php/users/changeactivationstatus?user_id='+ user_id + '&' + 'activation_status=' + activation_status)
+                $http.get('rest.php/users/changeactivationstatus?user_id='+ user_id + '&' + 'activation_status=' + activation_status + '&role_id=' + role_id + '&community_id=' + community_id)
                     .then(successHandler)
                     .catch(errorHandler);
             }
-            function successHandler() {
-                $scope.refreshData();
+            function successHandler(status) {
+                $scope.getAtcStat();
             }
-            function errorHandler() {
-                console.log("Can't change activation status!");
+            function errorHandler(status) {
+                alertPopup(status.status);
             }
         };
 
@@ -182,7 +197,7 @@
                 
             }
             function errorHandler(data) {
-                console.log("Can't reload list!");
+                //Here will be errorhandler
             }
         }());
 
@@ -199,7 +214,7 @@
                 $scope.refreshData();
             }
             function errorHandler() {
-                console.log("Can't reload list!");
+                //Here will be errorhandler
             }
         };
 
@@ -212,7 +227,7 @@
                 $scope.communityFound = data.data.items;             
             }
             function errorHandler(data) {
-                console.log("Can't reload list!");
+                //Here will be errorhandler
             }
         }());
 
@@ -229,8 +244,16 @@
                 $scope.refreshData();
             }
             function errorHandler() {
-                console.log("Can't reload list!");
+                //Here will be errorhandler
             }
+        }
+
+        function alertPopup(argument) {
+            if(argument==200) {
+                alert("Статус користувача змінено!");    
+            } else if(argument==422) {
+                alert('Неможливо змінити статус користувача');    
+            }  
         }
     }
 })();

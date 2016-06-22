@@ -57,7 +57,13 @@ return [
     'user/userdata' => [
         'type' => 2,
     ],
-    '/user/edit' => [
+    'user/edit' => [
+        'type' => 2,
+    ],
+    'user/index' => [
+        'type' => 2,
+    ],
+    'user/view' => [
         'type' => 2,
     ],
     'user/getrole' => [
@@ -131,6 +137,8 @@ return [
             'resource/creatingrequest',
             'resource/registrationnumber',
             'attribute_class_view/findallattributes',
+            'user/index',
+            'user/view',
         ],
     ],
     'registrar' => [
@@ -152,7 +160,7 @@ return [
         'children' => [
             'user',
             'user/userdata',
-            '/user/edit',
+            'user/edit',
             'user/getrole',
             'user/changeactivationstatus',
             'user/changerole',
@@ -166,7 +174,7 @@ return [
         'ruleName' => 'userGroup',
         'children' => [
             'user/userdata',
-            '/user/edit',
+            'user/edit',
             'user/getrole',
             'user/changeactivationstatus',
             'user/changerole',
@@ -190,6 +198,8 @@ return [
             'resource_attribute/findglobalattributes',
             'attribute_class_view/findfilteredattributes',
             'attribute_class_view/findfilteredattributesforeachresourceclass',
+            'user/index',
+            'user/view',
         ],
     ],
 ];

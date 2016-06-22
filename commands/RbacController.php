@@ -61,8 +61,12 @@ class RbacController extends Controller
         $auth->add($resourceClassChangeActivationStatus);
         $userdata = $auth->createPermission('user/userdata'); 
         $auth->add($userdata);
-        $userEdit = $auth->createPermission('/user/edit'); 
+        $userEdit = $auth->createPermission('user/edit'); 
         $auth->add($userEdit);
+        $usersoutput = $auth->createPermission('user/index'); 
+        $auth->add($usersoutput);
+        $userview = $auth->createPermission('user/view'); 
+        $auth->add($userview);
         $userGetRole = $auth->createPermission('user/getrole'); 
         $auth->add($userGetRole);
         $userAdduser = $auth->createPermission('user/adduser'); 
@@ -140,6 +144,8 @@ class RbacController extends Controller
         $auth->addChild($user, $creatingRequest);
         $auth->addChild($user, $resNum);
         $auth->addChild($user, $findAllAttr);
+        $auth->addChild($user, $usersoutput);
+        $auth->addChild($user, $userview);
 
          
         // registrar
@@ -190,6 +196,9 @@ class RbacController extends Controller
         $auth->addChild($admin, $findGlobalAttr);
         $auth->addChild($admin, $findFilteredAttr);
         $auth->addChild($admin, $findFilteredAttrbyResourceClass);
+        $auth->addChild($admin, $usersoutput);
+        $auth->addChild($admin, $userview);
+
 
         
         

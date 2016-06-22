@@ -132,7 +132,6 @@ class Attribute_class_viewController extends AppController
         for($i = 0; $i < count($preData); $i++) {
             array_push($preArray, $preData[$i][name]);
         }
-        $attributes = $preArray;
         $sql = "SELECT name, attribute_id 
                 FROM resource_attribute 
                 WHERE attribute_id IN (SELECT attribute_id 
@@ -140,10 +139,10 @@ class Attribute_class_viewController extends AppController
                                         WHERE resource_class.class_id = attribute_class_view.class_id AND name=:name)";
         $arr = [];
         $array = [];
-        for($i = 0; $i < count($attributes); $i++){
+        for($i = 0; $i < count($preArray); $i++){
             $data = \Yii::$app->db
                 ->createCommand($sql)
-                ->bindValues([':name' => $attributes[$i]])
+                ->bindValues([':name' => $preArray[$i]])
                 ->queryAll();
             array_push($array, [$preData[$i]]);
             array_push($array[$i], $data);

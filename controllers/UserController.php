@@ -182,7 +182,7 @@ class UserController extends AppController
 
         if(!$request['currentCommId']) {
             $getdata = User::find()
-            ->select(['user_id','username','last_name','first_name','passport_series','passport_number','role.name as role_name','community.name as community_name','user.community_id as communityId','activation_status'])
+            ->select(['user_id','username','last_name','first_name','passport_series','passport_number','role.name as role_name', 'role.role_id','community.name as community_name','user.community_id as communityId','activation_status'])
             ->joinWith('personalData')->joinWith('userRole')->joinWith('community')
             ->andFilterWhere($filters)
             ->andFilterWhere(['like', 'activation_status', $request['activation_status']])
@@ -190,7 +190,7 @@ class UserController extends AppController
             ->asArray();
         } else {
             $getdata = User::find()
-            ->select(['user_id','username','last_name','first_name','passport_series','passport_number','user.community_id as communityId','role.name as role_name','activation_status'])
+            ->select(['user_id','username','last_name','first_name','passport_series','passport_number','user.community_id as communityId','role.name as role_name', 'role.role_id','activation_status'])
             ->joinWith('personalData')->joinWith('userRole')
             ->andFilterWhere($filters)
             ->andFilterWhere(['like', 'activation_status', $request['activation_status']])
@@ -201,11 +201,39 @@ class UserController extends AppController
             return self::buildPagination($getdata, 10); 
     }
 
+    // public function actionChangeactivationstatus() {
+    //     $request= \Yii::$app->request->get();
+    //     $user = User::findOne(['user_id' => $request['user_id']]);
+    //     $user->activation_status=$request['activation_status'];
+    //     $user->update();
+    // }
+
     public function actionChangeactivationstatus() {
         $request= \Yii::$app->request->get();
         $user = User::findOne(['user_id' => $request['user_id']]);
         $user->activation_status=$request['activation_status'];
-        $user->update();
+        $user->role_id=$request['role_id'];
+        $user->community_id=$request['community_id'];
+        if($user->role_id==3){
+            $getAdmin = User::find()->select(['activation_status', 'user_id'])->where(['role_id' => $request['role_id'], 'activation_status' => 1])->asArray()->all();
+            if(sizeof($getAdmin) == 1 && ($user->activation_status==0)){
+                foreach($user->errors as $key){
+                    $errorMessage .= $key[0];
+                }
+                throw new \yii\web\HttpException(422,$errorMessage);
+            } else 
+                $user->update();
+
+        } else{
+            $getAdmin = User::find()->select(['activation_status', 'user_id', 'community_id'])->where(['role_id' => $request['role_id'],'community_id' => $request['community_id'], 'activation_status' => 1])->asArray()->all();
+            if(sizeof($getAdmin) == 1 && ($user->activation_status==0)){
+                foreach($user->errors as $key){
+                    $errorMessage .= $key[0];
+                }
+                throw new \yii\web\HttpException(422,$errorMessage);
+            } else 
+                $user->update();
+        }
     }
 
     public function actionGetrole() {
